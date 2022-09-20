@@ -1,0 +1,23 @@
+name: aldehyde
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - python
+    - pip
+    
+    - pre-commit
+    - black
+
+    - snakemake-minimal
+    - graphviz
+
+    - ipython
+    - jupyter
+    - jupyterlab
+    
+    - pandas
+    - numpy
+    
+    # - pip:
+    #     - ...
