@@ -25,7 +25,7 @@ def add_hydrogen(n, costs):
         p_nom_extendable=True,
         carrier="H2 Electrolysis",
         efficiency=costs.at["electrolysis", "efficiency"],
-        capital_cost=costs.at["electrolysis", "fixed"],
+        capital_cost=costs.at["electrolysis", "capital costs"],
         lifetime=costs.at["electrolysis", "lifetime"],
     )
 
@@ -52,9 +52,14 @@ if __name__ == "__main__":
         Nyears,
     )
 
+    nodes = n.buses.index
+
+    nodes = n.buses[n.buses.carrier == "AC"].index  # TODO if you take nodes from the index of buses of n it's more than pop_layout
+    # clustering of regions must be double checked.. refer to regions onshore
+
 
     # add hydrogen buses
-    #add_hydrogen(n)
+    add_hydrogen(n, costs)
 
 
     n.export_to_netcdf(snakemake.output[0])
