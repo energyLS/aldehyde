@@ -1,5 +1,5 @@
 
-configfile: "config/config.yaml"
+configfile: "../config/config.yaml"
 
 localrules: all, report, clean
 
@@ -8,6 +8,13 @@ rule all:
     input:
         "report/report.pdf",
 
+rule import_network:
+    input:
+        network="../../pypsa-earth-sec/results/Runname_test/prenetworks/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069.nc",
+    output:
+        network="elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_cleaned.nc",
+    script:
+        "scripts/import_network.py"
 
 rule report:
     message: "Compile report."
