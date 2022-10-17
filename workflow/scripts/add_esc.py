@@ -2,6 +2,9 @@ import pypsa
 import os
 import pandas as pd
 from _helpers import load_costs
+import logging
+
+logger = logging.getLogger(__name__)
 
 def add_hydrogen(n, costs):
     "function to add hydrogen as an energy carrier with its conversion technologies from and to AC"
@@ -25,9 +28,54 @@ def add_hydrogen(n, costs):
         p_nom_extendable=True,
         carrier="H2 Electrolysis",
         efficiency=costs.at["electrolysis", "efficiency"],
-        capital_cost=costs.at["electrolysis", "capital costs"],
+        capital_cost=costs.at["electrolysis", "capital_cost"],
         lifetime=costs.at["electrolysis", "lifetime"],
     )
+
+def add_export(n, export_h2):
+
+    # add export bus
+    n.add(
+        "Bus",
+        "H2 export bus",
+        carrier="H2",
+    )
+
+    # add export links
+    logger.info("Adding export links")
+    n.madd(
+        "Link",
+        names=nodes + " H2 export",
+        bus0=nodes + " H2",
+        bus1="H2 export bus",
+        p_nom_extendable=True,
+    )
+
+    export_links = n.links[n.links.index.str.contains("export")]
+    logger.info(export_links)
+
+    # add store
+    n.add(
+        "Store",
+        "H2 export store",
+        bus="H2 export bus",
+        e_nom_extendable=True,
+        carrier="H2",
+        e_initial=0,
+        marginal_cost=0,
+        capital_cost=0,
+    )
+
+    # add load
+    n.add(
+        "Load",
+        "H2 export load",
+        bus="H2 export bus",
+        carrier="H2",
+        p_set=export_h2 / 8760,
+    )
+
+    return
 
 if __name__ == "__main__":
     if 'snakemake' not in globals():
@@ -61,5 +109,13 @@ if __name__ == "__main__":
     # add hydrogen buses
     add_hydrogen(n, costs)
 
+    # get export demand
+    export_h2 = snakemake.config["export"]["export_h2"]
+    logger.info(
+        f"The yearly export demand is {export_h2/1e6} TWh resulting in an hourly average of {export_h2/8760:.2f} MWh"
+    )
 
+    # add export value and components to network
+    add_export(n, export_h2)
+    
     n.export_to_netcdf(snakemake.output[0])

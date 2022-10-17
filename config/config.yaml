@@ -4,6 +4,9 @@ cluster: "remote:path/on/remote"
 
 retrieve_cost_data: True
 
+export:
+  export_h2: 10000000 # Yearly export demand in MWh
+
 # regulate what components with which carriers are kept from PyPSA-earth-sec;
 pypsa_earth:
   Line: []
