@@ -1,5 +1,13 @@
+import os
+from shutil import copyfile, move
+
+from snakemake.remote.HTTP import RemoteProvider as HTTPRemoteProvider
+HTTP = HTTPRemoteProvider()
+
 
 configfile: "../config/config.yaml"
+
+
 
 localrules: all, report, clean
 
@@ -8,13 +16,36 @@ rule all:
     input:
         "report/report.pdf",
 
+if config.get("retrieve_cost_data", True):
+
+    rule retrieve_cost_data:
+        input:
+            HTTP.remote(
+                f"raw.githubusercontent.com/PyPSA/technology-data/{config['costs']['version']}/outputs/costs_{config['costs']['year']}.csv",
+                keep_local=True,
+            ),
+        output:
+            "../resources/costs.csv"
+        run:
+            move(input[0], output[0])
+
+
 rule import_network:
     input:
         network="../../pypsa-earth-sec/results/Runname_test/prenetworks/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069.nc",
     output:
-        network="elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_cleaned.nc",
+        network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_cleaned.nc",
     script:
         "scripts/import_network.py"
+
+rule add_esc:
+    input:
+        network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_cleaned.nc",
+        tech_costs="../resources/costs.csv",
+    output:
+        network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_esc.nc",
+    script:
+        "scripts/add_esc.py"
 
 rule report:
     message: "Compile report."
