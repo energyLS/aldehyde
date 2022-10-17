@@ -1,3 +1,22 @@
 example: "setting"
 
 cluster: "remote:path/on/remote"
+
+
+# regulate what components with which carriers are kept from PyPSA-earth-sec;
+pypsa_earth:
+  Line: []
+  Bus:
+    - AC
+  Link:
+    - DC
+  Generator:
+    - onwind
+    - offwind-ac
+    - offwind-dc
+    - solar
+    - ror
+  StorageUnit: []
+  Store: []
+  Load: []
+ # Global_Constraint: []
