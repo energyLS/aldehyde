@@ -18,6 +18,8 @@ dependencies:
     
     - pandas
     - numpy
+
+    - pypsa
     
     # - pip:
     #     - ...
