@@ -14,7 +14,7 @@ localrules: all, report, clean
 rule all:
     message: "Run entire analysis and compile report."
     input:
-        "report/report.pdf",
+        "../report/report.pdf",
 
 if config.get("retrieve_cost_data", True):
 
@@ -50,23 +50,25 @@ rule add_esc:
 rule report:
     message: "Compile report."
     input:
-        tex="report/report.tex",
-        bib="report/references.bib"
-    output: "report/report.pdf"
+        tex="../report/report.tex",
+        bib="../report/references.bib",
+    output: "../report/report.pdf"
     shell:
         """
-        pdflatex {input.tex}
-        bibtex {input.bib})
-        pdflatex {input.tex}
-        pdflatex {input.tex}
+        cd ../report
+        pdflatex report.tex
+        bibtex report
+        pdflatex report.tex
+        pdflatex report.tex
+        cd ../workflow
         """
 
 
 rule dag:
      message: "Plot dependency graph of the workflow."
      output:
-         dot="resources/dag.dot",
-         pdf="resources/dag.pdf"
+         dot="../resources/dag.dot",
+         pdf="../resources/dag.pdf"
      shell:
          """
          snakemake --rulegraph > {output.dot}
@@ -79,8 +81,8 @@ rule clean:
     run:
          import shutil
 
-         shutil.rmtree("resources")
-         shutil.rmtree("results")
+         shutil.rmtree("../resources")
+         shutil.rmtree("../results")
          print("Data downloaded to data/ has not been cleaned.")
 
         
