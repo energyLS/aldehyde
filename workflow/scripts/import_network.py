@@ -44,6 +44,10 @@ if __name__ == "__main__":
 
     remove_elec_base_techs(n)
     remove_non_electric_buses(n)
-    #clean_network(n)
+
+    # empty dataframe
+    n.global_constraints = n.global_constraints.iloc[0:0]
+
+    
 
     n.export_to_netcdf(snakemake.output[0])
