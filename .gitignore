@@ -34,6 +34,7 @@ data/
 *-blx.bib
 *.brf
 *.run.xml
+*.tmp
 
 ## Build tool auxiliary files:
 *.fdb_latexmk
