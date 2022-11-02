@@ -38,6 +38,10 @@ rule import_network:
     script:
         "scripts/import_network.py"
 
+rule create_graph:
+    script:
+        "notebooks/morocco_em.ipynb"
+
 rule add_esc:
     input:
         network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_cleaned.nc",
