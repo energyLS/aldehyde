@@ -38,9 +38,11 @@ rule import_network:
     script:
         "scripts/import_network.py"
 
-rule create_graph:
+rule figure_targets:
+    output:
+        figure="../results/graphics/morocco_em.pdf"
     script:
-        "notebooks/morocco_em.ipynb"
+        "scripts/figure_targets.py"
 
 rule add_esc:
     input:
@@ -65,6 +67,7 @@ rule report:
     input:
         tex="../report/report.tex",
         bib="../report/references.bib",
+        figure="../results/graphics/morocco_em.pdf", # Just as placeholder to connect to workflow
     output: "../report/report.pdf"
     shell:
         """
