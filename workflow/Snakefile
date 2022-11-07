@@ -38,6 +38,12 @@ rule import_network:
     script:
         "scripts/import_network.py"
 
+rule figure_targets:
+    output:
+        figure="../results/graphics/morocco_em.pdf"
+    script:
+        "scripts/figure_targets.py"
+
 rule add_esc:
     input:
         network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_cleaned.nc",
@@ -61,6 +67,7 @@ rule report:
     input:
         tex="../report/report.tex",
         bib="../report/references.bib",
+        figure="../results/graphics/morocco_em.pdf", # Just as placeholder to connect to workflow
     output: "../report/report.pdf"
     shell:
         """
