@@ -1,6 +1,10 @@
 
 \subsection{Moroccan energy model}
+\label{subsec:moroccan_model}
 Here I describe the application of PyPSA-Earth \cite{Parzen2022} to Morocco and the sector extension.
+Capacity expansion model based on \cite{Brown2018}
+
+
 \subsubsection{Climate targets}
 Describe the emission targets of Morocco. In general: Low per capita emissions
 Depicted in Figure \ref{fig:morocco_em}.
@@ -12,8 +16,6 @@ Insights from \cite{CAT2021}:
     \item 2030: 52\% Renewable energy share in installed electric capacity
 \end{itemize}
 
-
-
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{morocco_em.pdf}
@@ -22,6 +24,25 @@ Insights from \cite{CAT2021}:
 \end{figure}
 
 
+\subsubsection{Energy demand}
+Clarify in each subsubsection: what is the energy prediction based on?
+\begin{itemize}
+    \item Electricity demand based on \cite{Parzen2022}
+    \item Industry demand
+    \item Transport demand
+    \item Heating demand (cooling?) 
+    \item Regionalisation of energy demands
+\end{itemize}
+
+
+\subsubsection{Renewable Energy Sources}
+Atlite, using data pipeline from \cite{Parzen2022}
+
+
+\subsubsection{Conventional electricity generation}
+
+
+\subsubsection{Electricity (and gas) networks}
 
 
 \subsubsection{Green hydrogen}
@@ -34,17 +55,25 @@ Regulatory dimensions, adapted from \cite{Brauer2022}:
     \item Origin (100\% new RES - loose)
 \end{itemize}
 How does my scenario fit in these dimensions?
+
+
+
 \subsection{Hydrogen export}
+\label{subsec:hydrogen_export}
 What amount of hydrogen should be used? X TWh? -> Source found for that. Talk to Johannes about his assumption
 System boundary: Country border
+
+
+
 \subsection{Islanded hydrogen production}
+In the islanded hydrogen production scenario, the hydrogen production is optimised without considering the local energy system described in \ref{subsec:moroccan_model}.
+
+
 \subsection{Integrated hydrogen production}
+In the integrated scenario, both the hydrogen export (\ref{subsec:hydrogen_export}) and the Moroccan energy system (\ref{subsec:moroccan_model})
+are optimised in an integrated approach.
+The hydrogen production for export
 
-This refers to \ref{sec:intro}
-
-Citation is here \cite{Neumann2021}
-
-As seen in the Figure \ref{fig:methods_scenarios}, the cross-reference works.
 
 \begin{figure}[h!]
     \centering

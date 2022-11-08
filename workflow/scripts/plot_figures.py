@@ -58,7 +58,7 @@ def plot_figure_targets():
     ax.scatter(2030, snakemake.config["climate_targets"]["2030_cond"], label="2030 unconditional", marker = 'o', color = "green")
     ax.scatter(2030, snakemake.config["climate_targets"]["2030_uncond"], label="2030 conditional", marker = 'o', color = "green", alpha=0.7)
 
-    ax.set_xlim(1940, 2100)
+    ax.set_xlim(1940, 2060)
     ax.set_ylim(0, 120)
 
     # Further elements
