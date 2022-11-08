@@ -38,11 +38,14 @@ rule import_network:
     script:
         "scripts/import_network.py"
 
-rule figure_targets:
+rule plot_figures:
+    input:
+        gadm_shapes="../resources/shapes/gadm_shapes.geojson"
     output:
-        figure="../results/graphics/morocco_em.pdf"
+        morocco_em="../results/graphics/morocco_em.pdf",
+        land_conflicts="../results/graphics/land_conflicts.pdf",
     script:
-        "scripts/figure_targets.py"
+        "scripts/plot_figures.py"
 
 rule add_esc:
     input:
@@ -67,7 +70,8 @@ rule report:
     input:
         tex="../report/report.tex",
         bib="../report/references.bib",
-        figure="../results/graphics/morocco_em.pdf", # Just as placeholder to connect to workflow
+        morocco_em="../results/graphics/morocco_em.pdf", # Just a placeholder to trigger workflow
+        land_conflicts="../results/graphics/land_conflicts.pdf",
     output: "../report/report.pdf"
     shell:
         """

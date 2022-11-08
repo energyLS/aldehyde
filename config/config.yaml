@@ -4,6 +4,11 @@ cluster: "remote:path/on/remote"
 
 retrieve_cost_data: False
 
+climate_targets:
+  2030_cond: 115 # in Mt CO2 (equ.?)
+  2030_uncond: 75 # in Mt CO2 (equ.?)
+
+
 export:
   export_h2: 1000000 #10000000 # Yearly export demand in MWh
 
