@@ -20,6 +20,8 @@ dependencies:
     - numpy
 
     - pypsa
+
+    - geopandas
     
     # - pip:
     #     - ...
