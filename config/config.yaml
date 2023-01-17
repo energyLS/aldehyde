@@ -10,7 +10,7 @@ climate_targets:
 
 
 export:
-  export_h2: 1000000 #10000000 # Yearly export demand in MWh
+  export_h2: 10000000 #10000000 # Yearly export demand in MWh
 
 # regulate what components with which carriers are kept from PyPSA-earth-sec;
 pypsa_earth:

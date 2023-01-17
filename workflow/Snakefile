@@ -32,9 +32,9 @@ if config.get("retrieve_cost_data", True):
 
 rule import_network:
     input:
-        network="../../pypsa-earth-sec/results/Runname_test/prenetworks/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069.nc",
+        network="../resources/mar_es_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF.nc",
     output:
-        network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_cleaned.nc",
+        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_cleaned.nc",
     script:
         "scripts/import_network.py"
 
@@ -49,18 +49,18 @@ rule plot_figures:
 
 rule add_esc:
     input:
-        network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_cleaned.nc",
+        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_cleaned.nc",
         tech_costs="../resources/costs.csv",
     output:
-        network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_esc.nc",
+        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_esc.nc",
     script:
         "scripts/add_esc.py"
 
 rule solve_network:
     input:
-        network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_esc.nc",
+        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_esc.nc",
     output:
-        network="../resources/elec_s_20_ec_lc1.0_Co2L_730H_2030_0.069_solved.nc",
+        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_solved.nc",
     script:
         "scripts/solve_network.py"
 
