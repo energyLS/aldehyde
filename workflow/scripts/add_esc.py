@@ -1,6 +1,7 @@
 import pypsa
 import os
 import pandas as pd
+import geopandas as gpd
 from _helpers import load_costs
 import logging
 
@@ -33,12 +34,24 @@ def add_hydrogen(n, costs):
     )
 
 def add_export(n, export_h2):
+    "function to add export of hydrogen to the network"
+
+    # Read country shape
+    country_shape = gpd.read_file(snakemake.input["shapes_path"])
+    # Find most northwestern point in country shape and get x and y coordinates
+    country_shape = country_shape.to_crs("EPSG:4326")
+
+    # Get coordinates of the most western and northern point of the country and add a buffer of 2 degrees (equiv. to approx 220 km)
+    x_export = country_shape.geometry.centroid.x.min() -2
+    y_export = country_shape.geometry.centroid.y.max() +2
 
     # add export bus
     n.add(
         "Bus",
         "H2 export bus",
         carrier="H2",
+        x=x_export,
+        y=y_export,
     )
 
     # add export links

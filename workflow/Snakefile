@@ -51,6 +51,7 @@ rule add_esc:
     input:
         network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_cleaned.nc",
         tech_costs="../resources/costs.csv",
+        shapes_path="../resources/shapes/gadm_shapes.geojson",
     output:
         network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_esc.nc",
     script:
