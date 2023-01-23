@@ -30,4 +30,8 @@ if __name__ == "__main__":
 
     solve_network(n)
 
+    if pd.isna(n.objective):
+        print("No solution found. Exiting.")
+        exit()
+
     n.export_to_netcdf(snakemake.output[0])
