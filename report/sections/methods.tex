@@ -25,7 +25,9 @@ Insights from \cite{CAT2021}:
 
 
 \subsubsection{Energy demand}
+HyPat uses "LEAP" to predict energy demand.
 Clarify in each subsubsection: what is the energy prediction based on?
+MenaFuels: see page 35 in \cite{Ersoy2022}, better: Teilbericht 9
 \begin{itemize}
     \item Electricity demand based on \cite{Parzen2022}
     \item Industry demand
@@ -36,10 +38,15 @@ Clarify in each subsubsection: what is the energy prediction based on?
 
 
 \subsubsection{Renewable Energy Sources}
-Atlite, using data pipeline from \cite{Parzen2022}
-
+Atlite, using data pipeline from \cite{Parzen2022}.
+Benchmark potentials to other studies (e.g. IRENA, MenaFuels -> "EnDat", HyPAT -> online map?, ...)
+MenaFuels \cite{Ersoy2022} (better source: Teilbericht 10)
+See \cite{Ersoy2022} (better primary source) page 26 on Renewable generation in Morocco: Currently 37\% of the installed capacity from RE
 
 \subsubsection{Conventional electricity generation}
+We use: ...
+Other sources: S\&P Global Kraftwerksliste (used by Fraunhofer IEE)
+See \cite{Ersoy2022} page 26 on conventional generation in Morocco
 
 
 \subsubsection{Electricity (and gas) networks}
@@ -56,12 +63,32 @@ Regulatory dimensions, adapted from \cite{Brauer2022}:
 \end{itemize}
 How does my scenario fit in these dimensions?
 
+\subsection{Water supply}
+\label{subsec:water_supply}
+Water supply is a crucial input for the electrolysis process. 
+Morocco: 88 \% of water is used in agriculture, secondary source \cite{Ersoy2022}.
+Transfer of water from North to South is planned, seconary source \cite{Ersoy2022}.
+Ideas:
+\begin{itemize}
+    \item Detailed water analysis in HyPat: Topography -> water pumps, etc. See results in Figure \ref{fig:morocco_water}
+    \item Oversize water desalination to provide water for local population/agriculture to increase public acceptance
+    \item DAC: Water is a product of DAC process which could be reused for electrolysis
+    \item Direct electrolysis of seawater: In development but probably not on big scale in the next 10-15 years
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{water_supply_costs.png}
+    \caption{Morocco water supply costs}
+    \label{fig:morocco_water}
+\end{figure}
 
 
 \subsection{Hydrogen export}
 \label{subsec:hydrogen_export}
 What amount of hydrogen should be used? X TWh? -> Source found for that. Talk to Johannes about his assumption
-System boundary: Country border
+System boundary: Country border. MenaFuels uses closest harbour as system boundary
+Nador West Med: Currently under construction and maybe operational in 2022 \cite{Ersoy2022}
 
 
 

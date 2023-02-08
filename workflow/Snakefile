@@ -53,15 +53,15 @@ rule add_esc:
         tech_costs="../resources/costs.csv",
         shapes_path="../resources/shapes/gadm_shapes.geojson",
     output:
-        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_esc.nc",
+        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_esc_"+str(config["export"]["export_h2"])+".nc",
     script:
         "scripts/add_esc.py"
 
 rule solve_network:
     input:
-        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_esc.nc",
+        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_esc_"+str(config["export"]["export_h2"])+".nc",
     output:
-        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_solved.nc",
+        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_solved_"+str(config["export"]["export_h2"])+".nc",
     script:
         "scripts/solve_network.py"
 
