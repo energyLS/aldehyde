@@ -1,28 +1,7 @@
-
 \subsection{Moroccan energy model}
 \label{subsec:moroccan_model}
 Here I describe the application of PyPSA-Earth \cite{Parzen2022} to Morocco and the sector extension.
 Capacity expansion model based on \cite{Brown2018}
-
-
-\subsubsection{Climate targets}
-Describe the emission targets of Morocco. In general: Low per capita emissions
-Depicted in Figure \ref{fig:morocco_em}.
-Insights from \cite{CAT2021}:
-\begin{itemize}
-    \item No net-zero target.
-    \item 2030: 115 MtCO2e (NDC, excluding LULUCF, Unconditional target)
-    \item 2030: 75 MtCO2e (NDC, excluding LULUCF, Conditional target)
-    \item 2030: 52\% Renewable energy share in installed electric capacity
-\end{itemize}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\linewidth]{morocco_em.pdf}
-    \caption{Morocco historical emissions and targets.}
-    \label{fig:morocco_em}
-\end{figure}
-
 
 \subsubsection{Energy demand}
 HyPat uses "LEAP" to predict energy demand.
@@ -39,13 +18,18 @@ MenaFuels: see page 35 in \cite{Ersoy2022}, better: Teilbericht 9
 
 \subsubsection{Renewable Energy Sources}
 Atlite, using data pipeline from \cite{Parzen2022}.
-Benchmark potentials to other studies (e.g. IRENA, MenaFuels -> "EnDat", HyPAT -> online map?, ...)
-MenaFuels \cite{Ersoy2022} (better source: Teilbericht 10)
-See \cite{Ersoy2022} (better primary source) page 26 on Renewable generation in Morocco: Currently 37\% of the installed capacity from RE
+
+\begin{itemize}
+    \item Benchmark potentials to other studies (e.g. IRENA, MenaFuels which uses "EnDat", HyPAT provided on online map?, ...)
+    \item MenaFuels \cite[p. 25]{Ersoy2022} (better source: Teilbericht 10)
+    \item See \cite{Ersoy2022} (better primary source) page 26 on Renewable generation in Morocco: Currently 37\% of the installed capacity from RE
+\end{itemize}
+
+
 
 \subsubsection{Conventional electricity generation}
 We use: ...
-Other sources: S\&P Global Kraftwerksliste (used by Fraunhofer IEE)
+Other sources: S\&P Global Kraftwerksliste (used by Fraunhofer IEE).
 See \cite{Ersoy2022} page 26 on conventional generation in Morocco
 
 
