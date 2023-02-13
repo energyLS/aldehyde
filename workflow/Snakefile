@@ -29,6 +29,35 @@ if config.get("retrieve_cost_data", True):
         run:
             move(input[0], output[0])
 
+# Include module "PyPSA-Earth-Sec"
+# Goal: use the PyPSA-Earth-Sec module to solve the network and copy it to aldehyde repository
+# Goal: have own config that is used for the PyPSA-Earth-Sec module
+# Problem: can't find config file
+
+# module pypsaearthsec:
+#     snakefile: "/mnt/c/Users/scl38887/Documents/git/pypsa-earth-sec/Snakefile"
+#     config: config["pypsaearthsec"] # Use default config of pypsa-earth-sec. TODO: use config of aldehyde
+
+# use rule * from pypsaearthsec as pypsaearthsec_*
+
+subworkflow pypsaearthsec:
+    workdir:
+        "../../pypsa-earth-sec"
+    snakefile:
+        "../../pypsa-earth-sec/Snakefile"
+    configfile:
+        "../../pypsa-earth-sec/config.default.yaml"
+
+# Just for testing the subworkflow
+rule retrieve_file:
+    input:
+        #network=pypsaearthsec(RDIR + "/postnetworks//elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF.nc"),
+        test = pypsaearthsec("resources/energy_totals.csv"),
+    output:
+        test="../resources/energy_totals_copytest.csv"
+    shell:
+        "cp {input} {output}"
+
 
 rule import_network:
     input:
