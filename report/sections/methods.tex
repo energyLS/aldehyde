@@ -8,7 +8,7 @@ HyPat uses "LEAP" to predict energy demand.
 Clarify in each subsubsection: what is the energy prediction based on?
 MenaFuels: see page 35 in \cite{Ersoy2022}, better: Teilbericht 9
 \begin{itemize}
-    \item Electricity demand based on \cite{Parzen2022}
+    \item Electricity demand based on \cite{Parzen2022}. Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
     \item Industry demand
     \item Transport demand
     \item Heating demand (cooling?) 
@@ -23,6 +23,10 @@ Atlite, using data pipeline from \cite{Parzen2022}.
     \item Benchmark potentials to other studies (e.g. IRENA, MenaFuels which uses "EnDat", HyPAT provided on online map?, ...)
     \item MenaFuels \cite[p. 25]{Ersoy2022} (better source: Teilbericht 10)
     \item See \cite{Ersoy2022} (better primary source) page 26 on Renewable generation in Morocco: Currently 37\% of the installed capacity from RE
+    \item See \cite[p. 5]{Boulakhbar2020} for list of hydro projects (current \& future)
+    \item See \cite[primary 10,13,17]{Boulakhbar2020} for MAR potentials
+    \item See \cite[primary 13, 38]{Boulakhbar2020} wind power of 6000 MW
+    \item In \cite[p. 6]{Boulakhbar2020} they outline why biomass/biogas is not exploited yet in MAR
 \end{itemize}
 
 
@@ -34,11 +38,13 @@ See \cite{Ersoy2022} page 26 on conventional generation in Morocco
 
 
 \subsubsection{Electricity (and gas) networks}
+3,000 km of 400 kV, 9,000 km of 225 kV, 147 km of 150 kV lines 
+11,780 km of 60 kV lines \cite[p. 6, primary 44]{Boulakhbar2020}
 
 
 \subsubsection{Green hydrogen}
 Emissions vs costs. Which definition will I use? how is it implemented?
-Use current papers (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022a}) to base my decision on
+Use current papers (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}) to base my decision on
 Regulatory dimensions, adapted from \cite{Brauer2022}:
 \begin{itemize}
     \item Temporal correlation (1h, 1d, 1a - loose) 
@@ -75,6 +81,16 @@ System boundary: Country border. MenaFuels uses closest harbour as system bounda
 Nador West Med: Currently under construction and maybe operational in 2022 \cite{Ersoy2022}
 
 
+\subsection{Cost of hydrogen production}
+\label{subsec:cost_of_hydrogen_production}
+
+The cost of hydrogen production is calculated as follows \cite{Zeyen2022}:
+% Add formula here
+\begin{equation}
+    \label{eq:cost_of_hydrogen_production}
+    C_\mathrm{H2}= \frac{\sum \limits_{a\in A}^{} C_a + \sum \limits_{a,t} O_{a,t} + \sum \limits_{t} P_t \cdot (im_t - ex_t)   }{d_\mathrm{H2}}
+\end{equation}
+%where $C_a$ is the capital cost of the asset $a$, $O_{a,t}$ is the operational cost of the asset $a$ in time step $t$, $P_t$ is the production of hydrogen in time step $t$, $im_t$ is the import of hydrogen in time step $t$ and $ex_t$ is the export of hydrogen in time step $t$.
 
 \subsection{Islanded hydrogen production}
 In the islanded hydrogen production scenario, the hydrogen production is optimised without considering the local energy system described in \ref{subsec:moroccan_model}.
