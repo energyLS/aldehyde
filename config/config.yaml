@@ -22,12 +22,12 @@ scenario:
   opts:
   - "Co2L"
   sopts:
-  - "144H"
+  - "6H"
   demand:
   - "DF"
 
 export:
-  h2export: [1, 5] # Yearly export demand in TWh. TODO This is currently necessary for PyPSA-Earth-Sec subworkflow
+  h2export: [0, 100] # Yearly export demand in TWh. TODO This is currently necessary for PyPSA-Earth-Sec subworkflow
   export_h2: 150000000 #10000000 # Yearly export demand in MWh. TODO This is currently necessary for local aldehyde analysis
 
 
