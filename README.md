@@ -18,6 +18,11 @@ To generate a PDF of the dependency graph of all steps `build/dag.pdf` run:
 
     snakemake -c1 --use-conda -f dag
 
+## Config
+
+Set the configuration in config/config.yaml. The scenario wildcards are propagated to all rules, so you can run the analysis for different scenarios.
+Set PyPSA-Earth-Sec specific parameters in config/config.pypsa-eur-sec.yaml.
+
 ## Repo structure
 
 * `config`: configurations used in the study
