@@ -56,18 +56,6 @@ subworkflow pypsaearthsec:
         "../config/config.pypsa-earth-sec.yaml"
 
 
-
-
-# Just for testing the subworkflow
-rule retrieve_file:
-    input:
-        #network=pypsaearthsec(RDIR + "/postnetworks//elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF.nc"),
-        test = pypsaearthsec("resources/energy_totals.csv"),
-    output:
-        test="../resources/energy_totals_copytest.csv"
-    shell:
-        "cp {input} {output}"
-
 # Solve (in pypsa-earth-sec) all the networks which are required according to the config.yaml and copy them to the resources folder in this aldehyde repo
 # Retrieve the wildcards from config.pypsa-earth-sec.yaml
 rule import_network_pypsaearthsec:
@@ -80,7 +68,7 @@ rule import_network_pypsaearthsec:
             ),
         )
     output:
-        expand("../resources/pypsaearthsec/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
+        expand("../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
             **config["scenario"],
             **config["costs_pypsaearthsec"],
             **config["export"],
