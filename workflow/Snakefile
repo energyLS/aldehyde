@@ -68,20 +68,8 @@ rule retrieve_file:
     shell:
         "cp {input} {output}"
 
-# Create rule to import the solved networks from PyPSA-Earth-Sec and copy them to this repo. Retrieve the wildcards from config.pypsa-earth-sec.yaml
-print({**config["scenario"]})
-print(config["scenario"])
-#print(expand("elec_s{simpl}_{clusters}.nc", **config["scenario"]))
-
-print(
-        expand("elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
-            **config["scenario"],
-            **config["costs_pypsaearthsec"],
-            **config["export"],
-        ),
-    )
-
 # Solve (in pypsa-earth-sec) all the networks which are required according to the config.yaml and copy them to the resources folder in this aldehyde repo
+# Retrieve the wildcards from config.pypsa-earth-sec.yaml
 rule import_network_pypsaearthsec:
     input:
         pypsaearthsec(
@@ -97,8 +85,9 @@ rule import_network_pypsaearthsec:
             **config["costs_pypsaearthsec"],
             **config["export"],
         ),
-    shell:
-        "cp {input} {output}"
+    run:
+        for i in range(len(input)):
+            copyfile(input[i], output[i])
 
 
 rule import_network:
