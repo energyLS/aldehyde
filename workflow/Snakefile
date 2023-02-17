@@ -1,5 +1,6 @@
 import os
 from shutil import copyfile, move
+import yaml
 
 from snakemake.remote.HTTP import RemoteProvider as HTTPRemoteProvider
 HTTP = HTTPRemoteProvider()
@@ -7,6 +8,12 @@ HTTP = HTTPRemoteProvider()
 
 configfile: "../config/config.yaml"
 
+
+# Define the results directory of PyPSA-Earth-Sec
+with open("../config/config.pypsa-earth-sec.yaml") as file:
+    config_pypsaearthsec = yaml.full_load(file)
+
+RDIR_pypsaearthsec = config_pypsaearthsec["results_dir"] + config_pypsaearthsec["run"]
 
 
 localrules: all, report, clean
@@ -46,7 +53,10 @@ subworkflow pypsaearthsec:
     snakefile:
         "../../pypsa-earth-sec/Snakefile"
     configfile:
-        "../../pypsa-earth-sec/config.default.yaml"
+        "../config/config.pypsa-earth-sec.yaml"
+
+
+
 
 # Just for testing the subworkflow
 rule retrieve_file:
@@ -55,6 +65,38 @@ rule retrieve_file:
         test = pypsaearthsec("resources/energy_totals.csv"),
     output:
         test="../resources/energy_totals_copytest.csv"
+    shell:
+        "cp {input} {output}"
+
+# Create rule to import the solved networks from PyPSA-Earth-Sec and copy them to this repo. Retrieve the wildcards from config.pypsa-earth-sec.yaml
+print({**config["scenario"]})
+print(config["scenario"])
+#print(expand("elec_s{simpl}_{clusters}.nc", **config["scenario"]))
+
+print(
+        expand("elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
+            **config["scenario"],
+            **config["costs_pypsaearthsec"],
+            **config["export"],
+        ),
+    )
+
+# Solve (in pypsa-earth-sec) all the networks which are required according to the config.yaml and copy them to the resources folder in this aldehyde repo
+rule import_network_pypsaearthsec:
+    input:
+        pypsaearthsec(
+            expand(RDIR_pypsaearthsec + "/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
+                **config["scenario"],
+                **config["costs_pypsaearthsec"],
+                **config["export"],
+            ),
+        )
+    output:
+        expand("../resources/pypsaearthsec/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
+            **config["scenario"],
+            **config["costs_pypsaearthsec"],
+            **config["export"],
+        ),
     shell:
         "cp {input} {output}"
 
