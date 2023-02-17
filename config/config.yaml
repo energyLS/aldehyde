@@ -1,6 +1,7 @@
-example: "setting"
-
 cluster: "remote:path/on/remote"
+
+# Path to the PyPSA-Earth-Sec repository
+pypsaearthsec: "/mnt/c/Users/scl38887/Documents/git/pypsa-earth-sec/config.default.yaml"
 
 retrieve_cost_data: False
 
@@ -9,8 +10,26 @@ climate_targets:
   2030_uncond: 75 # in Mt CO2 (equ.?)
 
 
+scenario:
+  simpl: # only relevant for PyPSA-Eur
+  - ""
+  clusters: # number of nodes in Europe, any integer between 37 (1 node per country-zone) and several hundred
+  - 4
+  planning_horizons: # investment years for myopic and perfect; or costs year for overnight
+  - 2030
+  ll:
+  - "c1.0"
+  opts:
+  - "Co2L"
+  sopts:
+  - "6H"
+  demand:
+  - "DF"
+
 export:
-  export_h2: 150000000 #10000000 # Yearly export demand in MWh
+  h2export: [0, 100] # Yearly export demand in TWh. TODO This is currently necessary for PyPSA-Earth-Sec subworkflow
+  export_h2: 150000000 #10000000 # Yearly export demand in MWh. TODO This is currently necessary for local aldehyde analysis
+
 
 # regulate what components with which carriers are kept from PyPSA-earth-sec;
 pypsa_earth:
@@ -29,6 +48,9 @@ pypsa_earth:
   Store: []
   Load: []
  # Global_Constraint: []
+
+costs_pypsaearthsec:
+  discountrate: [0.071] #, 0.086, 0.111]
 
 costs:
   year: 2030
