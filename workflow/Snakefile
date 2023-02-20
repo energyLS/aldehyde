@@ -140,7 +140,10 @@ rule compare_integrated:
             **config["export"],
         ),
     output:
-        graph_contour = "../results/system_comp/contour.pdf",
+        #graph_contour = "../results/system_comp/contour.pdf",
+        cost_file = "../results/system_comp/cost.csv",
+        cost_plot = "../results/graphics/system_comp/cost.pdf",
+
 
     script:
         "scripts/compare_integrated.py"
