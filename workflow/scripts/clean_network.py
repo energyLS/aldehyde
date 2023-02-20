@@ -32,7 +32,7 @@ if __name__ == "__main__":
         from _helpers import mock_snakemake, sets_path_to_root
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        snakemake = mock_snakemake('import_network')
+        snakemake = mock_snakemake('clean_network')
 
         sets_path_to_root('aldehyde')
 
