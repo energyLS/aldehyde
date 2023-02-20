@@ -123,6 +123,13 @@ rule compare_networks:
             **config["compare_networks"]
         ),
 
+rule test_notebook:
+    input:
+        network="../resources/export_only/emission_export/elec_s_4_ec_lc1.0__Co2L0.90-144H_2030_0.071_DF_20export_esc.nc"
+    notebook:
+        "notebooks/test.py.ipynb"
+
+
 rule plot_figures:
     input:
         gadm_shapes="../resources/shapes/gadm_shapes.geojson"
