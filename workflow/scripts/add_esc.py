@@ -122,8 +122,10 @@ if __name__ == "__main__":
     # add hydrogen buses
     add_hydrogen(n, costs)
 
-    # get export demand
-    h2export = snakemake.config["export"]["h2export"]
+    # get export demand from wildcard
+    h2export = eval(snakemake.wildcards["h2export"]) # in TWh
+
+
     logger.info(
         f"The yearly export demand is {h2export} TWh resulting in an hourly average of {h2export*1e6/8760:.2f} MWh"
     )
