@@ -8,6 +8,16 @@ HTTP = HTTPRemoteProvider()
 
 configfile: "../config/config.yaml"
 
+wildcard_constraints:
+    ll="[a-z0-9\.]+",
+    simpl="[a-zA-Z0-9]*|all",
+    clusters="[0-9]+m?|all",
+    opts="[-+a-zA-Z0-9]*",
+    sopts="[-+a-zA-Z0-9\.\s]*",
+    discountrate="[-+a-zA-Z0-9\.\s]*",
+    demand="[-+a-zA-Z0-9\.\s]*",
+    h2export="[0-9]+m?|all",
+
 
 # Define the results directory of PyPSA-Earth-Sec
 with open("../config/config.pypsa-earth-sec.yaml") as file:
@@ -58,33 +68,60 @@ subworkflow pypsaearthsec:
 
 # Solve (in pypsa-earth-sec) all the networks which are required according to the config.yaml and copy them to the resources folder in this aldehyde repo
 # Retrieve the wildcards from config.pypsa-earth-sec.yaml
-rule import_network_pypsaearthsec:
-    input:
-        pypsaearthsec(
-            expand(RDIR_pypsaearthsec + "/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
+if config.get("import_pypsaearthsec", False):
+
+    rule run_pypsaearthsec:
+        input:
+            pypsaearthsec(
+                expand(RDIR_pypsaearthsec + "/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
+                    **config["scenario"],
+                    **config["costs_pypsaearthsec"],
+                    **config["export"],
+                ),
+            )
+        output:
+            expand("../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
                 **config["scenario"],
                 **config["costs_pypsaearthsec"],
                 **config["export"],
             ),
-        )
-    output:
-        expand("../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
-            **config["scenario"],
-            **config["costs_pypsaearthsec"],
-            **config["export"],
-        ),
-    run:
-        for i in range(len(input)):
-            copyfile(input[i], output[i])
+        run:
+            for i in range(len(input)):
+                copyfile(input[i], output[i])
 
 
-rule import_network:
+rule clean_network:
     input:
-        network="../resources/mar_es_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF.nc",
+        network="../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
     output:
-        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_cleaned.nc",
+        network="../resources/clean/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_cleaned.nc"
     script:
-        "scripts/import_network.py"
+        "scripts/clean_network.py"
+
+rule add_esc:
+    input:
+        network="../resources/clean/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_cleaned.nc",
+        tech_costs="../resources/costs.csv",
+        shapes_path="../resources/shapes/gadm_shapes.geojson",
+    output:
+        network="../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_esc.nc"
+
+    script:
+        "scripts/add_esc.py"
+
+rule solve_network:
+    input:
+        network="../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_esc.nc"
+    output:
+        network="../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_solved.nc"
+    script:
+        "scripts/solve_network.py"
+
+rule compare_networks:
+    input:
+        expand("../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_solved.nc",
+            **config["compare_networks"]
+        ),
 
 rule plot_figures:
     input:
@@ -94,24 +131,6 @@ rule plot_figures:
         land_conflicts="../results/graphics/land_conflicts.pdf",
     script:
         "scripts/plot_figures.py"
-
-rule add_esc:
-    input:
-        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_cleaned.nc",
-        tech_costs="../resources/costs.csv",
-        shapes_path="../resources/shapes/gadm_shapes.geojson",
-    output:
-        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_esc_"+str(config["export"]["export_h2"])+".nc",
-    script:
-        "scripts/add_esc.py"
-
-rule solve_network:
-    input:
-        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_esc_"+str(config["export"]["export_h2"])+".nc",
-    output:
-        network="../resources/export_only/elec_s_4_ec_lc1.0_Co2L_144H_2030_0.071_DF_solved_"+str(config["export"]["export_h2"])+".nc",
-    script:
-        "scripts/solve_network.py"
 
 
 rule report:
