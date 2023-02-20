@@ -122,6 +122,25 @@ rule compare_networks:
         expand("../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_solved.nc",
             **config["compare_networks"]
         ),
+    output:
+        graph_lcoh="../results/system_comp/LCOH.pdf", 
+        graph_systemcost = "../results/system_comp/total_system_cost.pdf",
+    script:
+        "scripts/compare_networks.py"
+
+rule compare_integrated:
+    input:
+        expand("../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
+            **config["scenario"],
+            **config["costs_pypsaearthsec"],
+            **config["export"],
+        ),
+    output:
+        graph_contour = "../results/system_comp/contour.pdf",
+
+    script:
+        "scripts/compare_integrated.py"
+
 
 rule test_notebook:
     input:
