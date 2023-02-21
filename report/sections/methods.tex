@@ -1,12 +1,15 @@
 \subsection{Moroccan energy model}
 \label{subsec:moroccan_model}
-Here I describe the application of PyPSA-Earth \cite{Parzen2022} to Morocco and the sector extension.
-Capacity expansion model based on \cite{Brown2018}
+The Moroccan energy model is based on the PyPSA-Earth workflow \cite{Parzen2022} and 
+adds a sector extension similar to \cite{Brown2018a}.
+This capacity extension model optimizes the generation, transmission and storage of Moroccos energy system.
+
 
 \subsubsection{Energy demand}
-HyPat uses "LEAP" to predict energy demand.
-Clarify in each subsubsection: what is the energy prediction based on?
-MenaFuels: see page 35 in \cite{Ersoy2022}, better: Teilbericht 9
+The energy demand is obtained from the "LEAP" model \cite{Heaps2022}.
+TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
+
+The various sectors are (TBD clarify each bullet point: what is the energy prediction based on):
 \begin{itemize}
     \item Electricity demand based on \cite{Parzen2022}. Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
     \item Industry demand
@@ -17,7 +20,7 @@ MenaFuels: see page 35 in \cite{Ersoy2022}, better: Teilbericht 9
 
 
 \subsubsection{Renewable Energy Sources}
-Atlite, using data pipeline from \cite{Parzen2022}.
+Atlite, using data pipeline from \cite{Parzen2022}. TBD evaluate sources and include in csv file.
 
 \begin{itemize}
     \item Benchmark potentials to other studies (e.g. IRENA, MenaFuels which uses "EnDat", HyPAT provided on online map?, ...)
@@ -32,17 +35,19 @@ Atlite, using data pipeline from \cite{Parzen2022}.
 
 
 \subsubsection{Conventional electricity generation}
-We use: ...
+We use: ... (TBD: List our sources)
 Other sources: S\&P Global Kraftwerksliste (used by Fraunhofer IEE).
-See \cite{Ersoy2022} page 26 on conventional generation in Morocco
+See \cite[p. 26]{Ersoy2022}  on conventional generation in Morocco.
 
 
 \subsubsection{Electricity (and gas) networks}
+The electricity network is based on the PyPSA-Earth workflow using OSM data as main source \cite{Parzen2022}.
 3,000 km of 400 kV, 9,000 km of 225 kV, 147 km of 150 kV lines 
 11,780 km of 60 kV lines \cite[p. 6, primary 44]{Boulakhbar2020}
 
 
 \subsubsection{Green hydrogen}
+TBD: Describe and use new "green hyrogen" definition by European Comission.
 Emissions vs costs. Which definition will I use? how is it implemented?
 Use current papers (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}) to base my decision on
 Regulatory dimensions, adapted from \cite{Brauer2022}:
