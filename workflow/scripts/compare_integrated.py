@@ -29,11 +29,12 @@ if __name__ == "__main__":
     # limit the number of networks
     #limit = 5
     
-
     # Loop over the networks and save the objective of the networks in array according to the h2export and sopts wildcards
-    cost_df = pd.DataFrame(columns=['h2export', 'sopts', 'cost'])
+    cost_df = pd.DataFrame(columns=['h2export', 'sopts', 'cost', 'lcoh'])
+    cost0_df = pd.DataFrame(columns=['h2export', 'sopts', 'cost'])
 
-    for i in snakemake.input: #[0:limit]:
+
+    for i in snakemake.input.networks: #[0:limit]:
         n = pypsa.Network(i)
         cost = n.objective
         
@@ -41,20 +42,36 @@ if __name__ == "__main__":
         h2export = i.split('_')[-1][:-9]
         sopts = i.split('_')[-5]
 
-        # Save the cost in the array according to the h2export and sopts values using concat function
-        cost_df = pd.concat([cost_df, pd.DataFrame({'h2export': [h2export], 'sopts': [sopts], 'cost': [cost]})], ignore_index=True)
+        # Read and save the objective of the network if h2export is 0. Save the costs in a new array
+        if h2export == '0':
+            n0 = pypsa.Network(i)
+            cost0 = n0.objective
+            # Save the cost0 in an array
+            cost0_df = pd.concat([cost0_df, pd.DataFrame({'h2export': [h2export], 'sopts': [sopts], 'cost': [cost0]})], ignore_index=True)
 
+        # Calculate the cost difference between the networks n and n0
+        cost_difference = cost - cost0_df[cost0_df["sopts"]==sopts]["cost"] # in €
+        
+        # Calculate the cost of the H2 export by taking the difference in system costs and dividing by the export demand
+        lcoh = cost_difference/(n.loads_t.p.loc[:, 'H2 export load'].sum()*n.snapshot_weightings.generators[0]) # Cost difference between systems divided by the export demand
+
+        # Save the cost and lcoh in the array according to the h2export and sopts values using concat function
+        cost_df = pd.concat([cost_df, pd.DataFrame({'h2export': [h2export], 'sopts': [sopts], 'cost': [cost], 'lcoh': [lcoh.values[0]]})], ignore_index=True)
+
+
+
+    print(cost0_df)
     print(cost_df)
 
     # Save the cost file
-    cost_df.to_csv(snakemake.output.cost_file, index=False)
+    cost_df.to_csv(snakemake.output.stats, index=False)
 
     # Plot the cost of the networks
-    cost_df.pivot(index='h2export', columns='sopts', values='cost').plot(kind='bar')
-    plt.ylabel('Cost [EUR]')
-    plt.xlabel('H2 export [TWh]')
-    plt.title('Cost of the networks')
-    plt.savefig(snakemake.output.cost_plot)
+    # cost_df.pivot(index='h2export', columns='sopts', values='cost').plot(kind='bar')
+    # plt.ylabel('Cost [EUR]')
+    # plt.xlabel('H2 export [TWh]')
+    # plt.title('Cost of the networks')
+    # plt.savefig(snakemake.output.cost_plot)
     
 
 
