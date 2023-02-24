@@ -70,7 +70,7 @@ subworkflow pypsaearthsec:
 # Retrieve the wildcards from config.pypsa-earth-sec.yaml
 if config.get("import_pypsaearthsec", False):
 
-    rule run_pypsaearthsec:
+    rule import_pypsaearthsec:
         input:
             pypsaearthsec(
                 expand(RDIR_pypsaearthsec + "/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
@@ -141,7 +141,7 @@ rule compare_integrated:
                 **config["export"],
             ),
     output:
-        stats= "../results/integrated_comp/stats.csv",
+        stats= "../results/" + config_pypsaearthsec["run"] +"/integrated_comp/stats.csv",
         #cost_plot = "../results/graphics/integrated_comp/cost.pdf",
     script:
         "scripts/compare_integrated.py"
