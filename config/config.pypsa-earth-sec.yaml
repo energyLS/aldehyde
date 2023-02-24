@@ -5,7 +5,7 @@ results_dir: results/
 summary_dir: results/
 costs_dir: data/ #TODO change to the equivalent of technology data
 
-run: emission_export
+run: fix_demand
 
 foresight: overnight
 
@@ -54,6 +54,8 @@ custom_data:
   water_costs: false
   h2_underground: false
   add_existing: false
+  custom_sectors: false
+
 
 costs:
   lifetime: 25 #default lifetime
