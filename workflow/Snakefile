@@ -128,7 +128,7 @@ rule compare_networks:
 
     output:
         #graph_lcoh="../results/graphics/system_comp/LCOH.pdf", 
-        graph_systemcost = "../results/graphics/system_comp/total_system_cost_{h2export}.pdf",
+        graph_systemcost = "../results/" + config_pypsaearthsec["run"] +"/graphics/system_comp/total_system_cost_{h2export}.pdf",
     script:
         "scripts/compare_networks.py"
 
