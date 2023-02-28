@@ -32,7 +32,7 @@ def plot_total_system_cost(n1, n2, n3):
     # enhance graph
     plt.xticks(r, n_names)
     plt.ylabel("System cost in B€")
-    plt.title("Total System Cost")
+    plt.title(f"Total System Cost ({snakemake.wildcards.h2export} TWh export)")
     #plt.ylim(212, 214)
 
     # Add a legend
