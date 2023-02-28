@@ -12,7 +12,7 @@ wildcard_constraints:
     ll="[a-z0-9\.]+",
     simpl="[a-zA-Z0-9]*|all",
     clusters="[0-9]+m?|all",
-    opts="[-+a-zA-Z0-9]*",
+    opts="[-+a-zA-Z0-9\.\s]*",
     sopts="[-+a-zA-Z0-9\.\s]*",
     discountrate="[-+a-zA-Z0-9\.\s]*",
     demand="[-+a-zA-Z0-9\.\s]*",
@@ -125,10 +125,9 @@ rule compare_networks:
         # expand("../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_solved.nc",
         #     **config["compare_networks"]
         # ),
-        network_mar_es_export = "../resources/pypsaearthsec/emission_export/postnetworks/elec_s_4_ec_lc1.0__Co2L0.90-144H_2030_0.071_DF_{h2export}export.nc",
-        network_mar_es_only = "../resources/pypsaearthsec/emission_export/postnetworks/elec_s_4_ec_lc1.0__Co2L0.90-144H_2030_0.071_DF_0export.nc",
-        network_export_only = "../resources/export_only/emission_export/elec_s_4_ec_lc1.0__Co2L0.90-144H_2030_0.071_DF_{h2export}export_solved.nc"
-
+        network_mar_es_export = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_{h2export}export.nc",
+        network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_0export.nc",
+        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_{h2export}export_solved.nc"
     output:
         #graph_lcoh="../results/graphics/system_comp/LCOH.pdf", 
         graph_systemcost = "../results/" + config_pypsaearthsec["run"] +"/graphics/system_comp/total_system_cost_{h2export}.pdf",
@@ -159,7 +158,7 @@ rule test_notebook:
         "notebooks/test.py.ipynb"
 
 
-rule plot_figures:
+rule plot_general_figures:
     input:
         gadm_shapes="../resources/shapes/gadm_shapes.geojson"
     output:
@@ -167,6 +166,30 @@ rule plot_figures:
         land_conflicts="../results/graphics_general/land_conflicts.pdf",
     script:
         "scripts/plot_figures.py"
+
+
+rule plot_spatial_figures:
+    input:
+        regions_onshore = "../resources/shapes/regions_onshore_elec_s_4.geojson",
+        network_mar_es = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_{h2export}export.nc",
+        #network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_0export.nc",
+        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_{h2export}export_solved.nc"
+        #network = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_{h2export}export_solved.nc"
+    output:
+        #plot = "../results/" + config_pypsaearthsec["run"] +"/graphics/spatial/{plottype}_{energy_source}_{h2export}export.pdf",
+        plot = "../results/" + config_pypsaearthsec["run"] +"/graphics/spatial/{network}_{plottype}_{energy_source}_{h2export}export.pdf",
+    script:
+        "scripts/plot_spatial.py"
+
+
+rule plot_all_spatial_figures:
+    input:
+        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/spatial/{network}_{plottype}_{energy_source}_{h2export}export.pdf",
+            network = ["mar_es", "export_only"],
+            energy_source = ["onwind", "solar"], 
+            plottype = ["p-nom-opt","p-nom-max","land-use"],
+            h2export=[0, 20, 140]
+        )
 
 
 rule report:
