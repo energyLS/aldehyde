@@ -98,6 +98,7 @@ rule clean_network:
     script:
         "scripts/clean_network.py"
 
+
 rule add_esc:
     input:
         network="../resources/clean/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_cleaned.nc",
@@ -109,6 +110,7 @@ rule add_esc:
     script:
         "scripts/add_esc.py"
 
+
 rule solve_network:
     input:
         network="../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_esc.nc"
@@ -116,6 +118,7 @@ rule solve_network:
         network="../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_solved.nc"
     script:
         "scripts/solve_network.py"
+
 
 rule compare_networks:
     input:
@@ -160,8 +163,8 @@ rule plot_figures:
     input:
         gadm_shapes="../resources/shapes/gadm_shapes.geojson"
     output:
-        morocco_em="../results/graphics/morocco_em.pdf",
-        land_conflicts="../results/graphics/land_conflicts.pdf",
+        morocco_em="../results/graphics_general/morocco_em.pdf",
+        land_conflicts="../results/graphics_general/land_conflicts.pdf",
     script:
         "scripts/plot_figures.py"
 
