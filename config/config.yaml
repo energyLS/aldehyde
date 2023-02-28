@@ -4,7 +4,7 @@ cluster: "remote:path/on/remote"
 pypsaearthsec: "/mnt/c/Users/scl38887/Documents/git/pypsa-earth-sec/config.default.yaml"
 
 retrieve_cost_data: False
-import_pypsaearthsec: true # Set true to run PyPSA-Earth-Sec subworkflow
+import_pypsaearthsec: False # Set true to run PyPSA-Earth-Sec subworkflow
 
 climate_targets:
   2030_cond: 115 # in Mt CO2 (equ.?)
@@ -40,8 +40,8 @@ compare_networks:
   ll:
   - "c1.0"
   opts: 
-  - ""
-  sopts: ["Co2L0.90-144H"]
+  - "Co2L0.90"
+  sopts: ["144H"]
   discountrate: [0.071]
   demand:
   - "DF"
