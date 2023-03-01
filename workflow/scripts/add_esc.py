@@ -33,7 +33,7 @@ def add_hydrogen(n, costs):
         lifetime=costs.at["electrolysis", "lifetime"],
     )
 
-def add_export(n, export_h2):
+def add_export(n, h2export):
     "function to add export of hydrogen to the network"
 
     # Read country shape
@@ -85,7 +85,7 @@ def add_export(n, export_h2):
         "H2 export load",
         bus="H2 export bus",
         carrier="H2",
-        p_set=export_h2 / 8760,
+        p_set=h2export*1e6 / 8760, # convert TWh to MWh and divide by 8760 to get hourly average
     )
 
     return
@@ -122,13 +122,15 @@ if __name__ == "__main__":
     # add hydrogen buses
     add_hydrogen(n, costs)
 
-    # get export demand
-    export_h2 = snakemake.config["export"]["export_h2"]
+    # get export demand from wildcard
+    h2export = eval(snakemake.wildcards["h2export"]) # in TWh
+
+
     logger.info(
-        f"The yearly export demand is {export_h2/1e6} TWh resulting in an hourly average of {export_h2/8760:.2f} MWh"
+        f"The yearly export demand is {h2export} TWh resulting in an hourly average of {h2export*1e6/8760:.2f} MWh"
     )
 
     # add export value and components to network
-    add_export(n, export_h2)
+    add_export(n, h2export)
     
     n.export_to_netcdf(snakemake.output[0])
