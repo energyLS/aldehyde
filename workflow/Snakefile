@@ -197,8 +197,8 @@ rule report:
     input:
         tex="../report/report.tex",
         bib="../report/references.bib",
-        morocco_em="../results/graphics/morocco_em.pdf", # Just a placeholder to trigger workflow
-        land_conflicts="../results/graphics/land_conflicts.pdf",
+        morocco_em="../results/graphics_general/morocco_em.pdf", # Just a placeholder to trigger workflow
+        land_conflicts="../results/graphics_general/land_conflicts.pdf",
     output: "../report/report.pdf"
     shell:
         """
