@@ -161,15 +161,16 @@ rule plot_contour:
     input:
         stats= "../results/" + config_pypsaearthsec["run"] +"/integrated_comp/stats.csv",
     output:
-        contour_plot="../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}.pdf"
+        contour_plot="../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}.pdf"
     script:
         "scripts/plot_contour.py"
 
 rule plot_all_contours:
     input:
-        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}.pdf",
+        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}.pdf",
             plottype = config["plot"]["contour_plot"]["type"],
             levels = config["plot"]["contour_plot"]["levels"],
+            zerofilter =  config["plot"]["contour_plot"]["zerofilter"]
         )
 
 rule plot_general_figures:
@@ -204,6 +205,9 @@ rule plot_all_spatial_figures:
             plottype = config["plot"]["spatial_plot"]["type"],
             h2export=[0, 20, 140]
         )
+
+# Create rule to trigger the plotting in earth sec subworkflow for certain scenarios
+#rule plot_earthsec
 
 
 rule report:

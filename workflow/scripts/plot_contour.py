@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def prepare_data(data):
+def prepare_data(data, zerofilter=False):
 
     # Prepare the data
     # Extract the Co2L which is in position 5-8
@@ -18,6 +18,13 @@ def prepare_data(data):
     # Round the data
     to_round = plottype
     data[to_round] = data[to_round].round(2)
+
+    # Filter the data to remove 0 export and 0 co2 reduction
+    if zerofilter:
+       print("Filtering data")
+       data = data[(data["h2export"] != 0) & (data["opts"] != "1.0")]
+    else:
+        pass
 
     return data
 
@@ -63,10 +70,11 @@ if __name__ == "__main__":
 
     # Get the plottype and levels (relevant for the contour plot)
     plottype = snakemake.wildcards.plottype
+    zerofilter = snakemake.wildcards.zerofilter
     levels = int(snakemake.wildcards.levels)
 
     # Prepare the data
-    data = prepare_data(data)
+    data = prepare_data(data, zerofilter=zerofilter)
 
     # Get the unique values for opts and h2export required for the reshaping
     h2export = np.unique(data['h2export'])

@@ -107,7 +107,8 @@ electricity:
 plot:
   contour_plot:
     type: ["cost", "lcoh", "lcoh_marginal", "lcoh_marginal_export", "lcoh_marginal_weighted", "lcoe_marginal"]
-    levels: [10,20]
+    levels: [10]
+    zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
       lcoh: "LCOH (base) in €/MWh"
