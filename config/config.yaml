@@ -102,3 +102,20 @@ electricity:
   max_hours:
     battery: 6
     H2: 168
+
+
+plot:
+  contour_plot:
+    type: ["cost", "lcoh", "lcoh_marginal", "lcoh_marginal_export", "lcoh_marginal_weighted", "lcoe_marginal"]
+    levels: [10,20]
+    label:
+      cost: "Total System Cost in B€"
+      lcoh: "LCOH (base) in €/MWh"
+      lcoh_marginal: "LCOH (marginal) in €/MWh"
+      lcoh_marginal_export: "LCOH (marginal export) in €/MWh"
+      lcoh_marginal_weighted: "LCOH (marginal weighted) in €/MWh"
+      lcoe_marginal: "LCOE (marginal) in €/MWh"
+  
+  spatial_plot:
+    type: ["p-nom-opt","p-nom-max","land-use"]
+

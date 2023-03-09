@@ -157,6 +157,20 @@ rule test_notebook:
     notebook:
         "notebooks/test.py.ipynb"
 
+rule plot_contour:
+    input:
+        stats= "../results/" + config_pypsaearthsec["run"] +"/integrated_comp/stats.csv",
+    output:
+        contour_plot="../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}.pdf"
+    script:
+        "scripts/plot_contour.py"
+
+rule plot_all_contours:
+    input:
+        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}.pdf",
+            plottype = config["plot"]["contour_plot"]["type"],
+            levels = config["plot"]["contour_plot"]["levels"],
+        )
 
 rule plot_general_figures:
     input:
@@ -187,7 +201,7 @@ rule plot_all_spatial_figures:
         expand("../results/" + config_pypsaearthsec["run"] +"/graphics/spatial/{network}_{plottype}_{energy_source}_{h2export}export.pdf",
             network = ["mar_es", "export_only"],
             energy_source = ["onwind", "solar"], 
-            plottype = ["p-nom-opt","p-nom-max","land-use"],
+            plottype = config["plot"]["spatial_plot"]["type"],
             h2export=[0, 20, 140]
         )
 
