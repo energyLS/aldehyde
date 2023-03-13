@@ -47,16 +47,22 @@ The electricity network is based on the PyPSA-Earth workflow using OSM data as m
 
 
 \subsubsection{Green hydrogen}
-TBD: Describe and use new "green hyrogen" definition by European Comission.
-Emissions vs costs. Which definition will I use? how is it implemented?
+The export product is green hydrogen:
+\begin{itemize}
+    \item Which "green" definition will I use? Currently: Yearly constraint
+    \item Describe implementation
+    \item Rely on European Comission
+    \item clarify: How does my scenario fit in these dimensions?
+\end{itemize}
+
 Use current papers (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}) to base my decision on
-Regulatory dimensions, adapted from \cite{Brauer2022}:
+regulatory dimensions, adapted from \cite{Brauer2022}:
 \begin{itemize}
     \item Temporal correlation (1h, 1d, 1a - loose) 
     \item Geographical correlation (same location - loose)
     \item Origin (100\% new RES - loose)
 \end{itemize}
-How does my scenario fit in these dimensions?
+
 
 \subsection{Water supply}
 \label{subsec:water_supply}
@@ -65,7 +71,7 @@ Morocco: 88 \% of water is used in agriculture, secondary source \cite{Ersoy2022
 Transfer of water from North to South is planned, seconary source \cite{Ersoy2022}.
 Ideas:
 \begin{itemize}
-    \item Detailed water analysis in HyPat: Topography -> water pumps, etc. See results in Figure \ref{fig:morocco_water}
+    \item Detailed water analysis in HyPat: Topography $\rightarrow$ water pumps, etc. See results in Figure \ref{fig:morocco_water}
     \item Oversize water desalination to provide water for local population/agriculture to increase public acceptance
     \item DAC: Water is a product of DAC process which could be reused for electrolysis
     \item Direct electrolysis of seawater: In development but probably not on big scale in the next 10-15 years
@@ -75,27 +81,42 @@ Ideas:
 
 \subsection{Hydrogen export}
 \label{subsec:hydrogen_export}
-What amount of hydrogen should be used? X TWh? -> Source found for that. Talk to Johannes about his assumption
-System boundary: Country border. MenaFuels uses closest harbour as system boundary
-Nador West Med: Currently under construction and maybe operational in 2022 \cite{Ersoy2022}
+The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets}.
+The system boundary is the country border of Morocco, in 
+line with the MenaFuels project \cite{Ersoy2022}.
+
+Points of export:
+\begin{itemize}
+    \item Only allow export by ship, or is pipeline an option?
+    \item Provide map with harbours (\& their capacities?)
+    \item Harbour Nador West Med: Currently under construction and maybe operational in 2022 \cite{Ersoy2022}
+\end{itemize}
 
 
 \subsection{Cost of hydrogen production}
 \label{subsec:cost_of_hydrogen_production}
 
 The cost of hydrogen production is calculated as follows \cite{Zeyen2022}:
-% Add formula here
 \begin{equation}
     \label{eq:cost_of_hydrogen_production}
     C_\mathrm{H2}= \frac{\sum \limits_{a\in A}^{} C_a + \sum \limits_{a,t} O_{a,t} + \sum \limits_{t} P_t \cdot (im_t - ex_t)   }{d_\mathrm{H2}}
 \end{equation}
-%where $C_a$ is the capital cost of the asset $a$, $O_{a,t}$ is the operational cost of the asset $a$ in time step $t$, $P_t$ is the production of hydrogen in time step $t$, $im_t$ is the import of hydrogen in time step $t$ and $ex_t$ is the export of hydrogen in time step $t$.
+"where $C_a$ is the capital cost of the asset $a$, $O_{a,t}$ is the operational cost of the asset $a$ in time step $t$, $P_t$ is the production of hydrogen in time step $t$, $im_t$ is the import of hydrogen in time step $t$ and $ex_t$ is the export of hydrogen in time step $t$" \cite{Zeyen2022}.
+
+Note, equation \ref{eq:cost_of_hydrogen_production} is not valid for the integrated system (?),
+hence the cost of hydrogen of the integrated system is defined as the marginal price of hydrogen (taken from PyPSA).
+Questions:
+\begin{itemize}
+    \item Marginal price of all hydrogen buses or just export?
+    \item "Weighted" marginal price makes more sense
+    \item Is the equation \ref{eq:cost_of_hydrogen_production} valid?
+\end{itemize}
+
 
 \subsection{Islanded hydrogen production}
 In the islanded hydrogen production scenario, the hydrogen production is optimised without considering the local energy system described in \ref{subsec:moroccan_model}.
 
 
 \subsection{Integrated hydrogen production}
-In the integrated scenario, both the hydrogen export (\ref{subsec:hydrogen_export}) and the Moroccan energy system (\ref{subsec:moroccan_model})
+In the integrated scenario, both the Moroccan energy system (\ref{subsec:moroccan_model}) and the hydrogen export (\ref{subsec:hydrogen_export})
 are optimised in an integrated approach.
-The hydrogen production for export
