@@ -24,6 +24,8 @@ with open("../config/config.pypsa-earth-sec.yaml") as file:
     config_pypsaearthsec = yaml.full_load(file)
 
 RDIR_pypsaearthsec = config_pypsaearthsec["results_dir"] + config_pypsaearthsec["run"]
+SDIR_pypsaearthsec = config_pypsaearthsec["summary_dir"] + config_pypsaearthsec["run"]
+
 
 
 localrules: all, report, clean
@@ -181,6 +183,12 @@ rule plot_general_figures:
         land_conflicts="../results/graphics_general/land_conflicts.pdf",
     script:
         "scripts/plot_figures.py"
+
+# Note: This rule plots figures (and makes the summary) according to the wildcards in "config.pypsa-earthsec.yaml" and not
+# according to the wildcards in "config.yaml"
+rule plot_pypsaearthsec_summary:
+    input:
+        pypsaearthsec(SDIR_pypsaearthsec + "/graphs/balances-energy.pdf")
 
 
 rule plot_spatial_figures:
