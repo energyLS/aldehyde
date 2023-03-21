@@ -7,6 +7,7 @@ This capacity extension model optimizes the generation, transmission and storage
 
 \subsubsection{Energy demand}
 The energy demand is obtained from the "LEAP" model \cite{Heaps2022}.
+TBD: investigate OSeMOSYS starter kit.
 TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
 
 The various sectors are (TBD clarify each bullet point: what is the energy prediction based on):
@@ -17,6 +18,7 @@ The various sectors are (TBD clarify each bullet point: what is the energy predi
     \item Heating demand (cooling?) 
     \item Regionalisation of energy demands
 \end{itemize}
+
 
 
 \subsubsection{Renewable Energy Sources}
@@ -32,6 +34,18 @@ Atlite, using data pipeline from \cite{Parzen2022}. TBD evaluate sources and inc
     \item In \cite[p. 6]{Boulakhbar2020} they outline why biomass/biogas is not exploited yet in MAR
 \end{itemize}
 
+Figure \ref{fig:potentials} displays the potentials of solar, wind onshore and CSP 
+of PyPSA-Earth-Sec compared to other studies. The authors of "OSeMOSYS" 
+\cite{Cannone2021} base their potential estimations on \cite[primary: 13,18,19]{Cannone2021}
+The project MenaFuels/Ersoy2022 \cite{Ersoy2022} finds potentials of ...
+TBD: remove ChatGPT which was added for fun.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{../graphics_general/potentials_comparison/barplot_potentials.pdf}
+    \caption{Determined potential of solar, wind onshore and CSP in PyPSA-Earth-Sec compared to other studies.}
+    \label{fig:potentials}
+\end{figure}
 
 
 \subsubsection{Conventional electricity generation}
