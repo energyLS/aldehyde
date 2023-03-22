@@ -24,6 +24,8 @@ with open("../config/config.pypsa-earth-sec.yaml") as file:
     config_pypsaearthsec = yaml.full_load(file)
 
 RDIR_pypsaearthsec = config_pypsaearthsec["results_dir"] + config_pypsaearthsec["run"]
+SDIR_pypsaearthsec = config_pypsaearthsec["summary_dir"] + config_pypsaearthsec["run"]
+
 
 
 localrules: all, report, clean
@@ -157,6 +159,21 @@ rule test_notebook:
     notebook:
         "notebooks/test.py.ipynb"
 
+rule plot_contour:
+    input:
+        stats= "../results/" + config_pypsaearthsec["run"] +"/integrated_comp/stats.csv",
+    output:
+        contour_plot="../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}.pdf"
+    script:
+        "scripts/plot_contour.py"
+
+rule plot_all_contours:
+    input:
+        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}.pdf",
+            plottype = config["plot"]["contour_plot"]["type"],
+            levels = config["plot"]["contour_plot"]["levels"],
+            zerofilter =  config["plot"]["contour_plot"]["zerofilter"]
+        )
 
 rule plot_general_figures:
     input:
@@ -166,6 +183,12 @@ rule plot_general_figures:
         land_conflicts="../results/graphics_general/land_conflicts.pdf",
     script:
         "scripts/plot_figures.py"
+
+# Note: This rule plots figures (and makes the summary) according to the wildcards in "config.pypsa-earthsec.yaml" and not
+# according to the wildcards in "config.yaml"
+rule plot_pypsaearthsec_summary:
+    input:
+        pypsaearthsec(SDIR_pypsaearthsec + "/graphs/balances-energy.pdf")
 
 
 rule plot_spatial_figures:
@@ -187,9 +210,12 @@ rule plot_all_spatial_figures:
         expand("../results/" + config_pypsaearthsec["run"] +"/graphics/spatial/{network}_{plottype}_{energy_source}_{h2export}export.pdf",
             network = ["mar_es", "export_only"],
             energy_source = ["onwind", "solar"], 
-            plottype = ["p-nom-opt","p-nom-max","land-use"],
+            plottype = config["plot"]["spatial_plot"]["type"],
             h2export=[0, 20, 140]
         )
+
+# Create rule to trigger the plotting in earth sec subworkflow for certain scenarios
+#rule plot_earthsec
 
 
 rule report:
@@ -197,8 +223,8 @@ rule report:
     input:
         tex="../report/report.tex",
         bib="../report/references.bib",
-        morocco_em="../results/graphics/morocco_em.pdf", # Just a placeholder to trigger workflow
-        land_conflicts="../results/graphics/land_conflicts.pdf",
+        morocco_em="../results/graphics_general/morocco_em.pdf", # Just a placeholder to trigger workflow
+        land_conflicts="../results/graphics_general/land_conflicts.pdf",
     output: "../report/report.pdf"
     shell:
         """

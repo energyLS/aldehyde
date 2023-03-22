@@ -1,5 +1,3 @@
-# Create graph of Moroccos CO2 emissions and climate targets
-
 import pypsa
 import yaml
 import pandas as pd
