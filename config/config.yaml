@@ -51,11 +51,14 @@ compare_networks:
 
 # regulate what components with which carriers are kept from PyPSA-earth-sec;
 pypsa_earth:
-  Line: []
+  Line:
+    - AC
   Bus:
     - AC
+    - H2
   Link:
     - DC
+    - H2
   Generator:
     - onwind
     - offwind-ac
