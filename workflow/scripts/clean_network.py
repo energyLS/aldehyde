@@ -57,7 +57,7 @@ if __name__ == "__main__":
     remove_non_electric_buses(n)
 
     # empty dataframe
-    n.global_constraints = n.global_constraints.iloc[0:0]
+    #n.global_constraints = n.global_constraints.iloc[0:0]
 
     
 
