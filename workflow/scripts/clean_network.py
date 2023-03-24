@@ -37,7 +37,7 @@ if __name__ == "__main__":
             simpl="",
             clusters="4",
             ll="c1.0",
-            opts="Co2L0.90",
+            opts="Co2L0.10",
             planning_horizons="2030",
             sopts="144H",
             discountrate=0.071,
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
 
     remove_elec_base_techs(n)
-    remove_non_electric_buses(n)
+    #remove_non_electric_buses(n)
 
     # empty dataframe
     #n.global_constraints = n.global_constraints.iloc[0:0]
