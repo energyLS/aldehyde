@@ -91,7 +91,7 @@ if config.get("import_pypsaearthsec", False):
             for i in range(len(input)):
                 copyfile(input[i], output[i])
 
-
+# Taking the already solved networks. Could be more failsave, to take pre-networks from PyPSA-Earth-Sec
 rule clean_network:
     input:
         network="../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
@@ -130,9 +130,9 @@ rule compare_networks:
         # expand("../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_solved.nc",
         #     **config["compare_networks"]
         # ),
-        network_mar_es_export = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_{h2export}export.nc",
-        network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_0export.nc",
-        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_{h2export}export_solved.nc"
+        network_mar_es_export = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_Co2L1.0_144H_2030_0.071_DF_{h2export}export.nc",
+        network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_Co2L1.0_144H_2030_0.071_DF_0export.nc",
+        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_4_ec_lc1.0_Co2L1.0_144H_2030_0.071_DF_{h2export}export_solved.nc"
     output:
         #graph_lcoh="../results/graphics/system_comp/LCOH.pdf", 
         graph_systemcost = "../results/" + config_pypsaearthsec["run"] +"/graphics/system_comp/total_system_cost_{h2export}.pdf",
@@ -211,8 +211,8 @@ rule plot_spatial_figures:
 rule plot_all_spatial_figures:
     input:
         expand("../results/" + config_pypsaearthsec["run"] +"/graphics/spatial/{network}_{plottype}_{energy_source}_{h2export}export.pdf",
-            network = ["mar_es"], #["mar_es", "export_only"],
-            energy_source = ["onwind", "solar"], 
+            network = ["export_only"], #["mar_es", "export_only"],
+            energy_source = ["solar"], # ["solar", "onwind"],
             plottype = config["plot"]["spatial_plot"]["type"],
             h2export=[0, 20, 140]
         )
