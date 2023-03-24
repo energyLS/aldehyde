@@ -34,8 +34,6 @@ def override_component_attrs(directory):
         if os.path.isfile(fn):
             overrides = pd.read_csv(fn, index_col=0, na_values="n/a")
             attrs[component] = overrides.combine_first(attrs[component])
-        else:
-            print(f"No dir for overriding {component} is found")
 
     return attrs
 
