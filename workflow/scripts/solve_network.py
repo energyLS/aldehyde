@@ -1,6 +1,7 @@
 import pypsa
 import os
 import pandas as pd
+from _helpers import override_component_attrs
 
 def solve_network(n):
 
@@ -35,7 +36,8 @@ if __name__ == "__main__":
 
     # Read network
     # https://pypsa.readthedocs.io/en/latest/components.html?highlight=override_component_attrs#custom-components
-    n = pypsa.Network(snakemake.input.network) #, override_component_attrs=overrides)
+    overrides = override_component_attrs(snakemake.input.overrides)
+    n = pypsa.Network(snakemake.input.network, override_component_attrs=overrides)
 
     snapshots = n.snapshots
 

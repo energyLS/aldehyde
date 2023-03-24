@@ -2,7 +2,7 @@ import pypsa
 import os
 import pandas as pd
 import geopandas as gpd
-from _helpers import load_costs
+from _helpers import load_costs, override_component_attrs
 import logging
 
 logger = logging.getLogger(__name__)
@@ -110,10 +110,10 @@ if __name__ == "__main__":
 
         sets_path_to_root('aldehyde')
 
-
-    # Read Morocco network
+    # Read network
     # https://pypsa.readthedocs.io/en/latest/components.html?highlight=override_component_attrs#custom-components
-    n = pypsa.Network(snakemake.input.network) #, override_component_attrs=overrides)
+    overrides = override_component_attrs(snakemake.input.overrides)
+    n = pypsa.Network(snakemake.input.network, override_component_attrs=overrides)
 
     Nyears = n.snapshot_weightings.generators.sum() / 8760
 
