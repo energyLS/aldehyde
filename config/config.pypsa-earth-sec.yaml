@@ -5,7 +5,7 @@ results_dir: results/
 summary_dir: results/
 costs_dir: data/ #TODO change to the equivalent of technology data
 
-run: fix_co2
+run: with_h2_network_6h
 
 foresight: overnight
 
@@ -19,10 +19,9 @@ scenario:
   - 2030
   ll:
   - "c1.0"
-  opts:
-  - "Co2L0.70"
+  opts: ["Co2L1.0","Co2L.50","Co2L0.10"]
   sopts:
-  - "144H"
+  - "6H"
   demand:
   - "DF"
 
@@ -34,8 +33,8 @@ clustering_options:
 
 countries: ['MA']
 
-H2_network: false
-H2_network_limit: 2000 #GWkm
+H2_network: True
+H2_network_limit: 10000 #GWkm
 
 fossil_reserves:
   oil: 100 #TWh Maybe reduntant
@@ -44,7 +43,7 @@ hydrogen_underground_storage: false
 
 
 export:
-  h2export: [20, 40, 120, 140] # Yearly export demand in TWh
+  h2export: [0, 20, 40, 120] # Yearly export demand in TWh
 
 custom_data:
   renewables: [] # ['csp', 'rooftop-solar', 'solar']

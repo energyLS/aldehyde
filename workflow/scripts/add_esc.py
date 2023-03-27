@@ -2,7 +2,7 @@ import pypsa
 import os
 import pandas as pd
 import geopandas as gpd
-from _helpers import load_costs
+from _helpers import load_costs, override_component_attrs
 import logging
 
 logger = logging.getLogger(__name__)
@@ -95,14 +95,25 @@ if __name__ == "__main__":
         from _helpers import mock_snakemake, sets_path_to_root
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        snakemake = mock_snakemake('add_esc')
+        snakemake = mock_snakemake(
+            "add_esc",
+            simpl="",
+            clusters="4",
+            ll="c1.0",
+            opts="Co2L0.10",
+            planning_horizons="2030",
+            sopts="144H",
+            discountrate=0.071,
+            demand="DF",
+            h2export=20,
+        )
 
         sets_path_to_root('aldehyde')
 
-
-    # Read Morocco network
+    # Read network
     # https://pypsa.readthedocs.io/en/latest/components.html?highlight=override_component_attrs#custom-components
-    n = pypsa.Network(snakemake.input.network) #, override_component_attrs=overrides)
+    overrides = override_component_attrs(snakemake.input.overrides)
+    n = pypsa.Network(snakemake.input.network, override_component_attrs=overrides)
 
     Nyears = n.snapshot_weightings.generators.sum() / 8760
 
@@ -113,24 +124,24 @@ if __name__ == "__main__":
         Nyears,
     )
 
-    nodes = n.buses.index
+    #nodes = n.buses.index
 
-    nodes = n.buses[n.buses.carrier == "AC"].index  # TODO if you take nodes from the index of buses of n it's more than pop_layout
+    #nodes = n.buses[n.buses.carrier == "AC"].index  # TODO if you take nodes from the index of buses of n it's more than pop_layout
     # clustering of regions must be double checked.. refer to regions onshore
 
 
     # add hydrogen buses
-    add_hydrogen(n, costs)
+    #add_hydrogen(n, costs)
 
     # get export demand from wildcard
-    h2export = eval(snakemake.wildcards["h2export"]) # in TWh
+    #h2export = eval(snakemake.wildcards["h2export"]) # in TWh
 
 
-    logger.info(
-        f"The yearly export demand is {h2export} TWh resulting in an hourly average of {h2export*1e6/8760:.2f} MWh"
-    )
+    # logger.info(
+    #     f"The yearly export demand is {h2export} TWh resulting in an hourly average of {h2export*1e6/8760:.2f} MWh"
+    # )
 
     # add export value and components to network
-    add_export(n, h2export)
+    #add_export(n, h2export)
     
     n.export_to_netcdf(snakemake.output[0])

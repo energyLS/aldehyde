@@ -17,6 +17,7 @@ def plot_total_system_cost(n1, n2, n3):
     costs_mar_es_export = [n2.objective/1e9, 0]
     costs_export_only = [0, n3.objective/1e9]
 
+    diff_percent = ((costs_export_only[1]+costs_mar_es_only[1])-costs_mar_es_export[0])*100/costs_mar_es_export[0]
     #bars = np.add(costs13, costs2).tolist()
 
     # The position of the bars on the x-axis
@@ -32,7 +33,7 @@ def plot_total_system_cost(n1, n2, n3):
     # enhance graph
     plt.xticks(r, n_names)
     plt.ylabel("System cost in B€")
-    plt.title(f"Total System Cost ({snakemake.wildcards.h2export} TWh export)")
+    plt.title(f"Saving {diff_percent:.1f} % of Total System Cost ({snakemake.wildcards.h2export} TWh export)")
     #plt.ylim(212, 214)
 
     # Add a legend
@@ -60,7 +61,7 @@ if __name__ == "__main__":
         from _helpers import mock_snakemake, sets_path_to_root
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        snakemake = mock_snakemake('compare_networks')
+        snakemake = mock_snakemake('compare_networks', h2export=20)
 
         sets_path_to_root('aldehyde')
 
