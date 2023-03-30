@@ -2,6 +2,16 @@
 
 This repository contains the entire scientific project, including code and report. The philosophy behind this repository is that no intermediary results are included, but all results are computed from raw data and code.
 
+## Run new scenarios
+In `aldehyde`:
+
+* in `config`: set `scenario`, `export`
+    
+* in `config.pypsa-earth-sec.yaml`: set `H2_network: True`, `H2_network_limit: 10000`, `run`
+
+In `pypsa-earth-sec`:
+* in `config.pypsa-earth.yaml`: set `["electricity"]["co2base"]: 40.0e+3`
+
 ## Getting ready
 
 You need [mamba](https://mamba.readthedocs.io/en/latest/) to run the analysis. Using mamba, you can create an environment from within you can run it:
