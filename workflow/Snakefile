@@ -130,9 +130,9 @@ rule compare_networks:
         # expand("../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_solved.nc",
         #     **config["compare_networks"]
         # ),
-        network_mar_es_export = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export.nc",
-        network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_{opts}_6H_2030_0.071_DF_0export.nc",
-        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_4_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export_solved.nc"
+        network_mar_es_export = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_10_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export.nc",
+        network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_10_ec_lc1.0_{opts}_6H_2030_0.071_DF_0export.nc",
+        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_10_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export_solved.nc"
     output:
         #graph_lcoh="../results/graphics/system_comp/LCOH.pdf", 
         graph_systemcost = "../results/" + config_pypsaearthsec["run"] +"/graphics/system_comp/total_system_cost_{opts}_{h2export}export.pdf",
@@ -165,7 +165,7 @@ rule compare_integrated:
 
 rule test_notebook:
     input:
-        network="../resources/export_only/emission_export/elec_s_4_ec_lc1.0__Co2L0.90-144H_2030_0.071_DF_20export_esc.nc"
+        network="../resources/export_only/emission_export/elec_s_10_ec_lc1.0__Co2L0.90-144H_2030_0.071_DF_20export_esc.nc"
     output:
         file="notebooks/test.txt"
     notebook:
@@ -205,11 +205,11 @@ rule plot_pypsaearthsec_summary:
 
 rule plot_spatial_figures:
     input:
-        regions_onshore = "../resources/shapes/regions_onshore_elec_s_4.geojson",
-        network_mar_es = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export.nc",
-        #network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_0export.nc",
-        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_4_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export_solved.nc"
-        #network = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_4_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_{h2export}export_solved.nc"
+        regions_onshore = "../resources/shapes/regions_onshore_elec_s_10.geojson",
+        network_mar_es = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_10_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export.nc",
+        #network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_10_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_0export.nc",
+        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_10_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export_solved.nc"
+        #network = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_10_ec_lc1.0_Co2L0.90_144H_2030_0.071_DF_{h2export}export_solved.nc"
     output:
         #plot = "../results/" + config_pypsaearthsec["run"] +"/graphics/spatial/{plottype}_{energy_source}_{h2export}export.pdf",
         plot = "../results/" + config_pypsaearthsec["run"] +"/graphics/spatial/{network}_{plottype}_{energy_source}_{opts}_{h2export}export.pdf",
