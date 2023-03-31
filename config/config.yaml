@@ -123,5 +123,7 @@ plot:
       lcoe_marginal: "LCOE (marginal) in €/MWh"
   
   spatial_plot:
-    type: ["p-nom-opt","p-nom-max","land-use"]
+    type: ["land-use"] #["p-nom-opt","p-nom-max","land-use"]
+    h2export: [0, 20, 40, 120]
+    opts: ["Co2L1.0","Co2L.50","Co2L0.10"]
 
