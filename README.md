@@ -12,6 +12,15 @@ In `aldehyde`:
 In `pypsa-earth-sec`:
 * in `config.pypsa-earth.yaml`: set `["electricity"]["co2base"]: 40.0e+3`
 
+## Analyse new scenarios
+In `aldehyde`:
+
+* Contour -> `config.yaml`: takes the `scenario` and `export` params. Plot specifics in `plots["contour_plot"]`
+* Spatials (e.g. potentials) -> `config.yaml`: takes the `plots["spatial_plot"]`
+* PyPSA-Earth-Sec (e.g. Balances, H2-network) -> `config.pypsa-earth-sec.yaml`: takes the `scenario` and `export` params.
+
+
+
 ## Getting ready
 
 You need [mamba](https://mamba.readthedocs.io/en/latest/) to run the analysis. Using mamba, you can create an environment from within you can run it:
