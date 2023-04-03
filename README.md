@@ -10,7 +10,7 @@ In `aldehyde`:
 * in `config.pypsa-earth-sec.yaml`: set `H2_network: True`, `H2_network_limit: 10000`, `run`
 
 In `pypsa-earth-sec`:
-* in `config.pypsa-earth.yaml`: set `["electricity"]["co2base"]: 40.0e+3`
+* in `config.pypsa-earth.yaml`: set `["electricity"]["co2base"]: 40.0e+6`
 
 ## Analyse new scenarios
 In `aldehyde`:
