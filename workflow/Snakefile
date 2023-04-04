@@ -142,7 +142,7 @@ rule compare_networks:
 
 rule compare_all_networks:
     input:
-        expand("../resources/export_only/" + config_pypsaearthsec["run"] +"/graphics/system_comp/total_system_cost_{opts}_{h2export}export.pdf",
+        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/system_comp/total_system_cost_{opts}_{h2export}export.pdf",
             opts = config["plot"]["spatial_plot"]["opts"],
             h2export=config["plot"]["spatial_plot"]["h2export"],
         ),
