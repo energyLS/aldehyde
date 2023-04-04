@@ -11,6 +11,7 @@ In `aldehyde`:
 
 In `pypsa-earth-sec`:
 * in `config.pypsa-earth.yaml`: set `["electricity"]["co2base"]: 40.0e+6`. Note: if you change that, make sure to delete the old networks
+* in `config.pypsa-earth.yaml`: set `["cluster_options"]["alternative_clustering"]: True`
 
 ## Analyse new scenarios
 In `aldehyde`:
