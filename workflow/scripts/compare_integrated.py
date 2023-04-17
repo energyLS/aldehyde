@@ -56,9 +56,9 @@ if __name__ == "__main__":
         lcoh = cost_difference/(n.loads_t.p.loc[:, 'H2 export load'].sum()*n.snapshot_weightings.generators[0]) # Cost difference between systems divided by the export demand
 
         # Calculate the marginal price of the buses: Warning: not weighted price
-        lcoh_marginal = n.buses_t.marginal_price.mean().groupby(n.buses.carrier).mean().loc['H2'] # in €/MWh
+        lcoh_marginal = n.buses_t.marginal_price.mean().groupby(n.buses.carrier).mean().loc['H2'] # in €/MWh (correct calc, checked with pypsa-earth-sec results)
         lcoh_marginal_export = n.buses_t.marginal_price.mean().loc["H2 export bus"] # in €/MWh
-        lcoe_marginal = n.buses_t.marginal_price.mean().groupby(n.buses.carrier).mean().loc['AC'] # in €/MWh
+        lcoe_marginal = n.buses_t.marginal_price.mean().groupby(n.buses.carrier).mean().loc['AC'] # in €/MWh (correct calc, checked with pypsa-earth-sec results)
 
         # Calculate the weighted marginal price of the buses
         # TODO doublecheck, why the weighted marginal price reuqires the links only and no loads
