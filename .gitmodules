@@ -1,0 +1,6 @@
+[submodule "workflow/subworkflows/pypsa-earth-sec"]
+	path = workflow/subworkflows/pypsa-earth-sec
+	url = https://github.com/pypsa-meets-earth/pypsa-earth-sec
+[submodule "workflow/subworkflows/pypsa-earth"]
+	path = workflow/subworkflows/pypsa-earth
+	url = https://github.com/pypsa-meets-earth/pypsa-earth
