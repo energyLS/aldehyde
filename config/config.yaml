@@ -4,7 +4,7 @@ cluster: "remote:path/on/remote"
 pypsaearthsec: "/mnt/c/Users/scl38887/Documents/git/pypsa-earth-sec/config.default.yaml"
 
 retrieve_cost_data: False
-import_pypsaearthsec: True # Set true to run PyPSA-Earth-Sec subworkflow
+import_pypsaearthsec: False # Set true to run PyPSA-Earth-Sec subworkflow
 
 climate_targets:
   2030_cond: 115 # in Mt CO2 (equ.?)
@@ -16,18 +16,18 @@ scenario:
   simpl: # only relevant for PyPSA-Eur
   - ""
   clusters: # number of nodes in Europe, any integer between 37 (1 node per country-zone) and several hundred
-  - 4
+  - 10
   planning_horizons: # investment years for myopic and perfect; or costs year for overnight
   - 2030
   ll:
   - "c1.0"
-  opts: ["Co2L1.0","Co2L.50","Co2L0.10"] #["Co2L1.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
+  opts: ["Co2L1.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
   sopts: "6H"
   demand:
   - "DF"
 
 export:
-  h2export: [0,20,40,120] #[0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200] # Yearly export demand in TWh. TODO This is currently necessary for PyPSA-Earth-Sec subworkflow
+  h2export: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200] # Yearly export demand in TWh. TODO This is currently necessary for PyPSA-Earth-Sec subworkflow
 
 # Select which networks to compare in terms of integrated/islanded
 compare_networks:
@@ -123,5 +123,7 @@ plot:
       lcoe_marginal: "LCOE (marginal) in €/MWh"
   
   spatial_plot:
-    type: ["p-nom-opt","p-nom-max","land-use"]
+    type: ["land-use"] #["p-nom-opt","p-nom-max","land-use"]
+    h2export: [0, 20, 40, 120]
+    opts: ["Co2L0.10"] #["Co2L1.0","Co2L.50","Co2L0.10"]
 

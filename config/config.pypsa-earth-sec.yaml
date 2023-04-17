@@ -5,7 +5,7 @@ results_dir: results/
 summary_dir: results/
 costs_dir: data/ #TODO change to the equivalent of technology data
 
-run: with_h2_network_6h
+run: with_h2_network_6h_fixed_ws
 
 foresight: overnight
 
@@ -14,7 +14,7 @@ scenario:
   simpl: # only relevant for PyPSA-Eur
   - ""
   clusters: # number of nodes in Europe, any integer between 37 (1 node per country-zone) and several hundred
-  - 4
+  - 10
   planning_horizons: # investment years for myopic and perfect; or costs year for overnight
   - 2030
   ll:
@@ -34,7 +34,7 @@ clustering_options:
 countries: ['MA']
 
 H2_network: True
-H2_network_limit: 10000 #GWkm
+H2_network_limit: 50_000 #GWkm
 
 fossil_reserves:
   oil: 100 #TWh Maybe reduntant

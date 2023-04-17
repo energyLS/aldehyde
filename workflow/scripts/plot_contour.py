@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import logging
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +21,8 @@ def prepare_data(data, zerofilter=False):
     data[to_round] = data[to_round].round(2)
 
     # Filter the data to remove 0 export and 0 co2 reduction
-    if zerofilter:
+    print(f"zerofiler is set to {zerofilter} or in boolean {bool(zerofilter)}")
+    if zerofilter=="True":
        print("Filtering data")
        data = data[(data["h2export"] != 0) & (data["opts"] != "1.0")]
     else:
@@ -60,7 +62,7 @@ if __name__ == "__main__":
         from _helpers import mock_snakemake, sets_path_to_root
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        snakemake = mock_snakemake('plot_spatial_figures', energy_source = "solar", plottype = "p-nom-max", h2export=20)
+        snakemake = mock_snakemake('plot_contour', plottype = "lcoh_marginal", levels=10, zerofilter=False)
 
 
         sets_path_to_root('aldehyde')
