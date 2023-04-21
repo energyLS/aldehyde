@@ -1,6 +1,10 @@
 [submodule "workflow/subworkflows/pypsa-earth-sec"]
 	path = workflow/subworkflows/pypsa-earth-sec
 	url = https://github.com/pypsa-meets-earth/pypsa-earth-sec
+	branch = earthsec-submodulefix
+	commit = 92c2cc8c19ba1888f5b4808f69358d3242c92e73
 [submodule "workflow/subworkflows/pypsa-earth"]
 	path = workflow/subworkflows/pypsa-earth
 	url = https://github.com/pypsa-meets-earth/pypsa-earth
+	branch = main
+	commit = 313ef0b9434df49d7725f6e17e11b74d73800171

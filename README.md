@@ -41,7 +41,14 @@ To generate a PDF of the dependency graph of all steps `build/dag.pdf` run:
 
 ## Clone the repository
 
+```bash
     git clone --recursive https://github.com/energyLS/aldehyde.git
+```
+
+Set the git submodule to a certain commit: adjust it in the .gitmodules file and run:
+```bash	
+    git submodule update
+```
 
 ## Config
 
