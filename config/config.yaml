@@ -113,14 +113,15 @@ plot:
   contour_plot:
     type: ["cost", "lcoh", "lcoh_marginal", "lcoh_marginal_export", "lcoh_marginal_weighted", "lcoe_marginal"]
     levels: [10]
-    zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
+    zerofilter: False # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
       lcoh: "LCOH (base) in €/MWh"
-      lcoh_marginal: "LCOH (marginal) in €/MWh"
-      lcoh_marginal_export: "LCOH (marginal export) in €/MWh"
-      lcoh_marginal_weighted: "LCOH (marginal weighted) in €/MWh"
-      lcoe_marginal: "LCOE (marginal) in €/MWh"
+      lcoh_marginal: "Marginal price of hydrogen in €/MWh"
+      lcoh_marginal_export: "Marginal price of hydrogen (export) in €/MWh"
+      lcoh_marginal_weighted: "Marginal price of hydrogen (weighted) in €/MWh"
+      lcoe_marginal: "Marginal price of electricity in €/MWh"
+  
   
   spatial_plot:
     type: ["land-use"] #["p-nom-opt","p-nom-max","land-use"]
