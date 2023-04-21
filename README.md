@@ -38,6 +38,18 @@ To generate a PDF of the dependency graph of all steps `build/dag.pdf` run:
 
     snakemake -c1 --use-conda -f dag
 
+
+## Clone the repository
+
+```bash
+    git clone --recursive https://github.com/energyLS/aldehyde.git
+```
+
+Set the git submodule to a certain commit: adjust it in the .gitmodules file and run:
+```bash	
+    git submodule update
+```
+
 ## Config
 
 Set the configuration in config/config.yaml. The scenario wildcards are propagated to all rules, so you can run the analysis for different scenarios.
