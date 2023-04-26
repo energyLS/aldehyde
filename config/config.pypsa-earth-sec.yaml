@@ -5,7 +5,7 @@ results_dir: results/
 summary_dir: results/
 costs_dir: data/ #TODO change to the equivalent of technology data
 
-run: h2network_true
+run: h2network_true_3h
 
 foresight: overnight
 
@@ -21,7 +21,7 @@ scenario:
   - "c1.0"
   opts: ["Co2L0.10"] #["Co2L1.0","Co2L.50","Co2L0.10"]
   sopts:
-  - "6H"
+  - "3H"
   demand:
   - "DF"
 

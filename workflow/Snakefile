@@ -93,7 +93,7 @@ if config.get("import_pypsaearthsec", False):
             for i in range(len(input)):
                 copyfile(input[i], output[i])
 
-# Taking the already solved networks. Could be more failsave, to take pre-networks from PyPSA-Earth-Sec
+# TODO Taking the already solved networks. Could be more failsave, to take pre-networks from PyPSA-Earth-Sec
 rule clean_network:
     input:
         network="../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
@@ -132,9 +132,9 @@ rule compare_networks:
         # expand("../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export_solved.nc",
         #     **config["compare_networks"]
         # ),
-        network_mar_es_export = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_{clusters}_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export.nc",
-        network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_{clusters}_ec_lc1.0_{opts}_6H_2030_0.071_DF_0export.nc",
-        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_{clusters}_ec_lc1.0_{opts}_6H_2030_0.071_DF_{h2export}export_solved.nc"
+        network_mar_es_export = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_{clusters}_ec_lc1.0_{opts}_3H_2030_0.071_DF_{h2export}export.nc",
+        network_mar_es_only = "../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s_{clusters}_ec_lc1.0_{opts}_3H_2030_0.071_DF_0export.nc",
+        network_export_only = "../resources/export_only/" + config_pypsaearthsec["run"] +"/elec_s_{clusters}_ec_lc1.0_{opts}_3H_2030_0.071_DF_{h2export}export_solved.nc"
     output:
         #graph_lcoh="../results/graphics/system_comp/LCOH.pdf", 
         graph_systemcost = "../results/" + config_pypsaearthsec["run"] +"/graphics/system_comp/total_system_cost_{clusters}_{opts}_{h2export}export.pdf",
