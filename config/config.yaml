@@ -22,7 +22,7 @@ scenario:
   ll:
   - "c1.0"
   opts: ["Co2L0.10"] #["Co2L1.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
-  sopts: "6H"
+  sopts: "3H"
   demand:
   - "DF"
 
@@ -54,11 +54,14 @@ pypsa_earth:
   Bus:
     - AC
     - H2
-    - DC
+    #- DC
+    - battery
   Link:
-    - DC
+    #- DC
     - H2
     - H2 Electrolysis
+    - battery charger
+    - battery discharger
   Generator:
     - onwind
     - offwind-ac
@@ -68,6 +71,7 @@ pypsa_earth:
   StorageUnit: []
   Store: 
     - H2
+    - battery
   Load: 
     - H2
  # Global_Constraint: []
