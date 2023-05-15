@@ -118,6 +118,14 @@ The cost of hydrogen production is calculated as follows \cite{Zeyen2022}:
 \end{equation}
 "where $C_a$ is the capital cost of the asset $a$, $O_{a,t}$ is the operational cost of the asset $a$ in time step $t$, $P_t$ is the production of hydrogen in time step $t$, $im_t$ is the import of hydrogen in time step $t$ and $ex_t$ is the export of hydrogen in time step $t$" \cite{Zeyen2022}.
 
+
+Alternative method of calculating the LCOH in an integrated system:
+\begin{equation}
+    \label{eq:cost_of_hydrogen_production_simple}
+    C_\mathrm{H2}=\frac{TSC_\mathrm{export}-TSC_\mathrm{noexport}}{d_\mathrm{H2export}}
+\end{equation}
+Equation \ref{eq:cost_of_hydrogen_production_simple} provides another approach where the total system cost of the integrated system without hydrogen export $TSC_\mathrm{noexport}$ is subtracted from the total system cost of the integrated system with hydrogen export $TSC_\mathrm{export}$ to get the total increase in cost, then divided by the hydrogen export volume $d_\mathrm{H2export}$.
+
 Note, equation \ref{eq:cost_of_hydrogen_production} is not valid for the integrated system (?),
 hence the cost of hydrogen of the integrated system is defined as the marginal price of hydrogen (taken from PyPSA).
 Questions:
