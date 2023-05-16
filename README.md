@@ -5,20 +5,20 @@ This repository contains the entire scientific project, including code and repor
 ## Run new scenarios
 In `aldehyde`:
 
-* in `config`: set `scenario`, `export`
+* in `config/config.yaml`: set `scenario`, `export`
     
-* in `config.pypsa-earth-sec.yaml`: set `H2_network: True`, `H2_network_limit: 10000`, `run`
+* in `config/config.pypsa-earth-sec.yaml`: set `H2_network: True`, `H2_network_limit: 10000`, `run`
 
-In `pypsa-earth-sec`:
+In `workflow/subworkflows/pypsa-earth-sec`:
 * in `config.pypsa-earth.yaml`: set `["electricity"]["co2base"]: 40.0e+6`. Note: if you change that, make sure to delete the old networks
 * in `config.pypsa-earth.yaml`: set `["cluster_options"]["alternative_clustering"]: True`
 
 ## Analyse new scenarios
 In `aldehyde`:
 
-* Contour -> `config.yaml`: takes the `scenario` and `export` params. Plot specifics in `plots["contour_plot"]`
-* Spatials (e.g. potentials) -> `config.yaml`: takes the `plots["spatial_plot"]`
-* PyPSA-Earth-Sec (e.g. Balances, H2-network) -> `config.pypsa-earth-sec.yaml`: takes the `scenario` and `export` params.
+* Contour -> `config/config.yaml`: takes the `scenario` and `export` params. Plot specifics in `plots["contour_plot"]`
+* Spatials (e.g. potentials) -> `config/config.yaml`: takes the `plots["spatial_plot"]`
+* PyPSA-Earth-Sec (e.g. Balances, H2-network) -> `config/config.pypsa-earth-sec.yaml`: takes the `scenario` and `export` params.
 
 
 
