@@ -26,7 +26,11 @@ def remove_elec_base_techs(n):
         n.mremove(c.name, names)
         n.carriers.drop(to_remove, inplace=True, errors="ignore")
 
+# def manipulate_battery_capex(n, new_capex):
 
+#     n.stores.loc[n.stores.carrier == "battery", "capital_cost"] = new_capex
+
+#     return
 
 if __name__ == "__main__":
     if 'snakemake' not in globals():
@@ -36,14 +40,14 @@ if __name__ == "__main__":
         snakemake = mock_snakemake(
             "clean_network",
             simpl="",
-            clusters="4",
+            clusters="10",
             ll="c1.0",
             opts="Co2L0.10",
             planning_horizons="2030",
-            sopts="144H",
+            sopts="6H",
             discountrate=0.071,
             demand="DF",
-            h2export=20,
+            h2export=120,
         )
 
         sets_path_to_root('aldehyde')
@@ -55,6 +59,10 @@ if __name__ == "__main__":
 
     remove_elec_base_techs(n)
     #remove_non_electric_buses(n)
+
+    # Manipulate battery capex
+    #new_capex = 10.0
+    #manipulate_battery_capex(n, new_capex)
 
     # empty dataframe
     #n.global_constraints = n.global_constraints.iloc[0:0]
