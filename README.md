@@ -10,8 +10,11 @@ In `aldehyde`:
 * in `config/config.pypsa-earth-sec.yaml`: set `H2_network: True`, `H2_network_limit: 10000`, `run`
 
 In `workflow/subworkflows/pypsa-earth-sec`:
-* in `config.pypsa-earth.yaml`: set `["electricity"]["co2base"]: 40.0e+6`. Note: if you change that, make sure to delete the old networks
+* in `config.pypsa-earth.yaml`: set `["electricity"]["co2base"]: 40.0e+6`. Note: if you change that, make sure to delete the old networks `elec.nc`
+* * in `config.pypsa-earth.yaml`: set `["costs"]["fill_values"]["discount rate"]: 0.071`. Note: if you change that, make sure to delete the old networks `elec.nc`
 * in `config.pypsa-earth.yaml`: set `["cluster_options"]["alternative_clustering"]: True`
+
+In ``:
 
 ## Analyse new scenarios
 In `aldehyde`:
