@@ -74,19 +74,26 @@ if __name__ == "__main__":
 
         lcoh_marginal_weighted = (load * n.buses_t.marginal_price[buses]).sum().sum() / load.sum().sum()
 
-
+        ############################################################
         # New approach to calculate the weighted marginal price of the hydrogen buses: sum(Marginal price (t) * Abnahmenahmemenge (t)) / Abnahmemenge.sum() for each bus
         # Abnahmemenge
         # LCOH, LCOE // weighted, not weighted // export, no export, mixed
 
-        buses_export = n.buses.index[n.buses.index == "H2 export bus"]
-        buses_noexport = n.buses.index[(n.buses.index.str[-2:] == "H2")]
-        buses_mixed = buses_noexport.append(buses_export)
+        # Get hydrogen buses
+        buses_h_export = n.buses.index[n.buses.index == "H2 export bus"]
+        buses_h_noexport = n.buses.index[(n.buses.index.str[-2:] == "H2")]
+        buses_h_mixed = buses_h_noexport.append(buses_h_export)
 
-        lcoe_w_export = 
-        lcoe_w_noexport = 
-        lcoe_w_all = 
+        # Get electricity buses (no differentiation between export and no export, because there is no export bus for electricity)
+        buses_e = n.buses.index[(n.buses.index.str[-2:] == "AC")]
 
+        # Calculate the not weighted ("notw") marginal price of the hydrogen buses
+        lcoh_notw_export = n.buses_t.marginal_price[buses_h_export].mean().mean().round(2)
+        lcoh_notw_noexport = n.buses_t.marginal_price[buses_h_noexport].mean().mean().round(2)
+        lcoh_notw_mixed = n.buses_t.marginal_price[buses_h_mixed].mean().mean().round(2)
+
+        # Calculate the not weighted ("notw") marginal price of the electricity buses
+        lcoe_notw = n.buses_t.marginal_price[buses_e].mean().mean().round(2)
 
 
 
@@ -100,6 +107,7 @@ if __name__ == "__main__":
         #     return prices
 
 
+        ############################################################
 
 
 
