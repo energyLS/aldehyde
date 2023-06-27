@@ -75,6 +75,34 @@ if __name__ == "__main__":
         lcoh_marginal_weighted = (load * n.buses_t.marginal_price[buses]).sum().sum() / load.sum().sum()
 
 
+        # New approach to calculate the weighted marginal price of the hydrogen buses: sum(Marginal price (t) * Abnahmenahmemenge (t)) / Abnahmemenge.sum() for each bus
+        # Abnahmemenge
+        # LCOH, LCOE // weighted, not weighted // export, no export, mixed
+
+        buses_export = n.buses.index[n.buses.index == "H2 export bus"]
+        buses_noexport = n.buses.index[(n.buses.index.str[-2:] == "H2")]
+        buses_mixed = buses_noexport.append(buses_export)
+
+        lcoe_w_export = 
+        lcoe_w_noexport = 
+        lcoe_w_all = 
+
+
+
+
+        # PyPSA-Eur Approach
+        # def calculate_prices(n, label, prices):
+        #     prices = prices.reindex(prices.index.union(n.buses.carrier.unique()))
+
+        #     # WARNING: this is time-averaged, see weighted_prices for load-weighted average
+        #     prices[label] = n.buses_t.marginal_price.mean().groupby(n.buses.carrier).mean()
+
+        #     return prices
+
+
+
+
+
         # Save the cost and lcoh in the array according to the h2export and opts values using concat function
         cost_df = pd.concat([cost_df, pd.DataFrame({'h2export': [h2export], 
                                                     'opts': [opts], 
