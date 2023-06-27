@@ -95,6 +95,9 @@ if __name__ == "__main__":
         # Calculate the not weighted ("notw") marginal price of the electricity buses
         lcoe_notw = n.buses_t.marginal_price[buses_e].mean().mean().round(2)
 
+        # Calculate the weighted ("w") marginal price of the hydrogen buses
+        # Get the demand (load, links, stores?) of the hydrogen export bus
+        load_h_export = #pd.DataFrame(index=n.snapshots, columns=buses_h_export, data=0.0)
 
 
         # PyPSA-Eur Approach
