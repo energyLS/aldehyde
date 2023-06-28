@@ -10,6 +10,29 @@ import os
 import logging
 
 
+def get_bus_demand(n, busname):
+    """Get the demand at a certain bus (includes stores/StorageUnits) based on the energy_balance() function
+
+    Parameters
+    ----------
+    busname : _type_
+        _description_
+    n : _type_
+        _description_
+    """
+    energy_balance = n.statistics.energy_balance(
+        aggregate_bus=False, aggregate_time=False
+    )
+    # Get the energy balance of the bus specified in busname
+    energy_balance_bus = energy_balance.loc[:, :, :, busname]
+
+    # Filter for negative values and sum them up (note: may include stores/StorageUnits)
+    demand = energy_balance_bus[energy_balance_bus < 0]
+    demand = demand.groupby("bus").sum()
+
+    return demand
+
+
 if __name__ == "__main__":
     if "snakemake" not in globals():
         from _helpers import mock_snakemake, sets_path_to_root
@@ -117,15 +140,14 @@ if __name__ == "__main__":
 
         # Calculate the weighted ("w") marginal price of the hydrogen buses
 
-        # Get the demand using the energy_balance() function
+        # busname = "H2 export bus"
+        # busname = ["MA.1.2_1_AC H2", "MA.1.3_1_AC H2"]
+        # demand = get_bus_demand(n, busname)
 
-        energy_balance = n.statistics.energy_balance(aggregate_bus=False)
+        demand_h_export = get_bus_demand(n, buses_h_export)
+        demand_h_noexport = get_bus_demand(n, buses_h_noexport)
+        demand_h_mixed = get_bus_demand(n, buses_h_mixed)
 
-        energy_balance.loc[:, :, :, "H2 export bus"]
-        # Filter for negative values and sum them up
-        energy_balance.loc[:, :, :, "MA.10.3_1_AC"][
-            energy_balance.loc[:, :, :, "MA.10.3_1_AC"] < 0
-        ].sum() / 1e6
         # Get the demand (load, links, stores?) of the hydrogen export bus
 
         load_h_export = n.loads_t.p["H2 export load"].sum()
