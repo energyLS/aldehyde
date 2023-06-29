@@ -5,11 +5,10 @@ results_dir: results/
 summary_dir: results/
 costs_dir: data/ #TODO change to the equivalent of technology data
 
-run: highwacc_6h_ws
+run: newres_ccgt_3h_ws #highwacc_hem_1marg_1cap_nosmr_2000h_ws
 
 foresight: overnight
 
-# The scenario settings in config.pypsa-earth-sec.yaml are relevant for plotting
 scenario:
   simpl: # only relevant for PyPSA-Eur
   - ""
@@ -19,22 +18,29 @@ scenario:
   - 2030
   ll:
   - "c1.0"
-  opts: ["Co2L0.10"] #["Co2L1.0","Co2L.50","Co2L0.10"]
-  sopts:
-  - "6H"
+  opts: ["Co2L2.0", "Co2L1.0", "Co2L0.7", "Co2L0.5", "Co2L0.30", "Co2L0.10"] 
+  #["Co2L5.0", "Co2L1.7", "Co2L0.5"] 
+  #["Co2L20.0", "Co2L5.0", "Co2L2.0", "Co2L1.7", "Co2L1.2", "Co2L1.0", "Co2L0.50", "Co2L0.10"] 
+  #["Co2L1.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L0.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
+  #["Co2L1.0", "Co2L0.50", "Co2L0.10"] 
+  sopts: 
+  - "3H"
   demand:
   - "DF"
 
 policy_config:
-  policy: "H2_export_yearly_constraint"
+  policy: "H2_export_monthly_constraint" #either "H2_export_yearly_constraint", "H2_export_monthly_constraint", "no_res_matching" # TODO check wether "export" is required here or misleading
+  allowed_excess: 1.0 # currently only implemented for the monthly constraint
+  reference_case: true
+
 
 clustering_options:
   alternative_clustering: true
 
 countries: ['MA']
 
-H2_network: True
-H2_network_limit: 50_000 #GWkm
+H2_network: false
+H2_network_limit: 2000 #GWkm
 
 fossil_reserves:
   oil: 100 #TWh Maybe reduntant
@@ -43,9 +49,9 @@ hydrogen_underground_storage: false
 
 
 export:
-  h2export: [0, 120] # Yearly export demand in TWh
-  store: True # [True, False] # specifies wether an export store to balance demand is implemented
-  store_capital_costs: "standard_costs" # ["standard_costs", "no_costs"] # specifies the costs of the export store
+  h2export: [0] # Yearly export demand in TWh
+  store: true # [True, False] # specifies wether an export store to balance demand is implemented
+  store_capital_costs: "no_costs" # ["standard_costs", "no_costs"] # specifies the costs of the export store. "standard_costs" takes CAPEX of "hydrogen storage tank incl. compressor"
 
 custom_data:
   renewables: [] # ['csp', 'rooftop-solar', 'solar']
@@ -58,11 +64,10 @@ custom_data:
   add_existing: false
   custom_sectors: false
 
-
 costs:
   lifetime: 25 #default lifetime
   # From a Lion Hirth paper, also reflects average of Noothout et al 2016
-  discountrate: [0.071] #, 0.086, 0.111]
+  discountrate: [0.15] #, 0.086, 0.111]
   # [EUR/USD] ECB: https://www.ecb.europa.eu/stats/exchange/eurofxref/html/eurofxref-graph-usd.en.html # noqa: E501
   USD2013_to_EUR2013: 0.7532
 
@@ -225,7 +230,7 @@ sector:
     DF_2050: 0.011
 
   co2_network: true
-  co2_sequestration_potential: 200 #MtCO2/a sequestration potential for Europe
+  co2_sequestration_potential: 0 #MtCO2/a sequestration potential for Europe
   co2_sequestration_cost: 10 #EUR/tCO2 for sequestration of CO2
   hydrogen_underground_storage: true
   shipping_hydrogen_liquefaction: false
@@ -247,7 +252,7 @@ sector:
   methanation: true
   helmeth: true
   dac: true
-  SMR: true
+  SMR: false
   cc_fraction: 0.9
 
   conventional_generation: # generator : carrier
@@ -259,7 +264,7 @@ snapshots:
   # arguments to pd.date_range
   start: "2013-01-01"
   end: "2014-01-01"
-  closed: "left" # end is not inclusive
+  inclusive: "left" # end is not inclusive
 
 # atlite:
 #   cutout: ./cutouts/africa-2013-era5.nc
@@ -478,3 +483,4 @@ plotting:
     solid biomass transport: green
     H2 for industry: "#222222"
     H2 for shipping: "#6495ED"
+    biomass EOP: "green"
