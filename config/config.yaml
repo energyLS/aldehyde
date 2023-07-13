@@ -21,13 +21,14 @@ scenario:
   - 2030
   ll:
   - "c1.0"
-  opts: ["Co2L2.0", "Co2L1.0", "Co2L0.7", "Co2L0.5", "Co2L0.30", "Co2L0.10"]  #, "Co2L.50", "Co2L0.10"] #["Co2L1.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
+  opts: ["Co2L2.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L0.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
+  # "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
   sopts: "3H"
   demand:
   - "DF"
 
 export:
-  h2export: [0] #40, 120] #, 1000] #[0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200] # Yearly export demand in TWh. TODO This is currently necessary for PyPSA-Earth-Sec subworkflow
+  h2export: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200] # Yearly export demand in TWh. TODO This is currently necessary for PyPSA-Earth-Sec subworkflow
 
 # Select which networks to compare in terms of integrated/islanded
 compare_networks:
@@ -42,7 +43,7 @@ compare_networks:
   opts: 
   - "Co2L0.90"
   sopts: ["144H"]
-  discountrate: [0.071]
+  discountrate: [0.015]
   demand:
   - "DF"
   h2export: [20]
@@ -117,7 +118,7 @@ plot:
   contour_plot:
     type: ["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w"]
     levels: [10]
-    zerofilter: False # Filter out zero values of export and co2 reduction wildcards for plotting
+    zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
       lcoh_system: "LCOH (system comp.) in €/MWh"

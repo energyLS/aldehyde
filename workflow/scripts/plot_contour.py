@@ -22,9 +22,9 @@ def prepare_data(data, zerofilter=False):
 
     # Filter the data to remove 0 export and 0 co2 reduction
     print(f"zerofiler is set to {zerofilter} or in boolean {bool(zerofilter)}")
-    if zerofilter=="True":
+    if zerofilter:
        print("Filtering data")
-       data = data[(data["h2export"] != 0) & (data["opts"] != "1.0")]
+       data = data[(data["h2export"] != 0) & (data["opts"] != "2.0")]
     else:
         pass
 
@@ -43,6 +43,7 @@ def plot_data(data_reshaped, plottype,levels):
 
     # Turn "limit" to "reduction" (e.g. Co2L0.90 means 10% reduction)
     opts_reverse = 1-opts
+    opts_reverse[opts_reverse < 0] = 0
 
     # Plot a contour plot of the data having the y-axis the column "h2export", x-axis the column "sopts", and the z-axis the column "cost"
     plt.contourf(opts_reverse*100,h2export,np.flip(data_reshaped[plottype], axis=1), levels=levels)
@@ -55,6 +56,10 @@ def plot_data(data_reshaped, plottype,levels):
 
     plt.show()
 
+    # Set negative values in array df to 0
+    # df[df < 0] = 0
+
+
     return
 
 if __name__ == "__main__":
@@ -62,7 +67,7 @@ if __name__ == "__main__":
         from _helpers import mock_snakemake, sets_path_to_root
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        snakemake = mock_snakemake('plot_contour', plottype = "lcoh_marginal", levels=10, zerofilter=False)
+        snakemake = mock_snakemake('plot_contour', plottype = "lcoh_w_mixed", levels=10, zerofilter=False)
 
 
         sets_path_to_root('aldehyde')
@@ -72,7 +77,7 @@ if __name__ == "__main__":
 
     # Get the plottype and levels (relevant for the contour plot)
     plottype = snakemake.wildcards.plottype
-    zerofilter = snakemake.wildcards.zerofilter
+    zerofilter = snakemake.config["plot"]["contour_plot"]["zerofilter"]
     levels = int(snakemake.wildcards.levels)
 
     # Prepare the data
