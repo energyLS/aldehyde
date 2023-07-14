@@ -4,7 +4,7 @@ cluster: "remote:path/on/remote"
 pypsaearthsec: "/mnt/c/Users/scl38887/Documents/git/pypsa-earth-sec/config.default.yaml"
 
 retrieve_cost_data: False
-import_pypsaearthsec: True # Set true to run PyPSA-Earth-Sec subworkflow
+import_pypsaearthsec: False # Set true to run PyPSA-Earth-Sec subworkflow
 
 climate_targets:
   2030_cond: 115 # in Mt CO2 (equ.?)
@@ -116,8 +116,8 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w"]
-    levels: [10]
+    type: ["cost", "lcoh_system", "lcoh_w_mixed", "lcoe_w"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w"]
+    levels: [20]
     show_minimums: True
     zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
