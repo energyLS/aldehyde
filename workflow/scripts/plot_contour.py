@@ -8,13 +8,12 @@ logger = logging.getLogger(__name__)
 
 
 def prepare_data(data, zerofilter=False):
-
     # Prepare the data
     # Extract the Co2L which is in position 5-8
     data["opts"] = data["opts"].str[4:]
 
-    #Rescale the cost from euro to B€
-    data["cost"] = (data["cost"]/1e9)
+    # Rescale the cost from euro to B€
+    data["cost"] = data["cost"] / 1e9
 
     # Round the data
     to_round = plottype
@@ -23,12 +22,13 @@ def prepare_data(data, zerofilter=False):
     # Filter the data to remove 0 export and 0 co2 reduction
     print(f"zerofiler is set to {zerofilter} or in boolean {bool(zerofilter)}")
     if zerofilter:
-       print("Filtering data")
-       data = data[(data["h2export"] != 0) & (data["opts"] != "2.0")]
+        print("Filtering data")
+        data = data[(data["h2export"] != 0) & (data["opts"] != "2.0")]
     else:
         pass
 
     return data
+
 
 def reshape_data(data, opts, h2export):
     # Reshape the data for all columns in to_round and save it in data dictionary
@@ -39,38 +39,75 @@ def reshape_data(data, opts, h2export):
 
     return data_reshaped
 
-def plot_data(data_reshaped, plottype,levels):
 
+def plot_data(data_reshaped, plottype, levels, show_minimums):
     # Turn "limit" to "reduction" (e.g. Co2L0.90 means 10% reduction)
-    opts_reverse = 1-opts
+    opts_reverse = 1 - opts
     opts_reverse[opts_reverse < 0] = 0
 
     # Plot a contour plot of the data having the y-axis the column "h2export", x-axis the column "sopts", and the z-axis the column "cost"
-    plt.contourf(opts_reverse*100,h2export,np.flip(data_reshaped[plottype], axis=1), levels=levels)
-    plt.xlabel('CO$_2$ Reduction in % of base levels')
-    plt.ylabel('Hydrogen Export Volume in TWh')
-    plt.colorbar().set_label(snakemake.config["plot"]["contour_plot"]["label"][plottype])
+    plt.contourf(
+        opts_reverse * 100,
+        h2export,
+        np.flip(data_reshaped[plottype], axis=1),
+        levels=levels,
+    )
+    if show_minimums == True:
+        # Return the position where the minimum of data_reshaped[plottype] is
+        minpos = np.argmin(data_reshaped[plottype], axis=0)
+
+        # Plot the minimum value as a black dot
+        plt.plot(
+            opts_reverse[::-1] * 100,
+            h2export[minpos],
+            "ko",
+            markersize=4,
+            label="min.",
+            alpha=0.5,
+        )
+
+        # Plot approximation/regression with np.polyfit of the minimum value as line
+        polydegree = 4
+        plt.plot(
+            # opts_reverse[::-1] * 100,
+            np.linspace(min(opts_reverse), max(opts_reverse), 100)[::-1] * 100,
+            np.poly1d(np.polyfit(opts_reverse * 100, h2export[minpos], polydegree))(
+                np.linspace(min(opts_reverse), max(opts_reverse), 100) * 100
+            ),
+            # "k--",
+            color="black",
+            label="min. approx.",
+            alpha=0.5,
+        )
+        plt.legend()
+
+    plt.xlabel("CO$_2$ Reduction in % of base levels")
+    plt.ylabel("Hydrogen Export Volume in TWh")
+    plt.colorbar().set_label(
+        snakemake.config["plot"]["contour_plot"]["label"][plottype]
+    )
 
     # Save the plot
-    plt.savefig(snakemake.output.contour_plot, bbox_inches='tight')
+    plt.savefig(snakemake.output.contour_plot, bbox_inches="tight")
 
     plt.show()
 
     # Set negative values in array df to 0
     # df[df < 0] = 0
 
-
     return
 
+
 if __name__ == "__main__":
-    if 'snakemake' not in globals():
+    if "snakemake" not in globals():
         from _helpers import mock_snakemake, sets_path_to_root
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        snakemake = mock_snakemake('plot_contour', plottype = "lcoh_w_mixed", levels=10, zerofilter=False)
+        snakemake = mock_snakemake(
+            "plot_contour", plottype="lcoe_w", levels=10, zerofilter="False"
+        )
 
-
-        sets_path_to_root('aldehyde')
+        sets_path_to_root("aldehyde")
 
     # Get the data
     data = pd.read_csv(snakemake.input.stats)
@@ -84,12 +121,14 @@ if __name__ == "__main__":
     data = prepare_data(data, zerofilter=zerofilter)
 
     # Get the unique values for opts and h2export required for the reshaping
-    h2export = np.unique(data['h2export'])
-    opts = np.unique(data['opts'].fillna(100).astype(float)) #TODO improve the fillna value
-
+    h2export = np.unique(data["h2export"])
+    opts = np.unique(
+        data["opts"].fillna(100).astype(float)
+    )  # TODO improve the fillna value
 
     # Reshape the data
     data_reshaped = reshape_data(data, opts, h2export)
 
     # Plot the data
-    plot_data(data_reshaped, plottype, levels)
+    show_minimums = snakemake.config["plot"]["contour_plot"]["show_minimums"]
+    plot_data(data_reshaped, plottype, levels, show_minimums=show_minimums)

@@ -118,6 +118,7 @@ plot:
   contour_plot:
     type: ["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w"]
     levels: [10]
+    show_minimums: True
     zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
