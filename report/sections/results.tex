@@ -16,7 +16,7 @@ islanded optimizations are higher.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{graphics/system_comp/total_system_cost_140.pdf}
+    \includegraphics[width=\linewidth]{../fix_co2/graphics/system_comp/total_system_cost_140.pdf}
     \caption{Total cost of the three different systems}
     \label{fig:int_sep_total_system_cost}
 \end{figure}
@@ -42,20 +42,42 @@ Paper on competing land resources can be found here \cite{Patankar2022}
 \label{subsec: syn_conf_integrated}
 Figure \ref{fig:contour_plot} shows the synergy maximizing time path.
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_plot_lcoh_levels10.pdf}
-    \caption{Synergies and conflicts between the two scenarios looking at the levelized cost of hydrogen}
-    \label{fig:contour_plot}
-\end{figure}
+%contour_lcoe_w_20_filterFalse.pdf
 
-\begin{figure}[h!]
+\begin{figure*}[t] % Use 'figure*' to span both columns
     \centering
-    \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_plot_totalsystemcost_levels100.pdf}
-    \caption{Synergies and conflicts between the two scenarios looking at the total system cost}
-    \label{fig:contour_plot_totalsystem}
-\end{figure}
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoe_w_20_filterFalse.pdf}
+        \caption{Marginal weighted price of electricity}
+        \label{fig:contour_plot}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoe_w_20_filterTrue.pdf}
+        \caption{Marginal weighted price of electricity (with filter of 0 carbon red and 0 export)}
+        \label{fig:contour_plot}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_w_mixed_20_filterFalse.pdf}
+        \caption{Marginal weighted price of hydrogen}
+        \label{fig:contour_plot}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_w_mixed_20_filterTrue.pdf}
+        \caption{Marginal weighted price of hydrogen (with filter of 0 carbon red and 0 export)}
+        \label{fig:contour_plot_totalsystem}
+    \end{subfigure}
+    \hfill
 
+    \caption{Marginal prices of electricity and hydrogen subject to export volumes and emission limits. Black lines indicate the lowest price at each emission limit.}
+    \label{fig:comparison}
+\end{figure*}
 
 
 \subsection{Sensitivity analysis}

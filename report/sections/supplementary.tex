@@ -1,3 +1,38 @@
+Figure \ref{fig:barplots} displays the energy balances of modelled scenarios.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/nresults_full_3H_ws/graphs/balances-AC.pdf}
+        \caption{Balances AC}
+        \label{fig:balances_AC}
+    \end{subfigure}
+    
+    \vspace{0.5cm} % Add vertical space between the subfigures
+    
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/nresults_full_3H_ws/graphs/balances-energy.pdf}
+        \caption{Balances energy}
+        \label{fig:balances_energy}
+    \end{subfigure}
+
+    \vspace{0.5cm} % Add vertical space between the subfigures
+    
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/nresults_full_3H_ws/graphs/costs.pdf}
+        \caption{costs}
+        \label{fig:balances_costs}
+    \end{subfigure}
+    
+    \caption{Barplots}
+    \label{fig:barplots}
+\end{figure}
+
+
+
 Figure \ref{fig:land_conflicts} displays the land conflicts arising from separated optimisations.
 
 \begin{figure}[h!]
@@ -57,17 +92,17 @@ Figure \ref{fig:land_use_solar} displays the land use of solar PV in three diffe
 \begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{graphics/spatial/export_only_land-use_solar_20export.pdf}
+        \includegraphics[width=\textwidth]{../fix_co2/graphics/spatial/export_only_land-use_solar_20export.pdf}
         \caption{Low export}
         \label{fig:graphic1}
     \end{subfigure}
     \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{graphics/spatial/export_only_land-use_solar_140export.pdf}
+        \includegraphics[width=\textwidth]{../fix_co2/graphics/spatial/export_only_land-use_solar_140export.pdf}
         \caption{High export}
         \label{fig:graphic2}
     \end{subfigure}
     \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{graphics/spatial/mar_es_land-use_solar_140export.pdf}
+        \includegraphics[width=\textwidth]{../fix_co2/graphics/spatial/mar_es_land-use_solar_140export.pdf}
         \caption{MAR-ES + export}
         \label{fig:graphic3}
     \end{subfigure}
