@@ -118,7 +118,7 @@ if __name__ == "__main__":
     # limit = 5
 
     # Loop over the networks and save the objective of the networks in array according to the h2export and opts wildcards
-    cost_df = pd.DataFrame(columns=["h2export", "opts", "cost", "lcoh"])
+    metrics_df = pd.DataFrame(columns=["h2export", "opts", "cost", "lcoh"])
     cost0_df = pd.DataFrame(columns=["h2export", "opts", "cost"])
 
     for i in snakemake.input.networks:  # [0:limit]:
@@ -180,12 +180,24 @@ if __name__ == "__main__":
             n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
         )
 
-        # Get more metrics
+        # Get storage capacities
+
+        H2_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus != "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
+        Battery_GWh = n.stores[(n.stores.carrier=="battery")].e_nom_opt.sum() / 1e3 # in GWh
+        H2export_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus == "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
+        ratio_H2_Battery = (H2_GWh + H2export_GWh) / Battery_GWh
+
+        #H2_GWh, Battery_GWh, H2export_GWh = get_storage_capacities(n)
+
+        # Get curtailment rates
+        curtailmentrate_solar = n.statistics().loc["Generator", "Solar"].Curtailment / n.statistics().loc["Generator", "Solar"].Dispatch *100
+        curtailmentrate_wind = n.statistics().loc["Generator", "Onshore Wind"].Curtailment / n.statistics().loc["Generator", "Onshore Wind"].Dispatch *100
+
 
         # Save the cost and lcoh in the array according to the h2export and opts values using concat function
-        cost_df = pd.concat(
+        metrics_df = pd.concat(
             [
-                cost_df,
+                metrics_df,
                 pd.DataFrame(
                     {
                         "h2export": [h2export],
@@ -200,20 +212,24 @@ if __name__ == "__main__":
                         "lcoh_w_noexport": [lcoh_w_noexport],
                         "lcoh_w_mixed": [lcoh_w_mixed],
                         "lcoe_w": [lcoe_w],
+                        "H2_GWh": [H2_GWh],
+                        "Battery_GWh": [Battery_GWh],
+                        "H2export_GWh": [H2export_GWh],
+                        "ratio_H2_Battery": [ratio_H2_Battery],
+                        "curtailmentrate_solar": [curtailmentrate_solar],
+                        "curtailmentrate_wind": [curtailmentrate_wind],
                     }
                 ),
             ],
             ignore_index=True,
         )
 
-    print(cost0_df)
-    print(cost_df)
 
     # Save the cost file
-    cost_df.to_csv(snakemake.output.stats, index=False)
+    metrics_df.to_csv(snakemake.output.stats, index=False)
 
     # Plot the cost of the networks
-    # cost_df.pivot(index='h2export', columns='opts', values='cost').plot(kind='bar')
+    # metrics_df.pivot(index='h2export', columns='opts', values='cost').plot(kind='bar')
     # plt.ylabel('Cost [EUR]')
     # plt.xlabel('H2 export [TWh]')
     # plt.title('Cost of the networks')
