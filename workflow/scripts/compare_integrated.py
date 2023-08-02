@@ -153,34 +153,6 @@ if __name__ == "__main__":
             * n.snapshot_weightings.generators[0]
         )  # Cost difference between systems divided by the export demand
 
-        # Calculate the marginal price of the buses: Warning: not weighted price
-        lcoh_marginal = (
-            n.buses_t.marginal_price.mean().groupby(n.buses.carrier).mean().loc["H2"]
-        )  # in €/MWh (correct calc, checked with pypsa-earth-sec results)
-        lcoh_marginal_export = n.buses_t.marginal_price.mean().loc[
-            "H2 export bus"
-        ]  # in €/MWh
-        lcoe_marginal = (
-            n.buses_t.marginal_price.mean().groupby(n.buses.carrier).mean().loc["AC"]
-        )  # in €/MWh (correct calc, checked with pypsa-earth-sec results)
-
-        # Calculate the weighted marginal price of the buses
-        # TODO doublecheck, why the weighted marginal price reuqires the links only and no loads
-        buses = n.buses.index[
-            (n.buses.index.str[-2:] == "H2") | (n.buses.index == "H2 export bus")
-        ]
-        load = pd.DataFrame(index=n.snapshots, columns=buses, data=0.0)
-
-        for tech in ["Sabatier", "H2 Fuel Cell"]:
-            names = n.links.index[n.links.index.to_series().str[-len(tech) :] == tech]
-
-            load += (
-                n.links_t.p0[names].groupby(n.links.loc[names, "bus0"], axis=1).sum()
-            )
-
-        lcoh_marginal_weighted = (
-            load * n.buses_t.marginal_price[buses]
-        ).sum().sum() / load.sum().sum()
 
         ############################################################
         # New approach to calculate the weighted marginal price of the hydrogen buses: sum(Marginal price (t) * demand (t)) / demand.sum() for each bus. Then, the weighted mean (based on demand again) of all buses is calculated.
@@ -208,6 +180,8 @@ if __name__ == "__main__":
             n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
         )
 
+        # Get more metrics
+
         # Save the cost and lcoh in the array according to the h2export and opts values using concat function
         cost_df = pd.concat(
             [
@@ -218,10 +192,6 @@ if __name__ == "__main__":
                         "opts": [opts],
                         "cost": [cost],
                         "lcoh_system": [lcoh.values[0]],
-                        # "lcoh_marginal": [lcoh_marginal],
-                        # "lcoh_marginal_export": [lcoh_marginal_export],
-                        # "lcoe_marginal": [lcoe_marginal],
-                        # "lcoh_marginal_weighted": [lcoh_marginal_weighted],
                         "lcoh_notw_export": [lcoh_notw_export],
                         "lcoh_notw_noexport": [lcoh_notw_noexport],
                         "lcoh_notw_mixed": [lcoh_notw_mixed],
