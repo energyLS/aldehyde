@@ -118,8 +118,8 @@ plot:
   contour_plot:
     type: ["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
     levels: [20]
-    show_minimums: True
-    zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
+    show_minimums: False
+    zerofilter: False # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
       lcoh_system: "LCOH (system comp.) in €/MWh"
