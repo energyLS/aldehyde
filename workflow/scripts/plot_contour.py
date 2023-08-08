@@ -30,7 +30,7 @@ def prepare_data(data, zerofilter=False):
     return data
 
 
-def reshape_data(data, opts, h2export):
+def reshape_data(data, opts, h2export, plottype):
     # Reshape the data for all columns in to_round and save it in data dictionary
     data_reshaped = {}
     # TODO loop is not necessary since I only use one plottype
@@ -40,13 +40,13 @@ def reshape_data(data, opts, h2export):
     return data_reshaped
 
 
-def plot_data(data_reshaped, plottype, levels, show_minimums):
+def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
     # Turn "limit" to "reduction" (e.g. Co2L0.90 means 10% reduction)
     opts_reverse = 1 - opts
     opts_reverse[opts_reverse < 0] = 0
 
     # Plot a contour plot of the data having the y-axis the column "h2export", x-axis the column "sopts", and the z-axis the column "cost"
-    plt.contourf(
+    contour = plt.contourf(
         opts_reverse * 100,
         h2export,
         np.flip(data_reshaped[plottype], axis=1),
@@ -83,9 +83,15 @@ def plot_data(data_reshaped, plottype, levels, show_minimums):
 
     plt.xlabel("CO$_2$ Reduction in % of base levels")
     plt.ylabel("Hydrogen Export Volume in TWh")
-    plt.colorbar().set_label(
+    plt.colorbar(pad=0.14).set_label(
         snakemake.config["plot"]["contour_plot"]["label"][plottype]
     )
+
+    ax2 = plt.gca().twinx()
+    h2export_secondary = h2export / el_base_demand
+    ax2.set_ylabel("H2-Exp/El-base-demand")
+    ax2.set_ylim(0, max(h2export_secondary))  # Adjust the limit based on your data
+
 
     # Save the plot
     plt.savefig(snakemake.output.contour_plot, bbox_inches="tight")
@@ -127,8 +133,10 @@ if __name__ == "__main__":
     )  # TODO improve the fillna value
 
     # Reshape the data
-    data_reshaped = reshape_data(data, opts, h2export)
+    data_reshaped = reshape_data(data, opts, h2export, plottype=plottype)
 
     # Plot the data
     show_minimums = snakemake.config["plot"]["contour_plot"]["show_minimums"]
-    plot_data(data_reshaped, plottype, levels, show_minimums=show_minimums)
+    el_base_demand = min(reshape_data(data, opts, h2export, plottype="el_base_demand")["el_base_demand"][0])
+    logger.info(f"el_base_demand is {el_base_demand} for all runs")
+    plot_data(data_reshaped, plottype, levels, show_minimums=show_minimums, el_base_demand=el_base_demand)
