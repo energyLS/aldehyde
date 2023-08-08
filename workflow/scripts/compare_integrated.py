@@ -181,7 +181,6 @@ if __name__ == "__main__":
         )
 
         # Get storage capacities
-
         H2_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus != "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
         Battery_GWh = n.stores[(n.stores.carrier=="battery")].e_nom_opt.sum() / 1e3 # in GWh
         H2export_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus == "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
@@ -193,6 +192,8 @@ if __name__ == "__main__":
         curtailmentrate_solar = n.statistics().loc["Generator", "Solar"].Curtailment / n.statistics().loc["Generator", "Solar"].Dispatch *100
         curtailmentrate_wind = n.statistics().loc["Generator", "Onshore Wind"].Curtailment / n.statistics().loc["Generator", "Onshore Wind"].Dispatch *100
 
+        # Get base electricity demand
+        el_base_demand = n.loads_t.p_set[n.loads[n.loads.carrier=="AC"].index].sum().sum()/1e6 * n.snapshot_weightings.generators[0]# in TWh
 
         # Save the cost and lcoh in the array according to the h2export and opts values using concat function
         metrics_df = pd.concat(
@@ -218,6 +219,7 @@ if __name__ == "__main__":
                         "ratio_H2_Battery": [ratio_H2_Battery],
                         "curtailmentrate_solar": [curtailmentrate_solar],
                         "curtailmentrate_wind": [curtailmentrate_wind],
+                        "el_base_demand": [el_base_demand],
                     }
                 ),
             ],
@@ -227,10 +229,3 @@ if __name__ == "__main__":
 
     # Save the cost file
     metrics_df.to_csv(snakemake.output.stats, index=False)
-
-    # Plot the cost of the networks
-    # metrics_df.pivot(index='h2export', columns='opts', values='cost').plot(kind='bar')
-    # plt.ylabel('Cost [EUR]')
-    # plt.xlabel('H2 export [TWh]')
-    # plt.title('Cost of the networks')
-    # plt.savefig(snakemake.output.cost_plot)
