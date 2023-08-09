@@ -31,9 +31,7 @@ def get_bus_demand(n, busname, carrier_limit=False, carrier_limit_integration=Fa
     n : _type_
         _description_
     """
-    energy_balance = n.statistics.energy_balance(
-        aggregate_bus=False, aggregate_time=False
-    )
+
     # Get the energy balance of the bus specified in busname
     if carrier_limit == False:
         energy_balance_bus = energy_balance.loc[:, :, :, busname]
@@ -152,6 +150,8 @@ if __name__ == "__main__":
         # Get the h2export (before "export") and opts values from the network name
         h2export = i.split("_")[-1][:-9]
         opts = i.split("_")[-6]
+        statistics = n.statistics()
+        energy_balance = n.statistics.energy_balance(aggregate_bus=False, aggregate_time=False)
 
         # Read and save the objective of the network if h2export is 0. Save the costs in a new array
         if h2export == "0":
@@ -218,8 +218,8 @@ if __name__ == "__main__":
         #H2_GWh, Battery_GWh, H2export_GWh = get_storage_capacities(n)
 
         # Get curtailment rates
-        curtailmentrate_solar = n.statistics().loc["Generator", "Solar"].Curtailment / n.statistics().loc["Generator", "Solar"].Dispatch *100
-        curtailmentrate_wind = n.statistics().loc["Generator", "Onshore Wind"].Curtailment / n.statistics().loc["Generator", "Onshore Wind"].Dispatch *100
+        curtailmentrate_solar = statistics.loc["Generator", "Solar"].Curtailment / statistics.loc["Generator", "Solar"].Dispatch *100
+        curtailmentrate_wind = statistics.loc["Generator", "Onshore Wind"].Curtailment / statistics.loc["Generator", "Onshore Wind"].Dispatch *100
 
         # Get base electricity demand
         el_base_demand = n.loads_t.p_set[n.loads[n.loads.carrier=="AC"].index].sum().sum()/1e6 * n.snapshot_weightings.generators[0]# in TWh
