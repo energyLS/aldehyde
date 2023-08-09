@@ -21,7 +21,7 @@ def get_buses(n):
     return buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
 
 
-def get_bus_demand(n, busname, carrier_limit=False):
+def get_bus_demand(n, busname, carrier_limit=False, carrier_limit_integration=False):
     """Get the demand at a certain bus (includes stores/StorageUnits) based on the energy_balance() function
 
     Parameters
@@ -38,7 +38,16 @@ def get_bus_demand(n, busname, carrier_limit=False):
     if carrier_limit == False:
         energy_balance_bus = energy_balance.loc[:, :, :, busname]
     else:
-        energy_balance_bus = energy_balance.loc[:, carrier_limit, :, busname]
+        if carrier_limit_integration == "inclusive":
+            energy_balance_bus = energy_balance.loc[:,carrier_limit, :, busname]
+
+        elif carrier_limit_integration == "exclusive":  # exclude carrier_limit
+            energy_balance_bus = energy_balance.loc[:, :, :, busname]
+            # Create a boolean mask to exclude rows with 'carrier_limit' in the third level
+            condition = energy_balance_bus.index.get_level_values(1) != carrier_limit
+            energy_balance_bus = energy_balance_bus[condition]  
+        else:
+            logging.error("carrier_limit_integration must be 'inclusive' or 'exclusive'")
 
     # Filter for negative values and sum them up (note: may include stores/StorageUnits)
     demand = energy_balance_bus[energy_balance_bus < 0]
@@ -77,6 +86,12 @@ def calc_weighted_marginals(
 
     # Also for electricity buses
     lcoe_w_nodal = (n.buses_t.marginal_price[buses_e] * demand_e).sum() / demand_e.sum()
+    lcoe_w_electrolysis_nodal = (
+        n.buses_t.marginal_price[buses_e] * demand_e_electrolysis
+    ).sum() / demand_e_electrolysis.sum()
+    lcoe_w_no_electrolysis_nodal = (
+        n.buses_t.marginal_price[buses_e] * demand_e_no_electrolysis
+    ).sum() / demand_e_no_electrolysis.sum()
 
     # Get the weighted mean of the nodal weighted marginal price of the hydrogen buses
     lcoh_w_noexport = (
@@ -101,8 +116,14 @@ def calc_weighted_marginals(
 
     # Also for electricity buses
     lcoe_w = (lcoe_w_nodal * demand_e.sum() / demand_e.sum().sum()).sum().round(2)
+    loce_w_electrolysis = (
+        lcoe_w_electrolysis_nodal * demand_e_electrolysis.sum() / demand_e_electrolysis.sum().sum()
+    ).sum().round(2)
+    loce_w_no_electrolysis = (
+        lcoe_w_no_electrolysis_nodal * demand_e_no_electrolysis.sum() / demand_e_no_electrolysis.sum().sum()
+    ).sum().round(2)
 
-    return lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w
+    return lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w, loce_w_electrolysis, loce_w_no_electrolysis
 
 
 if __name__ == "__main__":
@@ -179,10 +200,12 @@ if __name__ == "__main__":
         demand_h_mixed = get_bus_demand(n, buses_h_mixed)
         demand_e = get_bus_demand(n, buses_e)
 
-        demand_e_electrolysis = get_bus_demand(n, buses_e, "H2 Electrolysis")
+        demand_e_electrolysis = get_bus_demand(n, buses_e, "H2 Electrolysis", "inclusive")
+        demand_e_no_electrolysis = get_bus_demand(n, buses_e, "H2 Electrolysis", "exclusive")
 
+        #lcoe_w = calc_weighted_marginals_new(
 
-        lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w = calc_weighted_marginals(
+        lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w, lcoe_w_electrolysis, lcoe_w_no_electrolysis = calc_weighted_marginals(
             n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
         )
 
@@ -219,6 +242,8 @@ if __name__ == "__main__":
                         "lcoh_w_noexport": [lcoh_w_noexport],
                         "lcoh_w_mixed": [lcoh_w_mixed],
                         "lcoe_w": [lcoe_w],
+                        "loce_w_electrolysis": [lcoe_w_electrolysis],
+                        "loce_w_no_electrolysis": [lcoe_w_no_electrolysis],
                         "H2_GWh": [H2_GWh],
                         "Battery_GWh": [Battery_GWh],
                         "H2export_GWh": [H2export_GWh],
