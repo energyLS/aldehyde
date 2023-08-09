@@ -21,7 +21,7 @@ def get_buses(n):
     return buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
 
 
-def get_bus_demand(n, busname):
+def get_bus_demand(n, busname, carrier_limit=False):
     """Get the demand at a certain bus (includes stores/StorageUnits) based on the energy_balance() function
 
     Parameters
@@ -35,7 +35,10 @@ def get_bus_demand(n, busname):
         aggregate_bus=False, aggregate_time=False
     )
     # Get the energy balance of the bus specified in busname
-    energy_balance_bus = energy_balance.loc[:, :, :, busname]
+    if carrier_limit == False:
+        energy_balance_bus = energy_balance.loc[:, :, :, busname]
+    else:
+        energy_balance_bus = energy_balance.loc[:, carrier_limit, :, busname]
 
     # Filter for negative values and sum them up (note: may include stores/StorageUnits)
     demand = energy_balance_bus[energy_balance_bus < 0]
@@ -175,6 +178,9 @@ if __name__ == "__main__":
         demand_h_noexport = get_bus_demand(n, buses_h_noexport)
         demand_h_mixed = get_bus_demand(n, buses_h_mixed)
         demand_e = get_bus_demand(n, buses_e)
+
+        demand_e_electrolysis = get_bus_demand(n, buses_e, "H2 Electrolysis")
+
 
         lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w = calc_weighted_marginals(
             n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
