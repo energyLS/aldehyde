@@ -69,12 +69,16 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
 
         # Plot approximation/regression with np.polyfit of the minimum value as line
         polydegree = 4
+        line =  np.poly1d(np.polyfit(opts_reverse * 100, h2export[minpos], polydegree))(
+                np.linspace(min(opts_reverse), max(opts_reverse), 100) * 100)
+        # Limit line to h2 export boundaries
+        line[line < min(h2export)] = min(h2export)
+        line[line > max(h2export)] = max(h2export)
+
         plt.plot(
             # opts_reverse[::-1] * 100,
             np.linspace(min(opts_reverse), max(opts_reverse), 100)[::-1] * 100,
-            np.poly1d(np.polyfit(opts_reverse * 100, h2export[minpos], polydegree))(
-                np.linspace(min(opts_reverse), max(opts_reverse), 100) * 100
-            ),
+            line,
             # "k--",
             color="black",
             label="min. approx.",
@@ -111,7 +115,7 @@ if __name__ == "__main__":
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         snakemake = mock_snakemake(
-            "plot_contour", plottype="lcoe_w_no_electrolysis", levels=20, zerofilter="False"
+            "plot_contour", plottype="lcoe_w", levels=20, zerofilter="False"
         )
 
         sets_path_to_root("aldehyde")
