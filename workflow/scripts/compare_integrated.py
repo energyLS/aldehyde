@@ -114,14 +114,14 @@ def calc_weighted_marginals(
 
     # Also for electricity buses
     lcoe_w = (lcoe_w_nodal * demand_e.sum() / demand_e.sum().sum()).sum().round(2)
-    loce_w_electrolysis = (
+    lcoe_w_electrolysis = (
         lcoe_w_electrolysis_nodal * demand_e_electrolysis.sum() / demand_e_electrolysis.sum().sum()
     ).sum().round(2)
-    loce_w_no_electrolysis = (
+    lcoe_w_no_electrolysis = (
         lcoe_w_no_electrolysis_nodal * demand_e_no_electrolysis.sum() / demand_e_no_electrolysis.sum().sum()
     ).sum().round(2)
 
-    return lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w, loce_w_electrolysis, loce_w_no_electrolysis
+    return lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w, lcoe_w_electrolysis, lcoe_w_no_electrolysis
 
 
 if __name__ == "__main__":
@@ -242,8 +242,8 @@ if __name__ == "__main__":
                         "lcoh_w_noexport": [lcoh_w_noexport],
                         "lcoh_w_mixed": [lcoh_w_mixed],
                         "lcoe_w": [lcoe_w],
-                        "loce_w_electrolysis": [lcoe_w_electrolysis],
-                        "loce_w_no_electrolysis": [lcoe_w_no_electrolysis],
+                        "lcoe_w_electrolysis": [lcoe_w_electrolysis],
+                        "lcoe_w_no_electrolysis": [lcoe_w_no_electrolysis],
                         "H2_GWh": [H2_GWh],
                         "Battery_GWh": [Battery_GWh],
                         "H2export_GWh": [H2export_GWh],
