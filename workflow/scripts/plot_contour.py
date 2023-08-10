@@ -46,6 +46,7 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
     opts_reverse[opts_reverse < 0] = 0
 
     # Plot a contour plot of the data having the y-axis the column "h2export", x-axis the column "sopts", and the z-axis the column "cost"
+    fig = plt.figure(figsize=(9, 6))
     contour = plt.contourf(
         opts_reverse * 100,
         h2export,
@@ -110,7 +111,7 @@ if __name__ == "__main__":
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         snakemake = mock_snakemake(
-            "plot_contour", plottype="lcoe_w", levels=10, zerofilter="False"
+            "plot_contour", plottype="lcoe_w_no_electrolysis", levels=20, zerofilter="False"
         )
 
         sets_path_to_root("aldehyde")
