@@ -21,7 +21,7 @@ def get_buses(n):
     return buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
 
 
-def get_bus_demand(n, busname):
+def get_bus_demand(n, busname, carrier_limit=False, carrier_limit_integration=False):
     """Get the demand at a certain bus (includes stores/StorageUnits) based on the energy_balance() function
 
     Parameters
@@ -31,11 +31,21 @@ def get_bus_demand(n, busname):
     n : _type_
         _description_
     """
-    energy_balance = n.statistics.energy_balance(
-        aggregate_bus=False, aggregate_time=False
-    )
+
     # Get the energy balance of the bus specified in busname
-    energy_balance_bus = energy_balance.loc[:, :, :, busname]
+    if carrier_limit == False:
+        energy_balance_bus = energy_balance.loc[:, :, :, busname]
+    else:
+        if carrier_limit_integration == "inclusive":
+            energy_balance_bus = energy_balance.loc[:,carrier_limit, :, busname]
+
+        elif carrier_limit_integration == "exclusive":  # exclude carrier_limit
+            energy_balance_bus = energy_balance.loc[:, :, :, busname]
+            # Create a boolean mask to exclude rows with 'carrier_limit' in the third level
+            condition = energy_balance_bus.index.get_level_values(1) != carrier_limit
+            energy_balance_bus = energy_balance_bus[condition]  
+        else:
+            logging.error("carrier_limit_integration must be 'inclusive' or 'exclusive'")
 
     # Filter for negative values and sum them up (note: may include stores/StorageUnits)
     demand = energy_balance_bus[energy_balance_bus < 0]
@@ -74,6 +84,12 @@ def calc_weighted_marginals(
 
     # Also for electricity buses
     lcoe_w_nodal = (n.buses_t.marginal_price[buses_e] * demand_e).sum() / demand_e.sum()
+    lcoe_w_electrolysis_nodal = (
+        n.buses_t.marginal_price[buses_e] * demand_e_electrolysis
+    ).sum() / demand_e_electrolysis.sum()
+    lcoe_w_no_electrolysis_nodal = (
+        n.buses_t.marginal_price[buses_e] * demand_e_no_electrolysis
+    ).sum() / demand_e_no_electrolysis.sum()
 
     # Get the weighted mean of the nodal weighted marginal price of the hydrogen buses
     lcoh_w_noexport = (
@@ -98,8 +114,14 @@ def calc_weighted_marginals(
 
     # Also for electricity buses
     lcoe_w = (lcoe_w_nodal * demand_e.sum() / demand_e.sum().sum()).sum().round(2)
+    lcoe_w_electrolysis = (
+        lcoe_w_electrolysis_nodal * demand_e_electrolysis.sum() / demand_e_electrolysis.sum().sum()
+    ).sum().round(2)
+    lcoe_w_no_electrolysis = (
+        lcoe_w_no_electrolysis_nodal * demand_e_no_electrolysis.sum() / demand_e_no_electrolysis.sum().sum()
+    ).sum().round(2)
 
-    return lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w
+    return lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w, lcoe_w_electrolysis, lcoe_w_no_electrolysis
 
 
 if __name__ == "__main__":
@@ -128,6 +150,8 @@ if __name__ == "__main__":
         # Get the h2export (before "export") and opts values from the network name
         h2export = i.split("_")[-1][:-9]
         opts = i.split("_")[-6]
+        statistics = n.statistics()
+        energy_balance = n.statistics.energy_balance(aggregate_bus=False, aggregate_time=False)
 
         # Read and save the objective of the network if h2export is 0. Save the costs in a new array
         if h2export == "0":
@@ -176,12 +200,16 @@ if __name__ == "__main__":
         demand_h_mixed = get_bus_demand(n, buses_h_mixed)
         demand_e = get_bus_demand(n, buses_e)
 
-        lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w = calc_weighted_marginals(
+        demand_e_electrolysis = get_bus_demand(n, buses_e, "H2 Electrolysis", "inclusive")
+        demand_e_no_electrolysis = get_bus_demand(n, buses_e, "H2 Electrolysis", "exclusive")
+
+        #lcoe_w = calc_weighted_marginals_new(
+
+        lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w, lcoe_w_electrolysis, lcoe_w_no_electrolysis = calc_weighted_marginals(
             n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
         )
 
         # Get storage capacities
-
         H2_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus != "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
         Battery_GWh = n.stores[(n.stores.carrier=="battery")].e_nom_opt.sum() / 1e3 # in GWh
         H2export_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus == "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
@@ -190,9 +218,11 @@ if __name__ == "__main__":
         #H2_GWh, Battery_GWh, H2export_GWh = get_storage_capacities(n)
 
         # Get curtailment rates
-        curtailmentrate_solar = n.statistics().loc["Generator", "Solar"].Curtailment / n.statistics().loc["Generator", "Solar"].Dispatch *100
-        curtailmentrate_wind = n.statistics().loc["Generator", "Onshore Wind"].Curtailment / n.statistics().loc["Generator", "Onshore Wind"].Dispatch *100
+        curtailmentrate_solar = statistics.loc["Generator", "Solar"].Curtailment / statistics.loc["Generator", "Solar"].Dispatch *100
+        curtailmentrate_wind = statistics.loc["Generator", "Onshore Wind"].Curtailment / statistics.loc["Generator", "Onshore Wind"].Dispatch *100
 
+        # Get base electricity demand
+        el_base_demand = n.loads_t.p_set[n.loads[n.loads.carrier=="AC"].index].sum().sum()/1e6 * n.snapshot_weightings.generators[0]# in TWh
 
         # Save the cost and lcoh in the array according to the h2export and opts values using concat function
         metrics_df = pd.concat(
@@ -212,12 +242,15 @@ if __name__ == "__main__":
                         "lcoh_w_noexport": [lcoh_w_noexport],
                         "lcoh_w_mixed": [lcoh_w_mixed],
                         "lcoe_w": [lcoe_w],
+                        "lcoe_w_electrolysis": [lcoe_w_electrolysis],
+                        "lcoe_w_no_electrolysis": [lcoe_w_no_electrolysis],
                         "H2_GWh": [H2_GWh],
                         "Battery_GWh": [Battery_GWh],
                         "H2export_GWh": [H2export_GWh],
                         "ratio_H2_Battery": [ratio_H2_Battery],
                         "curtailmentrate_solar": [curtailmentrate_solar],
                         "curtailmentrate_wind": [curtailmentrate_wind],
+                        "el_base_demand": [el_base_demand],
                     }
                 ),
             ],
@@ -227,10 +260,3 @@ if __name__ == "__main__":
 
     # Save the cost file
     metrics_df.to_csv(snakemake.output.stats, index=False)
-
-    # Plot the cost of the networks
-    # metrics_df.pivot(index='h2export', columns='opts', values='cost').plot(kind='bar')
-    # plt.ylabel('Cost [EUR]')
-    # plt.xlabel('H2 export [TWh]')
-    # plt.title('Cost of the networks')
-    # plt.savefig(snakemake.output.cost_plot)
