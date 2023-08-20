@@ -60,7 +60,7 @@ See \cite[p. 26]{Ersoy2022}  on conventional generation in Morocco.
 
 
 \subsubsection{Electricity (and gas) networks}
-The electricity network is based on the PyPSA-Earth workflow using OSM data as main source \cite{Parzen2022}. Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution based on the PyPSA-Earth workflow.
+The electricity network is based on the PyPSA-Earth workflow using OSM data as main source \cite{Parzen2022}. Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution based on the PyPSA-Earth workflow. [TBD: Describe more]
 3,000 km of 400 kV, 9,000 km of 225 kV, 147 km of 150 kV lines 
 11,780 km of 60 kV lines \cite[p. 6, primary 44]{Boulakhbar2020}
 
@@ -101,14 +101,16 @@ Ideas:
 
 \subsection{Hydrogen export}
 \label{subsec:hydrogen_export}
-The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets}.
-The system boundary is the country border of Morocco, in 
-line with the MenaFuels project \cite{Ersoy2022}.
+The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets} and implemented as an exogenous parameter in the range of 0 - 200 TWh (s. Sec. \ref{subsec:scenarios}). Similar to (MenaFuels) \cite{Ersoy2022} the system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) [TBD: justify]
+Nonetheless, the demand pattern of ship export (landing, loading, travel time) and the resulting energy system implications (compared to a constant export profile, closer to a pipeline behaviour) to Morocco are considered here and further investigated in Section \ref{subsec:sensitivity}.
+The export of hydrogen is allowed via a range of selected ports in Morocco [TBD: provide table in supplementary]. 
+
+The energy system model allows an endogenous spatial export decision, meaning that the total demand (& export profiles) are exogenous, but the model chooses the  cost-optimal export location(s). At each port, the model has the option to build a hydrogen underground or steel tank depending on local geological conditions [TBD: compare open data for underground storage].
 
 Notes on export in PyPSA-Earth-Sec:
 \begin{itemize}
     \item Export storage: on, off, costs
-    \item Shipping: on, off, profile
+    \item Profile: Shipping: on, off, profile
     \item Only hydrogen
     \item Endogenous port decision
 \end{itemize}
@@ -150,6 +152,7 @@ Questions:
 
 
 \subsection{Scenarios}
+\label{sec:scenarios}
 To examine the conflicts and synergies of hydrogen export and national energy transition, we sweep along two dimensions:
 \begin{enumerate}
     \item The hydrogen export volume varies from 0 - 200 TWh, going beyond Moroccos hydrogen export ambitions of 110 TWh [TBD: provide exact number] (cf. sec. \ref{subsec:policyandtargets}) and
