@@ -1,13 +1,21 @@
+\begin{itemize}
+    \item Description of the fully sector-coupled capacity expansion and dispatch model using PyPSA-Earth
+    \item Explanation of the integrated gas and electricity network planning
+    \item Overview of scenario parameters: hydrogen export volumes, climate targets, etc. cf. \ref{subsec:policyandtargets}
+    \item Description of the Moroccan energy landscape and its current state
+    \item Introduction to the 53 regions considered in the model
+    \item Discussion of the simulation process and time resolution (3-hourly)
+\end{itemize}
+
 \subsection{Moroccan energy model}
 \label{subsec:moroccan_model}
-The Moroccan energy model is based on the PyPSA-Earth workflow \cite{Parzen2022} and 
-adds a sector extension similar to \cite{Brown2018a}.
+The Moroccan energy model is based on PyPSA-Earth \cite{Parzen2022} and adds a sector extension similar to \cite{Brown2018a}.
 This capacity extension model optimizes the generation, transmission and storage of Moroccos energy system.
 
 
 \subsubsection{Energy demand}
+Hazem
 The energy demand is obtained from the "LEAP" model \cite{Heaps2022}.
-TBD: investigate OSeMOSYS starter kit.
 TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
 
 The various sectors are (TBD clarify each bullet point: what is the energy prediction based on):
@@ -35,17 +43,13 @@ Atlite, using data pipeline from \cite{Parzen2022}. TBD evaluate sources and inc
     \item Check the RePP database \cite{Peters2023}
 \end{itemize}
 
-Figure \ref{fig:potentials} displays the potentials of solar, wind onshore and CSP 
-of PyPSA-Earth-Sec compared to other studies. The authors of "OSeMOSYS" 
-\cite{Cannone2021} base their potential estimations on \cite[primary: 13,18,19]{Cannone2021}
-The project MenaFuels/Ersoy2022 \cite{Ersoy2022} finds potentials of ...
-TBD: remove ChatGPT which was added for fun.
+
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{../graphics_general/potentials_comparison/barplot_potentials.pdf}
-    \caption{Determined potential of solar, wind onshore and CSP in PyPSA-Earth-Sec compared to other studies.}
-    \label{fig:potentials}
+    \includegraphics[width=\linewidth]{../graphics_general/MAR_brownfield_el.png}
+    \caption{Current capacities of electricity generation and distribution, obtained from \cite{Parzen2022} and visualization based on [TBD: add source of "documentation"]}
+    \label{fig:MAR_brownfield}
 \end{figure}
 
 
@@ -56,9 +60,10 @@ See \cite[p. 26]{Ersoy2022}  on conventional generation in Morocco.
 
 
 \subsubsection{Electricity (and gas) networks}
-The electricity network is based on the PyPSA-Earth workflow using OSM data as main source \cite{Parzen2022}.
+The electricity network is based on the PyPSA-Earth workflow using OSM data as main source \cite{Parzen2022}. Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution based on the PyPSA-Earth workflow. [TBD: Describe more]
 3,000 km of 400 kV, 9,000 km of 225 kV, 147 km of 150 kV lines 
 11,780 km of 60 kV lines \cite[p. 6, primary 44]{Boulakhbar2020}
+
 
 
 \subsubsection{Green hydrogen}
@@ -79,7 +84,7 @@ regulatory dimensions, adapted from \cite{Brauer2022}:
 \end{itemize}
 
 
-\subsection{Water supply}
+\subsubsection{Water supply}
 \label{subsec:water_supply}
 Water supply is a crucial input for the electrolysis process. 
 Morocco: 88 \% of water is used in agriculture, secondary source \cite{Ersoy2022}.
@@ -96,9 +101,19 @@ Ideas:
 
 \subsection{Hydrogen export}
 \label{subsec:hydrogen_export}
-The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets}.
-The system boundary is the country border of Morocco, in 
-line with the MenaFuels project \cite{Ersoy2022}.
+The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets} and implemented as an exogenous parameter in the range of 0 - 200 TWh (s. Sec. \ref{subsec:scenarios}). Similar to (MenaFuels) \cite{Ersoy2022} the system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) [TBD: justify]
+Nonetheless, the demand pattern of ship export (landing, loading, travel time) and the resulting energy system implications (compared to a constant export profile, closer to a pipeline behaviour) to Morocco are considered here and further investigated in Section \ref{subsec:sensitivity}.
+The export of hydrogen is allowed via a range of selected ports in Morocco [TBD: provide table in supplementary]. 
+
+The energy system model allows an endogenous spatial export decision, meaning that the total demand (& export profiles) are exogenous, but the model chooses the  cost-optimal export location(s). At each port, the model has the option to build a hydrogen underground or steel tank depending on local geological conditions [TBD: compare open data for underground storage].
+
+Notes on export in PyPSA-Earth-Sec:
+\begin{itemize}
+    \item Export storage: on, off, costs
+    \item Profile: Shipping: on, off, profile
+    \item Only hydrogen
+    \item Endogenous port decision
+\end{itemize}
 
 Points of export:
 \begin{itemize}
@@ -136,10 +151,27 @@ Questions:
 \end{itemize}
 
 
-\subsection{Islanded hydrogen production}
+\subsection{Scenarios}
+\label{sec:scenarios}
+To examine the conflicts and synergies of hydrogen export and national energy transition, we sweep along two dimensions:
+\begin{enumerate}
+    \item The hydrogen export volume varies from 0 - 200 TWh, going beyond Moroccos hydrogen export ambitions of 110 TWh [TBD: provide exact number] (cf. sec. \ref{subsec:policyandtargets}) and
+    \item the emission reduction between 0 - 100\% based on Morocco's current emissions of 72 MtCO2e (cf. sec. \ref{subsec:policyandtargets}).
+\end{enumerate}
+This 2 dimensional scenario space leads to 110 model runs. 
+A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with it's diurnal and seasonal variations in energy supply and demand. [TBD: see Neumann for justification]
+A high spatial resolution of 53 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, a high spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 53 nodes align with the GADM (Global Administrative Areas) regions, policy advisement can be tailored to specific regions considering local needs and constraints.
+
+TBD: Elaborate more on scoping decisions, update to 2035/2040. Explain Brownfield?
+
+
+TBD: include Brownfield map
+
+
+\subsection{Misc}
+
+\subsubsection{Islanded hydrogen production}
 In the islanded hydrogen production scenario, the hydrogen production is optimised without considering the local energy system described in \ref{subsec:moroccan_model}.
-
-
 \subsection{Integrated hydrogen production}
 In the integrated scenario, both the Moroccan energy system (\ref{subsec:moroccan_model}) and the hydrogen export (\ref{subsec:hydrogen_export})
 are optimised in an integrated approach.

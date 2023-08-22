@@ -127,3 +127,52 @@ Figure \ref{fig:morocco_water} displays the water supply costs in Morocco.
     \caption{Graphical abstract}
     \label{fig:graphical_abstract}
 \end{figure}
+
+\subsection{Separated and integrated optimizations}
+\label{subsec: sep_int_opti}
+
+Note: \cite{Zeyen2022} has information on PyPSA electricity prices
+
+\subsubsection{Total system cost}
+Figure \ref{fig:int_sep_total_system_cost} displays the total system cost
+of the integrated vs. islanded optimizations. The total system cost of the
+islanded optimizations are higher.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{../fix_co2/graphics/system_comp/total_system_cost_140.pdf}
+    \caption{Total cost of the three different systems}
+    \label{fig:int_sep_total_system_cost}
+\end{figure}
+
+\subsection{Misc}
+
+\subsubsection{Hydrogen export cost (in 2030 and 2050)}
+The cost of hydrogen is lower in the islanded scenario due to best potentials and no transport included?
+
+\subsubsection{Spatial analysis of (competing) RE resources}
+Both the islanded systems and the Moroccan energy system have the same land resources available. 
+The optimal solutions for both optimisations rely on the same land resources, in combination exceeding the 
+available resources in some regions (s. Fig. \ref{fig:land_conflicts}). 
+Similar to Europe/Germany, public acceptance of Renewable Energies have to be taken in account. 
+They are not unlimited, as discussed in \cite{Hanger2016} and \cite{TerraponPfaff2019}.
+Paper on competing land resources can be found here \cite{Patankar2022}
+
+
+\subsubsection{Capacity factors and utilization of assets}
+(Maybe not interesting/necessary)
+
+
+\subsubsection{RE Potentials}
+Figure \ref{fig:potentials} displays the potentials of solar, wind onshore and CSP 
+of PyPSA-Earth-Sec compared to other studies. The authors of "OSeMOSYS" 
+\cite{Cannone2021} base their potential estimations on \cite[primary: 13,18,19]{Cannone2021}
+The project MenaFuels/Ersoy2022 \cite{Ersoy2022} finds potentials of ...
+TBD: remove ChatGPT which was added for fun.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{../graphics_general/potentials_comparison/barplot_potentials.pdf}
+    \caption{Determined potential of solar, wind onshore and CSP in PyPSA-Earth-Sec compared to other studies.}
+    \label{fig:potentials}
+\end{figure}
