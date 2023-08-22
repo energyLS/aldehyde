@@ -77,54 +77,24 @@ Ideas:
 
 \subsection{Green hydrogen policy}
 \label{subsubsec:green_hydrogen_constraint}
-
-Note: currently my results run on monthly constraint.
-
-A key model constraint is the requirement of the hydrogen exported from Morocco to be "green". Envisioning hydrogen offtakers from the European Union, the green hydrogen constraint applied in this study aligns with a proposal of the European Commission defining green hydrogen  based on the following criteria:
-
-
-\begin{enumerate}
-    \item Additionality: (from 1.1.2028 onwards)
-    \item Temporal correlation: Hourly matching (from 1.1.2030 onwards, until 31.12.2029 monthly) $rightarrow$ currently the models run on monthly matching
-\end{enumerate}
-
-
-PPA with RE-installation
-
-
-Note, the delegated act also considers the possibility of:
-\begin{itemize}
-    \item direct connection of RE and electrolyzers,
-    \item high share of RE in power mix (>90\%) or the 
-    \item avoidance of RE curtailment
-\end{itemize}
-to qualify for the "green" hydrogen label. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study (s. Sec. \ref{subsec:scenarios}).
-
-
 % https://www.ffe.de/en/publications/how-is-green-hydrogen-defined-according-to-the-eus-delegated-act/
 
-The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards.
+A key model constraint is the requirement of the hydrogen exported from Morocco to be "green". A variety of studies looks into various dimensions (temporal, geographical, electricity origin) of green hydrogen and their trade-offs (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}). Envisioning hydrogen offtakers from the European Union, the green hydrogen constraint applied in this study aligns with the \emph{Delegated regulation on Union methodology for RFNBOs} of the European Commission \cite{Commission2023} defining green hydrogen  based on the following criteria:
 
-
-additional export volume is equal to additional RE generation
-
-The exported hydrogen 
-The export product is green hydrogen:
+\begin{enumerate}
+    \item Additionality: The electricity demand of electrolyzers must be provided by additional RE power generation (less than 3 years before the installation of electrolyzers, from 1.1.2028 onwards),
+    \item Temporal correlation: Hourly matching (from 1.1.2030 onwards, until 31.12.2029 monthly) $\rightarrow$ currently the models run on monthly matching and
+    \item Geographical correlation
+\end{enumerate}
+which are required for PPAs with RE-installation. Apart from the PPAs, the delegated act also considers the possibility of:
 \begin{itemize}
-    \item Which "green" definition will I use? Hourly, in line with the EU Comission from 2027 onwards [TBD: Check details]
-    \item 
-    \item Describe implementation
-    \item clarify: How does my scenario fit in these dimensions?
+    \item direct connection of RE and electrolyzers,
+    \item high share of RE in power mix (> 90\%) or the
+    \item avoidance of RE curtailment
 \end{itemize}
+to qualify for the "green" hydrogen label. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study (s. Sec. \ref{subsec:scenarios}). The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Moroccos local electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study (s. Sec. \ref{subsec:scenarios}).
 
-Use current papers (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}) to base my decision on
-regulatory dimensions, adapted from \cite{Brauer2022}:
-\begin{itemize}
-    \item Temporal correlation (1h, 1d, 1a - loose) 
-    \item Geographical correlation (same location - loose)
-    \item Origin (100\% new RES - loose)
-\end{itemize}
-
+TBD: The locally demanded hydrogen does not meet the Additionality criteria (but probably the temporal correlation, be careful here)
 
 \subsection{Hydrogen export}
 \label{subsec:hydrogen_export}
