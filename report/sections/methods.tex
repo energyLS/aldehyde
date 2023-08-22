@@ -1,12 +1,3 @@
-\begin{itemize}
-    \item Description of the fully sector-coupled capacity expansion and dispatch model using PyPSA-Earth
-    \item Explanation of the integrated gas and electricity network planning
-    \item Overview of scenario parameters: hydrogen export volumes, climate targets, etc. cf. \ref{subsec:policyandtargets}
-    \item Description of the Moroccan energy landscape and its current state
-    \item Introduction to the 53 regions considered in the model
-    \item Discussion of the simulation process and time resolution (3-hourly)
-\end{itemize}
-
 \subsection{Sector-coupled energy model}
 \label{subsec:moroccan_model}
 
@@ -100,24 +91,9 @@ TBD: The locally demanded hydrogen does not meet the Additionality criteria (but
 \label{subsec:hydrogen_export}
 The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets} and implemented as an exogenous parameter in the range of 0 - 200 TWh (s. Sec. \ref{subsec:scenarios}). Similar to (MenaFuels) \cite{Ersoy2022} the system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) [TBD: justify]
 Nonetheless, the demand pattern of ship export (landing, loading, travel time) and the resulting energy system implications (compared to a constant export profile, closer to a pipeline behaviour) to Morocco are considered here and further investigated in Section \ref{subsec:sensitivity}.
-The export of hydrogen is allowed via a range of selected ports in Morocco [TBD: provide table in supplementary]. 
+The export of hydrogen is allowed via a range of selected ports in Morocco [TBD: provide table or map in supplementary]. 
 
 The energy system model allows an endogenous spatial export decision, meaning that the total demand (and export profiles) are exogenous, but the model chooses the  cost-optimal export location(s). At each port, the model has the option to build a hydrogen underground or steel tank depending on local geological conditions [TBD: compare open data for underground storage].
-
-Notes on export in PyPSA-Earth-Sec:
-\begin{itemize}
-    \item Export storage: on, off, costs
-    \item Profile: Shipping: on, off, profile
-    \item Only hydrogen
-    \item Endogenous port decision
-\end{itemize}
-
-Points of export:
-\begin{itemize}
-    \item Only allow export by ship, or is pipeline an option?
-    \item Provide map with harbours (\& their capacities?)
-    \item Harbour Nador West Med: Currently under construction and maybe operational in 2022 \cite{Ersoy2022}
-\end{itemize}
 
 
 \subsection{Cost of hydrogen production}

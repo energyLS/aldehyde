@@ -83,8 +83,18 @@ The Export-orientated electricity price (s. Fig. \ref{fig:export_el_price})...
 
 \subsection{Integration challenges}
 \label{subsec:integration_challenges}
-Plot duck curve and RLC/RLDC.
-Plot contours of storage capacities
+Figure \ref{fig:diurnal} shows the diurnal residual load (electricity load minus solar PV and wind power generation) at 0 export and 0 - 90\% emission reduction. At high emission reductions, a high penetration of RE generation (especially solar PV) 
+leads to negative residual load at noon imposing great system integration challenges.
+These challenges are (partly) tackled by the expansion of battery storage and increasing curtailment rates of onshore wind and solar PV. At low export rates, the deployment of battery storage reduces the curtailment. Figure \ref{fig:integration_options}
+reveals that at increasing hydrogen export and high emission reduction both battery storage and curtailment are reduced, due to the synergy with export driven energy infrastructure and it's ability to integrate RE at large scale.
+This synergy is also displayed in Figure \ref{fig:export_local_el_price}, reflecting lower average electricity prices at high reduction and high export.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/rldc/rlc_diurnal_inclCurtTrue.pdf}
+    \caption{Diurnal residual load at 0 export and 0 - 90\% emission reduction}
+    \label{fig:diurnal}
+\end{figure}
 
 \subsection{Sensitivity analysis}
 \label{subsec:sensitivity}
@@ -92,8 +102,7 @@ Sensitivity analysis on:
 \begin{itemize}
     \item WACC
     \item Technology cost
-    \item (Hydrogen Export in TWh)
-    \item (Emission reduction level)
+    \item Hourly resolution
 \end{itemize}
 
 
