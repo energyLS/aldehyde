@@ -1,12 +1,3 @@
-\begin{itemize}
-    \item Description of the fully sector-coupled capacity expansion and dispatch model using PyPSA-Earth
-    \item Explanation of the integrated gas and electricity network planning
-    \item Overview of scenario parameters: hydrogen export volumes, climate targets, etc. cf. \ref{subsec:policyandtargets}
-    \item Description of the Moroccan energy landscape and its current state
-    \item Introduction to the 53 regions considered in the model
-    \item Discussion of the simulation process and time resolution (3-hourly)
-\end{itemize}
-
 \subsection{Sector-coupled energy model}
 \label{subsec:moroccan_model}
 
@@ -59,23 +50,6 @@ The electricity network is based on the PyPSA-Earth workflow using OSM data as m
 
 
 
-\subsubsection{Green hydrogen}
-\label{subsubsec:green_hydrogen_constraint}
-The export product is green hydrogen:
-\begin{itemize}
-    \item Which "green" definition will I use? Currently: Yearly constraint
-    \item Describe implementation
-    \item Rely on European Comission
-    \item clarify: How does my scenario fit in these dimensions?
-\end{itemize}
-
-Use current papers (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}) to base my decision on
-regulatory dimensions, adapted from \cite{Brauer2022}:
-\begin{itemize}
-    \item Temporal correlation (1h, 1d, 1a - loose) 
-    \item Geographical correlation (same location - loose)
-    \item Origin (100\% new RES - loose)
-\end{itemize}
 
 
 \subsubsection{Water supply}
@@ -92,29 +66,34 @@ Ideas:
 \end{itemize}
 
 
+\subsection{Green hydrogen policy}
+\label{subsubsec:green_hydrogen_constraint}
+% https://www.ffe.de/en/publications/how-is-green-hydrogen-defined-according-to-the-eus-delegated-act/
+
+A key model constraint is the requirement of the hydrogen exported from Morocco to be "green". A variety of studies looks into various dimensions (temporal, geographical, electricity origin) of green hydrogen and their trade-offs (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}). Envisioning hydrogen offtakers from the European Union, the green hydrogen constraint applied in this study aligns with the \emph{Delegated regulation on Union methodology for RFNBOs} of the European Commission \cite{Commission2023} defining green hydrogen  based on the following criteria:
+
+\begin{enumerate}
+    \item Additionality: The electricity demand of electrolyzers must be provided by additional RE power generation (less than 3 years before the installation of electrolyzers, from 1.1.2028 onwards),
+    \item Temporal correlation: Hourly matching (from 1.1.2030 onwards, until 31.12.2029 monthly) $\rightarrow$ currently the models run on monthly matching and
+    \item Geographical correlation
+\end{enumerate}
+which are required for PPAs with RE-installation. Apart from the PPAs, the delegated act also considers the possibility of:
+\begin{itemize}
+    \item direct connection of RE and electrolyzers,
+    \item high share of RE in power mix (> 90\%) or the
+    \item avoidance of RE curtailment
+\end{itemize}
+to qualify for the "green" hydrogen label. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study (s. Sec. \ref{subsec:scenarios}). The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Moroccos local electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study (s. Sec. \ref{subsec:scenarios}).
+
+TBD: The locally demanded hydrogen does not meet the Additionality criteria (but probably the temporal correlation, be careful here)
 
 \subsection{Hydrogen export}
 \label{subsec:hydrogen_export}
 The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets} and implemented as an exogenous parameter in the range of 0 - 200 TWh (s. Sec. \ref{subsec:scenarios}). Similar to (MenaFuels) \cite{Ersoy2022} the system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) [TBD: justify]
 Nonetheless, the demand pattern of ship export (landing, loading, travel time) and the resulting energy system implications (compared to a constant export profile, closer to a pipeline behaviour) to Morocco are considered here and further investigated in Section \ref{subsec:sensitivity}.
-The export of hydrogen is allowed via a range of selected ports in Morocco [TBD: provide table in supplementary]. 
+The export of hydrogen is allowed via a range of selected ports in Morocco [TBD: provide table or map in supplementary]. 
 
 The energy system model allows an endogenous spatial export decision, meaning that the total demand (and export profiles) are exogenous, but the model chooses the  cost-optimal export location(s). At each port, the model has the option to build a hydrogen underground or steel tank depending on local geological conditions [TBD: compare open data for underground storage].
-
-Notes on export in PyPSA-Earth-Sec:
-\begin{itemize}
-    \item Export storage: on, off, costs
-    \item Profile: Shipping: on, off, profile
-    \item Only hydrogen
-    \item Endogenous port decision
-\end{itemize}
-
-Points of export:
-\begin{itemize}
-    \item Only allow export by ship, or is pipeline an option?
-    \item Provide map with harbours (\& their capacities?)
-    \item Harbour Nador West Med: Currently under construction and maybe operational in 2022 \cite{Ersoy2022}
-\end{itemize}
 
 
 \subsection{Cost of hydrogen production}
@@ -156,7 +135,15 @@ This two-dimensional scenario space leads to 110 model runs.
 A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with it's diurnal and seasonal variations in energy supply and demand. [TBD: see Neumann for justification]
 A high spatial resolution of 53 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, a high spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 53 nodes align with the GADM (Global Administrative Areas) regions, policy advisement can be tailored to specific regions considering local needs and constraints.
 
-TBD: Elaborate more on scoping decisions, update to 2035/2040. Explain Brownfield here (s. Fig. \ref{fig:MAR_brownfield})?
+TBD: Elaborate more on scoping decisions
+\begin{itemize}
+    \item Update to 2035/2040, or even time dependent?
+    \item Line expansion?
+    \item Shipping profile?
+    \item SMR, CO2 network
+    \item Explain Brownfield here (s. Fig. \ref{fig:MAR_brownfield})?
+\end{itemize}
+
 
 
 \subsection{Miscellaneous}
