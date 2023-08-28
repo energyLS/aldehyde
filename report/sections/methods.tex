@@ -6,20 +6,21 @@ This capacity extension model optimizes the generation, transmission and storage
 constrained by e.g. climate targets or green hydrogen policies (s. Sec. \ref{subsubsec:green_hydrogen_constraint}). The geographical scope is Morocco.
 
 \subsubsection{Energy demand}
-Hazem
-The energy demand is obtained from the "LEAP" model \cite{Heaps2022}.
+In a first step, the annual energy demand is obtained from \cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2035 is projected based on efficiency gains and activity growth similar to \cite{Mueller2023}.
+In a second step, the annual and country-wise energy demand is distributed according to production sites of Morocco based on data of [TBD]. In case of subsectors where no spatially resolved production sites are included/available (e.g. paper industry), the demand is distributed according to GDP (TBD: currently Population). Third, the annual but locationally resolved energy demand is converted to hourly demands. In this study, a constant hourly demand of all industry sectors are assumed (TBD: Is this the case? Certainly not for electricity \cite{Parzen2022}. is this applicable?, argue).
+The resulting temporal and spatial energy demands of the sectors:
+\begin{itemize}
+    \item Electricity
+    \item Industry
+    \item Transport
+    \item Heating demand 
+    \item (cooling?) 
+\end{itemize}
+are incorporated in the sector coupled energy model.
+TBD: Benchmark: Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
 TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
 See also: \cite{Bennouna2016} for energy demand in Morocco
-See also: Hypat working paper \cite{Pieton2023}
-
-The various sectors are (TBD clarify each bullet point: what is the energy prediction based on):
-\begin{itemize}
-    \item Electricity demand based on \cite{Parzen2022}. Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
-    \item Industry demand
-    \item Transport demand
-    \item Heating demand (cooling?) 
-    \item Regionalisation of energy demands
-\end{itemize}
+TBD: List energy balances in Table in supplementary.
 
 
 
@@ -42,7 +43,7 @@ Atlite, using data pipeline from \cite{Parzen2022}.
 We use: ... (TBD: List our sources)
 Other sources: S\&P Global Kraftwerksliste (used by Fraunhofer IEE).
 See \cite[p. 26]{Ersoy2022}  on conventional generation in Morocco.
-
+TBD: refer to Kraftwerksliste
 
 
 \subsubsection{Electricity (and gas) networks}
