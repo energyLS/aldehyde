@@ -224,6 +224,8 @@ if __name__ == "__main__":
         # Get base electricity demand
         el_base_demand = n.loads_t.p_set[n.loads[n.loads.carrier=="AC"].index].sum().sum()/1e6 * n.snapshot_weightings.generators[0]# in TWh
 
+        # Capacity factor electrolysis
+        cf_electrolysis = statistics.loc["Link", "H2 Electrolysis"].loc["Capacity Factor"].round(2)
         # Save the cost and lcoh in the array according to the h2export and opts values using concat function
         metrics_df = pd.concat(
             [
@@ -251,6 +253,7 @@ if __name__ == "__main__":
                         "curtailmentrate_solar": [curtailmentrate_solar],
                         "curtailmentrate_wind": [curtailmentrate_wind],
                         "el_base_demand": [el_base_demand],
+                        "cf_electrolysis": [cf_electrolysis],
                     }
                 ),
             ],
