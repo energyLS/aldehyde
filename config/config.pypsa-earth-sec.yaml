@@ -5,7 +5,7 @@ results_dir: results/
 summary_dir: results/
 costs_dir: data/ #TODO change to the equivalent of technology data
 
-run: nresults_full_3H_ws #highwacc_hem_1marg_1cap_nosmr_2000h_ws
+run: nresults_full_3H_nobat_ws #nresults_full_3H_nobat_ws
 
 foresight: overnight
 
@@ -18,7 +18,7 @@ scenario:
   - 2030
   ll:
   - "c1.0"
-  opts: ["Co2L2.0", "Co2L1.0", "Co2L0.7", "Co2L0.5", "Co2L0.30", "Co2L0.10"] 
+  opts: ["Co2L2.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L0.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
   #["Co2L5.0", "Co2L1.7", "Co2L0.5"] 
   #["Co2L20.0", "Co2L5.0", "Co2L2.0", "Co2L1.7", "Co2L1.2", "Co2L1.0", "Co2L0.50", "Co2L0.10"] 
   #["Co2L1.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L0.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
@@ -49,7 +49,7 @@ hydrogen_underground_storage: false
 
 
 export:
-  h2export: [120] # Yearly export demand in TWh
+  h2export: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200] # Yearly export demand in TWh
   store: false # [True, False] # specifies wether an export store to balance demand is implemented
   store_capital_costs: "no_costs" # ["standard_costs", "no_costs"] # specifies the costs of the export store. "standard_costs" takes CAPEX of "hydrogen storage tank incl. compressor"
 

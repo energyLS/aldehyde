@@ -1,89 +1,81 @@
-\subsection{Moroccan energy model}
+\subsection{Sector-coupled energy model}
 \label{subsec:moroccan_model}
-The Moroccan energy model is based on the PyPSA-Earth workflow \cite{Parzen2022} and 
-adds a sector extension similar to \cite{Brown2018a}.
-This capacity extension model optimizes the generation, transmission and storage of Moroccos energy system.
 
+The sector-coupled energy model is based on PyPSA-Earth \cite{Parzen2022} (better: \cite{Parzen2023a}) and adds a sector extension similar to \cite{Brown2018a}.
+This capacity extension model optimizes the generation, transmission and storage of Moroccos energy system by minimising the the total annualised system costs
+constrained by e.g. climate targets or green hydrogen policies (s. Sec. \ref{subsubsec:green_hydrogen_constraint}). The geographical scope is Morocco.
 
 \subsubsection{Energy demand}
-The energy demand is obtained from the "LEAP" model \cite{Heaps2022}.
-TBD: investigate OSeMOSYS starter kit.
-TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
-
-The various sectors are (TBD clarify each bullet point: what is the energy prediction based on):
+In a first step, the annual energy demand is obtained from \cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2035 is projected based on efficiency gains and activity growth similar to \cite{Mueller2023}.
+In a second step, the annual and country-wise energy demand is distributed according to production sites of Morocco based on data of [TBD]. In case of subsectors where no spatially resolved production sites are included/available (e.g. paper industry), the demand is distributed according to GDP (TBD: currently Population). Third, the annual but locationally resolved energy demand is converted to hourly demands. In this study, a constant hourly demand of all industry sectors are assumed (TBD: Is this the case? Certainly not for electricity \cite{Parzen2022}. is this applicable?, argue).
+The resulting temporal and spatial energy demands of the sectors:
 \begin{itemize}
-    \item Electricity demand based on \cite{Parzen2022}. Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
-    \item Industry demand
-    \item Transport demand
-    \item Heating demand (cooling?) 
-    \item Regionalisation of energy demands
+    \item Electricity
+    \item Industry
+    \item Transport
+    \item Heating demand 
+    \item (cooling?) 
 \end{itemize}
+are incorporated in the sector coupled energy model.
+TBD: Benchmark: Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
+TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
+See also: \cite{Bennouna2016} for energy demand in Morocco
+TBD: List energy balances in Table in supplementary.
 
 
 
 \subsubsection{Renewable Energy Sources}
-Atlite, using data pipeline from \cite{Parzen2022}. TBD evaluate sources and include in csv file.
+The sector-coupled energy model follows the data pipeline of \cite{Parzen2023a} by incorporating solar PV, onshore wind, (TBD: offshore wind) and hydro power using the open source package Atlite \cite{Hofmann2021}.
+Atlite obtains technology-specific time series based on weather data (ERA5 reanalysis data \cite{Hersbach2020}, SARAH-2 satellite data \cite{Pfeifroth2017}) as well as bathmetry \cite{GCG2022} (required for offshore wind). In addition to the time series, Atlite calculates the land availabilities and linked potentials using the Copernicus Global Land Service
+[TBD: add source]. [TBD: describe IRENA scaling approach]
 
-\begin{itemize}
-    \item Benchmark potentials to other studies (e.g. IRENA, MenaFuels which uses "EnDat", HyPAT provided on online map?, ...)
-    \item MenaFuels \cite[p. 25]{Ersoy2022} (better source: Teilbericht 10)
-    \item See \cite{Ersoy2022} (better primary source) page 26 on Renewable generation in Morocco: Currently 37\% of the installed capacity from RE
-    \item See \cite[p. 5]{Boulakhbar2020} for list of hydro projects (current \& future)
-    \item See \cite[primary 10,13,17]{Boulakhbar2020} for MAR potentials
-    \item See \cite[primary 13, 38]{Boulakhbar2020} wind power of 6000 MW
-    \item In \cite[p. 6]{Boulakhbar2020} they outline why biomass/biogas is not exploited yet in MAR
-    \item Check the RePP database \cite{Peters2023}
-\end{itemize}
 
-Figure \ref{fig:potentials} displays the potentials of solar, wind onshore and CSP 
-of PyPSA-Earth-Sec compared to other studies. The authors of "OSeMOSYS" 
-\cite{Cannone2021} base their potential estimations on \cite[primary: 13,18,19]{Cannone2021}
-The project MenaFuels/Ersoy2022 \cite{Ersoy2022} finds potentials of ...
-TBD: remove ChatGPT which was added for fun.
+
+
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{../graphics_general/potentials_comparison/barplot_potentials.pdf}
-    \caption{Determined potential of solar, wind onshore and CSP in PyPSA-Earth-Sec compared to other studies.}
-    \label{fig:potentials}
+    \includegraphics[width=\linewidth]{../graphics_general/MAR_brownfield_el.png}
+    \caption{Current capacities of electricity generation and distribution, obtained from \cite{Parzen2022} and visualization based on [TBD: add source of "documentation"]}
+    \label{fig:MAR_brownfield}
 \end{figure}
 
 
 \subsubsection{Conventional electricity generation}
-We use: ... (TBD: List our sources)
-Other sources: S\&P Global Kraftwerksliste (used by Fraunhofer IEE).
-See \cite[p. 26]{Ersoy2022}  on conventional generation in Morocco.
+
+The conventional electricity generators obtained from the powerplantmatching tool \cite{Powerplantmatching2019}. Powerplantmatching uses various input sources as OpenStreetMap, Global Energy Monitor, IRENA, Global Energy Monitor [TBD: Add sources] to download, filter and merge the datasets. 
+In this study, powerplantmatching is applied to Morocco delivering the conventional power plants listed in Table \ref{tab:powerplants}. 
+[TBD: Benchmark with national statistics]
+% Benchmark: S\&P Global Kraftwerksliste (used by Fraunhofer IEE), \cite[p. 26]{Ersoy2022} 
 
 
-\subsubsection{Electricity (and gas) networks}
-The electricity network is based on the PyPSA-Earth workflow using OSM data as main source \cite{Parzen2022}.
-3,000 km of 400 kV, 9,000 km of 225 kV, 147 km of 150 kV lines 
-11,780 km of 60 kV lines \cite[p. 6, primary 44]{Boulakhbar2020}
+\subsubsection{Electricity networks and gas pipelines}
+The electricity network is based on the PyPSA-Earth workflow using OpenStreetMap data \cite{OpenStreetMap2022} as presented in \cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build \cite{Parzen2023a}. 
+The brownfield gas pipeline infrastructure of Morocco is not considered in this study. The Maghreb-Europe pipeline passing through Morocco is the only pipeline in operation but currently subject to political disputes. Further proposed projects are excluded due to insignificant capacity compared to Moroccos energy system (Tendrara LNG Terminal, 100 million cubic meters per year ) or uncertain commissioning dates (Nigeria-Morocco Pipeline, start year 2046).
+
+% https://www.gem.wiki/Maghreb-Europe_Gas_Pipeline
+% (https://www.gem.wiki/Tendrara_LNG_Terminal)
+%(https://www.gem.wiki/Nigeria-Morocco_Gas_Pipeline)
+[TBD: Benchmark electricity network]
+%3,000 km of 400 kV, 9,000 km of 225 kV, 147 km of 150 kV lines 
+%11,780 km of 60 kV lines \cite[p. 6, primary 44]{Boulakhbar2020}
 
 
-\subsubsection{Green hydrogen}
-The export product is green hydrogen:
-\begin{itemize}
-    \item Which "green" definition will I use? Currently: Yearly constraint
-    \item Describe implementation
-    \item Rely on European Comission
-    \item clarify: How does my scenario fit in these dimensions?
-\end{itemize}
+\subsection{Brownfield model and capacity expansion}
+Following the workflow of \cite{Parzen2023}, Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution of Morocco. Based on this brownfield electricity system, the sector-coupled energy model allows the capacity expansion of storages, (electricity networks), hydrogen pipelines and (renewable) generators.
 
-Use current papers (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}) to base my decision on
-regulatory dimensions, adapted from \cite{Brauer2022}:
-\begin{itemize}
-    \item Temporal correlation (1h, 1d, 1a - loose) 
-    \item Geographical correlation (same location - loose)
-    \item Origin (100\% new RES - loose)
-\end{itemize}
+
+
+
+
+
 
 
 \subsection{Water supply}
 \label{subsec:water_supply}
 Water supply is a crucial input for the electrolysis process. 
 Morocco: 88 \% of water is used in agriculture, secondary source \cite{Ersoy2022}.
-Transfer of water from North to South is planned, seconary source \cite{Ersoy2022}.
+Transfer of water from North to South is planned, secondary source \cite{Ersoy2022}.
 Ideas:
 \begin{itemize}
     \item Detailed water analysis in HyPat: Topography $\rightarrow$ water pumps, etc. See results in Figure \ref{fig:morocco_water}
@@ -93,53 +85,104 @@ Ideas:
 \end{itemize}
 
 
+\subsection{Green hydrogen policy}
+\label{subsubsec:green_hydrogen_constraint}
+% https://www.ffe.de/en/publications/how-is-green-hydrogen-defined-according-to-the-eus-delegated-act/
+
+A key model constraint is the requirement of the hydrogen exported from Morocco to be "green". A variety of studies looks into various dimensions (temporal, geographical, electricity origin) of green hydrogen and their trade-offs (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}). Envisioning hydrogen offtakers from the European Union, the green hydrogen constraint applied in this study aligns with the \emph{Delegated regulation on Union methodology for RFNBOs} of the European Commission \cite{Commission2023} defining green hydrogen  based on the following criteria:
+
+\begin{enumerate}
+    \item Additionality: The electricity demand of electrolysers must be provided by additional RE power generation (less than 3 years before the installation of electrolysers, from 1.1.2028 onwards),
+    \item Temporal correlation: Hourly matching (from 1.1.2030 onwards, until 31.12.2029 monthly) $\rightarrow$ currently the models run on monthly matching and
+    \item Geographical correlation
+\end{enumerate}
+which are required for PPAs with RE-installation. Apart from the PPAs, the delegated act also considers the possibility of:
+\begin{itemize}
+    \item direct connection of RE and electrolysers,
+    \item high share of RE in power mix (> 90\%) or the
+    \item avoidance of RE curtailment
+\end{itemize}
+to qualify for the "green" hydrogen label. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study (s. Sec. \ref{subsec:scenarios}). The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Moroccos local electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study (s. Sec. \ref{subsec:scenarios}).
+
+TBD: The locally demanded hydrogen does not meet the Additionality criteria (but probably the temporal correlation, be careful here)
 
 \subsection{Hydrogen export}
 \label{subsec:hydrogen_export}
-The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets}.
-The system boundary is the country border of Morocco, in 
-line with the MenaFuels project \cite{Ersoy2022}.
+The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets} and implemented as an exogenous parameter in the range of 0 - 200 TWh (s. Sec. \ref{subsec:scenarios}). Similar to (MenaFuels) \cite{Ersoy2022} the system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) [TBD: justify]
+Nonetheless, the demand pattern of ship export (landing, loading, travel time) and the resulting energy system implications (compared to a constant export profile, closer to a pipeline behaviour) to Morocco are considered here and further investigated in Section \ref{subsec:sensitivity}.
+The export of hydrogen is allowed via a range of selected ports in Morocco [TBD: provide table or map in supplementary]. 
 
-Points of export:
+The energy system model allows an endogenous spatial export decision, meaning that the total demand (and export profiles) are exogenous, but the model chooses the  cost-optimal export location(s). At each port, the model has the option to build a hydrogen underground or steel tank depending on local geological conditions [TBD: compare open data for underground storage].
+
+
+% \subsection{Cost of hydrogen production}
+% \label{subsec:cost_of_hydrogen_production}
+
+% The cost of hydrogen production is calculated as follows \cite{Zeyen2022}:
+% \begin{equation}
+%     \label{eq:cost_of_hydrogen_production}
+%     C_\mathrm{H2}= \frac{\sum \limits_{a\in A}^{} C_a + \sum \limits_{a,t} O_{a,t} + \sum \limits_{t} P_t \cdot (im_t - ex_t)   }{d_\mathrm{H2}}
+% \end{equation}
+% "where $C_a$ is the capital cost of the asset $a$, $O_{a,t}$ is the operational cost of the asset $a$ in time step $t$, $P_t$ is the production of hydrogen in time step $t$, $im_t$ is the import of hydrogen in time step $t$ and $ex_t$ is the export of hydrogen in time step $t$" \cite{Zeyen2022}.
+
+
+% Alternative method of calculating the LCOH in an integrated system:
+% \begin{equation}
+%     \label{eq:cost_of_hydrogen_production_simple}
+%     C_\mathrm{H2}=\frac{TSC_\mathrm{export}-TSC_\mathrm{noexport}}{d_\mathrm{H2export}}
+% \end{equation}
+% Equation \ref{eq:cost_of_hydrogen_production_simple} provides another approach where the total system cost of the integrated system without hydrogen export $TSC_\mathrm{noexport}$ is subtracted from the total system cost of the integrated system with hydrogen export $TSC_\mathrm{export}$ to get the total increase in cost, then divided by the hydrogen export volume $d_\mathrm{H2export}$.
+
+% Note, equation \ref{eq:cost_of_hydrogen_production} is not valid for the integrated system (?),
+% hence the cost of hydrogen of the integrated system is defined as the marginal price of hydrogen (taken from PyPSA).
+% Questions:
+% \begin{itemize}
+%     \item Marginal price of all hydrogen buses or just export?
+%     \item "Weighted" marginal price makes more sense
+%     \item Is the equation \ref{eq:cost_of_hydrogen_production} valid?
+% \end{itemize}
+
+
+\subsection{Scenarios}
+\label{subsec:scenarios}
+To examine the conflicts and synergies of hydrogen export and national energy transition, we sweep along two dimensions:
+\begin{enumerate}
+    \item The hydrogen export volume varies from 0 - 200 TWh, going beyond Moroccos hydrogen export ambitions of 110 TWh [TBD: provide exact number] (cf. sec. \ref{subsec:policyandtargets}) and
+    \item the emission reduction between 0 - 100\% based on Morocco's current emissions of 72 MtCO2e (cf. sec. \ref{subsec:policyandtargets}).
+\end{enumerate}
+This two-dimensional scenario space leads to 110 model runs. 
+A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with it's diurnal and seasonal variations in energy supply and demand. [TBD: see Neumann for justification]
+A high spatial resolution of 53 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, a high spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 53 nodes align with the GADM (Global Administrative Areas) regions, policy advisement can be tailored to specific regions considering local needs and constraints.
+
+TBD: Elaborate more on scoping decisions
 \begin{itemize}
-    \item Only allow export by ship, or is pipeline an option?
-    \item Provide map with harbours (\& their capacities?)
-    \item Harbour Nador West Med: Currently under construction and maybe operational in 2022 \cite{Ersoy2022}
+    \item Update to 2035/2040, or even time dependent?
+    \item Line expansion?
+    \item Shipping profile?
+    \item SMR, CO2 network
+    \item Explain Brownfield here (s. Fig. \ref{fig:MAR_brownfield})?
 \end{itemize}
 
 
-\subsection{Cost of hydrogen production}
-\label{subsec:cost_of_hydrogen_production}
 
-The cost of hydrogen production is calculated as follows \cite{Zeyen2022}:
-\begin{equation}
-    \label{eq:cost_of_hydrogen_production}
-    C_\mathrm{H2}= \frac{\sum \limits_{a\in A}^{} C_a + \sum \limits_{a,t} O_{a,t} + \sum \limits_{t} P_t \cdot (im_t - ex_t)   }{d_\mathrm{H2}}
-\end{equation}
-"where $C_a$ is the capital cost of the asset $a$, $O_{a,t}$ is the operational cost of the asset $a$ in time step $t$, $P_t$ is the production of hydrogen in time step $t$, $im_t$ is the import of hydrogen in time step $t$ and $ex_t$ is the export of hydrogen in time step $t$" \cite{Zeyen2022}.
+% \subsection{Miscellaneous}
 
+% \subsubsection{Islanded hydrogen production}
+% In the islanded hydrogen production scenario, the hydrogen production is optimised without considering the local energy system described in \ref{subsec:moroccan_model}.
 
-Alternative method of calculating the LCOH in an integrated system:
-\begin{equation}
-    \label{eq:cost_of_hydrogen_production_simple}
-    C_\mathrm{H2}=\frac{TSC_\mathrm{export}-TSC_\mathrm{noexport}}{d_\mathrm{H2export}}
-\end{equation}
-Equation \ref{eq:cost_of_hydrogen_production_simple} provides another approach where the total system cost of the integrated system without hydrogen export $TSC_\mathrm{noexport}$ is subtracted from the total system cost of the integrated system with hydrogen export $TSC_\mathrm{export}$ to get the total increase in cost, then divided by the hydrogen export volume $d_\mathrm{H2export}$.
-
-Note, equation \ref{eq:cost_of_hydrogen_production} is not valid for the integrated system (?),
-hence the cost of hydrogen of the integrated system is defined as the marginal price of hydrogen (taken from PyPSA).
-Questions:
-\begin{itemize}
-    \item Marginal price of all hydrogen buses or just export?
-    \item "Weighted" marginal price makes more sense
-    \item Is the equation \ref{eq:cost_of_hydrogen_production} valid?
-\end{itemize}
+% \subsubsection{Integrated hydrogen production}
+% In the integrated scenario, both the Moroccan energy system (\ref{subsec:moroccan_model}) and the hydrogen export (\ref{subsec:hydrogen_export})
+% are optimised in an integrated approach.
 
 
-\subsection{Islanded hydrogen production}
-In the islanded hydrogen production scenario, the hydrogen production is optimised without considering the local energy system described in \ref{subsec:moroccan_model}.
-
-
-\subsection{Integrated hydrogen production}
-In the integrated scenario, both the Moroccan energy system (\ref{subsec:moroccan_model}) and the hydrogen export (\ref{subsec:hydrogen_export})
-are optimised in an integrated approach.
+% \subsubsection{Literature: Potentials}
+% \begin{itemize}
+%     \item Benchmark potentials to other studies (e.g. IRENA, MenaFuels which uses "EnDat", HyPAT provided on online map?, ...)
+%     \item MenaFuels \cite[p. 25]{Ersoy2022} (better source: Teilbericht 10)
+%     \item See \cite{Ersoy2022} (better primary source) page 26 on Renewable generation in Morocco: Currently 37\% of the installed capacity from RE
+%     \item See \cite[p. 5]{Boulakhbar2020} for list of hydro projects (current \& future)
+%     \item See \cite[primary 10,13,17]{Boulakhbar2020} for MAR potentials
+%     \item See \cite[primary 13, 38]{Boulakhbar2020} wind power of 6000 MW
+%     \item In \cite[p. 6]{Boulakhbar2020} they outline why biomass/biogas is not exploited yet in MAR
+%     \item Check the RePP database \cite{Peters2023}
+% \end{itemize}

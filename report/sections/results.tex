@@ -1,116 +1,126 @@
-In this section we focus on the synergies and conflicts
-of hydrogen export and national energy transition.
-First, the results of the separated/islanded and integrated optimizations
-are compared in \ref{subsec: sep_int_opti} in regard to the total system cost and
-hydrogen export costs and competing RE/land resources.
-Second, Section \ref{subsec: syn_conf_integrated} focuses on the integrated optimisation 
-depending on the ambitions in national energy transition and hydrogen export
-
-\subsection{Separated and integrated optimizations}
-\label{subsec: sep_int_opti}
-
-\subsubsection{Total system cost}
-Figure \ref{fig:int_sep_total_system_cost} displays the total system cost
-of the integrated vs. islanded optimizations. The total system cost of the
-islanded optimizations are higher.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\linewidth]{../fix_co2/graphics/system_comp/total_system_cost_140.pdf}
-    \caption{Total cost of the three different systems}
-    \label{fig:int_sep_total_system_cost}
-\end{figure}
-
-\subsubsection{Hydrogen export cost (in 2030 and 2050)}
-The cost of hydrogen is lower in the islanded scenario due to best potentials and no transport included?
-
-\subsubsection{Spatial analysis of (competing) RE resources}
-Both the islanded systems and the Moroccan energy system have the same land resources available. 
-The optimal solutions for both optimisations rely on the same land resources, in combination exceeding the 
-available resources in some regions (s. Fig. \ref{fig:land_conflicts}). 
-Similar to Europe/Germany, public acceptance of Renewable Energies have to be taken in account. 
-They are not unlimited, as discussed in \cite{Hanger2016} and \cite{TerraponPfaff2019}.
-Paper on competing land resources can be found here \cite{Patankar2022}
+In this section we focus on the synergies and conflicts of hydro gen export and national energy transition. First, the
+hydrogen and electricity prices of the integrated optimisation are analyzed in Section \ref{subsec:results_prices} along the two-dimensional scenario space presented in Section \ref{subsec:scenarios}. Based on these prices, Section \ref{subsec:economic_benefits} derives the total expenses of electricity and hydrogen and outlines economics benefits. Section \ref{subsec:integration_challenges} points out arising integration challenges (graphs in appendix, explaination in Section \ref{subsec:results_prices}?). The sensitivity analysis in Section \ref{subsec:sensitivity} examines key parameters and their influence on the main results.
 
 
-\subsubsection{Capacity factors and utilization of assets}
-(Maybe not interesting/necessary)
+\subsection{Hydrogen and electricity prices}
+\label{subsec:results_prices}
+
+Both the electricity and hydrogen prices are derived from the nodal power balance constraint, representing the prices in a "perfect" market \cite{Zeyen2022}.
+In a second step, these temporally and spatially resolved prices are weighted based on different consumptions in hourly resolution to obtain a uniform, weighted marginal price of hydrogen/electricity of Morocco in each scenario.
+
+The hourly-resoluted consumptions on which the weighting is based on differ in:
+\begin{enumerate}
+    \item electricity consumption on each node ($\rightarrow$ electricity prices everyone sees: "Export-Local-Average"),
+    \item hydrogen consumption on each node ($\rightarrow$ hydrogen prices everyone sees: "Export-Local-Average"),
+    \item electricity demand of electrolysers on each node ($\rightarrow$ electricity prices which electrolysers see: "Export-orientated") and
+    \item electricity demand of all consumers except electrolysers ($\rightarrow$ electricity prices which local consumers see: "Local-orientated").
+\end{enumerate}
+
+These various types of weighted marginal prices are displayed in Figure \ref{fig:marginal_prices}. All four subfigures are based on the same scenarios which varies the hydrogen export volume from 0 - 200 TWh, and the emission reduction between 0 - 100\% resulting in 110 optimisation results per subfigure (cf. Sec. \ref{subsec:scenarios}).
+
+The Export-Local-Average electricity price (s. Fig. \ref{fig:export_local_el_price}):
+\begin{itemize}
+    \item Low prices at emissions below 20\%
+    \item Increasing electricity prices up to 60-70\%, then decreasing electricity prices (Battery kicking in and smoothing el_prices?)
+    \item When hydrogen export is above 1.5 fold of local electricity demand, the price decrease flattens out
+    \item Synergy in top right corner at high reduction and high export: lower prices here 
+\end{itemize}
+
+The Export-Local-Average hydrogen price (s. Fig. \ref{fig:export_local_hy_price}):
+\begin{itemize}
+    \item More export $\rightarrow$ higher prices
+    \item At 70-90\% reduction
+\end{itemize}
+
+The Local-orientated electricity price (s. Fig. \ref{fig:local_el_price}):
+\begin{itemize}
+    \item Low prices at emissions below 20\%, then increasing prices along the climate ambition dimension
+\end{itemize}
+
+The Export-orientated electricity price (s. Fig. \ref{fig:export_el_price}):
+\begin{itemize}
+    \item Opposite to local orientated electricity price: decrease of prices seen by electrolysers when increasing climate ambition. especially low at no export and 60-70\% reduction, then increasing again
+\end{itemize}
 
 
-
-\subsection{Synergies and conflicts of the integrated optimization}
-\label{subsec: syn_conf_integrated}
-Figure \ref{fig:contour_plot} shows the synergy maximizing time path.
-
-%contour_lcoe_w_20_filterFalse.pdf
+Conclusions from these results:
+\begin{itemize}
+    \item at higher climate ambitions, the electricity prices for households increase but decrease for the export orientated electrolysers
+\end{itemize}
 
 \begin{figure*}[t] % Use 'figure*' to span both columns
     \centering
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoe_w_20_filterFalse.pdf}
-        \caption{Marginal weighted price of electricity}
-        \label{fig:contour_plot}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoe_w_20_filterTrue.pdf}
-        \caption{Marginal weighted price of electricity (with filter of 0 carbon red and 0 export)}
-        \label{fig:contour_plot}
+        \caption{Export-Local-Average electricity price}
+        \label{fig:export_local_el_price}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_w_mixed_20_filterFalse.pdf}
-        \caption{Marginal weighted price of hydrogen}
-        \label{fig:contour_plot}
+        \caption{Export-Local-Average hydrogen price}
+        \label{fig:export_local_hy_price}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_w_mixed_20_filterTrue.pdf}
-        \caption{Marginal weighted price of hydrogen (with filter of 0 carbon red and 0 export)}
-        \label{fig:contour_plot_totalsystem}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_loce_w_no_electrolysis_20_filterFalse.pdf}
+        \caption{Local-orientated electricity price}
+        \label{fig:local_el_price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_loce_w_electrolysis_20_filterFalse.pdf}
+        \caption{Export-orientated electricity price}
+        \label{fig:export_el_price}
     \end{subfigure}
     \hfill
 
-    \caption{Marginal prices of electricity and hydrogen subject to export volumes and emission limits. Black lines indicate the lowest price at each emission limit.}
-    \label{fig:comparison}
+    \caption{Marginal prices of electricity and hydrogen subject to export volumes and emission limits depending on various weightings. Black lines indicate the lowest price at each emission limit.}
+    \label{fig:marginal_prices}
 \end{figure*}
 
 
+\subsection{Economic benefits for local consumers and exporting industry}
+\label{subsec:economic_benefits}
+
+\subsection{Integration challenges}
+\label{subsec:integration_challenges}
+Figure \ref{fig:diurnal} shows the diurnal residual load (electricity load minus solar PV and wind power generation) at 0 export and 0 - 90\% emission reduction. At high emission reductions, a high penetration of RE generation (especially solar PV) 
+leads to negative residual load at noon imposing great system integration challenges.
+These challenges are (partly) tackled by the expansion of battery storage and increasing curtailment rates of onshore wind and solar PV. At low export rates, the deployment of battery storage reduces the curtailment. Figure \ref{fig:integration_options}
+reveals that at increasing hydrogen export and high emission reduction both battery storage and curtailment are reduced, due to the synergy with export driven energy infrastructure and it's ability to integrate RE at large scale.
+This synergy is also displayed in Figure \ref{fig:export_local_el_price}, reflecting lower average electricity prices at high reduction and high export.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/rldc/rlc_diurnal_inclCurtTrue.pdf}
+    \caption{Diurnal residual load at 0 export and 0 - 90\% emission reduction}
+    \label{fig:diurnal}
+\end{figure}
+
 \subsection{Sensitivity analysis}
+\label{subsec:sensitivity}
 Sensitivity analysis on:
 \begin{itemize}
     \item WACC
     \item Technology cost
-    \item (Hydrogen Export in TWh)
-    \item (Emission reduction level)
+    \item Hourly resolution
+    \item Battery storage vs no battery storage
 \end{itemize}
 
 
-\subsection{Further ideas}
-List of possible results and aspects worth looking at
-\begin{itemize}
-    \item Carbon intensity
-    \begin{itemize}
-        \item What is the carbon intensity for export and local consumption of the islanded scenario? 
-        \item What is the carbon intensity of the integrated scenario?
-        \item Compare with blue hydrogen (1 kgCO2/kgH2) and EU threshold for low-carbon gas (3 kgCO2/kgH2)
-        \item Differnce between 2030 and 2050?
-    \end{itemize}
-\end{itemize}
-
-% include subitems
-
-
-\subsection{First results and insights}
-
-First results and insights are:
-\begin{itemize}
-    \item Cost of hydrogen with SMR: 40 €/MWh, Cost of hydrogen without SMR 75 €/MWh
-    \item The export focuses on port in "MAR.2.1{\_}1"
-\end{itemize}
-
-
+% \subsection{Miscellaneous}
+% List of possible results and aspects worth looking at
+% \begin{itemize}
+%     \item Carbon intensity
+%     \begin{itemize}
+%         \item What is the carbon intensity for export and local consumption of the islanded scenario? 
+%         \item What is the carbon intensity of the integrated scenario?
+%         \item Compare with blue hydrogen (1 kgCO2/kgH2) and EU threshold for low-carbon gas (3 kgCO2/kgH2)
+%         \item Differnce between 2030 and 2050?
+%     \end{itemize}
+% \end{itemize}

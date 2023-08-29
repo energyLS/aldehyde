@@ -116,9 +116,9 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", "loce_w_electrolysis", "lcoe_w_no_electrolysis"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
+    type: ["cost"] #["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", "loce_w_electrolysis", "lcoe_w_no_electrolysis"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
     levels: [20]
-    show_minimums: False
+    show_minimums: True
     zerofilter: False # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
@@ -131,14 +131,15 @@ plot:
       lcoh_w_noexport: "Weighted marginal price of hydrogen (non-export nodes) in €/MWh"
       lcoh_w_mixed: "Weighted marginal price of hydrogen (all hydrogen nodes) in €/MWh"
       lcoe_w: "Weighted marginal price of electricity in €/MWh"
-      loce_w_electrolysis: "Weighted (electrolysis) marginal price of electricity in €/MWh"
-      loce_w_no_electrolysis: "Weighted (no electrolysis) marginal price of electricity in €/MWh"
+      lcoe_w_electrolysis: "Weighted (electrolysis) marginal price of electricity in €/MWh"
+      lcoe_w_no_electrolysis: "Weighted (no electrolysis) marginal price of electricity in €/MWh"
       H2_GWh: "Hydrogen storage capacity (non-export nodes) in GWh"
       Battery_GWh: "Battery storage capacity in GWh"
       H2export_GWh: "Hydrogen storage capacity (export node) in GWh"
       ratio_H2_Battery: "Ratio of hydrogen to battery storage capacity"
       curtailmentrate_solar: "Curtailment rate of solar in %"
       curtailmentrate_wind: "Curtailment rate of wind in %"
+      cf_electrolysis: "Capacity factor of electrolysis in %"
   
   spatial_plot:
     type: ["land-use"] #["p-nom-opt","p-nom-max","land-use"]
