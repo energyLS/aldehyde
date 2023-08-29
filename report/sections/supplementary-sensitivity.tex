@@ -1,0 +1,102 @@
+
+\clearpage
+
+\subsection{Marginal prices without battery}
+Figure \ref{fig:marginal_prices_nobat} shows the marginal prices in a scenario without batteries.
+
+\begin{figure*}[t] % Use 'figure*' to span both columns
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../nresults_full_3H_nobat_ws/graphics/integrated_comp/contour_lcoe_w_20_filterFalse.pdf}
+        \caption{Export-Local-Average electricity price}
+        \label{fig:export_local_el_price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../nresults_full_3H_nobat_ws/graphics/integrated_comp/contour_lcoh_w_mixed_20_filterFalse.pdf}
+        \caption{Export-Local-Average hydrogen price}
+        \label{fig:export_local_hy_price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../nresults_full_3H_nobat_ws/graphics/integrated_comp/contour_lcoe_w_no_electrolysis_20_filterFalse.pdf}
+        \caption{Local-orientated electricity price}
+        \label{fig:local_el_price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../nresults_full_3H_nobat_ws/graphics/integrated_comp/contour_lcoe_w_electrolysis_20_filterFalse.pdf}
+        \caption{Export-orientated electricity price}
+        \label{fig:export_el_price}
+    \end{subfigure}
+    \hfill
+
+    \caption{Scenario: No batteries. Marginal prices of electricity and hydrogen subject to export volumes and emission limits depending on various weightings. Black lines indicate the lowest price at each emission limit.}
+    \label{fig:marginal_prices_nobat}
+\end{figure*}
+
+
+\subsection{Capacity factor of electrolysers with and without battery}
+Figure \ref{fig:cf_ely_sens} shows the capacity factor of electrolysers with and without battery.
+
+\begin{figure*}[t] 
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterFalse.pdf}
+        \caption{Electrolyser capacity factor with batteries}
+        \label{fig:ely_cf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../nresults_full_3H_nobat_ws/graphics/integrated_comp/contour_cf_electrolysis_20_filterFalse.pdf}
+        \caption{Electrolyser capacity factor without batteries}
+        \label{fig:ely_cf_nobat}
+    \end{subfigure}
+    \hfill
+
+    \caption{Capacity Factor (CF) of electrolysers with and without batteries.}
+    \label{fig:cf_ely_sens}
+\end{figure*}
+
+
+
+\begin{figure*}[t] % Use 'figure*' to span both columns
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../nresults_full_3H_nobat_ws/graphics/integrated_comp/contour_curtailmentrate_solar_20_filterFalse.pdf}
+        \caption{Solar PV curtailment}
+        \label{fig:solar_curt}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../nresults_full_3H_nobat_ws/graphics/integrated_comp/contour_curtailmentrate_wind_20_filterFalse.pdf}
+        \caption{Wind curtailment}
+        \label{fig:wind_curt}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../nresults_full_3H_nobat_ws/graphics/integrated_comp/contour_Battery_GWh_20_filterFalse.pdf}
+        \caption{Battery storage capacity}
+        \label{fig:battery_cap}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../nresults_full_3H_nobat_ws/graphics/integrated_comp/contour_H2_GWh_20_filterFalse.pdf}
+        \caption{Hydrogen storage capacity}
+        \label{fig:hystorage_cap}
+    \end{subfigure}
+    \hfill
+
+    \caption{Scenario no batteries: Curtailment rates and storage capacities}
+    \label{fig:integration_options_nobat}
+\end{figure*}
