@@ -16,31 +16,37 @@ The hourly-resoluted consumptions on which the weighting is based on differ in:
     \item electricity demand of all consumers except electrolysers ($\rightarrow$ electricity prices which local consumers see: "Local-orientated").
 \end{enumerate}
 
-These various types of weighted marginal prices are displayed in Figure \ref{fig:marginal_prices}. All four subfigure are based on the same scenarios which varies the hydrogen export volume from 0 - 200 TWh, and the emission reduction between 0 - 100\% resulting in 110 optimisation results displayed in each subfigure (cf. Sec. \ref{subsec:scenarios}).
+These various types of weighted marginal prices are displayed in Figure \ref{fig:marginal_prices}. All four subfigures are based on the same scenarios which varies the hydrogen export volume from 0 - 200 TWh, and the emission reduction between 0 - 100\% resulting in 110 optimisation results per subfigure (cf. Sec. \ref{subsec:scenarios}).
 
-The Export-Local-Average electricity price (s. Fig. \ref{fig:export_local_el_price})...
+The Export-Local-Average electricity price (s. Fig. \ref{fig:export_local_el_price}):
 \begin{itemize}
-    \item 
+    \item Low prices at emissions below 20\%
+    \item Increasing electricity prices up to 60-70\%, then decreasing electricity prices (Battery kicking in and smoothing el_prices?)
+    \item When hydrogen export is above 1.5 fold of local electricity demand, the price decrease flattens out
+    \item Synergy in top right corner at high reduction and high export: lower prices here 
 \end{itemize}
 
-The Export-Local-Average hydrogen price (s. Fig. \ref{fig:export_local_hy_price})...
+The Export-Local-Average hydrogen price (s. Fig. \ref{fig:export_local_hy_price}):
 \begin{itemize}
-    \item More export $rightarrow$ higher prices
-    \item 
+    \item More export $\rightarrow$ higher prices
+    \item At 70-90\% reduction
 \end{itemize}
 
-The Local-orientated electricity price (s. Fig. \ref{fig:local_el_price})...
+The Local-orientated electricity price (s. Fig. \ref{fig:local_el_price}):
 \begin{itemize}
-    \item 
+    \item Low prices at emissions below 20\%, then increasing prices along the climate ambition dimension
 \end{itemize}
 
-The Export-orientated electricity price (s. Fig. \ref{fig:export_el_price})...
+The Export-orientated electricity price (s. Fig. \ref{fig:export_el_price}):
 \begin{itemize}
-    \item 
+    \item Opposite to local orientated electricity price: decrease of prices seen by electrolysers when increasing climate ambition. especially low at no export and 60-70\% reduction, then increasing again
 \end{itemize}
 
 
-
+Conclusions from these results:
+\begin{itemize}
+    \item at higher climate ambitions, the electricity prices for households increase but decrease for the export orientated electrolysers
+\end{itemize}
 
 \begin{figure*}[t] % Use 'figure*' to span both columns
     \centering
@@ -103,17 +109,18 @@ Sensitivity analysis on:
     \item WACC
     \item Technology cost
     \item Hourly resolution
+    \item Battery storage vs no battery storage
 \end{itemize}
 
 
-\subsection{Miscellaneous}
-List of possible results and aspects worth looking at
-\begin{itemize}
-    \item Carbon intensity
-    \begin{itemize}
-        \item What is the carbon intensity for export and local consumption of the islanded scenario? 
-        \item What is the carbon intensity of the integrated scenario?
-        \item Compare with blue hydrogen (1 kgCO2/kgH2) and EU threshold for low-carbon gas (3 kgCO2/kgH2)
-        \item Differnce between 2030 and 2050?
-    \end{itemize}
-\end{itemize}
+% \subsection{Miscellaneous}
+% List of possible results and aspects worth looking at
+% \begin{itemize}
+%     \item Carbon intensity
+%     \begin{itemize}
+%         \item What is the carbon intensity for export and local consumption of the islanded scenario? 
+%         \item What is the carbon intensity of the integrated scenario?
+%         \item Compare with blue hydrogen (1 kgCO2/kgH2) and EU threshold for low-carbon gas (3 kgCO2/kgH2)
+%         \item Differnce between 2030 and 2050?
+%     \end{itemize}
+% \end{itemize}
