@@ -86,7 +86,14 @@ Conclusions from these results:
 
 \subsection{Economic benefits for local consumers and exporting industry}
 \label{subsec:economic_benefits}
-Derived from the Figure \ref{fig:marginal_prices}, Figure \ref{fig:pricecut} disregards the export dimension and shows the weighted electricity prices for local consumers , electrolysers and average prices at an export volume of 100 TWh.
+Derived from the Figure \ref{fig:marginal_prices}, Figure \ref{fig:pricecut} disregards the export dimension and shows the weighted electricity prices for local consumers, electrolysers and average prices at an export volume of 100~TWh. It shows that at low emission reductions ($0$--$10$\%), both the prices for local consumers and electrolysers rise from $40$~\euro/MWh to approx. $50$~\euro/MWh. The higher the emission reduction from $10$\% onwards, the more both prices diverge. At high climate ambitions ($90$\%), the electricity price for local consumers is at $78$~\euro/MWh; $47$\% higher than the electricity price for electrolysers ($53$~\euro/MWh).
+
+The observed difference in weighted prices results from the operation of the energy system: The (non-weighted) price of electricity is cheaper when the electrolysers are running and more expensive when local industry and households are consuming electricity.
+\begin{itemize}
+    \item TBD: Why does this effect amplify at higher climate ambition?
+    \item TBD: Reason could be: at 100 TWh hydrogen export, the export demand dominates hence from a total system cost it makes sense to favour electrolysers. BUT: at lower export volumes, this effect is even more pronounced.
+    \item Visualize: AC prices heatmap, electrolyser heatmap, local demand heatmap. $\rightarrow$ the higher the climate ambition, the higher the correlation between AC prices and electrolysers should be
+\end{itemize}
 
 
 
@@ -101,11 +108,11 @@ Derived from the Figure \ref{fig:marginal_prices}, Figure \ref{fig:pricecut} dis
 
 \subsection{Integration challenges}
 \label{subsec:integration_challenges}
-Figure \ref{fig:diurnal} shows the diurnal residual load (electricity load minus solar PV and wind power generation) at 0 export and 0 - 90\% emission reduction. At high emission reductions, a high penetration of RE generation (especially solar PV) 
-leads to negative residual load at noon imposing great system integration challenges.
-These challenges are (partly) tackled by the expansion of battery storage and increasing curtailment rates of onshore wind and solar PV. At low export rates, the deployment of battery storage reduces the curtailment. Figure \ref{fig:integration_options}
-reveals that at increasing hydrogen export and high emission reduction both battery storage and curtailment are reduced, due to the synergy with export driven energy infrastructure and it's ability to integrate RE at large scale.
-This synergy is also displayed in Figure \ref{fig:export_local_el_price}, reflecting lower average electricity prices at high reduction and high export.
+Figure \ref{fig:diurnal} shows the diurnal residual load (electricity load minus solar PV and wind power generation) at 0 export and 0 - 90\% emission reduction. At high emission reductions, a high penetration of RE generation (especially solar PV) leads to negative residual load at noon imposing great system integration challenges.
+These challenges are (partly) tackled by the expansion of battery storage and increasing curtailment rates of onshore wind and solar PV (s. Fig. \ref{fig:integration_options}) at emission reductions up to $70$\%. At an even higher reduction of $90$\%, the electrolysers operating in a diurnal patterns reduce the negative residual loads significantly as shown in Figure \ref{fig:diurnal_exportdim}. This effect is even more pronounced at higher export levels as displayed in \ref{fig:diurnal_exportdim}. 
+Figure \ref{fig:integration_options} reveals that at increasing hydrogen export and high emission reduction (above $70$\%) both battery storage and curtailment are reduced, due to the synergy with export driven hydrogen infrastructure and it's ability to integrate RE at large scale. This synergy is also displayed in Figure \ref{fig:export_local_el_price}, reflecting lower average electricity prices at high reduction and high export.
+TBD: Too many figure references, confusing for the reader.
+TBD: To a certain extend, this is an explaination also for other sections. Maybe integrate it there?
 
 \begin{figure}[h!]
     \centering
