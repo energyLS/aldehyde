@@ -1,22 +1,20 @@
 \subsection{Sector-coupled energy model}
 \label{subsec:moroccan_model}
 
-The sector-coupled energy model is based on PyPSA-Earth \cite{Parzen2022} (better: \cite{Parzen2023a}) and adds a sector extension similar to \cite{Brown2018a}.
-This capacity extension model optimizes the generation, transmission and storage of Moroccos energy system by minimising the the total annualised system costs
-constrained by e.g. climate targets or green hydrogen policies (s. Sec. \ref{subsubsec:green_hydrogen_constraint}). The geographical scope is Morocco.
+The sector-coupled energy model is based on PyPSA-Earth \cite{Parzen2023} and adds a sector extension similar to \cite{Brown2018a} using linear optimisation and overnight scenarios. This capacity extension model optimises the generation, transmission and storage capacities of Moroccos energy system by minimising the the total annualised system costs constrained by e.g. climate targets or green hydrogen policies (s. Sec. \ref{subsubsec:green_hydrogen_constraint}). The geographical scope is Morocco.
 
 \subsubsection{Energy demand}
-In a first step, the annual energy demand is obtained from \cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2035 is projected based on efficiency gains and activity growth similar to \cite{Mueller2023}.
-In a second step, the annual and country-wise energy demand is distributed according to production sites of Morocco based on data of [TBD]. In case of subsectors where no spatially resolved production sites are included/available (e.g. paper industry), the demand is distributed according to GDP (TBD: currently Population). Third, the annual but locationally resolved energy demand is converted to hourly demands. In this study, a constant hourly demand of all industry sectors are assumed (TBD: Is this the case? Certainly not for electricity \cite{Parzen2022}. is this applicable?, argue).
+In a first step, the annual energy demand is obtained from \cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2035 is projected according to efficiency gains and activity growth similar to \cite{Mueller2023}.
+In a second step, the annual and national energy demand is distributed according to production sites of Morocco based on data of [TBD]. In case of subsectors where no spatially resolved production sites are included/available (e.g. paper industry), the demand is distributed according to GDP (TBD: currently Population). Third, the annual but locationally resolved energy demand is converted to hourly demands. In this study, a constant hourly demand of all industry sectors are assumed (TBD: Is this the case? Certainly not for electricity \cite{Parzen2022}. is this applicable?, argue).
 The resulting temporal and spatial energy demands of the sectors:
 \begin{itemize}
-    \item Electricity
-    \item Industry
-    \item Transport
-    \item Heating demand 
-    \item (cooling?) 
+    \item Electricity,
+    \item Heating,
+    \item Industry,
+    \item Transport (incl. aviation and shipping) and
+    \item Agriculture
 \end{itemize}
-are incorporated in the sector coupled energy model.
+are integrated in the sector coupled energy model.
 TBD: Benchmark: Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
 TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
 See also: \cite{Bennouna2016} for energy demand in Morocco
@@ -26,8 +24,9 @@ TBD: List energy balances in Table in supplementary.
 
 \subsubsection{Renewable Energy Sources}
 The sector-coupled energy model follows the data pipeline of \cite{Parzen2023a} by incorporating solar PV, onshore wind, (TBD: offshore wind) and hydro power using the open source package Atlite \cite{Hofmann2021}.
-Atlite obtains technology-specific time series based on weather data (ERA5 reanalysis data \cite{Hersbach2020}, SARAH-2 satellite data \cite{Pfeifroth2017}) as well as bathmetry \cite{GCG2022} (required for offshore wind). In addition to the time series, Atlite calculates the land availabilities and linked potentials using the Copernicus Global Land Service
+Atlite obtains technology-specific time series based on weather data (ERA5 reanalysis data \cite{Hersbach2020}, SARAH-2 satellite data \cite{Pfeifroth2017}) as well as bathmetry \cite{GCG2022} (required for offshore wind). In addition to the time series, Atlite calculates land availabilities and linked potentials using the Copernicus Global Land Service
 [TBD: add source]. [TBD: describe IRENA scaling approach]
+TBD: Biomass is added too.
 
 
 
@@ -43,7 +42,7 @@ Atlite obtains technology-specific time series based on weather data (ERA5 reana
 
 \subsubsection{Conventional electricity generation}
 
-The conventional electricity generators obtained from the powerplantmatching tool \cite{Powerplantmatching2019}. Powerplantmatching uses various input sources as OpenStreetMap, Global Energy Monitor, IRENA, Global Energy Monitor [TBD: Add sources] to download, filter and merge the datasets. 
+The conventional electricity generators are obtained from the powerplantmatching tool \cite{Powerplantmatching2019}. Powerplantmatching uses various input sources as OpenStreetMap, Global Energy Monitor, IRENA, Global Energy Monitor [TBD: Add sources] to download, filter and merge the datasets. 
 In this study, powerplantmatching is applied to Morocco delivering the conventional power plants listed in Table \ref{tab:powerplants}. 
 [TBD: Benchmark with national statistics]
 % Benchmark: S\&P Global Kraftwerksliste (used by Fraunhofer IEE), \cite[p. 26]{Ersoy2022} 
@@ -51,22 +50,14 @@ In this study, powerplantmatching is applied to Morocco delivering the conventio
 
 \subsubsection{Electricity networks and gas pipelines}
 The electricity network is based on the PyPSA-Earth workflow using OpenStreetMap data \cite{OpenStreetMap2022} as presented in \cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build \cite{Parzen2023a}. 
-The brownfield gas pipeline infrastructure of Morocco is not considered in this study. The Maghreb-Europe pipeline passing through Morocco is the only pipeline in operation but currently subject to political disputes. Further proposed projects are excluded due to insignificant capacity compared to Moroccos energy system (Tendrara LNG Terminal, 100 million cubic meters per year ) or uncertain commissioning dates (Nigeria-Morocco Pipeline, start year 2046).
-
-% https://www.gem.wiki/Maghreb-Europe_Gas_Pipeline
-% (https://www.gem.wiki/Tendrara_LNG_Terminal)
-%(https://www.gem.wiki/Nigeria-Morocco_Gas_Pipeline)
-[TBD: Benchmark electricity network]
+The brownfield gas pipeline infrastructure of Morocco is not considered in this study. The Maghreb-Europe pipeline passing through Morocco is the only pipeline in operation but currently subject to political disputes \cite{Rachidi2022}. Further proposed projects are excluded due to insignificant capacity compared to Moroccos energy system (Tendrara LNG Terminal, 100 million cubic meters per year \cite{GEM2023}) or uncertain commissioning dates (Nigeria-Morocco Pipeline, start year 2046 \cite{GEM2023b}).
+% [TBD: Benchmark electricity network]
 %3,000 km of 400 kV, 9,000 km of 225 kV, 147 km of 150 kV lines 
 %11,780 km of 60 kV lines \cite[p. 6, primary 44]{Boulakhbar2020}
 
 
 \subsection{Brownfield model and capacity expansion}
-Following the workflow of \cite{Parzen2023}, Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution of Morocco. Based on this brownfield electricity system, the sector-coupled energy model allows the capacity expansion of storages, (electricity networks), hydrogen pipelines and (renewable) generators.
-
-
-
-
+Following the workflow of \cite{Parzen2023}, Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution of Morocco. Based on this brownfield electricity system, the sector-coupled energy model allows the capacity expansion of storages, (electricity networks), hydrogen pipelines, renewable and conventional generators.
 
 
 
@@ -80,7 +71,7 @@ Ideas:
 \begin{itemize}
     \item Detailed water analysis in HyPat: Topography $\rightarrow$ water pumps, etc. See results in Figure \ref{fig:morocco_water}
     \item Oversize water desalination to provide water for local population/agriculture to increase public acceptance
-    \item DAC: Water is a product of DAC process which could be reused for electrolysis
+    \item Direct Air Capture (DAC): Water is a product of DAC process which could be reused for electrolysis
     \item Direct electrolysis of seawater: In development but probably not on big scale in the next 10-15 years
 \end{itemize}
 
@@ -89,26 +80,26 @@ Ideas:
 \label{subsubsec:green_hydrogen_constraint}
 % https://www.ffe.de/en/publications/how-is-green-hydrogen-defined-according-to-the-eus-delegated-act/
 
-A key model constraint is the requirement of the hydrogen exported from Morocco to be "green". A variety of studies looks into various dimensions (temporal, geographical, electricity origin) of green hydrogen and their trade-offs (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}). Envisioning hydrogen offtakers from the European Union, the green hydrogen constraint applied in this study aligns with the \emph{Delegated regulation on Union methodology for RFNBOs} of the European Commission \cite{Commission2023} defining green hydrogen  based on the following criteria:
+A key constraint on the model is that the hydrogen exported from Morocco requires to meet sustainability criteria ("green" hydrogen). A variety of studies looks into various dimensions (temporal, geographical, electricity origin) of green hydrogen and their trade-offs (\cite{Brauer2022}, \cite{Ruhnau2022}, \cite{Zeyen2022}). Envisioning hydrogen offtakers from the European Union, the green hydrogen constraint applied in this study aligns with the \emph{Delegated regulation on Union methodology for RFNBOs} of the European Commission \cite{Commission2023} defining green hydrogen  based on the following criteria:
 
 \begin{enumerate}
     \item Additionality: The electricity demand of electrolysers must be provided by additional RE power generation (less than 3 years before the installation of electrolysers, from 1.1.2028 onwards),
     \item Temporal correlation: Hourly matching (from 1.1.2030 onwards, until 31.12.2029 monthly) $\rightarrow$ currently the models run on monthly matching and
     \item Geographical correlation
 \end{enumerate}
-which are required for PPAs with RE-installation. Apart from the PPAs, the delegated act also considers the possibility of:
+which are required for Power Purchase Agreements (PPA) with RE-installation. Apart from the PPAs, the delegated act also considers the possibility of:
 \begin{itemize}
     \item direct connection of RE and electrolysers,
-    \item high share of RE in power mix (> 90\%) or the
+    \item high share of RE in power mix ($>$ 90\%) or the
     \item avoidance of RE curtailment
 \end{itemize}
-to qualify for the "green" hydrogen label. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study (s. Sec. \ref{subsec:scenarios}). The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Moroccos local electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study (s. Sec. \ref{subsec:scenarios}).
+to qualify as "green" hydrogen. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study (s. Sec. \ref{subsec:scenarios}). The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Moroccos local electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study (s. Sec. \ref{subsec:scenarios}).
 
 TBD: The locally demanded hydrogen does not meet the Additionality criteria (but probably the temporal correlation, be careful here)
 
 \subsection{Hydrogen export}
 \label{subsec:hydrogen_export}
-The amount of hydrogen to be exported is derived from section \ref{subsec:policyandtargets} and implemented as an exogenous parameter in the range of 0 - 200 TWh (s. Sec. \ref{subsec:scenarios}). Similar to (MenaFuels) \cite{Ersoy2022} the system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) [TBD: justify]
+The amount of hydrogen to be exported is derived from Section \ref{subsec:policyandtargets} and implemented as an exogenous parameter in the range of 0 - 200 TWh (s. Sec. \ref{subsec:scenarios}). Similar to (MenaFuels) \cite{Ersoy2022} the system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) [TBD: justify]
 Nonetheless, the demand pattern of ship export (landing, loading, travel time) and the resulting energy system implications (compared to a constant export profile, closer to a pipeline behaviour) to Morocco are considered here and further investigated in Section \ref{subsec:sensitivity}.
 The export of hydrogen is allowed via a range of selected ports in Morocco [TBD: provide table or map in supplementary]. 
 
@@ -148,11 +139,11 @@ The energy system model allows an endogenous spatial export decision, meaning th
 To examine the conflicts and synergies of hydrogen export and national energy transition, we sweep along two dimensions:
 \begin{enumerate}
     \item The hydrogen export volume varies from 0 - 200 TWh, going beyond Moroccos hydrogen export ambitions of 110 TWh [TBD: provide exact number] (cf. sec. \ref{subsec:policyandtargets}) and
-    \item the emission reduction between 0 - 100\% based on Morocco's current emissions of 72 MtCO2e (cf. sec. \ref{subsec:policyandtargets}).
+    \item the (energy and non-energy) emission reduction between 0 - 100\% based on Morocco's current emissions of 72 MtCO2e (cf. sec. \ref{subsec:policyandtargets}).
 \end{enumerate}
 This two-dimensional scenario space leads to 110 model runs. 
-A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with it's diurnal and seasonal variations in energy supply and demand. [TBD: see Neumann for justification]
-A high spatial resolution of 53 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, a high spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 53 nodes align with the GADM (Global Administrative Areas) regions, policy advisement can be tailored to specific regions considering local needs and constraints.
+A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with its diurnal and seasonal variations in energy supply and demand. A similar study \cite{Neumann2022} finds minor underestimation of short-term battery storage and onshore wind and minor overestimation of solar photovoltaics and hydrogen storage compared to an hourly resolution, overall justifying the reduction of the model size.
+justifies the temporal resolution. A high spatial resolution of 53 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, a high spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 53 nodes align with the GADM (Global Administrative Areas) regions, policy advisement can be tailored to specific regions considering local needs and constraints.
 
 TBD: Elaborate more on scoping decisions
 \begin{itemize}
