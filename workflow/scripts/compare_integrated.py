@@ -226,6 +226,25 @@ if __name__ == "__main__":
 
         # Capacity factor electrolysis
         cf_electrolysis = statistics.loc["Link", "H2 Electrolysis"].loc["Capacity Factor"].round(2)
+
+        # Get capacities and CAPEX in generation technologies
+        pv_capex = statistics.loc["Generator", "Solar"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
+        pv_p_nom_opt = statistics.loc["Generator", "Solar"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        onshore_capex = statistics.loc["Generator", "Onshore Wind"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
+        onshore_p_nom_opt = statistics.loc["Generator", "Onshore Wind"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        coal_capex = statistics.loc["Generator", "Coal"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
+        coal_p_nom_opt = statistics.loc["Generator", "Coal"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        ccgt_capex = statistics.loc["Generator", "Combined-Cycle Gas"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
+        ccgt_p_nom_opt = statistics.loc["Generator", "Combined-Cycle Gas"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        ror_capex = statistics.loc["Generator", "Run of River"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
+        ror_p_nom_opt = statistics.loc["Generator", "Run of River"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        oil_capex = statistics.loc["Generator", "Oil"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
+        oil_p_nom_opt = statistics.loc["Generator", "Oil"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        
+        ocgt_capex = statistics.loc["Link", "Open-Cycle Gas"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
+        ocgt_p_nom_opt = statistics.loc["Link", "Open-Cycle Gas"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+
+
         # Save the cost and lcoh in the array according to the h2export and opts values using concat function
         metrics_df = pd.concat(
             [
@@ -254,6 +273,20 @@ if __name__ == "__main__":
                         "curtailmentrate_wind": [curtailmentrate_wind],
                         "el_base_demand": [el_base_demand],
                         "cf_electrolysis": [cf_electrolysis],
+                        "pv_capex": [pv_capex],
+                        "pv_p_nom_opt": [pv_p_nom_opt],
+                        "onshore_capex": [onshore_capex],
+                        "onshore_p_nom_opt": [onshore_p_nom_opt],
+                        "coal_capex": [coal_capex],
+                        "coal_p_nom_opt": [coal_p_nom_opt],
+                        "ccgt_capex": [ccgt_capex],
+                        "ccgt_p_nom_opt": [ccgt_p_nom_opt],
+                        "ror_capex": [ror_capex],
+                        "ror_p_nom_opt": [ror_p_nom_opt],
+                        "oil_capex": [oil_capex],
+                        "oil_p_nom_opt": [oil_p_nom_opt],
+                        "ocgt_capex": [ocgt_capex],
+                        "ocgt_p_nom_opt": [ocgt_p_nom_opt],
                     }
                 ),
             ],
