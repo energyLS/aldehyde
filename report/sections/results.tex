@@ -50,32 +50,18 @@ Conclusions from these results:
 
 \begin{figure*}[t] % Use 'figure*' to span both columns
     \centering
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoe_w_20_filterFalse.pdf}
-        \caption{Export-Local-Average electricity price}
-        \label{fig:export_local_el_price}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_w_mixed_20_filterFalse.pdf}
-        \caption{Export-Local-Average hydrogen price}
-        \label{fig:export_local_hy_price}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
+    \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_loce_w_no_electrolysis_20_filterFalse.pdf}
-        \caption{Local-orientated electricity price}
+        \caption{Average price of electricity for local consumers}
         \label{fig:local_el_price}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
+    \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_loce_w_electrolysis_20_filterFalse.pdf}
-        \caption{Export-orientated electricity price}
-        \label{fig:export_el_price}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_w_export_20_filterTrue.pdf}
+        \caption{Average price of hydrogen for export}
+        \label{fig:export_hy_price}
     \end{subfigure}
     \hfill
 
@@ -150,6 +136,16 @@ Sensitivity analysis on:
 \subsection{Coal power supply/Electricity generation}
 How does it change? Maybe good and easy first results Section?
 Super interesting: At low climate ambition effort, coal gets phased out by high exports only! (Make sure, this is not partly triggered by greenness constraint). Strong message: Green hydrogen export also decarbonizes electricity system on the go! Or rather: is replaced by ocgt
+
+
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/nresults_full_3H_ws/graphs-0exp/balances-AC.pdf}
+    \caption{Electricity supply and demand at 0 - 90\% emission reduction}
+    \label{fig:balances-ac-0exp}
+\end{figure}
 
 % \subsection{Miscellaneous}
 % List of possible results and aspects worth looking at
