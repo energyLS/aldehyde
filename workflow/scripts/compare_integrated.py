@@ -230,19 +230,38 @@ if __name__ == "__main__":
         # Get capacities and CAPEX in generation technologies
         pv_capex = statistics.loc["Generator", "Solar"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
         pv_p_nom_opt = statistics.loc["Generator", "Solar"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        pv_supply = statistics.loc["Generator", "Solar"].loc["Supply"].sum() / 1e6 # in TWh
+        pv_cf = statistics.loc["Generator", "Solar"].loc["Capacity Factor"].round(2)
+
         onshore_capex = statistics.loc["Generator", "Onshore Wind"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
         onshore_p_nom_opt = statistics.loc["Generator", "Onshore Wind"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        onshore_supply = statistics.loc["Generator", "Onshore Wind"].loc["Supply"].sum() / 1e6 # in TWh
+        onshore_cf = statistics.loc["Generator", "Onshore Wind"].loc["Capacity Factor"].round(2)
+
         coal_capex = statistics.loc["Generator", "Coal"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
         coal_p_nom_opt = statistics.loc["Generator", "Coal"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        coal_supply = statistics.loc["Generator", "Coal"].loc["Supply"].sum() / 1e6 # in TWh
+        coal_cf = statistics.loc["Generator", "Coal"].loc["Capacity Factor"].round(2)
+
         ccgt_capex = statistics.loc["Generator", "Combined-Cycle Gas"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
         ccgt_p_nom_opt = statistics.loc["Generator", "Combined-Cycle Gas"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        ccgt_supply = statistics.loc["Generator", "Combined-Cycle Gas"].loc["Supply"].sum() / 1e6 # in TWh
+        ccgt_cf = statistics.loc["Generator", "Combined-Cycle Gas"].loc["Capacity Factor"].round(2)
+
         ror_capex = statistics.loc["Generator", "Run of River"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
         ror_p_nom_opt = statistics.loc["Generator", "Run of River"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        ror_supply = statistics.loc["Generator", "Run of River"].loc["Supply"].sum() / 1e6 # in TWh
+        ror_cf = statistics.loc["Generator", "Run of River"].loc["Capacity Factor"].round(2)
+
         oil_capex = statistics.loc["Generator", "Oil"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
         oil_p_nom_opt = statistics.loc["Generator", "Oil"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        oil_supply = statistics.loc["Generator", "Oil"].loc["Supply"].sum() / 1e6 # in TWh
+        oil_cf = statistics.loc["Generator", "Oil"].loc["Capacity Factor"].round(2)
         
         ocgt_capex = statistics.loc["Link", "Open-Cycle Gas"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
         ocgt_p_nom_opt = statistics.loc["Link", "Open-Cycle Gas"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        ocgt_supply = statistics.loc["Link", "Open-Cycle Gas"].loc["Supply"].sum() / 1e6 # in TWh
+        ocgt_cf = statistics.loc["Link", "Open-Cycle Gas"].loc["Capacity Factor"].round(2)
 
 
         # Save the cost and lcoh in the array according to the h2export and opts values using concat function
@@ -287,6 +306,20 @@ if __name__ == "__main__":
                         "oil_p_nom_opt": [oil_p_nom_opt],
                         "ocgt_capex": [ocgt_capex],
                         "ocgt_p_nom_opt": [ocgt_p_nom_opt],
+                        "pv_supply": [pv_supply],
+                        "pv_cf": [pv_cf],
+                        "onshore_supply": [onshore_supply],
+                        "onshore_cf": [onshore_cf],
+                        "coal_supply": [coal_supply],
+                        "coal_cf": [coal_cf],
+                        "ccgt_supply": [ccgt_supply],
+                        "ccgt_cf": [ccgt_cf],
+                        "ror_supply": [ror_supply],
+                        "ror_cf": [ror_cf],
+                        "oil_supply": [oil_supply],
+                        "oil_cf": [oil_cf],
+                        "ocgt_supply": [ocgt_supply],
+                        "ocgt_cf": [ocgt_cf],
                     }
                 ),
             ],
