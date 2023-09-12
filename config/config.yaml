@@ -116,10 +116,11 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["pv_capex", "pv_p_nom_opt"] #["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", "loce_w_electrolysis", "lcoe_w_no_electrolysis"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
+    type: ["lcoh_w_export"]
+     #["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", "loce_w_electrolysis", "lcoe_w_no_electrolysis"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
     levels: [20]
     show_minimums: True
-    zerofilter: False # Filter out zero values of export and co2 reduction wildcards for plotting
+    zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
       lcoh_system: "LCOH (system comp.) in €/MWh"
@@ -154,8 +155,21 @@ plot:
       oil_p_nom_opt: "Oil capacity in GW"
       ocgt_capex: "OCGT CAPEX in Mio. €"
       ocgt_p_nom_opt: "OCGT capacity in GW"
+      pv_supply: "Solar PV supply in TWh"
+      pv_cf: "Solar PV capacity factor in %"
+      onshore_supply: "Onshore wind supply in TWh"
+      onshore_cf: "Onshore wind capacity factor in %"
+      coal_supply: "Coal supply in TWh"
+      coal_cf: "Coal capacity factor in %"
+      ccgt_supply: "CCGT supply in TWh"
+      ccgt_cf: "CCGT capacity factor in %"
+      ror_supply: "Run-of-river supply in TWh"
+      ror_cf: "Run-of-river capacity factor in %"
+      oil_supply: "Oil supply in TWh"
+      oil_cf: "Oil capacity factor in %"
+      ocgt_supply: "OCGT supply in TWh"
+      ocgt_cf: "OCGT capacity factor in %"
 
-  
   spatial_plot:
     type: ["land-use"] #["p-nom-opt","p-nom-max","land-use"]
     h2export:  [120, 800] #[0, 20, 40, 120]
