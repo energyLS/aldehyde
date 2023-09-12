@@ -1,126 +1,128 @@
-In this section we focus on the synergies and conflicts of hydro gen export and national energy transition. First, the
-hydrogen and electricity prices of the integrated optimisation are analyzed in Section \ref{subsec:results_prices} along the two-dimensional scenario space presented in Section \ref{subsec:scenarios}. Based on these prices, Section \ref{subsec:economic_benefits} derives the total expenses of electricity and hydrogen and outlines economics benefits. Section \ref{subsec:integration_challenges} points out arising integration challenges (graphs in appendix, explaination in Section \ref{subsec:results_prices}?). The sensitivity analysis in Section \ref{subsec:sensitivity} examines key parameters and their influence on the main results.
+Chapter \ref{sec:results} focuses on the energy system fulfilling both goals of hydrogen export and national energy transition. First, Section \ref{subsec:supply} investigates the electricity supply of Moroccos energy system and increasing RE deployment in high-export and high-mitigation systems.
+The integration challenges arising from increasing RE penetration are pointed out in Section \ref{subsec:integration_challenges} while emphasizing the importance of system flexibility provided by electricity storages and curtailment. The hydrogen and electricity prices of the integrated optimisation are analyzed in Section \ref{subsec:results_prices} along the two-dimensional scenario space presented in Section \ref{subsec:scenarios}. Based on these prices, Section \ref{subsec:economic_benefits} derives the total expenses of electricity and hydrogen and outlines economics benefits. 
+%The sensitivity analysis in Section \ref{subsec:sensitivity} examines key parameters and their influence on the main results.
 
-
-\subsection{Hydrogen and electricity prices}
-\label{subsec:results_prices}
-
-Both the electricity and hydrogen prices are derived from the nodal power balance constraint, representing the prices in a "perfect" market \cite{Zeyen2022}.
-In a second step, these temporally and spatially resolved prices are weighted based on different consumptions in hourly resolution to obtain a uniform, weighted marginal price of hydrogen/electricity of Morocco in each scenario.
-
-The hourly-resoluted consumptions on which the weighting is based on differ in:
-\begin{enumerate}
-    \item electricity consumption on each node ($\rightarrow$ electricity prices everyone sees: "Export-Local-Average"),
-    \item hydrogen consumption on each node ($\rightarrow$ hydrogen prices everyone sees: "Export-Local-Average"),
-    \item electricity demand of electrolysers on each node ($\rightarrow$ electricity prices which electrolysers see: "Export-orientated") and
-    \item electricity demand of all consumers except electrolysers ($\rightarrow$ electricity prices which local consumers see: "Local-orientated").
-\end{enumerate}
-
-These various types of weighted marginal prices are displayed in Figure \ref{fig:marginal_prices}. All four subfigures are based on the same scenarios which varies the hydrogen export volume from 0 - 200 TWh, and the emission reduction between 0 - 100\% resulting in 110 optimisation results per subfigure (cf. Sec. \ref{subsec:scenarios}).
-
-The Export-Local-Average electricity price (s. Fig. \ref{fig:export_local_el_price}):
-\begin{itemize}
-    \item Low prices at emissions below 20\%
-    \item Increasing electricity prices up to 60-70\%, then decreasing electricity prices (Battery kicking in and smoothing el_prices?)
-    \item When hydrogen export is above 1.5 fold of local electricity demand, the price decrease flattens out
-    \item Synergy in top right corner at high reduction and high export: lower prices here 
-\end{itemize}
-
-The Export-Local-Average hydrogen price (s. Fig. \ref{fig:export_local_hy_price}):
-\begin{itemize}
-    \item More export $\rightarrow$ higher prices
-    \item At 70-90\% reduction
-\end{itemize}
-
-The Local-orientated electricity price (s. Fig. \ref{fig:local_el_price}):
-\begin{itemize}
-    \item Low prices at emissions below 20\%, then increasing prices along the climate ambition dimension
-\end{itemize}
-
-The Export-orientated electricity price (s. Fig. \ref{fig:export_el_price}):
-\begin{itemize}
-    \item Opposite to local orientated electricity price: decrease of prices seen by electrolysers when increasing climate ambition. especially low at no export and 60-70\% reduction, then increasing again
-\end{itemize}
-
-
-Conclusions from these results:
-\begin{itemize}
-    \item at higher climate ambitions, the electricity prices for households increase but decrease for the export orientated electrolysers
-\end{itemize}
-
-\begin{figure*}[t] % Use 'figure*' to span both columns
-    \centering
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoe_w_20_filterFalse.pdf}
-        \caption{Export-Local-Average electricity price}
-        \label{fig:export_local_el_price}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_w_mixed_20_filterFalse.pdf}
-        \caption{Export-Local-Average hydrogen price}
-        \label{fig:export_local_hy_price}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_loce_w_no_electrolysis_20_filterFalse.pdf}
-        \caption{Local-orientated electricity price}
-        \label{fig:local_el_price}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_loce_w_electrolysis_20_filterFalse.pdf}
-        \caption{Export-orientated electricity price}
-        \label{fig:export_el_price}
-    \end{subfigure}
-    \hfill
-
-    \caption{Marginal prices of electricity and hydrogen subject to export volumes and emission limits depending on various weightings. Black lines indicate the lowest price at each emission limit.}
-    \label{fig:marginal_prices}
-\end{figure*}
-
-
-\subsection{Economic benefits for local consumers and exporting industry}
-\label{subsec:economic_benefits}
-
-\subsection{Integration challenges}
+\label{subsec:supply}
 \label{subsec:integration_challenges}
-Figure \ref{fig:diurnal} shows the diurnal residual load (electricity load minus solar PV and wind power generation) at 0 export and 0 - 90\% emission reduction. At high emission reductions, a high penetration of RE generation (especially solar PV) 
-leads to negative residual load at noon imposing great system integration challenges.
-These challenges are (partly) tackled by the expansion of battery storage and increasing curtailment rates of onshore wind and solar PV. At low export rates, the deployment of battery storage reduces the curtailment. Figure \ref{fig:integration_options}
-reveals that at increasing hydrogen export and high emission reduction both battery storage and curtailment are reduced, due to the synergy with export driven energy infrastructure and it's ability to integrate RE at large scale.
-This synergy is also displayed in Figure \ref{fig:export_local_el_price}, reflecting lower average electricity prices at high reduction and high export.
+\label{subsec:results_prices}
+\label{subsec:economic_benefits}
+\label{subsec:sensitivity}
+
+\subsection{Electricity supply}
+\label{subsec:supply}
+Figure \ref{fig:balances-ac-0exp} depicts the supply and demand of the electricity system at increasing climate mitigation ambitions from 0\% to 90\%. At low climate ambitions, the electricity demand is mainly covered by coal power, existing (brownfield) capacities of onshore wind, hydro, and CCGT play only a minor role. At increasing emissions reductions, coal power is phased out in favour of solar PV, furthermore a fuel switch from coal to gas (CCGT) is observable at increasing emission reductions. At 80-90\%, the electricity demand of electrolyzers increases significantly to supply hydrogen for a switch in the transport sector from (fossil) oil products to Fischer-Tropsch fuels, further reducing emissions. Additionally, the electricity demand for air heat pumps increases, supporting the defossilisation in the heating sector. This increase in electricity demand up to two times compared to the base electricity demand is mainly covered by solar PV, but additionally onshore wind plays a key role in the electricity system providing an almost fully renewable electricity sector at 90\% emission reduction.
+The electricity supply at increasing hydrogen exports is displayed in Figure ref{fig:supply}. As required in Section \ref{subsec:green_hydrogen_constraint}, the deployment of onshore wind and solar PV scales with the hydrogen export.
+
+% \begin{itemize}
+%     \item TBD: Story: coal power reduced (See appendix) At low climate ambition effort, coal gets phased out by high exports only! (But replaced by ocgt?)
+% \end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim={2cm 6.5cm 0 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/nresults_full_3H_ws/graphs-0exp/balances-AC.pdf}
+    \caption{Electricity supply and demand at 0 TWh export and 0 - 90\% emission reduction}
+    \label{fig:balances-ac-0exp}
+\end{figure}
+
+
+\subsection{Integration challenges and flexibility requirements}
+\label{subsec:integration_challenges}
+Section \ref{subsec:supply} points out the increasing penetration of REs at increasing emission reductions, the resulting integration challenges and flexibility requirements are summarized in Section \ref{subsec:integration_challenges}. The intermittent profile of solar PV (and onshore wind) are reflected in Figure \ref{fig:diurnal}, showing the diurnal residual load (electricity load minus solar PV and wind power generation) at 0 export and 0 - 90\% emission reduction. At high emission reductions, a high penetration of RE generation (especially solar PV) leads to negative residual loads at noon imposing great system integration challenges. These challenges are (partly) tackled by the expansion of battery storage and increasing curtailment rates of onshore wind and solar PV (s. Fig. \ref{fig:integration_options}) at emission reductions up to $70$\%. At an even higher reduction of $90$\%, the electrolyzers operating in a diurnal pattern reduce the negative residual loads significantly as shown in Figure \ref{fig:diurnal_exportdim}. This effect is even more pronounced at higher export levels. Figure \ref{fig:integration_options} reveals that at increasing hydrogen export and high emission reduction (above $70$\%) both battery storage and curtailment are reduced, due to the synergy with export driven hydrogen infrastructure and it's ability to integrate RE at large scale.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{graphics/rldc/rlc_diurnal_inclCurtTrue.pdf}
-    \caption{Diurnal residual load at 0 export and 0 - 90\% emission reduction}
+    \caption{Diurnal residual load at 0 TWh export and 0 - 90\% emission reduction}
     \label{fig:diurnal}
 \end{figure}
 
-\subsection{Sensitivity analysis}
-\label{subsec:sensitivity}
-Sensitivity analysis on:
-\begin{itemize}
-    \item WACC
-    \item Technology cost
-    \item Hourly resolution
-    \item Battery storage vs no battery storage
-\end{itemize}
+% Flexibility requirements
+Figure \ref{fig:integration_options} shows the installed capacities of battery and hydrogen storages. Both installations show a clear correlation with either the climate ambition or the export dimension. With higher climate ambitions, battery storages are deployment in larger scale at 60\% $\mathrm{CO_2}$ reduction and above, balancing the integration of variable REs (esp. solar PV). The hydrogen (underground) storages are deployed along the export dimension to buffer the hydrogen generation to meet the constant hydrogen export demand. At high climate ambition, the installed battery capacity reduces with higher export since the hydrogen storage additionally buffers daily generation patterns of Solar PV.
+% TBD: Proof that
+% TBD Revise this section to make it easier for the reader
 
+\subsection{Hydrogen export prices and local electricity prices}
+\label{subsec:results_prices}
+First, both the electricity and hydrogen prices are derived from the nodal power balance constraint, representing the prices in a "perfect" market. %\cite{Zeyen2022}.
+In a second step, these temporally and spatially resolved prices are weighted based on different consumptions in 3-hourly resolution to obtain a uniform, weighted marginal price of hydrogen and electricity of Morocco in each scenario. The weighted marginal prices are displayed in Figure \ref{fig:marginal_prices}. Both subfigures are based on the same scenarios which varies the hydrogen export volume from 0 - 200 TWh, and the emission reduction between 0 - 100\% resulting in 110 optimisation results per subfigure (s. Sec. \ref{subsec:scenarios}).
 
-% \subsection{Miscellaneous}
-% List of possible results and aspects worth looking at
+The average price of electricity for local consumers (s. Fig. \ref{fig:local_el_price}) is weighted based on the local electricity demand, hence the demand of all consumers excluding eletrolyzers. It shows low prices at emissions reductions below 20\%, then increasing prices along the $\mathrm{CO_2}$ reduction dimension. The low prices result from existing (brownfield) coal capacities, where the investment costs have already been written off and cheap operational expenditures of coal power plants (without carbon pricing) offer low electricity prices. The peak of electricity price is at low hydrogen export and 60\% emission reduction. At high emission reductions, the electricity price decreases with increasing hydrogen exports revealing a synergy of the hydrogen export and local energy system (observable in the top right corner of Figure \ref{fig:local_el_price}).
+
+The average price of hydrogen for export (s. Fig. \ref{fig:export_hy_price}) is weighted based on the hydrogen demand at the export node. Similar to the electricity price for local consumers, the hydrogen prices for export are low at emission reductions below 20\%. Going further along the emission reduction dimension, the hydrogen prices show an increasing trend up to 70\% emission reduction and a remarkable decline of prices afterwards. The decline of the price of hydrogen for export above 70\% aligns with the requirement of hydrogen and Fischer-Tropsch products for the local energy system as pointed out in Section \ref{subsec:supply}. %TBD provide further explaination why this happens
+When increasing the hydrogen exports, the price of hydrogen increases as well since the best solar PV and onshore wind potentials (high capacity factors) are exploited and the optimisation model deploys sites with less favourable conditions. 
+
 % \begin{itemize}
-%     \item Carbon intensity
-%     \begin{itemize}
-%         \item What is the carbon intensity for export and local consumption of the islanded scenario? 
-%         \item What is the carbon intensity of the integrated scenario?
-%         \item Compare with blue hydrogen (1 kgCO2/kgH2) and EU threshold for low-carbon gas (3 kgCO2/kgH2)
-%         \item Differnce between 2030 and 2050?
-%     \end{itemize}
+%     \item Increasing electricity prices up to $60$--$70$\%, then decreasing electricity prices 
+%     \item When hydrogen export is above 1.5 fold of local electricity demand, the price decrease flattens out
+%     \item Synergy in top right corner at high reduction and high export: lower prices here 
+%     \item Above 70\%: local hydrogen production ramps up as well. Until then: no benefit/synergy. Theory: Battery kicking in and smoothing el prices?
+% \end{itemize}
+
+\begin{figure*}[t] % Use 'figure*' to span both columns
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_loce_w_no_electrolysis_20_filterFalse.pdf}
+        \caption{Average price of electricity for local consumers}
+        \label{fig:local_el_price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_w_export_20_filterTrue.pdf}
+        \caption{Average price of hydrogen for export}
+        \label{fig:export_hy_price}
+    \end{subfigure}
+    \hfill
+    \caption{Marginal prices of electricity and hydrogen subject to export volumes and emission limits depending on various weightings. Black lines indicate the lowest price at each emission limit. Note: 0 export cut-off}
+    \label{fig:marginal_prices}
+\end{figure*}
+
+Both the price of electricity for local consumers and the price of hydrogen for export are subject to climate ambitions and hydrogen exports. The price of electricity for local consumers mainly depends on the climate ambition dimension (vertical lines in Figure \ref{fig:local_el_price}), whereas the price of hydrogen for export mainly depends on the export dimension (horizontal lines in Figure \ref{fig:export_hy_price}).
+
+% Weighting explaination:
+% \begin{enumerate}
+%     \item electricity consumption on each node ($\rightarrow$ electricity prices everyone sees: "Export-Local-Average"),
+%     \item hydrogen consumption on each node ($\rightarrow$ hydrogen prices everyone sees: "Export-Local-Average"),
+%     \item electricity demand of electrolysers on each node ($\rightarrow$ electricity prices which electrolysers see: "Export-orientated") and
+%     \item electricity demand of all consumers except electrolysers ($\rightarrow$ electricity prices which local consumers see: "Local-orientated").
+% \end{enumerate}
+
+
+\subsection{Electricity prices for local consumers and electrolyzers}
+\label{subsec:economic_benefits}
+Derived from the Figure \ref{fig:marginal_prices}, Figure \ref{fig:pricecut} disregards the export dimension and shows the weighted electricity prices for local consumers, electrolysers and average prices at an export volume of 100~TWh. It shows that at low emission reductions ($0$--$10$\%), both the prices for local consumers and electrolysers rise from $40$~\euro/MWh to approx. $50$~\euro/MWh. The higher the emission reduction from $10$\% onwards, the more both prices diverge. At high climate ambitions ($90$\%), the electricity price for local consumers is at $78$~\euro/MWh; $47$\% higher than the electricity price for electrolysers ($53$~\euro/MWh).
+
+The observed difference in weighted prices results from the operation of the energy system: The (non-weighted) price of electricity is cheaper when the electrolysers are running and more expensive when local industry and households are consuming electricity.
+% \begin{itemize}
+%     \item TBD: Why does this effect amplify at higher climate ambition?
+%     \item TBD: Reason could be: at 100 TWh hydrogen export, the export demand dominates hence from a total system cost it makes sense to favour electrolysers. BUT: at lower export volumes, this effect is even more pronounced.
+%     \item Visualize: AC prices heatmap, electrolyser heatmap, local demand heatmap. $\rightarrow$ the higher the climate ambition, the higher the correlation between AC prices and electrolysers should be
+% \end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/pricecuts/electricity100.pdf}
+    \caption{Weighted electricity prices for local consumers, electrolysers and average at 100 TWh export volume}
+    \label{fig:pricecut}
+\end{figure}
+
+% TBD: sensitivity analysis
+% \subsection{Sensitivity analysis}
+% \label{subsec:sensitivity}
+% Figure XX shows the sensitivity to exogenous parameters (WACC, technology cost, temporal resolution) (TBD).
+
+% No battery storage:
+% \begin{itemize}
+%     \item Slightly more hydrogen storage
+%     \item Lower capacity factor of electrolysers at low $\mathrm{CO_2}$ reductions
+%     \item More curtailment at low $\mathrm{CO_2}$ reductions and high export (massive wind curtailment $\rightarrow$ Due to green hydrogen constraint? Why is there so much excess wind?)
+% \end{itemize}
+
+% Sensitivity analysis on:
+% \begin{itemize}
+%     \item Weighted Average Cost of Capital (WACC)
+%     \item Technology cost
+%     \item Hourly resolution
+%     \item Battery storage vs no battery storage
 % \end{itemize}

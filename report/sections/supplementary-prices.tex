@@ -1,0 +1,59 @@
+% The Export-Local-Average electricity price (s. Fig. \ref{fig:export_local_el_price}):
+% \begin{itemize}
+%     \item Low prices at emissions below 20\%
+%     \item Increasing electricity prices up to $60$--$70$\%, then decreasing electricity prices (Battery kicking in and smoothing el prices?)
+%     \item When hydrogen export is above 1.5 fold of local electricity demand, the price decrease flattens out
+%     \item Synergy in top right corner at high reduction and high export: lower prices here 
+% \end{itemize}
+
+% The Export-Local-Average hydrogen price (s. Fig. \ref{fig:export_local_hy_price}):
+% \begin{itemize}
+%     \item More export $\rightarrow$ higher prices
+%     \item At 70-90\% reduction
+% \end{itemize}
+
+% The Local-orientated electricity price (s. Fig. \ref{fig:local_el_price}):
+% \begin{itemize}
+%     \item Low prices at emissions below 20\%, then increasing prices along the climate ambition dimension
+% \end{itemize}
+
+% The Export-orientated electricity price (s. Fig. \ref{fig:export_el_price}):
+% \begin{itemize}
+%     \item Opposite to local orientated electricity price: decrease of prices seen by electrolysers when increasing climate ambition. especially low at no export and 60-70\% reduction, then increasing again
+% \end{itemize}
+
+
+\begin{figure*}[t] % Use 'figure*' to span both columns
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoe_w_20_filterFalse.pdf}
+        \caption{Export-Local-Average electricity price}
+        \label{fig:export_local_el_price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_w_mixed_20_filterFalse.pdf}
+        \caption{Export-Local-Average hydrogen price}
+        \label{fig:export_local_hy_price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_loce_w_no_electrolysis_20_filterFalse.pdf}
+        \caption{Local-orientated electricity price}
+        \label{fig:local_el_price_appendix}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_loce_w_electrolysis_20_filterFalse.pdf}
+        \caption{Export-orientated electricity price}
+        \label{fig:export_el_price}
+    \end{subfigure}
+    \hfill
+
+    \caption{Marginal prices of electricity and hydrogen subject to export volumes and emission limits depending on various weightings. Black lines indicate the lowest price at each emission limit.}
+    \label{fig:prices_all}
+\end{figure*}

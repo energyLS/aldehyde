@@ -116,7 +116,7 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["cost"] #["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", "loce_w_electrolysis", "lcoe_w_no_electrolysis"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
+    type: ["pv_capex", "pv_p_nom_opt"] #["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", "loce_w_electrolysis", "lcoe_w_no_electrolysis"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
     levels: [20]
     show_minimums: True
     zerofilter: False # Filter out zero values of export and co2 reduction wildcards for plotting
@@ -140,6 +140,21 @@ plot:
       curtailmentrate_solar: "Curtailment rate of solar in %"
       curtailmentrate_wind: "Curtailment rate of wind in %"
       cf_electrolysis: "Capacity factor of electrolysis in %"
+      pv_capex: "Solar PV CAPEX in Mio. €"
+      pv_p_nom_opt: "Solar PV capacity in GW"
+      onshore_capex: "Onshore wind CAPEX in Mio. €"
+      onshore_p_nom_opt: "Onshore wind capacity in GW"
+      coal_capex: "Coal CAPEX in Mio. €"
+      coal_p_nom_opt: "Coal capacity in GW"
+      ccgt_capex: "CCGT CAPEX in Mio. €"
+      ccgt_p_nom_opt: "CCGT capacity in GW"
+      ror_capex: "Run-of-river CAPEX in Mio. €"
+      ror_p_nom_opt: "Run-of-river capacity in GW"
+      oil_capex: "Oil CAPEX in Mio. €"
+      oil_p_nom_opt: "Oil capacity in GW"
+      ocgt_capex: "OCGT CAPEX in Mio. €"
+      ocgt_p_nom_opt: "OCGT capacity in GW"
+
   
   spatial_plot:
     type: ["land-use"] #["p-nom-opt","p-nom-max","land-use"]

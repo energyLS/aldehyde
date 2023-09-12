@@ -31,6 +31,7 @@
 \usepackage{multirow}
 \usepackage{threeparttable}
 \usepackage{pdflscape}
+\usepackage[acronym]{glossaries}
 \usepackage[export]{adjustbox}
 \usepackage[version=4]{mhchem}
 \usepackage[colorlinks]{hyperref}
@@ -77,6 +78,7 @@
 \def\deg{${}^\circ$}
 
 
+
 \begin{document}
 
 \begin{frontmatter}
@@ -105,7 +107,7 @@
 	\end{abstract}
 
 	\begin{keyword}
-		Energy Transition, Co-Optimization, Hydrogen export, climate-neutral, Neo-colonialism
+		Energy Transition, Co-Optimization, Hydrogen export, climate-neutral, Neo-colonialism, Hydrogen prices
 	\end{keyword}
 
 	% \begin{graphicalabstract}
@@ -129,6 +131,11 @@
 
 \input{../report/sections/introduction.tex}
 
+\section{Hydrogen export strategy and climate targets}
+\label{subsec:policyandtargets}
+
+\input{../report/sections/strategies.tex}
+
 \section{Methods}
 \label{sec:methods}
 
@@ -139,15 +146,10 @@
 
 \input{../report/sections/results.tex}
 
-\section{Discussion}
+\section{Synergies and conflicts}
 \label{sec:discussion}
 
 \input{../report/sections/discussion.tex}
-
-\section{Integrated Policies for Synergy and Sustainability}
-\label{sec:policies}
-
-\input{../report/sections/policies.tex}
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -164,25 +166,25 @@ and Research [grant number: 03SF0703A].
 % \doclicenseLongText
 % \doclicenseIcon
 
-\section*{Author Contributions}
+% \section*{Author Contributions}
 
-% following https://casrai.org/credit/
+% % following https://casrai.org/credit/
 
-\textbf{Author XY}:
-Conceptualization --
-Data curation --
-Formal Analysis --
-Funding acquisition --
-Investigation --
-Methodology --
-Project administration --
-Resources --
-Software --
-Supervision --
-Validation --
-Visualization --
-Writing - original draft --
-Writing - review \& editing
+% \textbf{Author LS}:
+% Conceptualization --
+% Data curation --
+% Formal Analysis --
+% Funding acquisition --
+% Investigation --
+% Methodology --
+% Project administration --
+% Resources --
+% Software --
+% Supervision --
+% Validation --
+% Visualization --
+% Writing - original draft --
+% Writing - review \& editing
 
 
 \section*{Data and Code Availability}
@@ -217,6 +219,9 @@ The code to reproduce the experiments is available at \href{https://github.com/e
 \label{sec:si}
  
 \input{../report/sections/supplementary.tex}
+\input{../report/sections/supplementary-sensitivity.tex}
+\input{../report/sections/supplementary-supply.tex}
+\input{../report/sections/supplementary-prices.tex}
 
 \addcontentsline{toc}{section}{Supplementary References}
 \renewcommand{\ttdefault}{\sfdefault}
