@@ -23,7 +23,9 @@ def prepare_data(data, zerofilter=False):
     print(f"zerofiler is set to {zerofilter} or in boolean {bool(zerofilter)}")
     if zerofilter:
         print("Filtering data")
-        data = data[(data["h2export"] != 0) & (data["opts"] != "2.0")]
+        #data = data[(data["h2export"] != 0) & (data["opts"] != "2.0")]
+        data = data[(data["h2export"] != 0)]
+
     else:
         pass
 
