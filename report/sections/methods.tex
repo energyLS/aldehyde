@@ -6,7 +6,7 @@ Chapter \ref{sec:methods} describes the methods and data used in this study. Fir
 The sector-coupled energy model is based on PyPSA-Earth \cite{Parzen2023} and adds a sector extension similar to \cite{Brown2018a} using linear optimisation and overnight scenarios. This capacity extension model optimises the generation, transmission and storage capacities of Moroccos energy system by minimising the the total annualised system costs constrained by e.g. climate targets or green hydrogen policies (s. Sec. \ref{subsec:green_hydrogen_constraint}).
 
 \subsubsection{Energy demand}
-In a first step, the annual energy demand is obtained from \cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2035 is projected according to efficiency gains and activity growth rates similar to \cite{Mueller2023}.
+In a first step, the annual energy demand is obtained from \cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2035 is projected according to efficiency gains and activity growth rates similar to \cite{Muller2023}.
 In a second step, the annual and national energy demand is distributed according to the production sites of Morocco. % based on data of [TBD].
 In case of subsectors where no spatially resolved production sites are included/available (e.g. paper industry), the demand is distributed according to GDP. %(TBD: currently Population). 
 Third, the annual but locationally resolved energy demand is converted to hourly demands. In this study, a constant hourly demand of the industry and agriculture sector is assumed whereas electricity, heating, transport are temporally resolved based on time series derived from \cite{Brown2018a}. The resulting temporal and spatial energy demands of the sectors:
@@ -39,20 +39,20 @@ In addition to the time series, Atlite calculates land availabilities and linked
 \begin{figure*}[t]
     \centering
     \includegraphics[width=0.7\linewidth]{../graphics_general/MAR_brownfield_el.png}
-    \caption{Current capacities of electricity generation and distribution, obtained from \cite{Parzen2022} and visualization based on \cite{Hoersch2018}}
+    \caption{Current capacities of electricity generation and distribution, obtained from \cite{Parzen2022} and visualization based on \cite{Horsch2018}}
     \label{fig:MAR_brownfield}
 \end{figure*}
 
 
 \subsubsection{Conventional electricity generation}
-The conventional electricity generators are obtained from the \textit{powerplantmatching} tool \cite{Powerplantmatching2019}. \textit{Powerplantmatching} uses various input sources as OpenStreetMap, Global Energy Monitor, IRENA \cite{IRENA2022, OpenStreetMap, GlobalEnergyMonitor} to download, filter and merge the datasets. 
+The conventional electricity generators are obtained from the \textit{powerplantmatching} tool \cite{Powerplantmatching2019}. \textit{Powerplantmatching} uses various input sources as OpenStreetMap2022, Global Energy Monitor, IRENA \cite{IRENA2022, OpenStreetMap2022, GlobalEnergyMonitor} to download, filter and merge the datasets. 
 In this study, \textit{powerplantmatching} is applied to Morocco delivering the conventional power plants listed in Table \ref{tab:powerplants}. 
 %[TBD: Benchmark with national statistics]
 % Benchmark: S\&P Global Kraftwerksliste (used by Fraunhofer IEE), \cite[p. 26]{Ersoy2022} 
 
 
 \subsubsection{Electricity networks and gas pipelines}
-The electricity network is based on the PyPSA-Earth workflow using OpenStreetMap data \cite{OpenStreetMap2022} as presented in \cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build \cite{Parzen2023}. 
+The electricity network is based on the PyPSA-Earth workflow using OpenStreetMap2022 data \cite{OpenStreetMap2022} as presented in \cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build \cite{Parzen2023}. 
 The brownfield gas pipeline infrastructure of Morocco is not considered in this study. The Maghreb-Europe pipeline passing through Morocco is the only pipeline in operation but currently subject to political disputes \cite{Rachidi2022}. Further proposed projects are excluded due to insignificant capacity compared to Moroccos energy system (Tendrara LNG Terminal, 100 million cubic meters per year %\cite{GEM2023})
  or uncertain commissioning dates (Nigeria-Morocco Pipeline, start year 2046 \cite{GEM2023b}).
 % [TBD: Benchmark electricity network]
