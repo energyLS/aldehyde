@@ -16,12 +16,12 @@ scenario:
   simpl: # only relevant for PyPSA-Eur
   - ""
   clusters: # number of nodes in Europe, any integer between 37 (1 node per country-zone) and several hundred
-  - 10
+  - 4
   planning_horizons: # investment years for myopic and perfect; or costs year for overnight
   - 2030
   ll:
-  - "c1.0"
-  opts: ["Co2L2.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L0.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
+  - "c3.0"
+  opts: ["Co2L2.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L0.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10", "Co2L0.00"]
   # "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
   sopts: "3H"
   demand:
@@ -113,14 +113,13 @@ electricity:
     battery: 6
     H2: 168
 
-
 plot:
   contour_plot:
-    type: ["lcoh_w_export"]
+    type: ["lcoe_w"]
      #["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", "loce_w_electrolysis", "lcoe_w_no_electrolysis"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
     levels: [20]
     show_minimums: True
-    zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
+    zerofilter: False # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
       lcoh_system: "LCOH (system comp.) in €/MWh"
