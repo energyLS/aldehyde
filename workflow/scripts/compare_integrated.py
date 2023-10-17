@@ -209,6 +209,37 @@ if __name__ == "__main__":
             n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
         )
 
+
+        ### Implementation of generalized approach to get the weighted marginal price of buses
+        # Step 1: get buses
+        # Step 2: get demand at buses
+        # Step 3: get (weighted) marginal price at buses
+
+        
+        carriers = ["AC"] # Get the buses with these carriers
+        weighting_options = {"H2": [["Fischer-Tropsch", "inclusive"]],
+                             "AC": [["H2 Electrolysis", "exclusive"], 
+                                    ["H2 Electrolysis", "inclusive"]]
+                            }
+        for carrier in carriers:
+
+            # Step 1: get buses
+            buses = n.buses[n.buses.carrier == carrier].index
+
+            for opts in weighting_options[carrier]:
+                # Step 2: get demand at buses
+                demand = get_bus_demand(n, buses, opts[0], opts[1])
+
+                # Step 3: get (weighted) nodal marginal price at buses
+                marginals_nodal = (n.buses_t.marginal_price[buses] * demand).sum() / demand.sum()
+
+                # Step 4: Nodal weighted mean of marginal price
+                marginals = (marginals_nodal * demand.sum() / demand.sum().sum()).sum().round(2)
+
+        test_value = marginals
+
+
+##########################################
         # Get storage capacities
         H2_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus != "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
         Battery_GWh = n.stores[(n.stores.carrier=="battery")].e_nom_opt.sum() / 1e3 # in GWh
@@ -338,6 +369,7 @@ if __name__ == "__main__":
                         "electrolysis_p_nom_opt": [electrolysis_p_nom_opt],
                         "electrolysis_supply": [electrolysis_supply],
                         "electrolysis_capex": [electrolysis_capex],
+                        "test_value": [test_value],
                     }
                 ),
             ],
