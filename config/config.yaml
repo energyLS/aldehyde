@@ -115,7 +115,7 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["lcoe_w"]
+    type: ["pv_cf", "wind_cf"]
      #["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", "loce_w_electrolysis", "lcoe_w_no_electrolysis"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
     levels: [20]
     show_minimums: True
@@ -168,6 +168,15 @@ plot:
       oil_cf: "Oil capacity factor in %"
       ocgt_supply: "OCGT supply in TWh"
       ocgt_cf: "OCGT capacity factor in %"
+      ft_capex: "Fischer-Tropsch CAPEX in Mio. €"
+      ft_p_nom_opt: "Fischer-Tropsch capacity in GW"
+      ft_supply: "Fischer-Tropsch supply in TWh"
+      ft_cf: "Fischer-Tropsch capacity factor in %"
+      electrolysis_p_nom_opt: "Electrolysis capacity in GW"
+      electrolysis_supply: "Electrolysis supply in TWh"
+      electrolysis_capex: "Electrolysis CAPEX in Mio. €"
+
+      # TODO: marginals of ALL buses, len(n.buses.carrier.unique()) reveals 23 buses
 
   spatial_plot:
     type: ["land-use"] #["p-nom-opt","p-nom-max","land-use"]
