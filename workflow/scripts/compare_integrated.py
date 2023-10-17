@@ -224,8 +224,8 @@ if __name__ == "__main__":
         # Get base electricity demand
         el_base_demand = n.loads_t.p_set[n.loads[n.loads.carrier=="AC"].index].sum().sum()/1e6 * n.snapshot_weightings.generators[0]# in TWh
 
-        # Capacity factor electrolysis
-        cf_electrolysis = statistics.loc["Link", "H2 Electrolysis"].loc["Capacity Factor"].round(2)
+
+        
 
         # Get capacities and CAPEX in generation technologies
         pv_capex = statistics.loc["Generator", "Solar"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
@@ -262,6 +262,17 @@ if __name__ == "__main__":
         ocgt_p_nom_opt = statistics.loc["Link", "Open-Cycle Gas"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
         ocgt_supply = statistics.loc["Link", "Open-Cycle Gas"].loc["Supply"].sum() / 1e6 # in TWh
         ocgt_cf = statistics.loc["Link", "Open-Cycle Gas"].loc["Capacity Factor"].round(2)
+
+        ft_capex = statistics.loc["Link", "Fischer-Tropsch"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
+        ft_p_nom_opt = statistics.loc["Link", "Fischer-Tropsch"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        ft_supply = statistics.loc["Link", "Fischer-Tropsch"].loc["Supply"].sum() / 1e6 # in TWh
+        ft_cf = statistics.loc["Link", "Fischer-Tropsch"].loc["Capacity Factor"].round(2)
+
+        # Capacity factor electrolysis
+        cf_electrolysis = statistics.loc["Link", "H2 Electrolysis"].loc["Capacity Factor"].round(2)
+        electrolysis_p_nom_opt = statistics.loc["Link", "H2 Electrolysis"].loc["Optimal Capacity"].round(2) / 1e3 # in GW
+        electrolysis_supply = statistics.loc["Link", "H2 Electrolysis"].loc["Supply"].sum() / 1e6 # in TWh
+        electrolysis_capex = statistics.loc["Link", "H2 Electrolysis"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
 
 
         # Save the cost and lcoh in the array according to the h2export and opts values using concat function
@@ -320,6 +331,13 @@ if __name__ == "__main__":
                         "oil_cf": [oil_cf],
                         "ocgt_supply": [ocgt_supply],
                         "ocgt_cf": [ocgt_cf],
+                        "ft_capex": [ft_capex],
+                        "ft_p_nom_opt": [ft_p_nom_opt],
+                        "ft_supply": [ft_supply],
+                        "ft_cf": [ft_cf],
+                        "electrolysis_p_nom_opt": [electrolysis_p_nom_opt],
+                        "electrolysis_supply": [electrolysis_supply],
+                        "electrolysis_capex": [electrolysis_capex],
                     }
                 ),
             ],
