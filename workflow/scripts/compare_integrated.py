@@ -216,11 +216,14 @@ if __name__ == "__main__":
         # Step 3: get (weighted) marginal price at buses
 
         
-        carriers = ["AC"] # Get the buses with these carriers
-        weighting_options = {"H2": [["Fischer-Tropsch", "inclusive"]],
+        carriers = ["H2", "AC"] # Get the buses with these carriers
+        weighting_options = {"H2": [["Fischer-Tropsch", "inclusive"],
+                                    ["Fischer-Tropsch", "exclusive"],
+                                    [False, False]],
                              "AC": [["H2 Electrolysis", "exclusive"], 
                                     ["H2 Electrolysis", "inclusive"]]
                             }
+        marginals_df = pd.DataFrame(columns=[])
         for carrier in carriers:
 
             # Step 1: get buses
@@ -236,7 +239,14 @@ if __name__ == "__main__":
                 # Step 4: Nodal weighted mean of marginal price
                 marginals = (marginals_nodal * demand.sum() / demand.sum().sum()).sum().round(2)
 
+                # Get variable name  and save the marginal price in the dataframe
+                marginal_name = "mg_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5]
+                marginals_df[marginal_name] = [marginals]
+
+
         test_value = marginals
+        marginals_df
+        # Concat values
 
 
 ##########################################
@@ -375,6 +385,10 @@ if __name__ == "__main__":
             ],
             ignore_index=True,
         )
+        # Concat marginals df to metrics_df
+        metrics_df = pd.concat([metrics_df, marginals_df], axis=1)
+
+        print()
 
 
     # Save the cost file
