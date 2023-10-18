@@ -216,20 +216,29 @@ if __name__ == "__main__":
         # Step 3: get (weighted) marginal price at buses
 
         
-        carriers = ["H2", "AC"] # Get the buses with these carriers
-        weighting_options = {"H2": [["Fischer-Tropsch", "inclusive"],
-                                    ["Fischer-Tropsch", "exclusive"],
-                                    [False, False]],
+        carriers = ["H2"] # Get the buses with these carriers
+        weighting_options = {"H2": [["Fischer-Tropsch", "inclusive", False],
+                                    ["Fischer-Tropsch", "exclusive", False],
+                                    [False, False, "exportonly"],
+                                    [False, False, "noexport"],
+                                    [False, False, False],
+                                    ],
                              "AC": [["H2 Electrolysis", "exclusive"], 
-                                    ["H2 Electrolysis", "inclusive"]]
+                                    ["H2 Electrolysis", "inclusive"],
+                                    [False, False]],
                             }
         marginals_df = pd.DataFrame(columns=[])
         for carrier in carriers:
 
-            # Step 1: get buses
-            buses = n.buses[n.buses.carrier == carrier].index
-
             for w_opts in weighting_options[carrier]:
+                # Step 1: get buses with differentation for hydrogen export node
+                if (carrier == "H2") & (w_opts[2] == "exportonly"):
+                    buses = n.buses.index[n.buses.index == "H2 export bus"]
+                elif (carrier == "H2") & (w_opts[2] == "noexport"):
+                    buses = n.buses.index[(n.buses.index.str[-2:] == "H2")]
+                else:
+                    buses = n.buses[n.buses.carrier == carrier].index
+
                 # Step 2: get demand at buses
                 demand = get_bus_demand(n, buses, w_opts[0], w_opts[1])
 
@@ -240,7 +249,7 @@ if __name__ == "__main__":
                 marginals = (marginals_nodal * demand.sum() / demand.sum().sum()).sum().round(2)
 
                 # Get variable name  and save the marginal price in the dataframe
-                marginal_name = "mg_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5]
+                marginal_name = "mg_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5] + "_" + str(w_opts[2])
                 marginals_df[marginal_name] = [marginals]
 
 
