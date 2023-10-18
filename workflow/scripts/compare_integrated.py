@@ -226,9 +226,9 @@ if __name__ == "__main__":
             # Step 1: get buses
             buses = n.buses[n.buses.carrier == carrier].index
 
-            for opts in weighting_options[carrier]:
+            for w_opts in weighting_options[carrier]:
                 # Step 2: get demand at buses
-                demand = get_bus_demand(n, buses, opts[0], opts[1])
+                demand = get_bus_demand(n, buses, w_opts[0], w_opts[1])
 
                 # Step 3: get (weighted) nodal marginal price at buses
                 marginals_nodal = (n.buses_t.marginal_price[buses] * demand).sum() / demand.sum()
