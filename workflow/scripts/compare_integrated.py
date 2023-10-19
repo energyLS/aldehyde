@@ -10,17 +10,6 @@ import os
 import logging
 
 
-# def get_buses(n):
-#     # Get hydrogen buses
-#     buses_h_export = n.buses.index[n.buses.index == "H2 export bus"]
-#     buses_h_noexport = n.buses.index[(n.buses.index.str[-2:] == "H2")]
-#     buses_h_mixed = buses_h_noexport.append(buses_h_export)
-
-#     # Get electricity buses (no differentiation between export and no export, because there is no export bus for electricity)
-#     buses_e = n.buses.index[(n.buses.index.str[-2:] == "AC")]
-#     return buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
-
-
 def get_bus_demand(n, busname, carrier_limit=False, carrier_limit_integration=False):
     """Get the demand at a certain bus (includes stores/StorageUnits) based on the energy_balance() function
 
@@ -57,75 +46,6 @@ def get_bus_demand(n, busname, carrier_limit=False, carrier_limit_integration=Fa
 
     return demand.transpose()
 
-
-# def calc_notw_marginals(n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e):
-#     # Calculate the not weighted ("notw") marginal price of the hydrogen buses
-#     lcoh_notw_export = n.buses_t.marginal_price[buses_h_export].mean().mean().round(2)
-#     lcoh_notw_noexport = (
-#         n.buses_t.marginal_price[buses_h_noexport].mean().mean().round(2)
-#     )
-#     lcoh_notw_mixed = n.buses_t.marginal_price[buses_h_mixed].mean().mean().round(2)
-
-#     # Calculate the not weighted ("notw") marginal price of the electricity buses
-#     lcoe_notw = n.buses_t.marginal_price[buses_e].mean().mean().round(2)
-
-#     return lcoh_notw_export, lcoh_notw_noexport, lcoh_notw_mixed, lcoe_notw
-
-
-# def calc_weighted_marginals(
-#     n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
-# ):
-#     # Get the nodal weighted marginal price of the hydrogen buses: sum(Marginal price (t) * Abnahmenahmemenge (t)) / Abnahmemenge.sum() for each bus
-#     lcoh_w_noexport_nodal = (
-#         n.buses_t.marginal_price[buses_h_noexport] * demand_h_noexport
-#     ).sum() / demand_h_noexport.sum()
-#     lcoh_w_export_nodal = (
-#         n.buses_t.marginal_price[buses_h_export] * demand_h_export
-#     ).sum() / demand_h_export.sum()
-#     lcoh_w_mixed_nodal = (
-#         n.buses_t.marginal_price[buses_h_mixed] * demand_h_mixed
-#     ).sum() / demand_h_mixed.sum()
-
-#     # Also for electricity buses
-#     lcoe_w_nodal = (n.buses_t.marginal_price[buses_e] * demand_e).sum() / demand_e.sum()
-#     lcoe_w_electrolysis_nodal = (
-#         n.buses_t.marginal_price[buses_e] * demand_e_electrolysis
-#     ).sum() / demand_e_electrolysis.sum()
-#     lcoe_w_no_electrolysis_nodal = (
-#         n.buses_t.marginal_price[buses_e] * demand_e_no_electrolysis
-#     ).sum() / demand_e_no_electrolysis.sum()
-
-#     # Get the weighted mean of the nodal weighted marginal price of the hydrogen buses
-#     lcoh_w_noexport = (
-#         (
-#             lcoh_w_noexport_nodal
-#             * demand_h_noexport.sum()
-#             / demand_h_noexport.sum().sum()
-#         )
-#         .sum()
-#         .round(2)
-#     )
-#     lcoh_w_export = (
-#         (lcoh_w_export_nodal * demand_h_export.sum() / demand_h_export.sum().sum())
-#         .sum()
-#         .round(2)
-#     )
-#     lcoh_w_mixed = (
-#         (lcoh_w_mixed_nodal * demand_h_mixed.sum() / demand_h_mixed.sum().sum())
-#         .sum()
-#         .round(2)
-#     )
-
-#     # Also for electricity buses
-#     lcoe_w = (lcoe_w_nodal * demand_e.sum() / demand_e.sum().sum()).sum().round(2)
-#     lcoe_w_electrolysis = (
-#         lcoe_w_electrolysis_nodal * demand_e_electrolysis.sum() / demand_e_electrolysis.sum().sum()
-#     ).sum().round(2)
-#     lcoe_w_no_electrolysis = (
-#         lcoe_w_no_electrolysis_nodal * demand_e_no_electrolysis.sum() / demand_e_no_electrolysis.sum().sum()
-#     ).sum().round(2)
-
-#     return lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w, lcoe_w_electrolysis, lcoe_w_no_electrolysis
 
 
 if __name__ == "__main__":
@@ -181,37 +101,6 @@ if __name__ == "__main__":
 
         ############################################################
         # New approach to calculate the weighted marginal price of the hydrogen buses: sum(Marginal price (t) * demand (t)) / demand.sum() for each bus. Then, the weighted mean (based on demand again) of all buses is calculated.
-        # Abnahmemenge
-        # LCOH, LCOE // weighted, not weighted // export, no export, mixed
-
-        # buses_h_export, buses_h_noexport, buses_h_mixed, buses_e = get_buses(n)
-
-        # (
-        #     lcoh_notw_export,
-        #     lcoh_notw_noexport,
-        #     lcoh_notw_mixed,
-        #     lcoe_notw,
-        # ) = calc_notw_marginals(
-        #     n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
-        # )
-
-        # # Calculate the weighted ("w") marginal price of the hydrogen buses
-        # demand_h_export = get_bus_demand(n, buses_h_export)
-        # demand_h_noexport = get_bus_demand(n, buses_h_noexport)
-        # demand_h_mixed = get_bus_demand(n, buses_h_mixed)
-        # demand_e = get_bus_demand(n, buses_e)
-
-        # demand_e_electrolysis = get_bus_demand(n, buses_e, "H2 Electrolysis", "inclusive")
-        # demand_e_no_electrolysis = get_bus_demand(n, buses_e, "H2 Electrolysis", "exclusive")
-
-        # #lcoe_w = calc_weighted_marginals_new(
-
-        # lcoh_w_noexport, lcoh_w_export, lcoh_w_mixed, lcoe_w, lcoe_w_electrolysis, lcoe_w_no_electrolysis = calc_weighted_marginals(
-        #     n, buses_h_export, buses_h_noexport, buses_h_mixed, buses_e
-        # )
-
-
-        ### Implementation of generalized approach to get the weighted marginal price of buses
         # Step 1: get buses
         # Step 2: get demand at buses
         # Step 3: get (weighted) marginal price at buses
@@ -338,16 +227,6 @@ if __name__ == "__main__":
                             "opts": [opts],
                             "cost": [cost],
                             "lcoh_system": [lcoh.values[0]],
-                            "lcoh_notw_export": [lcoh_notw_export],
-                            "lcoh_notw_noexport": [lcoh_notw_noexport],
-                            "lcoh_notw_mixed": [lcoh_notw_mixed],
-                            "lcoe_notw": [lcoe_notw],
-                            "lcoh_w_export": [lcoh_w_export],
-                            "lcoh_w_noexport": [lcoh_w_noexport],
-                            "lcoh_w_mixed": [lcoh_w_mixed],
-                            "lcoe_w": [lcoe_w],
-                            "lcoe_w_electrolysis": [lcoe_w_electrolysis],
-                            "lcoe_w_no_electrolysis": [lcoe_w_no_electrolysis],
                             "H2_GWh": [H2_GWh],
                             "Battery_GWh": [Battery_GWh],
                             "H2export_GWh": [H2export_GWh],
@@ -397,15 +276,6 @@ if __name__ == "__main__":
             ],
             ignore_index=True,
         )
-        # Concat marginals df to metrics_df
-
-        print()
-
-
-        # metrics_df = pd.DataFrame({"h2export": [h2export],"opts": [opts],"cost": [cost],})
-
-        # metrics_df = pd.concat([metrics_df, marginals_df,], axis=1)
-
 
     # Save the cost file
     metrics_df.to_csv(snakemake.output.stats, index=False)
