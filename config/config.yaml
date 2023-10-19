@@ -115,7 +115,7 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["pv_cf", "wind_cf"]
+    type: ["mg_H2_False_False_all", "mg_H2_False_False_all", "mg_H2_False_False_exportonly", "mg_oil_False_False_all", "mg_gas_False_False_all", "mg_AC_False_False_all", "mg_AC_inclu_H2 El_all", "mg_AC_exclu_H2 El_all"] 
      #["cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", "loce_w_electrolysis", "lcoe_w_no_electrolysis"] #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
     levels: [20]
     show_minimums: True
@@ -175,6 +175,15 @@ plot:
       electrolysis_p_nom_opt: "Electrolysis capacity in GW"
       electrolysis_supply: "Electrolysis supply in TWh"
       electrolysis_capex: "Electrolysis CAPEX in Mio. €"
+      test_value: "Test value"
+      mg_H2_False_False_all: "Marginal price of hydrogen (all hydrogen nodes) in €/MWh"
+      mg_H2_False_False_exportonly: "Marginal price of hydrogen (export node) in €/MWh"
+      mg_oil_False_False_all: "Marginal price of oil (all oil nodes) in €/MWh"
+      mg_gas_False_False_all: "Marginal price of gas (all gas nodes) in €/MWh"
+      mg_AC_False_False_all: "Marginal price of electricity (all electricity nodes) in €/MWh"
+      mg_AC_inclu_H2 El_all: "Marginal (electrolysis) marginal price of electricity in €/MWh"
+      mg_AC_exclu_H2 El_all: "Marginal (no electrolysis) marginal price of electricity in €/MWh"
+      # "mg_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5] + "_" + str(w_opts[2])
 
       # TODO: marginals of ALL buses, len(n.buses.carrier.unique()) reveals 23 buses
 
