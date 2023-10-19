@@ -47,9 +47,13 @@ def get_bus_demand(n, busname, carrier_limit=False, carrier_limit_integration=Fa
         else:
             logging.error("carrier_limit_integration must be 'inclusive' or 'exclusive'")
 
-    # Filter for negative values and sum them up (note: may include stores/StorageUnits)
+    # Filter for negative values, filter out Stores/StorageUnits, filter out export links "H2" which are not in "H2 export buses", and sum them up. Inclues H2 pipeline
     demand = energy_balance_bus[energy_balance_bus < 0]
+    demand = demand[(demand.index.get_level_values(0) != "Store") & (demand.index.get_level_values(0) != "StorageUnit")]
+    demand = demand[(demand.index.get_level_values(1) != "H2") | (demand.index.get_level_values(3) == "H2 export bus")]
     demand = demand.groupby("bus").sum()
+
+    #only when demand.index.get_level_values(1) == "H2 export bus" dann wird gekickt
 
     return demand.transpose()
 
@@ -140,7 +144,7 @@ if __name__ == "__main__":
     # limit = 5
 
     # Loop over the networks and save the objective of the networks in array according to the h2export and opts wildcards
-    metrics_df = pd.DataFrame(columns=["h2export", "opts", "cost", "lcoh"])
+    metrics_df = pd.DataFrame(columns=["h2export", "opts", "cost"])
     cost0_df = pd.DataFrame(columns=["h2export", "opts", "cost"])
 
     for i in snakemake.input.networks:  # [0:limit]:
@@ -216,16 +220,18 @@ if __name__ == "__main__":
         # Step 3: get (weighted) marginal price at buses
 
         
-        carriers = ["H2"] # Get the buses with these carriers
-        weighting_options = {"H2": [["Fischer-Tropsch", "inclusive", False],
-                                    ["Fischer-Tropsch", "exclusive", False],
+        carriers = ["H2", "AC", "oil", "gas"] # Get the buses with these carriers
+        weighting_options = {"H2": [["Fischer-Tropsch", "inclusive", "all"],
+                                    ["Fischer-Tropsch", "exclusive", "all"],
                                     [False, False, "exportonly"],
                                     [False, False, "noexport"],
-                                    [False, False, False],
+                                    [False, False, "all"],
                                     ],
-                             "AC": [["H2 Electrolysis", "exclusive"], 
-                                    ["H2 Electrolysis", "inclusive"],
-                                    [False, False]],
+                             "AC": [["H2 Electrolysis", "exclusive", "all"], 
+                                    ["H2 Electrolysis", "inclusive", "all"],
+                                    [False, False, "all"]],
+                             "oil": [[False, False, "all"]],
+                             "gas": [[False, False, "all"]],
                             }
         marginals_df = pd.DataFrame(columns=[])
         for carrier in carriers:
@@ -233,17 +239,17 @@ if __name__ == "__main__":
             for w_opts in weighting_options[carrier]:
                 # Step 1: get buses with differentation for hydrogen export node
                 if (carrier == "H2") & (w_opts[2] == "exportonly"):
-                    buses = n.buses.index[n.buses.index == "H2 export bus"]
+                    buses_sel = n.buses.index[n.buses.index == "H2 export bus"]
                 elif (carrier == "H2") & (w_opts[2] == "noexport"):
-                    buses = n.buses.index[(n.buses.index.str[-2:] == "H2")]
+                    buses_sel = n.buses.index[(n.buses.index.str[-2:] == "H2")]
                 else:
-                    buses = n.buses[n.buses.carrier == carrier].index
+                    buses_sel = n.buses[n.buses.carrier == carrier].index
 
                 # Step 2: get demand at buses
-                demand = get_bus_demand(n, buses, w_opts[0], w_opts[1])
+                demand = get_bus_demand(n, buses_sel, w_opts[0], w_opts[1])
 
                 # Step 3: get (weighted) nodal marginal price at buses
-                marginals_nodal = (n.buses_t.marginal_price[buses] * demand).sum() / demand.sum()
+                marginals_nodal = (n.buses_t.marginal_price[buses_sel] * demand).sum() / demand.sum()
 
                 # Step 4: Nodal weighted mean of marginal price
                 marginals = (marginals_nodal * demand.sum() / demand.sum().sum()).sum().round(2)
@@ -251,11 +257,6 @@ if __name__ == "__main__":
                 # Get variable name  and save the marginal price in the dataframe
                 marginal_name = "mg_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5] + "_" + str(w_opts[2])
                 marginals_df[marginal_name] = [marginals]
-
-
-        test_value = marginals
-        marginals_df
-        # Concat values
 
 
 ##########################################
@@ -329,75 +330,81 @@ if __name__ == "__main__":
         metrics_df = pd.concat(
             [
                 metrics_df,
-                pd.DataFrame(
-                    {
-                        "h2export": [h2export],
-                        "opts": [opts],
-                        "cost": [cost],
-                        "lcoh_system": [lcoh.values[0]],
-                        "lcoh_notw_export": [lcoh_notw_export],
-                        "lcoh_notw_noexport": [lcoh_notw_noexport],
-                        "lcoh_notw_mixed": [lcoh_notw_mixed],
-                        "lcoe_notw": [lcoe_notw],
-                        "lcoh_w_export": [lcoh_w_export],
-                        "lcoh_w_noexport": [lcoh_w_noexport],
-                        "lcoh_w_mixed": [lcoh_w_mixed],
-                        "lcoe_w": [lcoe_w],
-                        "lcoe_w_electrolysis": [lcoe_w_electrolysis],
-                        "lcoe_w_no_electrolysis": [lcoe_w_no_electrolysis],
-                        "H2_GWh": [H2_GWh],
-                        "Battery_GWh": [Battery_GWh],
-                        "H2export_GWh": [H2export_GWh],
-                        "ratio_H2_Battery": [ratio_H2_Battery],
-                        "curtailmentrate_solar": [curtailmentrate_solar],
-                        "curtailmentrate_wind": [curtailmentrate_wind],
-                        "el_base_demand": [el_base_demand],
-                        "cf_electrolysis": [cf_electrolysis],
-                        "pv_capex": [pv_capex],
-                        "pv_p_nom_opt": [pv_p_nom_opt],
-                        "onshore_capex": [onshore_capex],
-                        "onshore_p_nom_opt": [onshore_p_nom_opt],
-                        "coal_capex": [coal_capex],
-                        "coal_p_nom_opt": [coal_p_nom_opt],
-                        "ccgt_capex": [ccgt_capex],
-                        "ccgt_p_nom_opt": [ccgt_p_nom_opt],
-                        "ror_capex": [ror_capex],
-                        "ror_p_nom_opt": [ror_p_nom_opt],
-                        "oil_capex": [oil_capex],
-                        "oil_p_nom_opt": [oil_p_nom_opt],
-                        "ocgt_capex": [ocgt_capex],
-                        "ocgt_p_nom_opt": [ocgt_p_nom_opt],
-                        "pv_supply": [pv_supply],
-                        "pv_cf": [pv_cf],
-                        "onshore_supply": [onshore_supply],
-                        "onshore_cf": [onshore_cf],
-                        "coal_supply": [coal_supply],
-                        "coal_cf": [coal_cf],
-                        "ccgt_supply": [ccgt_supply],
-                        "ccgt_cf": [ccgt_cf],
-                        "ror_supply": [ror_supply],
-                        "ror_cf": [ror_cf],
-                        "oil_supply": [oil_supply],
-                        "oil_cf": [oil_cf],
-                        "ocgt_supply": [ocgt_supply],
-                        "ocgt_cf": [ocgt_cf],
-                        "ft_capex": [ft_capex],
-                        "ft_p_nom_opt": [ft_p_nom_opt],
-                        "ft_supply": [ft_supply],
-                        "ft_cf": [ft_cf],
-                        "electrolysis_p_nom_opt": [electrolysis_p_nom_opt],
-                        "electrolysis_supply": [electrolysis_supply],
-                        "electrolysis_capex": [electrolysis_capex],
-                        "test_value": [test_value],
-                    }
-                ),
+                pd.concat([
+                    marginals_df,
+                    pd.DataFrame(
+                        {
+                            "h2export": [h2export],
+                            "opts": [opts],
+                            "cost": [cost],
+                            "lcoh_system": [lcoh.values[0]],
+                            "lcoh_notw_export": [lcoh_notw_export],
+                            "lcoh_notw_noexport": [lcoh_notw_noexport],
+                            "lcoh_notw_mixed": [lcoh_notw_mixed],
+                            "lcoe_notw": [lcoe_notw],
+                            "lcoh_w_export": [lcoh_w_export],
+                            "lcoh_w_noexport": [lcoh_w_noexport],
+                            "lcoh_w_mixed": [lcoh_w_mixed],
+                            "lcoe_w": [lcoe_w],
+                            "lcoe_w_electrolysis": [lcoe_w_electrolysis],
+                            "lcoe_w_no_electrolysis": [lcoe_w_no_electrolysis],
+                            "H2_GWh": [H2_GWh],
+                            "Battery_GWh": [Battery_GWh],
+                            "H2export_GWh": [H2export_GWh],
+                            "ratio_H2_Battery": [ratio_H2_Battery],
+                            "curtailmentrate_solar": [curtailmentrate_solar],
+                            "curtailmentrate_wind": [curtailmentrate_wind],
+                            "el_base_demand": [el_base_demand],
+                            "cf_electrolysis": [cf_electrolysis],
+                            "pv_capex": [pv_capex],
+                            "pv_p_nom_opt": [pv_p_nom_opt],
+                            "onshore_capex": [onshore_capex],
+                            "onshore_p_nom_opt": [onshore_p_nom_opt],
+                            "coal_capex": [coal_capex],
+                            "coal_p_nom_opt": [coal_p_nom_opt],
+                            "ccgt_capex": [ccgt_capex],
+                            "ccgt_p_nom_opt": [ccgt_p_nom_opt],
+                            "ror_capex": [ror_capex],
+                            "ror_p_nom_opt": [ror_p_nom_opt],
+                            "oil_capex": [oil_capex],
+                            "oil_p_nom_opt": [oil_p_nom_opt],
+                            "ocgt_capex": [ocgt_capex],
+                            "ocgt_p_nom_opt": [ocgt_p_nom_opt],
+                            "pv_supply": [pv_supply],
+                            "pv_cf": [pv_cf],
+                            "onshore_supply": [onshore_supply],
+                            "onshore_cf": [onshore_cf],
+                            "coal_supply": [coal_supply],
+                            "coal_cf": [coal_cf],
+                            "ccgt_supply": [ccgt_supply],
+                            "ccgt_cf": [ccgt_cf],
+                            "ror_supply": [ror_supply],
+                            "ror_cf": [ror_cf],
+                            "oil_supply": [oil_supply],
+                            "oil_cf": [oil_cf],
+                            "ocgt_supply": [ocgt_supply],
+                            "ocgt_cf": [ocgt_cf],
+                            "ft_capex": [ft_capex],
+                            "ft_p_nom_opt": [ft_p_nom_opt],
+                            "ft_supply": [ft_supply],
+                            "ft_cf": [ft_cf],
+                            "electrolysis_p_nom_opt": [electrolysis_p_nom_opt],
+                            "electrolysis_supply": [electrolysis_supply],
+                            "electrolysis_capex": [electrolysis_capex],
+                        }
+                    ),
+                ], axis=1),
             ],
             ignore_index=True,
         )
         # Concat marginals df to metrics_df
-        metrics_df = pd.concat([metrics_df, marginals_df], axis=1)
 
         print()
+
+
+        # metrics_df = pd.DataFrame({"h2export": [h2export],"opts": [opts],"cost": [cost],})
+
+        # metrics_df = pd.concat([metrics_df, marginals_df,], axis=1)
 
 
     # Save the cost file
