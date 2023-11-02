@@ -17,7 +17,8 @@ Third, the annual but locationally resolved energy demand is converted to hourly
     \item Transport (incl. aviation and shipping) and
     \item Agriculture
 \end{itemize}
-are integrated in the sector coupled energy model.
+are integrated in the sector coupled energy model. The inland energy demand per sector remains constant throughout the scenarios (s. Sec. \ref{subsec:scenarios}), regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, to account for increasing shares of battery electric vehicles (BEV) in the Moroccan energy system, the share of BEV's is linked to the emission reduction ambitions (s. Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% emission reduction in line with \cite{Rim2021}.
+
 % TBD: Benchmark: Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
 % TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
 % See also: \cite{Bennouna2016} for energy demand in Morocco
@@ -65,18 +66,24 @@ The brownfield gas pipeline infrastructure of Morocco is not considered in this 
 Following the workflow of \cite{Parzen2023}, Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution of Morocco. Based on this brownfield electricity system, the sector-coupled energy model allows the capacity expansion of storages, (electricity networks), hydrogen pipelines, renewable and conventional generators.
 
 
-% \subsection{Water supply}
-% \label{subsec:water_supply}
-% Water supply is a crucial input for the electrolysis process. 
-% Morocco: 88 \% of water is used in agriculture, secondary source \cite{Ersoy2022}.
-% Transfer of water from North to South is planned, secondary source \cite{Ersoy2022}.
-% Ideas:
-% \begin{itemize}
-%     \item Detailed water analysis in HyPat: Topography $\rightarrow$ water pumps, etc. See results in Figure \ref{fig:morocco_water}
-%     \item Oversize water desalination to provide water for local population/agriculture to increase public acceptance
-%     \item Direct Air Capture (DAC): Water is a product of DAC process which could be reused for electrolysis
-%     \item Direct electrolysis of seawater: In development but probably not on big scale in the next 10-15 years
-% \end{itemize}
+\subsection{Water supply}
+\label{subsec:water_supply}
+Water supply is a crucial input for the electrolysis process. 
+Morocco: 88 \% of water is used in agriculture, secondary source \cite{Ersoy2022}.
+Transfer of water from North to South is planned, secondary source \cite{Ersoy2022}.
+"seawater desalination"
+Ideas:
+\begin{itemize}
+    \item Detailed water analysis in HyPat: Topography $\rightarrow$ water pumps, etc. See results in Figure \ref{fig:morocco_water}
+    \item Oversize water desalination to provide water for local population/agriculture to increase public acceptance
+    \item Direct Air Capture (DAC): Water is a product of DAC process which could be reused for electrolysis
+    \item Direct electrolysis of seawater: In development but probably not on big scale in the next 10-15 years
+\end{itemize}
+
+Literature:
+\begin{itemize}
+    \item \cite{Tonelli2023}
+\end{itemize}
 
 
 \subsection{Green hydrogen policy}
