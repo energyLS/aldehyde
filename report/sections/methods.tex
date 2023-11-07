@@ -68,23 +68,20 @@ Following the workflow of \cite{Parzen2023}, Figure \ref{fig:MAR_brownfield} sho
 
 \subsection{Water supply}
 \label{subsec:water_supply}
-Water supply is a crucial input for the electrolysis process. 
-Morocco: 88 \% of water is used in agriculture, secondary source \cite{Ersoy2022}.
-Transfer of water from North to South is planned, secondary source \cite{Ersoy2022}.
-"seawater desalination"
-Ideas:
-\begin{itemize}
-    \item Detailed water analysis in HyPat: Topography $\rightarrow$ water pumps, etc. See results in Figure \ref{fig:morocco_water}
-    \item Oversize water desalination to provide water for local population/agriculture to increase public acceptance
-    \item Direct Air Capture (DAC): Water is a product of DAC process which could be reused for electrolysis
-    \item Direct electrolysis of seawater: In development but probably not on big scale in the next 10-15 years
-\end{itemize}
+Hydrogen production through electrolysis requires fresh water, alternatives as the direct use of high saline water sources are still in the experimental stages \cite{Tong2020}. The depletion of freshwater resources and it's competition with other water uses is a concern, especially in regions such as Morocco where water is extensively utilised in agriculture \cite{Ersoy2022}. %TODO look for primary source here
+Sea Water Reverse Osmosis (SWRO) emerges as a feasible solution to address this issue. In this model, the additional water cost of 0.80 €/m3 through desalination and transport is considered in line with the base scenario for Morocco in 2030 in \cite{Caldera2020}. These findings are comparable to \cite{Kettani2020} and \cite{Caldera2016} stating the water costs of 1\$/$m^3$ resp. 0.60 - 1.50 €/m3 for Morocco in 2030. Given a water demand of 9~$m^3/kg_{hydrogen}$
+\cite{Hampp2023}, the additional costs for electrolysers result in 0.216~$MWh/kg_{hydrogen}$ (LHV).
 
-Literature:
-\begin{itemize}
-    \item \cite{Tonelli2023}
-\end{itemize}
+However, the challenge of brine disposal presents environmental concerns due to treatment chemicals and high salinity as discussed by \cite{Thomann2022, Dresp2019, Tonelli2023} that require a careful site selection of desalination plants. A minimum distance of four kilometers from marine protected areas is recommended in \cite{Thomann2022}.
 
+% Further ideas:
+% \begin{itemize}
+%     \item Detailed water analysis in HyPat: Topography $\rightarrow$ water pumps, etc. See results in Figure \ref{fig:morocco_water}, working paper planned
+%     \item Oversize water desalination to provide water for local population/agriculture to increase public acceptance
+%     \item Direct Air Capture (DAC): Water is a product of DAC process which could be reused for electrolysis
+%     \item Morocco: 88 \% of water is used in agriculture, secondary source \cite{Ersoy2022}.
+%     \item Transfer of water from North to South is planned, secondary source \cite{Ersoy2022}.
+% \end{itemize}
 
 \subsection{Green hydrogen policy}
 \label{subsec:green_hydrogen_constraint}
