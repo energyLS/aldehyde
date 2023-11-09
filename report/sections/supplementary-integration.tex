@@ -1,7 +1,7 @@
 
-\section{Integration challenges}
+\section{Variable Renewable Energy Integration}
 
-\subsection{Variable Renewable Energy Integration}
+\subsection{Residual load curves}
 
 Figure \ref{fig:diurnal_exportdim} displays..
 
@@ -32,3 +32,44 @@ Figure \ref{fig:diurnal_exportdim} displays..
     Each column represents different climate ambitions (10 - 90\% emission reduction)}
     \label{fig:diurnal_exportdim}
 \end{figure*}
+
+
+\subsection{Flexibility options}
+Figure \ref{fig:integration_options} displays the deployment of battery and hydrogen storage as well as curtailment.
+
+\begin{figure*}[h] % Use 'figure*' to span both columns
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_curtailmentrate_solar_20_filterFalse.pdf}
+        \caption{Solar PV curtailment}
+        \label{fig:solar_curt}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_curtailmentrate_wind_20_filterFalse.pdf}
+        \caption{Wind curtailment}
+        \label{fig:wind_curt}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_Battery_GWh_20_filterFalse.pdf}
+        \caption{Battery storage capacity}
+        \label{fig:battery_cap}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_H2_GWh_20_filterFalse.pdf}
+        \caption{Hydrogen storage capacity}
+        \label{fig:hystorage_cap}
+    \end{subfigure}
+    \hfill
+
+    \caption{Curtailment rates and storage capacities}
+    \label{fig:integration_options}
+\end{figure*}
+
+\clearpage
