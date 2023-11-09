@@ -200,6 +200,7 @@ The code to reproduce the experiments is available at \href{https://github.com/e
 % supplementary information
 
 \newpage
+\onecolumn
 
 \makeatletter
 \renewcommand \thesection{S\@arabic\c@section}
@@ -213,12 +214,17 @@ The code to reproduce the experiments is available at \href{https://github.com/e
 \setcounter{section}{0}
 
 
-\section{Supplementary Information}
+\section*{Supplementary Information}
 \label{sec:si}
- 
+
+\input{../report/sections/supplementary-demand.tex}
+
+\input{../report/sections/supplementary-supply.tex}
+\input{../report/sections/supplementary-integration.tex}
+\input{../report/sections/supplementary-operation.tex}
 \input{../report/sections/supplementary.tex}
 \input{../report/sections/supplementary-sensitivity.tex}
-\input{../report/sections/supplementary-supply.tex}
+
 \input{../report/sections/supplementary-prices.tex}
 
 \addcontentsline{toc}{section}{Supplementary References}
