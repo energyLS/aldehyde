@@ -1,0 +1,28 @@
+\section{Green hydrogen constraint}
+
+Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0 - 200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint.
+
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l2.0-only/graphs/balances-AC.pdf}
+        \caption{Electricity balance with green hydrogen constraint}
+        \label{fig:balances_AC_monthlymatch}
+    \end{subfigure}
+    
+    \vspace{0.5cm} % Add vertical space between the subfigures
+    
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/graphs/balances-AC.pdf}
+        \caption{Electricity balance without green hydrogen constraint}
+        \label{fig:balances_AC_nogreen}
+    \end{subfigure}
+    
+    \caption{Electricity balance ramp up from 0 - 200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint}
+    \label{fig:barplotscons}
+\end{figure}
+
+\clearpage
