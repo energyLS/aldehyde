@@ -39,7 +39,7 @@ In addition to the time series, Atlite calculates land availabilities and linked
 
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=0.7\linewidth]{../graphics_general/MAR_brownfield_el.png}
+    \includegraphics[width=0.7\linewidth]{../graphics_general/brownfield_capacities_mar_el.pdf}
     \caption{Current capacities of electricity generation and distribution, obtained from \cite{Parzen2022} and visualization based on \cite{Horsch2018}}
     \label{fig:MAR_brownfield}
 \end{figure*}
@@ -149,8 +149,8 @@ The energy system model allows an endogenous spatial export decision, meaning th
 \label{subsec:scenarios}
 To examine the conflicts and synergies of hydrogen export and national energy transition, we sweep along two dimensions:
 \begin{enumerate}
-    \item The hydrogen export volume varies from 0 - 200 TWh, going beyond Moroccos hydrogen export ambitions of 114.7~TWh (s. Sec. \ref{subsec:policyandtargets}) and
     \item the (energy and non-energy) emission reduction between 0 - 100\% based on Morocco's current emissions of 72 MtCO2e (s. Sec. \ref{subsec:policyandtargets}).
+    \item The hydrogen export volume varies from 0 - 200 TWh, going beyond Moroccos hydrogen export ambitions of 114.7~TWh (s. Sec. \ref{subsec:policyandtargets}) and
 \end{enumerate}
 This two-dimensional scenario space leads to 110 model runs. 
 A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with its diurnal and seasonal variations in energy supply and demand. A similar study \cite{Neumann2022} finds minor underestimation of short-term battery storage and onshore wind and minor overestimation of solar photovoltaics and hydrogen storage compared to an hourly resolution, overall justifying the reduction of the model size. A high spatial resolution of 53 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, a high spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 53 nodes align with the GADM (Global Administrative Areas) regions, policy advisement can be tailored to specific regions considering local needs and constraints.
