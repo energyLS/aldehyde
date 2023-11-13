@@ -33,15 +33,11 @@ Additionally, the electricity demand for air heat pumps increases, supporting th
 \subsection{Dimension 2: Increasing hydrogen export volume}
 \label{subsec:increase_h2}
 
-The electricity supply at increasing hydrogen exports is displayed in Figure \ref{fig:balances-ac-co2l20}. The deployment of hydrogen exports requires a scale up of onshore wind and solar PV accordingly, as defined by the green hydrogen constraint (\ref{subsec:green_hydrogen_constraint}).
+The electricity supply at increasing hydrogen exports is displayed in Figure \ref{fig:balances-ac-co2l20}. The deployment of hydrogen exports requires a scale up of onshore wind and solar PV accordingly, as defined by the green hydrogen constraint (s. Sec. \ref{subsec:green_hydrogen_constraint}).
 Without the green hydrogen constraint, the additional electricity demand of hydrogen exports would be covered by coal power plants and CCGT (by increasing the capacity factor of existing brownfield coal and CCGT capacities) and an expansion of OCGT installation and supply as pointed out in Section \ref{subsec:gh_constraint_effects}.
 In contrast to the expontential increase of electricity demand observable at increasing climate mitigation ambitions (s. Fig. \ref{fig:balances-ac-0exp}), the electricity demand increases linearly with the hydrogen export ambitions.
 
-% - Ref to supplementary and the effect of green hydrogen constraint -> Role of storage here? -> New run without gh constraint and check storage
-
-
-
-
+% TODO Ref to supplementary and the effect of green hydrogen constraint -> Role of storage here? -> New run without gh constraint and check storage
 
 
 \begin{figure}[h!]
@@ -54,19 +50,38 @@ In contrast to the expontential increase of electricity demand observable at inc
 
 \subsection{Integration challenges and flexibility requirements}
 \label{subsec:integration_challenges}
-Section \ref{subsec:supply} points out the increasing penetration of REs at increasing emission reductions, the resulting integration challenges and flexibility requirements are summarized in Section \ref{subsec:integration_challenges}. The intermittent profile of solar PV (and onshore wind) are reflected in Figure \ref{fig:diurnal}, showing the diurnal residual load (electricity load minus solar PV and wind power generation) at 0 export and 0 - 100\% emission reduction. At high emission reductions, a high penetration of RE generation (especially solar PV) leads to negative residual loads at noon imposing great system integration challenges. These challenges are (partly) tackled by the expansion of battery storage and increasing curtailment rates of onshore wind and solar PV (s. Fig. \ref{fig:integration_options}) at emission reductions up to $70$\%. At an even higher reduction of $100$\%, the electrolyzers operating in a diurnal pattern reduce the negative residual loads significantly as shown in Figure \ref{fig:diurnal_exportdim}. This effect is even more pronounced at higher export levels. Figure \ref{fig:integration_options} reveals that at increasing hydrogen export and high emission reduction (above $70$\%) both battery storage and curtailment are reduced, due to the synergy with export driven hydrogen infrastructure and it's ability to integrate RE at large scale.
+
+The ramp-up of variable renewable energies required for meeting emission limits (s. Sec. \ref{subsec:increase_limit}) and hydrogen export targets (s. Sec. \ref{subsec:increase_h2}) poses variable renewable integration challenges and flexibility requirements.
+The intermittent profile of solar PV (and onshore wind) is reflected in Figure \ref{fig:diurnal}, showing the diurnal residual load (electricity load minus solar PV and wind power generation) at 0 export and 0 - 100\% emission reduction. At high emission reductions, a high penetration of RE generation (especially solar PV) leads to negative residual loads at noon imposing great system integration challenges. 
+Increasing hydrogen exports and variable renewable energies accordingly leads to similar integration challenges (s. Fig. \ref{fig:diurnal_exportdim}).
+
+On the electricity system level, these flexibility requirements are provided by (EV) batteries and curtailment of onshore wind and solar PV (s. Fig. \ref{fig:integration_options}). %(TODO show EV batteries in appendix)
+The main drivers of increasing capacities of variable renewable energies (hydrogen export and climate ambition) are also the requiring the expansion of a hydrogen infrastructure providing additional flexibility to the electricity system. Hydrogen electrolysis is the link and enabler of additional flexibility by coupling the energy carriers electricity and hydrogen (unidirectional), displayed in Figure \ref{fig:electrolysis_p_nom_opt}. The electrolysis capacity shows a clear correlation with either the climate ambition or the export dimension. The capacity increases only slightly up to 60\% of $\mathrm{CO_2}$ reduction because the carbon emission abatement is mainly achieved in the electricity sector by phasing out carbon-intensive energy carriers as pointed out in Section \ref{subsec:increase_limit}. A further increase of the carbon limit is achieved by DAC and Fischer-Tropsch fuels, for which hydrogen (and hence electrolysis capacity) is necessary. At increasing hydrogen exports, the electrolyser capacity increases accordingly (s. Fig. \ref{fig:electrolysis_p_nom_opt}).
+
+The export-driven and climate-driven hydrogen infrastructure provides the ability to integrate RE at large scale, mainly due to the deployment of hydrogen storage (s. Fig. \ref{fig:integration_options}) buffering the daily generation patterns of Solar PV (for daily patterns see Figure \ref{fig:operation-ely-ft}).
+
+
+% SOLUTIONS
+% - Battery 
+% - Battery BEV (no graph yet)
+% - Hydrogen storage
+% - Curtailment
+% These challenges are (partly) tackled by the expansion of battery storage and increasing curtailment rates of onshore wind and solar PV (s. Fig. \ref{fig:integration_options}) at emission reductions up to $70$\%. 
+
+% Figure \ref{fig:integration_options} reveals that at increasing hydrogen export and high emission reduction (above $70$\%) both battery storage and curtailment are reduced, due to the synergy with export driven hydrogen infrastructure and it's ability to integrate RE at large scale.
+
+% Flexibility requirements
+% Figure \ref{fig:integration_options} shows the installed capacities of battery and hydrogen storages. Both installations show a clear correlation with either the climate ambition or the export dimension. With higher climate ambitions, battery storages are deployment in larger scale at 60\% $\mathrm{CO_2}$ reduction and above, balancing the integration of variable REs (esp. solar PV). The hydrogen (underground) storages are deployed along the export dimension to buffer the hydrogen generation to meet the constant hydrogen export demand. At high climate ambition, the installed battery capacity reduces with higher export since the hydrogen storage additionally buffers daily generation patterns of Solar PV.
+
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{graphics/rldc/rlc_diurnal_inclCurtTrue.pdf}
-    \caption{Diurnal residual load at 0 TWh export and 0 - 100\% emission reduction}
-    \label{fig:diurnal}
+    \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_electrolysis_p_nom_opt_20_filterFalse.pdf}
+    \caption{Capacity of electrolyzers}
+    \label{fig:electrolysis_p_nom_opt}
 \end{figure}
 
-% Flexibility requirements
-Figure \ref{fig:integration_options} shows the installed capacities of battery and hydrogen storages. Both installations show a clear correlation with either the climate ambition or the export dimension. With higher climate ambitions, battery storages are deployment in larger scale at 60\% $\mathrm{CO_2}$ reduction and above, balancing the integration of variable REs (esp. solar PV). The hydrogen (underground) storages are deployed along the export dimension to buffer the hydrogen generation to meet the constant hydrogen export demand. At high climate ambition, the installed battery capacity reduces with higher export since the hydrogen storage additionally buffers daily generation patterns of Solar PV.
-% TBD: Proof that
-% TBD Revise this section to make it easier for the reader
+
 
 \subsection{Hydrogen export prices and local electricity prices}
 \label{subsec:results_prices}
