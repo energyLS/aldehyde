@@ -74,12 +74,26 @@ The export-driven and climate-driven hydrogen infrastructure provides the abilit
 % Figure \ref{fig:integration_options} shows the installed capacities of battery and hydrogen storages. Both installations show a clear correlation with either the climate ambition or the export dimension. With higher climate ambitions, battery storages are deployment in larger scale at 60\% $\mathrm{CO_2}$ reduction and above, balancing the integration of variable REs (esp. solar PV). The hydrogen (underground) storages are deployed along the export dimension to buffer the hydrogen generation to meet the constant hydrogen export demand. At high climate ambition, the installed battery capacity reduces with higher export since the hydrogen storage additionally buffers daily generation patterns of Solar PV.
 
 
-\begin{figure}[h!]
+
+\begin{figure*}[h!] % Use 'figure*' to span both columns
     \centering
-    \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_electrolysis_p_nom_opt_20_filterFalse.pdf}
-    \caption{Capacity of electrolyzers}
-    \label{fig:electrolysis_p_nom_opt}
-\end{figure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_electrolysis_p_nom_opt_20_filterFalse.pdf}
+        \caption{Capacity of electrolyzers}
+        \label{fig:electrolysis_p_nom_opt}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterFalse.pdf}
+        \caption{Capacity factor of electrolysis}
+        \label{fig:cf-ely}
+    \end{subfigure}
+    \hfill
+    \caption{Marginal prices of electricity and hydrogen subject to export volumes and emission limits depending on various weightings. Black lines indicate the lowest price at each emission limit. Note: 0 export cut-off}
+    \label{fig:marginal_prices}
+\end{figure*}
 
 
 
@@ -97,12 +111,17 @@ The average price of electricity for local consumers (s. Fig. \ref{fig:local_el_
 % Hydrogen price
 The average price of hydrogen for export (s. Fig. \ref{fig:export_hy_price}) is weighted based on the hydrogen demand at the export nodes.
 At low export volumes of 20 TWh and carbon reductions $<40$ \%, low prices are observable. In these scenarios, the hydrogen demand is comparably low (low hydrogen export, no Fischer-Tropsch demand), hence the electrolysers can run at a high capacity factor above 90\% and utilize their capital-intensive investments (s. Fig. \ref{fig:cf-ely-ft}). % TODO: why does low hydrogen demand mean high CF?
-Increasing the hydrogen export volumes leads to higher hydrogen prices since the additionally required electrolysers capacity runs at lower capacity factors falling to below 60\% (s. Fig. \ref{fig:cf-ely-ft}).
+Going further along the emission reduction dimension, the hydrogen prices show an increasing trend.
 
-The hydrogen prices for export are low at emission reductions below 20\%. 
+Increasing the hydrogen export volumes leads to higher hydrogen prices since the additionally required electrolysers capacity runs at lower capacity factors falling to below 60\% (s. Fig. \ref{fig:cf-ely-ft}). At low emission reductions and high hydrogen exports, the effect of increasing hydrogen prices flattens out. The energy system is dominated by the hydrogen export infrastructure. A further increase of hydrogen exports 
+would push the system towards it's wind onshore and solar PV potential limits, forced to use less favourable renewable energy sites (lower capacity factors). % TODO get proof for this by simulating high export scenarios
 
-Going further along the emission reduction dimension, the hydrogen prices show an increasing trend up to 70\% emission reduction and a remarkable decline of prices afterwards. The decline of the price of hydrogen for export above 70\% aligns with the requirement of hydrogen and Fischer-Tropsch products for the local energy system as pointed out in Section \ref{subsec:supply}. %TBD provide further explaination why this happens
-When increasing the hydrogen exports, the price of hydrogen increases as well since the best solar PV and onshore wind potentials (high capacity factors) are exploited and the optimisation model deploys sites with less favourable conditions. 
+
+
+
+
+
+
 
 % \begin{itemize}
 %     \item Increasing electricity prices up to $60$--$70$\%, then decreasing electricity prices 
