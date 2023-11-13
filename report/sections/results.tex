@@ -85,12 +85,23 @@ The export-driven and climate-driven hydrogen infrastructure provides the abilit
 
 \subsection{Hydrogen export prices and local electricity prices}
 \label{subsec:results_prices}
-First, both the electricity and hydrogen prices are derived from the nodal power balance constraint, representing the prices in a "perfect" market. %\cite{Zeyen2022}
-In a second step, these temporally and spatially resolved prices are weighted based on different consumptions in 3-hourly resolution to obtain a uniform, weighted marginal price of hydrogen and electricity of Morocco in each scenario. The weighted marginal prices are displayed in Figure \ref{fig:marginal_prices}. Both subfigures are based on the same scenarios which varies the hydrogen export volume from 0 - 200 TWh, and the emission reduction between 0 - 100\% resulting in 110 optimisation results per subfigure (s. Sec. \ref{subsec:scenarios}).
 
+% General price explaination
+First, both the electricity and hydrogen prices are derived from the nodal power balance constraint, representing the prices in a "perfect" market. %\cite{Zeyen2022}
+In a second step, these temporally and spatially resolved prices are weighted based on different consumptions in 3-hourly resolution to obtain a uniform, annual and weighted marginal price of hydrogen and electricity of Morocco in each scenario. 
+The weighted marginal prices are displayed in Figure \ref{fig:marginal_prices}. Both subfigures are based on the same scenarios which varies the hydrogen export volume from 0 - 200 TWh, and the emission reduction between 0 - 100\% resulting in 121 optimisation results per subfigure (s. Sec. \ref{subsec:scenarios}).
+
+% Electricity price
 The average price of electricity for local consumers (s. Fig. \ref{fig:local_el_price}) is weighted based on the local electricity demand, hence the demand of all consumers excluding eletrolyzers. It shows low prices at emissions reductions below 20\%, then increasing prices along the $\mathrm{CO_2}$ reduction dimension. The low prices result from existing (brownfield) coal capacities, where the investment costs have already been written off and cheap operational expenditures of coal power plants (without carbon pricing) offer low electricity prices. The peak of electricity price is at low hydrogen export and 60\% emission reduction. At high emission reductions, the electricity price decreases with increasing hydrogen exports revealing a synergy of the hydrogen export and local energy system (observable in the top right corner of Figure \ref{fig:local_el_price}).
 
-The average price of hydrogen for export (s. Fig. \ref{fig:export_hy_price}) is weighted based on the hydrogen demand at the export node. Similar to the electricity price for local consumers, the hydrogen prices for export are low at emission reductions below 20\%. Going further along the emission reduction dimension, the hydrogen prices show an increasing trend up to 70\% emission reduction and a remarkable decline of prices afterwards. The decline of the price of hydrogen for export above 70\% aligns with the requirement of hydrogen and Fischer-Tropsch products for the local energy system as pointed out in Section \ref{subsec:supply}. %TBD provide further explaination why this happens
+% Hydrogen price
+The average price of hydrogen for export (s. Fig. \ref{fig:export_hy_price}) is weighted based on the hydrogen demand at the export nodes.
+At low export volumes of 20 TWh and carbon reductions $<40$ \%, low prices are observable. In these scenarios, the hydrogen demand is comparably low (low hydrogen export, no Fischer-Tropsch demand), hence the electrolysers can run at a high capacity factor above 90\% and utilize their capital-intensive investments (s. Fig. \ref{fig:cf-ely-ft}). % TODO: why does low hydrogen demand mean high CF?
+Increasing the hydrogen export volumes leads to higher hydrogen prices since the additionally required electrolysers capacity runs at lower capacity factors falling to below 60\% (s. Fig. \ref{fig:cf-ely-ft}).
+
+The hydrogen prices for export are low at emission reductions below 20\%. 
+
+Going further along the emission reduction dimension, the hydrogen prices show an increasing trend up to 70\% emission reduction and a remarkable decline of prices afterwards. The decline of the price of hydrogen for export above 70\% aligns with the requirement of hydrogen and Fischer-Tropsch products for the local energy system as pointed out in Section \ref{subsec:supply}. %TBD provide further explaination why this happens
 When increasing the hydrogen exports, the price of hydrogen increases as well since the best solar PV and onshore wind potentials (high capacity factors) are exploited and the optimisation model deploys sites with less favourable conditions. 
 
 % \begin{itemize}
@@ -111,7 +122,7 @@ When increasing the hydrogen exports, the price of hydrogen increases as well si
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_exportonly_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_exportonly_20_filterTrue.pdf}
         \caption{Average price of hydrogen for export}
         \label{fig:export_hy_price}
     \end{subfigure}
