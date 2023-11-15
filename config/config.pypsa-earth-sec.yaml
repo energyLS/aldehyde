@@ -5,7 +5,7 @@ results_dir: results/
 summary_dir: results/
 costs_dir: data/ #TODO change to the equivalent of technology data
 
-run: nresults_full_3H_ws #nresults_full_3H_nobat_ws
+run: dyntrans_full_3H_ws #nresults_full_3H_nobat_ws
 
 foresight: overnight
 
@@ -13,12 +13,13 @@ scenario:
   simpl: # only relevant for PyPSA-Eur
   - ""
   clusters: # number of nodes in Europe, any integer between 37 (1 node per country-zone) and several hundred
-  - 10
+  - 4
   planning_horizons: # investment years for myopic and perfect; or costs year for overnight
   - 2030
   ll:
-  - "c1.0"
-  opts: ["Co2L2.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L0.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
+  - "c3.0"
+  opts: ["Co2L2.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L0.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10", "Co2L0.00"]
+
   #["Co2L5.0", "Co2L1.7", "Co2L0.5"] 
   #["Co2L20.0", "Co2L5.0", "Co2L2.0", "Co2L1.7", "Co2L1.2", "Co2L1.0", "Co2L0.50", "Co2L0.10"] 
   #["Co2L1.0", "Co2L0.90", "Co2L0.80", "Co2L0.70", "Co2L0.60", "Co2L0.50", "Co2L0.40", "Co2L0.30", "Co2L0.20", "Co2L0.10"]
