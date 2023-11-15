@@ -31,7 +31,7 @@
         \centering
         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_coal_supply_20_filterFalse.pdf}
         \caption{Coal}
-        %\label{fig:battery_cap}
+        \label{fig:coal-supply}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
@@ -208,4 +208,32 @@
     \caption{Capacity factors of renewable sources, cf. \cite{Neumann2022}}
     \label{fig:ren-cfs}
 \end{figure}
+
+
+
+\subsection{Electrolyser and Fischer-Tropsch capacity}
+
+
+\begin{figure*}[h] % Use 'figure*' to span both columns
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_electrolysis_p_nom_opt_20_filterFalse.pdf}
+        \caption{Electrolysis optimal capacity}
+        \label{fig:ely-p-nom-opt}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_ft_p_nom_opt_20_filterFalse.pdf}
+        \caption{Fischer-Tropsch optimal capacity}
+        \label{fig:ft-p-nom-opt}
+    \end{subfigure}
+
+    \hfill
+
+    \caption{Electrolysis and Fischer-Tropsch capacities}
+    \label{fig:ely-ft-p-nom-opt}
+\end{figure*}
+
 \clearpage
