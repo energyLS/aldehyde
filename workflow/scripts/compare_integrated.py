@@ -149,6 +149,7 @@ if __name__ == "__main__":
         # Get storage capacities
         H2_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus != "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
         Battery_GWh = n.stores[(n.stores.carrier=="battery")].e_nom_opt.sum() / 1e3 # in GWh
+        EV_Battery_GWh = n.stores[(n.stores.carrier=="Li ion")].e_nom_opt.sum() / 1e3 # in GWh
         H2export_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus == "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
         ratio_H2_Battery = (H2_GWh + H2export_GWh) / Battery_GWh
 
@@ -165,6 +166,27 @@ if __name__ == "__main__":
         ac_loads = n.loads.loc[n.loads.bus.isin(ac_buses.index)].carrier.unique()
         # Sum of demand through loads on AC buses
         el_base_demand = (loads.loc[:, ac_loads].sum() * n.snapshot_weightings.generators[0] / 1e6).sum().round(2) # TWh
+
+
+        ### Calculate hydrogen cost composition (CAPEX, OPEX, electricity cost)
+        # Get data from statistics
+        capex = statistics.loc["Link", "H2 Electrolysis"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
+        opex = statistics.loc["Link", "H2 Electrolysis"].loc["Operational Expenditure"].round(2) / 1e6 # in Mio. €
+        supply = statistics.loc["Link", "H2 Electrolysis"].loc["Supply"].sum() / 1e6 # in TWh
+
+        # Determine expense on electricity for hydrogen production
+        buses_sel = n.buses[n.buses.carrier == "AC"].index
+        prices = n.buses_t.marginal_price[buses_sel] 
+        demand = n.links_t.p1[n.links[n.links.carrier=="H2 Electrolysis"].index]
+        demand.columns = prices.columns # Adjust column names to match prices for multiplication
+        e_cost = (prices * demand).sum().sum() * (-1) * n.snapshot_weightings.generators[0] / 1e6 # in Mio. €
+
+        lcoh_compo = ((capex + opex + e_cost) / supply).round(2) # in €/MWh
+        capex_share = (capex / (capex + opex + e_cost) * 100).round(2)
+        capex_ely = capex
+        capex_ely_rel = capex_ely / supply
+        opex_ely = opex + e_cost
+        opex_ely_rel = opex_ely / supply
 
 
         # Get capacities and CAPEX in generation technologies
@@ -227,8 +249,15 @@ if __name__ == "__main__":
                             "opts": [opts],
                             "cost": [cost],
                             "lcoh_system": [lcoh.values[0]],
+                            "lcoh_compo": [lcoh_compo],
+                            "capex_share": [capex_share],
+                            "capex_ely": [capex_ely],
+                            "capex_ely_rel": [capex_ely_rel],
+                            "opex_ely": [opex_ely],
+                            "opex_ely_rel": [opex_ely_rel],
                             "H2_GWh": [H2_GWh],
                             "Battery_GWh": [Battery_GWh],
+                            "EV_Battery_GWh": [EV_Battery_GWh],
                             "H2export_GWh": [H2export_GWh],
                             "ratio_H2_Battery": [ratio_H2_Battery],
                             "curtailmentrate_solar": [curtailmentrate_solar],
