@@ -154,7 +154,7 @@ rule compare_all_networks:
 rule compare_integrated:
     input:
         networks=
-            expand("../resources/pypsaearthsec/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
+            expand("subworkflows/pypsa-earth-sec/results/" + config_pypsaearthsec["run"] +"/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
                 **config["scenario"],
                 **config["costs_pypsaearthsec"],
                 **config["export"],
