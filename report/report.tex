@@ -55,9 +55,7 @@
 \newcites{S}{Supplementary References}
 \bibliographystyleS{elsarticle-num}
 
-\graphicspath{
-    {../results/nresults_full_3H_ws/},
-}
+
 
 % \usepackage[
 % 	type={CC},
@@ -77,6 +75,27 @@
 \def\th{${}_{\textrm{th}}$}
 \def\deg{${}^\circ$}
 
+\def\co{CO${}_2${\:}}
+\def\coe{CO${}_2$e{\:}}
+
+% Run of standard model run
+\def\runstandard{dyntrans_full_3h_ws}
+
+% Run of battery sensitivity
+\def\sensbattery{nresults_full_3H_nobat_ws} % old
+
+% Run of green hydrogen constraint sensitivity
+\def\runsensnogreenhy{nogreen_full_3H_ws}
+
+% Scenario of heatmaps
+\def\heatmaplowred{elec_s_4_ec_lc3.0_Co2L0.80_3H_2030_0.15_DF_40export}
+\def\heatmapmedred{elec_s_4_ec_lc3.0_Co2L0.30_3H_2030_0.15_DF_40export}
+\def\heatmaphighred{elec_s_4_ec_lc3.0_Co2L0.10_3H_2030_0.15_DF_40export}
+
+
+\graphicspath{
+    {../results/\runstandard/}, %results_full_3H_ws
+}
 
 
 \begin{document}
@@ -200,6 +219,7 @@ The code to reproduce the experiments is available at \href{https://github.com/e
 % supplementary information
 
 \newpage
+\onecolumn
 
 \makeatletter
 \renewcommand \thesection{S\@arabic\c@section}
@@ -213,13 +233,19 @@ The code to reproduce the experiments is available at \href{https://github.com/e
 \setcounter{section}{0}
 
 
-\section{Supplementary Information}
+\section*{Supplementary Information}
 \label{sec:si}
- 
-\input{../report/sections/supplementary.tex}
-\input{../report/sections/supplementary-sensitivity.tex}
+
+\input{../report/sections/supplementary-demand.tex}
 \input{../report/sections/supplementary-supply.tex}
+\input{../report/sections/supplementary-balances.tex}
+\input{../report/sections/supplementary-greenhydrogen.tex}
+\input{../report/sections/supplementary-electrolysis.tex}
+\input{../report/sections/supplementary-integration.tex}
+\input{../report/sections/supplementary-operation.tex}
+%\input{../report/sections/supplementary-sensitivity.tex}
 \input{../report/sections/supplementary-prices.tex}
+\input{../report/sections/supplementary-misc.tex}
 
 \addcontentsline{toc}{section}{Supplementary References}
 \renewcommand{\ttdefault}{\sfdefault}

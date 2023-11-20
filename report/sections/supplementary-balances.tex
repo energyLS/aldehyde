@@ -1,0 +1,37 @@
+\section{Energy balances}
+
+Figure \ref{fig:barplots} displays the energy balances of modelled scenarios.
+
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/graphs/balances-AC.pdf}
+        \caption{Balances AC}
+        \label{fig:balances_AC}
+    \end{subfigure}
+    
+    \vspace{0.5cm} % Add vertical space between the subfigures
+    
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/graphs/balances-energy.pdf}
+        \caption{Balances energy}
+        \label{fig:balances_energy}
+    \end{subfigure}
+
+    \vspace{0.5cm} % Add vertical space between the subfigures
+    
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/graphs/costs.pdf}
+        \caption{costs}
+        \label{fig:balances_costs}
+    \end{subfigure}
+    
+    \caption{Electricity balance, energy balance and costs of the modelled scenarios.}
+    \label{fig:barplots}
+\end{figure}
+
+\clearpage

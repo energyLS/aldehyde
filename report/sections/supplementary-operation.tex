@@ -1,0 +1,159 @@
+\section{System operation}
+
+\subsection{Operation of batteries}
+
+
+
+\begin{figure}[h]
+    \centering
+        \begin{subfigure}[h]{0.33\textwidth}
+            \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaplowred/cf-ts-battery charger.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmapmedred/cf-ts-battery charger.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaphighred/cf-ts-battery charger.pdf}
+    \end{subfigure}
+
+
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaplowred/cf-ts-battery discharger.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmapmedred/cf-ts-battery discharger.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaphighred/cf-ts-battery discharger.pdf}
+        
+    \end{subfigure}
+
+
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaplowred/cf-ts-battery.pdf}
+        \caption{20\% emission reduction}
+        \label{fig:operation20}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmapmedred/cf-ts-battery.pdf}
+        \caption{70\% emission reduction}
+        \label{fig:operation70}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaphighred/cf-ts-battery.pdf}
+        \caption{90\% emission reduction}
+        \label{fig:operation90}
+    \end{subfigure}
+
+    \caption{Operation of batteries at 40 TWh export ($\rightarrow$ TODO update EV batteries), style adapted from cf. \cite{Neumann2022}}
+    \label{fig:battery_operation}
+\end{figure}
+
+
+
+\subsection{Operation of electrolysers and Fischer-Tropsch}
+
+
+\begin{figure}[h]
+    \centering
+        \begin{subfigure}[h]{0.33\textwidth}
+            \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaplowred/cf-ts-AC.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmapmedred/cf-ts-AC.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaphighred/cf-ts-AC.pdf}
+    \end{subfigure}
+
+
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaplowred/cf-ts-H2 Electrolysis.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmapmedred/cf-ts-H2 Electrolysis.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaphighred/cf-ts-H2 Electrolysis.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaplowred/cf-ts-H2.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmapmedred/cf-ts-H2.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaphighred/cf-ts-H2.pdf}
+        
+    \end{subfigure}
+
+
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaplowred/cf-ts-Fischer-Tropsch.pdf}
+        \caption{20\% emission reduction}
+        \label{fig:operation20}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmapmedred/cf-ts-Fischer-Tropsch.pdf}
+        \caption{70\% emission reduction}
+        \label{fig:operation70}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.33\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heatmaps/\heatmaphighred/cf-ts-Fischer-Tropsch.pdf}
+        \caption{90\% emission reduction}
+        \label{fig:operation90}
+    \end{subfigure}
+
+    \caption{Operation of electrolysers/Fischer-Tropsch and prices of electricity and hydrogen at 40 TWh export. The electrolyser operation depends on the electricity prices, strong diurnal electricity price patterns as in \ref{fig:operation70} result in a corresponding electrolyser operation. Once batteries kick in at \ref{fig:operation90} ($\rightarrow$ proof? See also \ref{fig:battery_operation} for battery operation), resulting smoother electricity prices also increase the annual capacity factor of the electrolyser. Note: electricity and hydrogen prices are spatially averaged in non-weighted manner, style adapted from cf. \cite{Neumann2022}}
+    \label{fig:operation-ely-ft}
+\end{figure}
+
+
+
+\subsection{Capacity factors of electrolysis and Fischer-Tropsch}
+
+\begin{figure*}[h] % Use 'figure*' to span both columns
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterFalse.pdf}
+        \caption{Capacity factor of electrolysis}
+        \label{fig:cf-ely}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_ft_cf_20_filterFalse.pdf}
+        \caption{Capacity factor of Fischer-Tropsch}
+        \label{fig:cf-ft}
+    \end{subfigure}
+    \hfill
+    \caption{Capacity factors of electrolysis and Fischer-Tropsch}
+    \label{fig:cf-ely-ft}
+\end{figure*}
+
+
+
+\clearpage

@@ -1,0 +1,73 @@
+\section{Green hydrogen constraint}
+\label{subsec:gh_constraint_effects}
+Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0 - 200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint.
+
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l2.0-only/graphs/balances-AC.pdf}
+        \caption{Electricity balance with green hydrogen constraint}
+        \label{fig:balances_AC_monthlymatch}
+    \end{subfigure}
+    
+    \vspace{0.5cm} % Add vertical space between the subfigures
+    
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l2.0-only/graphs/balances-AC.pdf}
+        \caption{Electricity balance without green hydrogen constraint}
+        \label{fig:balances_AC_nogreen}
+    \end{subfigure}
+    
+    \caption{Electricity balance ramp up from 0 - 200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint}
+    \label{fig:barplotscons}
+\end{figure}
+
+The green hydrogen constraint has a major influence on the hydrogen prices (s. Fig. \ref{fig:marginal_prices_hy_gh_sens}) and electricity prices (s. Fig. \ref{fig:marginal_prices_el_gh_sens}) in high emission scenarios.
+
+
+\begin{figure*}[h!] % Use 'figure*' to span both columns
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterFalse.pdf}
+        \caption{Average price of electricity for local consumers}
+        \label{fig:local_el_price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterFalse.pdf}
+        \caption{Average price of electricity for local consumers without green hydrogen constraint}
+        \label{fig:local_el_price_nogreen}
+    \end{subfigure}
+    \hfill
+    \caption{Marginal prices of electricity with and without green hydrogen constraint}
+    \label{fig:marginal_prices_el_gh_sens}
+\end{figure*}
+
+
+\begin{figure*}[h!] % Use 'figure*' to span both columns
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_exportonly_20_filterTrue.pdf}
+        \caption{Average price of hydrogen for export}
+        \label{fig:local_hy_price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_H2_False_False_exportonly_20_filterTrue.pdf}
+        \caption{Average price of hydrogen for export without green hydrogen constraint}
+        \label{fig:local_hy_price_nogreen}
+    \end{subfigure}
+    \hfill
+    \caption{Marginal prices of hydrogen for export with and without green hydrogen constraint}
+    \label{fig:marginal_prices_hy_gh_sens}
+\end{figure*}
+
+
+\clearpage
