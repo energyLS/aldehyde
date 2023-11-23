@@ -205,6 +205,25 @@ rule plot_pypsaearthsec_summary:
     input:
         pypsaearthsec(SDIR_pypsaearthsec + "/graphs/balances-energy.pdf")
 
+# Taken from pypsa-earth-sec
+rule plot_summary:
+    input:
+        # costs="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/csvs/costs.csv",
+        # energy="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/csvs/energy.csv",
+        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/csvs/supply_energy.csv",
+    output:
+        # costs=SDIR_pypsaearthsec + "/graphs/costs-aldehyde.pdf",
+        # energy=SDIR_pypsaearthsec + "/graphs/energy-aldehyde.pdf",
+        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/graphs/balances-energy.pdf",
+    threads: 2
+    resources:
+        mem_mb=10000,
+    benchmark:
+        SDIR_pypsaearthsec + "/benchmarks/plot_summary"
+    script:
+        "scripts/plot_summary.py"
+
+
 
 rule plot_spatial_figures:
     input:

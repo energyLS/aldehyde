@@ -261,9 +261,9 @@ plot:
     Nuclear marginal: r
     nuclear: r
     uranium: r
-    Coal: k
-    coal: k
-    Coal marginal: k
+    Coal: "#505050"
+    coal: "#505050"
+    Coal marginal: "#505050"
     Lignite: grey
     lignite: grey
     Lignite marginal: grey
@@ -354,5 +354,6 @@ plot:
     biomass emissions: "black"
     rail transport electricity: "black"
     rail transport oil: "black"
+    electricity demand: "black"
 
 

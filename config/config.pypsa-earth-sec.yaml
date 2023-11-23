@@ -5,7 +5,7 @@ results_dir: results/
 summary_dir: results/
 costs_dir: data/ #TODO change to the equivalent of technology data
 
-run: dyntrans_full_3H_ws #nresults_full_3H_nobat_ws
+run: nogreen_3H_ws #nresults_full_3H_nobat_ws
 
 foresight: overnight
 

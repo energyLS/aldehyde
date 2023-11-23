@@ -27,6 +27,7 @@ def rename_techs(label):
         "ground heat pump",
         "resistive heater",
         "Fischer-Tropsch",
+        "electricity",
     ]
 
     rename_if_contains_dict = {
@@ -36,6 +37,7 @@ def rename_techs(label):
         "H2 Fuel Cell": "H2 Fuel Cell",
         "H2 pipeline": "H2 pipeline",
         "battery": "battery storage",
+        "transmission lines": "transmission lines",
         # "CC": "CC"
     }
 
@@ -51,7 +53,7 @@ def rename_techs(label):
         "PHS": "hydroelectricity",
         "co2 Store": "DAC",
         "co2 stored": "CO2 sequestration",
-        "AC": "transmission lines",
+        "AC": "electricity",
         "DC": "transmission lines",
         "B2B": "transmission lines",
     }
@@ -76,6 +78,8 @@ def rename_techs(label):
 
 preferred_order = pd.Index(
     [
+        "electricity",
+        "H2 electrolysis",
         "transmission lines",
         "hydroelectricity",
         "hydro reservoir",
@@ -286,6 +290,7 @@ def plot_balances():
             continue
 
         df.index = df.index.str.strip()
+
         new_index = preferred_order.intersection(df.index).append(
             df.index.difference(preferred_order)
         )
@@ -318,11 +323,12 @@ def plot_balances():
 
         handles.reverse()
         labels.reverse()
+        # plt.rcParams["text.usetex"] = True
 
         if v[0] in co2_carriers:
             ax.set_ylabel("$CO_2$ in MtCO2/a")
         else:
-            ax.set_ylabel("Energy in TWh/a")
+            ax.set_ylabel("Energy in TWh")
 
         ax.grid(axis="x")
 
