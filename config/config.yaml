@@ -201,8 +201,8 @@ plot:
 
   costs_threshold: 1
   energy_threshold: 1
-  specific_xticks: "export" #"export" # Choose from wildcards. Default "False". Be sure to change the specific_xlabel accordingly
-  specific_xlabel: "Export in TWh"
+  specific_xticks: "export" #"export" #"export" # Choose from wildcards. Default "False". Be sure to change the specific_xlabel accordingly. Warning: "opt" uses predefined xticks
+  specific_xlabel:  "Export in TWh" #"$\\mathrm{CO_2}$ reduction in % of base levels"
   tech_colors:
     SMR CC: "darkblue"
     gas for industry CC: "brown"

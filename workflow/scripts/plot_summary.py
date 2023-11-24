@@ -81,6 +81,10 @@ preferred_order = pd.Index(
         "electricity",
         "H2 electrolysis",
         "transmission lines",
+        "resistive heater",
+        "BEV charger",
+        "DAC",
+        "air heat pump",
         "hydroelectricity",
         "hydro reservoir",
         "run of river",
@@ -99,7 +103,7 @@ preferred_order = pd.Index(
         "ground heat pump",
         "air heat pump",
         "heat pump",
-        "resistive heater",
+        # "resistive heater",
         "power-to-heat",
         "gas-to-power/heat",
         "CHP",
@@ -299,7 +303,7 @@ def plot_balances():
             df.columns
         )  # If you want to sort by values, then use: new_columns = df.columns.sort_values()()
 
-        fig, ax = plt.subplots(figsize=(12, 8))
+        fig, ax = plt.subplots(figsize=(6, 4))
 
         df.loc[new_index, new_columns].T.plot(
             kind="bar",
@@ -314,6 +318,22 @@ def plot_balances():
             custom_x_values = df.columns.get_level_values(
                 snakemake.config["plot"]["specific_xticks"]
             ).values
+            if snakemake.config["plot"]["specific_xticks"] == "opt":
+                print("Warning: using predefined xticks")
+                custom_x_values = [
+                    "0",
+                    "10",
+                    "20",
+                    "30",
+                    "40",
+                    "50",
+                    "60",
+                    "70",
+                    "80",
+                    "90",
+                    "100",
+                ]
+
             ax.set_xticks(range(len(custom_x_values)), custom_x_values)
             ax.set_xlabel(snakemake.config["plot"]["specific_xlabel"])
         else:
