@@ -3,27 +3,25 @@
 Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0 - 200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint.
 
 
-\begin{figure}[h!]
+\begin{figure*}[h!]
     \centering
-    \begin{subfigure}[b]{\linewidth}
+    \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l2.0-only/graphs/balances-AC.pdf}
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l2.0-only/graphs/balances-AC.pdf}
         \caption{Electricity balance with green hydrogen constraint}
         \label{fig:balances_AC_monthlymatch}
     \end{subfigure}
-    
-    \vspace{0.5cm} % Add vertical space between the subfigures
-    
-    \begin{subfigure}[b]{\linewidth}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l2.0-only/graphs/balances-AC.pdf}
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l2.0-only/graphs/balances-AC.pdf}
         \caption{Electricity balance without green hydrogen constraint}
         \label{fig:balances_AC_nogreen}
     \end{subfigure}
-    
+    \hfill
     \caption{Electricity balance ramp up from 0 - 200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint}
     \label{fig:barplotscons}
-\end{figure}
+\end{figure*}
 
 The green hydrogen constraint has a major influence on the hydrogen prices (s. Fig. \ref{fig:marginal_prices_hy_gh_sens}) and electricity prices (s. Fig. \ref{fig:marginal_prices_el_gh_sens}) in high emission scenarios.
 
