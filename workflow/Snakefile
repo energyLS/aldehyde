@@ -210,11 +210,11 @@ rule plot_summary:
     input:
         # costs="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/csvs/costs.csv",
         # energy="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/csvs/energy.csv",
-        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/co2l2.0-only/csvs/supply_energy.csv", #0exp-only
+        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/csvs/supply_energy.csv", #0exp-only
     output:
         # costs=SDIR_pypsaearthsec + "/graphs/costs-aldehyde.pdf",
         # energy=SDIR_pypsaearthsec + "/graphs/energy-aldehyde.pdf",
-        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/co2l2.0-only/graphs/balances-energy.pdf", #0exp-only
+        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/graphs/balances-energy.pdf", #0exp-only
     threads: 2
     resources:
         mem_mb=10000,
