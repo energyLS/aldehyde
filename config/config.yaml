@@ -10,7 +10,7 @@ climate_targets:
   2030_cond: 115 # in Mt CO2 (equ.?)
   2030_uncond: 75 # in Mt CO2 (equ.?)
 
-co2base: 72e6 # 100 Mt CO2 TODO this must be set manually in the pypsa-earth-sec config.pypsa-earth.yaml, here it ist just a doc
+#co2base: 72e6 # 100 Mt CO2 TODO this must be set manually in the pypsa-earth-sec config.pypsa-earth.yaml, here it ist just a doc
 
 scenario:
   simpl: # only relevant for PyPSA-Eur
@@ -43,7 +43,7 @@ compare_networks:
   opts: 
   - "Co2L0.90"
   sopts: ["144H"]
-  discountrate: [0.015]
+  discountrate: [0.13]
   demand:
   - "DF"
   h2export: [20]
@@ -78,7 +78,7 @@ pypsa_earth:
  # Global_Constraint: []
 
 costs_pypsaearthsec:
-  discountrate: [0.15] #[0.071] #, 0.086, 0.111]
+  discountrate: [0.13] #[0.071] #, 0.086, 0.111]
 
 costs:
   year: 2030
@@ -115,12 +115,11 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["capex_ely_rel", "opex_ely_rel"]
-    #["cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_H2_False_False_all", "mg_H2_False_False_exportonly", "mg_oil_False_False_all", "mg_gas_False_False_all", "mg_AC_False_False_all", "mg_AC_inclu_H2 El_all", "mg_AC_exclu_H2 El_all", "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex"]
+    type: ["mg_H2_False_False_all", "mg_H2_False_False_exportonly"]# ["capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all", "mg_AC_False_False_all", "mg_AC_inclu_H2 El_all", "mg_AC_exclu_H2 El_all", "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex"]
     #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
     levels: [20]
     show_minimums: True
-    zerofilter: False # Filter out zero values of export and co2 reduction wildcards for plotting
+    zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
       lcoh_system: "LCOH (system comp.) in €/MWh"
@@ -130,16 +129,6 @@ plot:
       opex_ely: "Electrolysis OPEX in Mio. €"
       capex_ely_rel: "Electrolysis CAPEX share in €/MWh"
       opex_ely_rel: "Electrolysis OPEX share in €/MWh"
-      # lcoh_notw_export: "Marginal price of hydrogen (export node) in €/MWh"
-      # lcoh_notw_noexport: "Marginal price of hydrogen (non-export nodes) in €/MWh"
-      # lcoh_notw_mixed: "Marginal price of hydrogen (all hydrogen nodes) in €/MWh"
-      # lcoe_notw: "Marginal price of electricity in €/MWh"
-      # lcoh_w_export: "Weighted marginal price of hydrogen (export node) in €/MWh"
-      # lcoh_w_noexport: "Weighted marginal price of hydrogen (non-export nodes) in €/MWh"
-      # lcoh_w_mixed: "Weighted marginal price of hydrogen (all hydrogen nodes) in €/MWh"
-      # lcoe_w: "Weighted marginal price of electricity in €/MWh"
-      # lcoe_w_electrolysis: "Weighted (electrolysis) marginal price of electricity in €/MWh"
-      # lcoe_w_no_electrolysis: "Weighted (no electrolysis) marginal price of electricity in €/MWh"
       H2_GWh: "Hydrogen storage capacity (non-export nodes) in GWh"
       Battery_GWh: "Battery storage capacity in GWh"
       EV_Battery_GWh: "EV battery storage capacity in GWh"
@@ -200,9 +189,9 @@ plot:
     opts: ["Co2L0.10"] #["Co2L1.0","Co2L.50","Co2L0.10"]
 
   costs_threshold: 1
-  energy_threshold: 1
-  specific_xticks: "export" #"export" #"export" # Choose from wildcards. Default "False". Be sure to change the specific_xlabel accordingly. Warning: "opt" uses predefined xticks
-  specific_xlabel:  "Export in TWh" #"$\\mathrm{CO_2}$ reduction in % of base levels"
+  energy_threshold: 15
+  specific_xticks: "opt" #"opt" #"export" # Choose from wildcards. Default "False". Be sure to change the "specific_xlabel" accordingly. Warning: "opt" uses predefined xticks values
+  specific_xlabel:  "$\\mathrm{CO_2}$ reduction in % of base levels" #"Export in TWh" #"$\\mathrm{CO_2}$ reduction in % of base levels"
   tech_colors:
     SMR CC: "darkblue"
     gas for industry CC: "brown"
@@ -333,11 +322,12 @@ plot:
     industry electricity: '#222222'
     industry new electricity: '#222222'
     process emissions to stored: '#444444'
-    process emissions to atmosphere: '#888888'
+    process emissions to atmosphere: '#36454F'
     process emissions: '#222222'
-    oil emissions: '#666666'
-    industry oil emissions: '#666666'
-    land transport oil emissions: '#666666'
+    oil emissions: '#7393B3'
+    industry oil emissions: '#B2BEB5'
+    industry coal emissions: '#666666'
+    land transport oil emissions: '#899499'
     land transport fuel cell: '#AAAAAA'
     biogas: '#800000'
     solid biomass: '#DAA520'
