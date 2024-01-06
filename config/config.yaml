@@ -133,9 +133,9 @@ plot:
       mg_H2_False_False_all: [25, 90]
       mg_H2_False_False_noexport: [25, 90]
       mg_H2_False_False_exportonly: [25, 90]
-      mg_AC_False_False_all: [10, 55]
-      mg_AC_inclu_H2 El_all: [10, 55]
-      mg_AC_exclu_H2 El_all: [10, 55]
+      mg_AC_False_False_all: [10, 52]
+      mg_AC_inclu_H2 El_all: [10, 52]
+      mg_AC_exclu_H2 El_all: [10, 52]
 
     show_minimums: False
     zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
