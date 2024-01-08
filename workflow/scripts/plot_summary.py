@@ -346,7 +346,7 @@ def plot_balances():
         # plt.rcParams["text.usetex"] = True
 
         if v[0] in co2_carriers:
-            ax.set_ylabel("$CO_2$ in MtCO2/a")
+            ax.set_ylabel("$\mathrm{CO_2}$ in MtCO2/a")
         else:
             ax.set_ylabel("Energy in TWh")
 
