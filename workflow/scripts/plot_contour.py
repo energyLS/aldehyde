@@ -49,12 +49,31 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
 
     # Plot a contour plot of the data having the y-axis the column "h2export", x-axis the column "sopts", and the z-axis the column "cost"
     fig = plt.figure(figsize=(9, 6))
-    contour = plt.contourf(
-        opts_reverse * 100,
-        h2export,
-        np.flip(data_reshaped[plottype], axis=1),
-        levels=levels,
-    )
+
+    try:
+        vmin=snakemake.config["plot"]["contour_plot"]["vcontrol"][plottype][0],
+        vmax=snakemake.config["plot"]["contour_plot"]["vcontrol"][plottype][1],
+    except:
+        vmin=None
+        vmax=None
+
+    if vmax is not None:
+        contour = plt.contourf(
+            opts_reverse * 100,
+            h2export,
+            np.flip(data_reshaped[plottype], axis=1),
+            levels=levels,
+            vmax=vmax[0],
+            vmin=vmin[0],
+        )
+    else:
+        contour = plt.contourf(
+            opts_reverse * 100,
+            h2export,
+            np.flip(data_reshaped[plottype], axis=1),
+            levels=levels,
+        )
+    
     if show_minimums == True:
         # Return the position where the minimum of data_reshaped[plottype] is
         minpos = np.argmin(data_reshaped[plottype], axis=0)
@@ -117,7 +136,7 @@ if __name__ == "__main__":
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         snakemake = mock_snakemake(
-            "plot_contour", plottype="lcoe_w", levels=20, zerofilter="False"
+            "plot_contour", plottype="mg_H2_False_False_all", levels=20, zerofilter="False"
         )
 
         sets_path_to_root("aldehyde")

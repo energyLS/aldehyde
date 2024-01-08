@@ -74,29 +74,29 @@ if __name__ == "__main__":
         statistics = n.statistics()
         energy_balance = n.statistics.energy_balance(aggregate_bus=False, aggregate_time=False)
 
-        # Read and save the objective of the network if h2export is 0. Save the costs in a new array
-        if h2export == "0":
-            n0 = pypsa.Network(i)
-            cost0 = n0.objective
-            # Save the cost0 in an array
-            cost0_df = pd.concat(
-                [
-                    cost0_df,
-                    pd.DataFrame(
-                        {"h2export": [h2export], "opts": [opts], "cost": [cost0]}
-                    ),
-                ],
-                ignore_index=True,
-            )
+        # Read and save the objective of the network if h2export is 0. Save the costs in a new array. Only works, if scenarios with h2export = 0 exist
+        # if h2export == "0":
+        #     n0 = pypsa.Network(i)
+        #     cost0 = n0.objective
+        #     # Save the cost0 in an array
+        #     cost0_df = pd.concat(
+        #         [
+        #             cost0_df,
+        #             pd.DataFrame(
+        #                 {"h2export": [h2export], "opts": [opts], "cost": [cost0]}
+        #             ),
+        #         ],
+        #         ignore_index=True,
+        #     )
 
-        # Calculate the cost difference between the networks n and n0
-        cost_difference = cost - cost0_df[cost0_df["opts"] == opts]["cost"]  # in €
+        # # Calculate the cost difference between the networks n and n0
+        # cost_difference = cost - cost0_df[cost0_df["opts"] == opts]["cost"]  # in €
 
-        # Calculate the cost of the H2 export by taking the difference in system costs and dividing by the export demand
-        lcoh = cost_difference / (
-            n.loads_t.p.loc[:, "H2 export load"].sum()
-            * n.snapshot_weightings.generators[0]
-        )  # Cost difference between systems divided by the export demand
+        # # Calculate the cost of the H2 export by taking the difference in system costs and dividing by the export demand
+        # lcoh = cost_difference / (
+        #     n.loads_t.p.loc[:, "H2 export load"].sum()
+        #     * n.snapshot_weightings.generators[0]
+        # )  # Cost difference between systems divided by the export demand
 
 
         ############################################################
@@ -188,6 +188,8 @@ if __name__ == "__main__":
         opex_ely = opex + e_cost
         opex_ely_rel = opex_ely / supply
 
+        # Marginal price of co2
+        mg_co2 = n.buses_t.marginal_price.loc[:, n.buses[n.buses.carrier == "co2"].index].mean()[0].round(2)
 
         # Get capacities and CAPEX in generation technologies
         pv_capex = statistics.loc["Generator", "Solar"].loc["Capital Expenditure"].round(2) / 1e6 # in Mio. €
@@ -248,7 +250,8 @@ if __name__ == "__main__":
                             "h2export": [h2export],
                             "opts": [opts],
                             "cost": [cost],
-                            "lcoh_system": [lcoh.values[0]],
+                            "mg_co2": [mg_co2],
+                            #"lcoh_system": [lcoh.values[0]],
                             "lcoh_compo": [lcoh_compo],
                             "capex_share": [capex_share],
                             "capex_ely": [capex_ely],

@@ -3,6 +3,9 @@ cluster: "remote:path/on/remote"
 # Path to the PyPSA-Earth-Sec repository
 pypsaearthsec: "/mnt/c/Users/scl38887/Documents/git/pypsa-earth-sec/config.default.yaml"
 
+results_dir: results/
+summary_dir: results/
+
 retrieve_cost_data: False
 import_pypsaearthsec: False # Set true to run PyPSA-Earth-Sec subworkflow
 
@@ -28,7 +31,7 @@ scenario:
   - "DF"
 
 export:
-  h2export: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200] # Yearly export demand in TWh. TODO This is currently necessary for PyPSA-Earth-Sec subworkflow
+  h2export: [1, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200] # Yearly export demand in TWh. TODO This is currently necessary for PyPSA-Earth-Sec subworkflow
 
 # Select which networks to compare in terms of integrated/islanded
 compare_networks:
@@ -81,6 +84,7 @@ costs_pypsaearthsec:
   discountrate: [0.13] #[0.071] #, 0.086, 0.111]
 
 costs:
+  discountrate: [0.13]
   year: 2030
   version: v0.4.0
   rooftop_share: 0.14  # based on the potentials, assuming  (0.1 kW/m2 and 10 m2/person)
@@ -115,10 +119,25 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["mg_H2_False_False_all", "mg_H2_False_False_exportonly"]# ["capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all", "mg_AC_False_False_all", "mg_AC_inclu_H2 El_all", "mg_AC_exclu_H2 El_all", "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex"]
-    #["cost", "lcoh_system", "lcoh_notw_export", "lcoh_notw_noexport", "lcoh_notw_mixed", "lcoe_notw", "lcoh_w_export", "lcoh_w_noexport", "lcoh_w_mixed", "lcoe_w", "H2_GWh", "Battery_GWh", "H2export_GWh", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
+    type: ["mg_co2",
+    "mg_H2_False_False_all",
+    "mg_H2_False_False_noexport",  
+    "mg_H2_False_False_exportonly", 
+    "mg_AC_False_False_all", 
+    "mg_AC_inclu_H2 El_all", 
+    "mg_AC_exclu_H2 El_all",
+    "capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all",  "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex", "mg_co2", "lcoh_compo", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
+
     levels: [20]
-    show_minimums: True
+    vcontrol:
+      mg_H2_False_False_all: [25, 90]
+      mg_H2_False_False_noexport: [25, 90]
+      mg_H2_False_False_exportonly: [25, 90]
+      mg_AC_False_False_all: [10, 52]
+      mg_AC_inclu_H2 El_all: [10, 52]
+      mg_AC_exclu_H2 El_all: [10, 52]
+
+    show_minimums: False
     zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
     label:
       cost: "Total System Cost in B€"
@@ -174,11 +193,13 @@ plot:
       electrolysis_capex: "Electrolysis CAPEX in Mio. €"
       mg_H2_False_False_all: "Marginal price of hydrogen (all hydrogen nodes) in €/MWh"
       mg_H2_False_False_exportonly: "Marginal price of hydrogen (export node) in €/MWh"
+      mg_H2_False_False_noexport: "Marginal price of hydrogen (non-export nodes) in €/MWh"
       mg_oil_False_False_all: "Marginal price of oil (all oil nodes) in €/MWh"
       mg_gas_False_False_all: "Marginal price of gas (all gas nodes) in €/MWh"
       mg_AC_False_False_all: "Marginal price of electricity (all electricity nodes) in €/MWh"
       mg_AC_inclu_H2 El_all: "Marginal (electrolysis) marginal price of electricity in €/MWh"
       mg_AC_exclu_H2 El_all: "Marginal (no electrolysis) marginal price of electricity in €/MWh"
+      mg_co2: "Marginal price of CO2 in €/t"
       # "mg_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5] + "_" + str(w_opts[2])
 
       # TODO: marginals of ALL buses, len(n.buses.carrier.unique()) reveals 23 buses
@@ -329,6 +350,10 @@ plot:
     industry coal emissions: '#666666'
     land transport oil emissions: '#899499'
     land transport fuel cell: '#AAAAAA'
+    residential oil: '#799999'
+    services oil: '#499999'
+    residential biomass: 'green'
+    services biomass: 'green'
     biogas: '#800000'
     solid biomass: '#DAA520'
     today: '#D2691E'
@@ -340,6 +365,7 @@ plot:
     H2 for industry: "#222222"
     H2 for shipping: "#6495ED"
     biomass EOP: "green"
+    biomass emissions: "green"
     biomass: "green"
     biomass emissions: "black"
     rail transport electricity: "black"
