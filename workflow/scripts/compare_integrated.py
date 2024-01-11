@@ -11,7 +11,7 @@ import logging
 
 
 def get_bus_demand(n, busname, carrier_limit=False, carrier_limit_integration=False):
-    """Get the demand at a certain bus (includes stores/StorageUnits) based on the energy_balance() function
+    """Get the demand at a certain bus (includes stores/StorageUnits) based on the energy_balance() function. The demand excludes lines for electricity transport but includes H2 pipelines. It further excludes Stores and StorageUnits.
 
     Parameters
     ----------
@@ -36,13 +36,14 @@ def get_bus_demand(n, busname, carrier_limit=False, carrier_limit_integration=Fa
         else:
             logging.error("carrier_limit_integration must be 'inclusive' or 'exclusive'")
 
-    # Filter for negative values, filter out Stores/StorageUnits, filter out export links "H2" which are not in "H2 export buses", and sum them up. Inclues H2 pipeline
+    # Filter for negative values, filter out Stores/StorageUnits, filter out export links "H2" which are not in "H2 export buses", and sum them up. Inclues H2 pipeline, excludes electricity lines. 
     demand = energy_balance_bus[energy_balance_bus < 0]
     demand = demand[(demand.index.get_level_values(0) != "Store") & (demand.index.get_level_values(0) != "StorageUnit")]
+    demand = demand[(demand.index.get_level_values(0) != "Line")]
+    #only when demand.index.get_level_values(1) == "H2 export bus", then H2 is excluded to avoid double counting through pipelines
     demand = demand[(demand.index.get_level_values(1) != "H2") | (demand.index.get_level_values(3) == "H2 export bus")]
     demand = demand.groupby("bus").sum()
 
-    #only when demand.index.get_level_values(1) == "H2 export bus" dann wird gekickt
 
     return demand.transpose()
 
@@ -120,6 +121,7 @@ if __name__ == "__main__":
                              "gas": [[False, False, "all"]],
                             }
         marginals_df = pd.DataFrame(columns=[])
+        expense_df = pd.DataFrame(columns=[])
         for carrier in carriers:
 
             for w_opts in weighting_options[carrier]:
@@ -137,12 +139,17 @@ if __name__ == "__main__":
                 # Step 3: get (weighted) nodal marginal price at buses
                 marginals_nodal = (n.buses_t.marginal_price[buses_sel] * demand).sum() / demand.sum()
 
-                # Step 4: Nodal weighted mean of marginal price
+                # Step 4.1: Nodal weighted mean of marginal price
                 marginals = (marginals_nodal * demand.sum() / demand.sum().sum()).sum().round(2)
 
-                # Get variable name  and save the marginal price in the dataframe
+                # Step 4.2: Expense on carrier by consumer
+                expense = (n.buses_t.marginal_price[buses_sel] * demand).sum() * n.snapshot_weightings.generators[0] /1e6 # in Mio. €
+
+                # Get variable name  and save the marginal price and expense in the dataframe
                 marginal_name = "mg_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5] + "_" + str(w_opts[2])
+                expense_name = "exp_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5] + "_" + str(w_opts[2])
                 marginals_df[marginal_name] = [marginals]
+                expense_df[expense_name] = [expense]
 
 
 ##########################################
@@ -245,6 +252,7 @@ if __name__ == "__main__":
                 metrics_df,
                 pd.concat([
                     marginals_df,
+                    expense_df,
                     pd.DataFrame(
                         {
                             "h2export": [h2export],
