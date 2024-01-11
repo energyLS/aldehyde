@@ -47,6 +47,12 @@ def get_bus_demand(n, busname, carrier_limit=False, carrier_limit_integration=Fa
 
     return demand.transpose()
 
+def get_mean_prices(n):
+    return (
+        n.buses_t.marginal_price.mean()
+        .groupby([n.buses.carrier])
+        .first()
+    )
 
 
 if __name__ == "__main__":
@@ -143,7 +149,7 @@ if __name__ == "__main__":
                 marginals = (marginals_nodal * demand.sum() / demand.sum().sum()).sum().round(2)
 
                 # Step 4.2: Expense on carrier by consumer
-                expense = (n.buses_t.marginal_price[buses_sel] * demand).sum() * n.snapshot_weightings.generators[0] /1e6 # in Mio. €
+                expense = (n.buses_t.marginal_price[buses_sel] * demand).sum().sum() * n.snapshot_weightings.generators[0] *(-1) /1e6 # in Mio. €
 
                 # Get variable name  and save the marginal price and expense in the dataframe
                 marginal_name = "mg_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5] + "_" + str(w_opts[2])
@@ -153,6 +159,13 @@ if __name__ == "__main__":
 
 
 ##########################################
+    
+        # Get marginal prices of all buses, unweighted
+        marginals_means = get_mean_prices(n)      
+        marginals_means_df = pd.DataFrame(marginals_means).transpose()
+        marginals_means_df = marginals_means_df.add_prefix("mean_mg_")
+
+
         # Get storage capacities
         H2_GWh = n.stores[(n.stores.carrier=="H2") & (n.stores.bus != "H2 export bus")].e_nom_opt.sum() / 1e3 # in GWh
         Battery_GWh = n.stores[(n.stores.carrier=="battery")].e_nom_opt.sum() / 1e3 # in GWh
@@ -253,6 +266,7 @@ if __name__ == "__main__":
                 pd.concat([
                     marginals_df,
                     expense_df,
+                    marginals_means_df,
                     pd.DataFrame(
                         {
                             "h2export": [h2export],
