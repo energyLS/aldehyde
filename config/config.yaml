@@ -126,7 +126,15 @@ plot:
     "mg_AC_False_False_all", 
     "mg_AC_inclu_H2 El_all", 
     "mg_AC_exclu_H2 El_all",
-    "capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all",  "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex", "mg_co2", "lcoh_compo", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind"]
+    "capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all",  "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex", "mg_co2", "lcoh_compo", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", exp_H2_False_False_all, exp_H2_False_False_exportonly, exp_H2_False_False_noexport, exp_AC_False_False_all, exp_AC_inclu_H2 El_all, exp_AC_exclu_H2 El_all, exp_oil_False_False_all, exp_gas_False_False_all]
+    # ["mg_co2",
+    # "mg_H2_False_False_all",
+    # "mg_H2_False_False_noexport",  
+    # "mg_H2_False_False_exportonly", 
+    # "mg_AC_False_False_all", 
+    # "mg_AC_inclu_H2 El_all", 
+    # "mg_AC_exclu_H2 El_all",
+    # "capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all",  "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex", "mg_co2", "lcoh_compo", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", exp_H2_False_False_all, exp_H2_False_False_exportonly, exp_H2_False_False_noexport, exp_AC_False_False_all, exp_AC_inclu_H2 El_all, exp_AC_exclu_H2 El_all, exp_oil_False_False_all, exp_gas_False_False_all]
 
     levels: [20]
     vcontrol:
@@ -199,8 +207,38 @@ plot:
       mg_AC_False_False_all: "Marginal price of electricity (all electricity nodes) in €/MWh"
       mg_AC_inclu_H2 El_all: "Marginal (electrolysis) marginal price of electricity in €/MWh"
       mg_AC_exclu_H2 El_all: "Marginal (no electrolysis) marginal price of electricity in €/MWh"
+      exp_H2_False_False_all: "Expense in M€"
+      exp_H2_False_False_exportonly: "Expense in M€"
+      exp_H2_False_False_noexport: "Expense in M€"
+      exp_oil_False_False_all: "Expense in M€"
+      exp_gas_False_False_all: "Expense in M€"
+      exp_AC_False_False_all: "Expense in M€"
+      exp_AC_inclu_H2 El_all: "Expense in M€"
+      exp_AC_exclu_H2 El_all: "Expense in M€"
       mg_co2: "Marginal price of CO2 in €/t"
-      # "mg_" + carrier + "_" + str(w_opts[1])[:5] + "_" + str(w_opts[0])[:5] + "_" + str(w_opts[2])
+      mean_mg_AC: "Mean marginal price of electricity in €/MWh"
+      mean_mg_H2: "Mean marginal price of hydrogen in €/MWh"
+      mean_mg_battery: "Mean marginal price of battery storage in €/MWh"
+      mean_mg_biogas: "Mean marginal price of biogas in €/MWh"
+      mean_mg_co2: "Mean marginal price of CO2 in €/t"
+      mean_mg_co2 stored: "Mean marginal price of CO2 storage in €/t"
+      mean_mg_gas: "Mean marginal price of gas in €/MWh"
+      mean_mg_gas for industry: "Mean marginal price of gas for industry in €/MWh"
+      mean_mg_oil: "Mean marginal price of oil in €/MWh"
+      mean_mg_process emissions: "Mean marginal price of process emissions in €/MWh"
+      mean_mg_residential rural heat: "Mean marginal price of residential rural heat in €/MWh"
+      mean_mg_residential rural water tanks: "Mean marginal price of residential rural water tanks in €/MWh"
+      mean_mg_residential urban decentral heat: "Mean marginal price of residential urban decentral heat in €/MWh"
+      mean_mg_residential urban decentral water tanks: "Mean marginal price of residential urban decentral water tanks in €/MWh"
+      mean_mg_services rural heat: "Mean marginal price of services rural heat in €/MWh"
+      mean_mg_services rural water tanks: "Mean marginal price of services rural water tanks in €/MWh"
+      mean_mg_services urban decentral heat: "Mean marginal price of services urban decentral heat in €/MWh"
+      mean_mg_services urban decentral water tanks: "Mean marginal price of services urban decentral water tanks in €/MWh"
+      mean_mg_solid biomass: "Mean marginal price of solid biomass in €/MWh"
+      mean_mg_solid biomass for industry: "Mean marginal price of solid biomass for industry in €/MWh"
+      mean_mg_urban central heat: "Mean marginal price of urban central heat in €/MWh"
+      mean_mg_urban central water tanks: "Mean marginal price of urban central water tanks in €/MWh"
+
 
       # TODO: marginals of ALL buses, len(n.buses.carrier.unique()) reveals 23 buses
 
