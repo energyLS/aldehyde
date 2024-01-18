@@ -119,14 +119,8 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["mg_co2",
-    "mg_H2_False_False_all",
-    "mg_H2_False_False_noexport",  
-    "mg_H2_False_False_exportonly", 
-    "mg_AC_False_False_all", 
-    "mg_AC_inclu_H2 El_all", 
-    "mg_AC_exclu_H2 El_all",
-    "capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all",  "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex", "mg_co2", "lcoh_compo", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", exp_H2_False_False_all, exp_H2_False_False_exportonly, exp_H2_False_False_noexport, exp_AC_False_False_all, exp_AC_inclu_H2 El_all, exp_AC_exclu_H2 El_all, exp_oil_False_False_all, exp_gas_False_False_all]
+    type: ["exp_AC_exclu_H2 El_all", "exp_H2_False_False_exportonly"]
+    
     # ["mg_co2",
     # "mg_H2_False_False_all",
     # "mg_H2_False_False_noexport",  
@@ -134,7 +128,7 @@ plot:
     # "mg_AC_False_False_all", 
     # "mg_AC_inclu_H2 El_all", 
     # "mg_AC_exclu_H2 El_all",
-    # "capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all",  "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex", "mg_co2", "lcoh_compo", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", exp_H2_False_False_all, exp_H2_False_False_exportonly, exp_H2_False_False_noexport, exp_AC_False_False_all, exp_AC_inclu_H2 El_all, exp_AC_exclu_H2 El_all, exp_oil_False_False_all, exp_gas_False_False_all]
+    # "capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all",  "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex", "mg_co2", "lcoh_compo", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", exp_H2_False_False_all, exp_H2_False_False_exportonly, exp_H2_False_False_noexport, exp_AC_False_False_all, exp_AC_inclu_H2 El_all, exp_AC_exclu_H2 El_all, exp_oil_False_False_all, exp_gas_False_False_all, exp_local_export]
 
     levels: [20]
     vcontrol:
@@ -147,6 +141,15 @@ plot:
 
     show_minimums: False
     zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
+    normalize: False
+    norm_specs:
+      exp_AC_exclu_H2 El_all: 
+        normalize_by: "export" #normalize_by: "export" # "export", "decarb", "exdecarb", False
+        label: "Electricity expense relative to no export in % (w/o electrolysis)"
+      exp_H2_False_False_exportonly: 
+        normalize_by: "decarb"
+        label: "Hydrogen export expense relative to no co2 reduction in % (w/o electrolysis)"
+
     label:
       cost: "Total System Cost in B€"
       lcoh_system: "LCOH (system comp.) in €/MWh"
@@ -215,6 +218,7 @@ plot:
       exp_AC_False_False_all: "Expense in M€"
       exp_AC_inclu_H2 El_all: "Expense in M€"
       exp_AC_exclu_H2 El_all: "Expense in M€"
+      exp_local_export: "Expense in M€"
       mg_co2: "Marginal price of CO2 in €/t"
       mean_mg_AC: "Mean marginal price of electricity in €/MWh"
       mean_mg_H2: "Mean marginal price of hydrogen in €/MWh"
