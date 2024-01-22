@@ -23,10 +23,14 @@ wildcard_constraints:
 with open("../config/config.pypsa-earth-sec.yaml") as file:
     config_pypsaearthsec = yaml.full_load(file)
 
+with open("subworkflows/pypsa-earth-sec/config.yaml") as file:
+    config_pes_root = yaml.full_load(file)
+
 PYPSAEARTHSEC_FOLDER = "./subworkflows/pypsa-earth-sec"
 
 RDIR_pypsaearthsec = config_pypsaearthsec["results_dir"] + config_pypsaearthsec["run"]
 SDIR_pypsaearthsec = config_pypsaearthsec["summary_dir"] + config_pypsaearthsec["run"]
+CDIR_pypsaearthsec = config_pypsaearthsec["costs_dir"]
 
 
 
@@ -178,16 +182,17 @@ rule plot_contour:
     input:
         stats= "../results/" + config_pypsaearthsec["run"] +"/integrated_comp/stats.csv",
     output:
-        contour_plot="../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}.pdf"
+        contour_plot="../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}_n{norm}.pdf"
     script:
         "scripts/plot_contour.py"
 
 rule plot_all_contours:
     input:
-        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}.pdf",
+        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}_n{norm}.pdf",
             plottype = config["plot"]["contour_plot"]["type"],
             levels = config["plot"]["contour_plot"]["levels"],
-            zerofilter =  config["plot"]["contour_plot"]["zerofilter"]
+            zerofilter =  config["plot"]["contour_plot"]["zerofilter"],
+            norm = config["plot"]["contour_plot"]["normalize"],
         )
 
 rule plot_general_figures:
@@ -205,16 +210,53 @@ rule plot_pypsaearthsec_summary:
     input:
         pypsaearthsec(SDIR_pypsaearthsec + "/graphs/balances-energy.pdf")
 
+# module pypsaearthsec:
+#     snakefile: "/mnt/c/Users/scl38887/Documents/git/aldehyde/workflow/subworkflows/pypsa-earth-sec/Snakefile"
+#     config: "../config/config.yaml"
+
+# use rule plot_summary from pypsaearthsec as pes_*
+
+
+cut = "0exp-only" #co2l20_only # None
+
+if cut == "0exp-only":
+    cut_path = "/0exp_only"
+elif cut == "co2l20_only":
+    cut_path = "/co2l20_only"
+elif cut == None:
+    cut_path = ""
+else:
+    raise ValueError("cut must be either '0exp-only', 'co2l20_only' or None")
+
+
+rule make_summary:
+    input:
+        overrides="../workflow/subworkflows/pypsa-earth-sec/data/override_component_attrs",
+        networks=expand("../workflow/subworkflows/pypsa-earth-sec/" + RDIR_pypsaearthsec
+            + "/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
+            **config_pes_root["scenario"],
+            **config_pes_root["costs"],
+            **{"h2export": 1} #**config_pes_root["export"]
+        ),
+        costs="../workflow/subworkflows/pypsa-earth-sec/" + CDIR_pypsaearthsec + "costs_{}.csv".format(config["scenario"]["planning_horizons"][0]),
+    output:
+        supply_energy="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + cut_path + "/csvs/supply_energy.csv"
+    threads: 2
+    resources:
+        mem_mb=10000,
+    script:
+        "scripts/make_summary.py"
+
 # Taken from pypsa-earth-sec
 rule plot_summary:
     input:
         # costs="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/csvs/costs.csv",
         # energy="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/csvs/energy.csv",
-        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/co2l2.0-only/csvs/supply_energy.csv", #0exp-only
+        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/csvs/supply_energy.csv", #0exp-only
     output:
         # costs=SDIR_pypsaearthsec + "/graphs/costs-aldehyde.pdf",
         # energy=SDIR_pypsaearthsec + "/graphs/energy-aldehyde.pdf",
-        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/co2l2.0-only/graphs/balances-energy.pdf", #0exp-only
+        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/graphs/balances-energy.pdf", #0exp-only
     threads: 2
     resources:
         mem_mb=10000,

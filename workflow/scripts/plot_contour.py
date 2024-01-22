@@ -23,7 +23,7 @@ def prepare_data(data, zerofilter=False):
     print(f"zerofiler is set to {zerofilter} or in boolean {bool(zerofilter)}")
     if zerofilter:
         print("Filtering data")
-        #data = data[(data["h2export"] != 0) & (data["opts"] != "2.0")]
+        # data = data[(data["h2export"] != 0) & (data["opts"] != "2.0")]
         data = data[(data["h2export"] != 0)]
 
     else:
@@ -49,12 +49,31 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
 
     # Plot a contour plot of the data having the y-axis the column "h2export", x-axis the column "sopts", and the z-axis the column "cost"
     fig = plt.figure(figsize=(9, 6))
-    contour = plt.contourf(
-        opts_reverse * 100,
-        h2export,
-        np.flip(data_reshaped[plottype], axis=1),
-        levels=levels,
-    )
+
+    try:
+        vmin = (snakemake.config["plot"]["contour_plot"]["vcontrol"][plottype][0],)
+        vmax = (snakemake.config["plot"]["contour_plot"]["vcontrol"][plottype][1],)
+    except:
+        vmin = None
+        vmax = None
+
+    if vmax is not None:
+        contour = plt.contourf(
+            opts_reverse * 100,
+            h2export,
+            np.flip(data_reshaped[plottype], axis=1),
+            levels=levels,
+            vmax=vmax[0],
+            vmin=vmin[0],
+        )
+    else:
+        contour = plt.contourf(
+            opts_reverse * 100,
+            h2export,
+            np.flip(data_reshaped[plottype], axis=1),
+            levels=levels,
+        )
+
     if show_minimums == True:
         # Return the position where the minimum of data_reshaped[plottype] is
         minpos = np.argmin(data_reshaped[plottype], axis=0)
@@ -71,8 +90,9 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
 
         # Plot approximation/regression with np.polyfit of the minimum value as line
         polydegree = 4
-        line =  np.poly1d(np.polyfit(opts_reverse * 100, h2export[minpos], polydegree))(
-                np.linspace(min(opts_reverse), max(opts_reverse), 100) * 100)
+        line = np.poly1d(np.polyfit(opts_reverse * 100, h2export[minpos], polydegree))(
+            np.linspace(min(opts_reverse), max(opts_reverse), 100) * 100
+        )
         # Limit line to h2 export boundaries
         line[line < min(h2export)] = min(h2export)
         line[line > max(h2export)] = max(h2export)
@@ -90,15 +110,21 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
 
     plt.xlabel("CO$_2$ Reduction in % of base levels")
     plt.ylabel("Hydrogen Export Volume in TWh")
-    plt.colorbar(pad=0.14).set_label(
-        snakemake.config["plot"]["contour_plot"]["label"][plottype]
-    )
+    if snakemake.config["plot"]["contour_plot"]["normalize"] == False:
+        plt.colorbar(pad=0.14).set_label(
+            snakemake.config["plot"]["contour_plot"]["label"][plottype]
+        )
+    elif snakemake.config["plot"]["contour_plot"]["normalize"] == True:
+        plt.colorbar(pad=0.14).set_label(
+            snakemake.config["plot"]["contour_plot"]["norm_specs"][plottype]["label"]
+        )
+    else:
+        pass
 
     ax2 = plt.gca().twinx()
     h2export_secondary = h2export / el_base_demand
     ax2.set_ylabel("H2-Exp/El-base-demand")
     ax2.set_ylim(0, max(h2export_secondary))  # Adjust the limit based on your data
-
 
     # Save the plot
     plt.savefig(snakemake.output.contour_plot, bbox_inches="tight")
@@ -117,7 +143,10 @@ if __name__ == "__main__":
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         snakemake = mock_snakemake(
-            "plot_contour", plottype="lcoe_w", levels=20, zerofilter="False"
+            "plot_contour",
+            plottype="exp_AC_exclu_H2 El_all",
+            levels=20,
+            zerofilter="False",
         )
 
         sets_path_to_root("aldehyde")
@@ -144,6 +173,51 @@ if __name__ == "__main__":
 
     # Plot the data
     show_minimums = snakemake.config["plot"]["contour_plot"]["show_minimums"]
-    el_base_demand = min(reshape_data(data, opts, h2export, plottype="el_base_demand")["el_base_demand"][0])
+    el_base_demand = min(
+        reshape_data(data, opts, h2export, plottype="el_base_demand")["el_base_demand"][
+            0
+        ]
+    )
     logger.info(f"el_base_demand is {el_base_demand} for all runs")
-    plot_data(data_reshaped, plottype, levels, show_minimums=show_minimums, el_base_demand=el_base_demand)
+
+    if snakemake.config["plot"]["contour_plot"]["normalize"] == True:
+        if (
+            snakemake.config["plot"]["contour_plot"]["norm_specs"][plottype][
+                "normalize_by"
+            ]
+            == "export"
+        ):
+            data_reshaped[plottype] = (
+                data_reshaped[plottype] / data_reshaped[plottype][0, :][np.newaxis, :]
+            ) * 100
+        elif (
+            snakemake.config["plot"]["contour_plot"]["norm_specs"][plottype][
+                "normalize_by"
+            ]
+            == "decarb"
+        ):
+            data_reshaped[plottype] = (
+                data_reshaped[plottype] / data_reshaped[plottype][:, 0][:, np.newaxis]
+            ) * 100
+        elif (
+            snakemake.config["plot"]["contour_plot"]["norm_specs"][plottype][
+                "normalize_by"
+            ]
+            == "exdecarb"
+        ):
+            data_reshaped[plottype] = (
+                data_reshaped[plottype] / data_reshaped[plottype][0, 0]
+            ) * 100
+        else:
+            pass
+
+    else:
+        pass
+
+    plot_data(
+        data_reshaped,
+        plottype,
+        levels,
+        show_minimums=show_minimums,
+        el_base_demand=el_base_demand,
+    )

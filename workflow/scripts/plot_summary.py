@@ -10,8 +10,8 @@ plt.style.use("ggplot")
 # consolidate and rename
 def rename_techs(label):
     prefix_to_remove = [
-        "residential ",
-        "services ",
+        #"residential ", # Comment out, to avoid mix up of oil supply and oil demands starting with1 "residential"
+        #"services ", # Comment out, to avoid mix up of oil supply and oil demands starting with "services"
         "urban ",
         "rural ",
         "central ",
@@ -346,7 +346,7 @@ def plot_balances():
         # plt.rcParams["text.usetex"] = True
 
         if v[0] in co2_carriers:
-            ax.set_ylabel("$CO_2$ in MtCO2/a")
+            ax.set_ylabel("$\mathrm{CO_2}$ in MtCO2/a")
         else:
             ax.set_ylabel("Energy in TWh")
 
