@@ -119,7 +119,7 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["exp_AC_exclu_H2 El_all", "exp_H2_False_False_exportonly"]
+    type: ["exp_AC_exclu_H2 El_all", "exp_H2_False_False_exportonly"] #, "exp_local_export"]
     
     # ["mg_co2",
     # "mg_H2_False_False_all",
@@ -141,14 +141,16 @@ plot:
 
     show_minimums: False
     zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
-    normalize: False
+    normalize: True
     norm_specs:
       exp_AC_exclu_H2 El_all: 
         normalize_by: "export" #normalize_by: "export" # "export", "decarb", "exdecarb", False
         label: "Electricity expense relative to no export in % (w/o electrolysis)"
       exp_H2_False_False_exportonly: 
         normalize_by: "decarb"
-        label: "Hydrogen export expense relative to no co2 reduction in % (w/o electrolysis)"
+        label: "Hydrogen expense relative to no co2 reduction in % (export)"
+      exp_local_export:
+        normalize_by: False
 
     label:
       cost: "Total System Cost in B€"
@@ -256,12 +258,15 @@ plot:
   specific_xticks: "opt" #"opt" #"export" # Choose from wildcards. Default "False". Be sure to change the "specific_xlabel" accordingly. Warning: "opt" uses predefined xticks values
   specific_xlabel:  "$\\mathrm{CO_2}$ reduction in % of base levels" #"Export in TWh" #"$\\mathrm{CO_2}$ reduction in % of base levels"
   tech_colors:
+    (CAPEX < 100.0 M€ thres.): "lightgray"
+    (OPEX < 100.0 M€ thres.): "gray"
     SMR CC: "darkblue"
     gas for industry CC: "brown"
     process emissions CC: "gray"
     CO2 pipeline: "gray"
     onwind: "dodgerblue"
     onshore wind: "#235ebc"
+    Onshore Wind (CAPEX): "#235ebc"
     offwind: "#6895dd"
     offshore wind: "#6895dd"
     offwind-ac: "c"
@@ -276,20 +281,29 @@ plot:
     hydroelectricity: 'blue'
     solar: "orange"
     solar PV: "#f9d002"
+    Solar (CAPEX): "#f9d002"
     solar thermal: coral
     solar rooftop: '#ffef60'
     OCGT: wheat
     OCGT marginal: sandybrown
     OCGT-heat: '#ee8340'
+    Open-Cycle Gas (CAPEX): sandybrown
     gas boiler: '#ee8340'
     gas boilers: '#ee8340'
     gas boiler marginal: '#ee8340'
+    urban central gas CHP (CAPEX): '#ee8340'
+    residential urban decentral heat: '#ee8340'
+    services urban decentral heat: '#ee8340'
     gas-to-power/heat: 'brown'
     gas: brown
+    services gas: brown
+    residential gas: brown
+    gas (OPEX): brown
     natural gas: brown
     SMR: '#4F4F2F'
     oil: '#B5A642'
     oil boiler: '#B5A677'
+    Oil (OPEX): 'black'
     lines: k
     transmission lines: k
     H2: m
@@ -297,6 +311,7 @@ plot:
     hydrogen storage: m
     H2 Store: '#bf13a0'
     H2 storage: '#bf13a0'
+    H2 Storage (CAPEX): '#bf13a0'
     land transport fuel cell: '#6b3161'
     H2 pipeline: '#f081dc'
     H2 pipeline retrofitted: '#ba99b5'
@@ -304,6 +319,7 @@ plot:
     H2 fuel cell: '#c251ae'
     H2 turbine: '#991f83'
     H2 Electrolysis: '#ff29d9'
+    H2 Electrolysis (CAPEX): '#ff29d9'
     H2 electrolysis: '#ff29d9'
     battery: slategray
     battery storage: slategray
@@ -316,11 +332,13 @@ plot:
     Coal: "#505050"
     coal: "#505050"
     Coal marginal: "#505050"
+    Coal (OPEX): "#505050"
     Lignite: grey
     lignite: grey
     Lignite marginal: grey
     CCGT: '#ee8340'
     CCGT marginal: '#ee8340'
+    Combined-Cycle Gas (OPEX): '#ee8340'
     heat pumps: '#76EE00'
     heat pump: '#76EE00'
     air heat pump: '#76EE00'
@@ -366,7 +384,10 @@ plot:
     Heat load: r
     heat: darkred
     rural heat: '#880000'
+    residential rural heat: '#880000'
+    services rural heat: '#880000'
     central heat: '#b22222'
+    urban central heat: '#b22222'
     decentral heat: '#800000'
     low-temperature heat for industry: '#991111'
     process heat: '#FF3333'
@@ -398,6 +419,7 @@ plot:
     services biomass: 'green'
     biogas: '#800000'
     solid biomass: '#DAA520'
+    solid biomass (OPEX): '#DAA520'
     today: '#D2691E'
     shipping: '#6495ED'
     shipping oil: "#6495ED"
@@ -413,5 +435,6 @@ plot:
     rail transport electricity: "black"
     rail transport oil: "black"
     electricity demand: "black"
+    Local electricity: "black"
 
 
