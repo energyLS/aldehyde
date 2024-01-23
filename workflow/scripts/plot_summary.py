@@ -262,10 +262,11 @@ def plot_balances():
             balances_df.columns.get_level_values("export") == "1"
         ]
         balances_df = balances_df.loc[:, cols]
-    elif snakemake.wildcards.summarytype == "co2l20_only":
+    elif snakemake.wildcards.summarytype == "co2l20-only":
         cols = balances_df.columns[
             balances_df.columns.get_level_values("opt") == "Co2L2.0-3H"
         ]
+        balances_df = balances_df.loc[:, cols]
 
     balances = {i.replace(" ", "_"): [i] for i in balances_df.index.levels[0]}
     balances["energy"] = [
@@ -326,10 +327,11 @@ def plot_balances():
 
         # Set specific xticks
         if snakemake.config["plot"]["specific_xticks"] != False:
-            custom_x_values = df.columns.get_level_values(
-                snakemake.config["plot"]["specific_xticks"]
-            ).values
-            if snakemake.config["plot"]["specific_xticks"] == "opt":
+            if summarytype == "co2l20-only":
+                label = snakemake.config["plot"]["xlabel_2co2"]
+                custom_x_values = df.columns.get_level_values("export").values
+            elif summarytype == "0exp-only":
+                label = snakemake.config["plot"]["xlabel_0exp"]
                 print("Warning: using predefined xticks")
                 custom_x_values = [
                     "0",
@@ -346,10 +348,11 @@ def plot_balances():
                 ]
 
             ax.set_xticks(range(len(custom_x_values)), custom_x_values)
-            ax.set_xlabel(snakemake.config["plot"]["specific_xlabel"])
-        else:
-            ax.set_xlabel("")
 
+        else:
+            label = ""
+
+        ax.set_xlabel(label)
         handles, labels = ax.get_legend_handles_labels()
 
         handles.reverse()
@@ -585,7 +588,7 @@ if __name__ == "__main__":
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         snakemake = mock_snakemake(
             "plot_summary",
-            summarytype="0exp-only",
+            summarytype="co2l20-only",
         )
 
     n_header = 7  # Header lines in the csv files

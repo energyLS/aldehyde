@@ -3,8 +3,10 @@ cluster: "remote:path/on/remote"
 # Path to the PyPSA-Earth-Sec repository
 pypsaearthsec: "/mnt/c/Users/scl38887/Documents/git/pypsa-earth-sec/config.default.yaml"
 
-results_dir: results/
+results_dir: subworkflows/pypsa-earth-sec/results/
 summary_dir: results/
+
+run: decr_16_3H_ws #dyntrans_full_3H_ws
 
 retrieve_cost_data: False
 import_pypsaearthsec: False # Set true to run PyPSA-Earth-Sec subworkflow
@@ -256,7 +258,10 @@ plot:
   costs_threshold: 1
   energy_threshold: 15
   specific_xticks: "opt" #"opt" #"export" # Choose from wildcards. Default "False". Be sure to change the "specific_xlabel" accordingly. Warning: "opt" uses predefined xticks values
-  specific_xlabel:  "$\\mathrm{CO_2}$ reduction in % of base levels" #"Export in TWh" #"$\\mathrm{CO_2}$ reduction in % of base levels"
+  #specific_xlabel:  "$\\mathrm{CO_2}$ reduction in % of base levels" #"Export in TWh" #"$\\mathrm{CO_2}$ reduction in % of base levels"
+  xlabel_0exp: "$\\mathrm{CO_2}$ reduction in % of base levels"
+  xlabel_2co2: "Export in TWh"
+
   tech_colors:
     (CAPEX < 100.0 M€ thres.): "lightgray"
     (OPEX < 100.0 M€ thres.): "gray"
