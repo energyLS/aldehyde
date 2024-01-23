@@ -10,8 +10,8 @@ plt.style.use("ggplot")
 # consolidate and rename
 def rename_techs(label):
     prefix_to_remove = [
-        #"residential ", # Comment out, to avoid mix up of oil supply and oil demands starting with1 "residential"
-        #"services ", # Comment out, to avoid mix up of oil supply and oil demands starting with "services"
+        # "residential ", # Comment out, to avoid mix up of oil supply and oil demands starting with1 "residential"
+        # "services ", # Comment out, to avoid mix up of oil supply and oil demands starting with "services"
         "urban ",
         "rural ",
         "central ",
@@ -255,6 +255,17 @@ def plot_balances():
     balances_df = pd.read_csv(
         snakemake.input.balances, index_col=list(range(3)), header=list(range(n_header))
     )
+
+    if snakemake.wildcards.summarytype == "0exp-only":
+        # Filter for 1 export
+        cols = balances_df.columns[
+            balances_df.columns.get_level_values("export") == "1"
+        ]
+        balances_df = balances_df.loc[:, cols]
+    elif snakemake.wildcards.summarytype == "co2l20_only":
+        cols = balances_df.columns[
+            balances_df.columns.get_level_values("opt") == "Co2L2.0-3H"
+        ]
 
     balances = {i.replace(" ", "_"): [i] for i in balances_df.index.levels[0]}
     balances["energy"] = [
@@ -572,9 +583,14 @@ if __name__ == "__main__":
         from _helpers import mock_snakemake
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        snakemake = mock_snakemake("plot_summary")
+        snakemake = mock_snakemake(
+            "plot_summary",
+            summarytype="0exp-only",
+        )
 
     n_header = 7  # Header lines in the csv files
+
+    summarytype = snakemake.wildcards.summarytype
 
     # plot_costs()
 
