@@ -7,14 +7,14 @@ Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0 - 
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l2.0-only/graphs/balances-AC.pdf}
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/graphs/balances-AC.pdf}
         \caption{Electricity balance {\bf with} green hydrogen constraint}
         \label{fig:balances_AC_monthlymatch}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l2.0-only/graphs/balances-AC.pdf}
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l20-only/graphs/balances-AC.pdf}
         \caption{Electricity balance {\bf without} green hydrogen constraint}
         \label{fig:balances_AC_nogreen}
     \end{subfigure}
@@ -30,14 +30,14 @@ The green hydrogen constraint has a major influence on the hydrogen prices (s. F
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterTrue.pdf}
         \caption{Average price of electricity for local consumers {\bf with} green hydrogen constraint}
         \label{fig:local_el_price}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterTrue.pdf}
         \caption{Average price of electricity for local consumers {\bf without} green hydrogen constraint}
         \label{fig:local_el_price_nogreen}
     \end{subfigure}

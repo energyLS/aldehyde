@@ -39,7 +39,7 @@ In contrast to the expontential increase of electricity demand observable at inc
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l2.0-only/graphs/balances-AC.pdf}
+    \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/graphs/balances-AC.pdf}
     \caption{Electricity supply and demand at 0\% emission reduction rising hydrogen exports}
     \label{fig:balances-ac-co2l20}
 \end{figure}
@@ -102,7 +102,7 @@ At high levels of emission reduction, this effect is less pronounced since the e
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterTrue.pdf}
         \caption{Average price of electricity for local consumers}
         \label{fig:local_el_price}
     \end{subfigure}
@@ -135,7 +135,10 @@ At low export volumes of 20 TWh and carbon reductions $<40$\%, low prices are ob
 The same reason (additional RE installations, decreasing electrolyser capacity factors, increasing marginal cost of hydrogen) is also valid for increasing the hydrogen export volume. Nonetheless, Figure \ref{fig:export_hy_price} shows different nuances of price increases when increasing hydrogen export volumes. In the range of 0 - 50\% emission reduction, the gradient of price increase is rather high, symbolised by crossing narrow contour lines. At higher emission reductions (80 - 100\%), the contour lines are more distant, meaning the effect of hydrogen prices increasing with the hydrogen export volume is
 weakened. This is due to the capacity factor of the electrolysers: At high climate ambitions they already run at low capacity factors, an additional increase of REs (required for hydrogen export) does not lower the CF significantly (from 50\% to 40\%). Instead, increasing the hydrogen export at lower climate ambitions is linked to a decrease of capacity factor from around 90\% to less then 60\%  (s. Fig. \ref{fig:ely-cf}) resulting in a steeper increase of hydrogen prices at lower export volumes.
 
-
+% New page
+\newpage
+\thispagestyle{empty}
+\newpage
 
 \subsection{PUNCH 1: Benefits of local decarbonisation and hydrogen export}
 \label{subsec:benefits}
@@ -173,7 +176,10 @@ weakened. This is due to the capacity factor of the electrolysers: At high clima
 
 
 \begin{itemize}
-    \item Local electricity consumers and hydrogen exports do not both profit, but 
+    \item Local electricity consumers and hydrogen exports do not both profit
+    \item Explain what happens: Stricter h2 rule needs additional pv and h2 storage
+    \item Hydrogen expenses increase (because they carry the constraint and finance pv and h2 storage (in part)) 
+    \item Electricity expenses decrease (because they profit from "free" excess electricity by additional pv installations)
     \item Figure \ref{fig:expense_rule}
 \end{itemize}
 
@@ -205,7 +211,10 @@ weakened. This is due to the capacity factor of the electrolysers: At high clima
 
 \begin{itemize}
     \item Strong hydrogen regulation hedges local electricity consumers against rising prices
+    \item Realistic scenarios lead to electricity price reduction up to 30\%, other scenarios (esp. high export low decarb) up to 65\%
+    \item We can regulate the redistribution via h2 rules. Shifted/Staged onset of effects
     \item (Additional): Strong regulation reduces carbon emissions
+    \item Figure \ref{fig:balances-ac-co2l20}
 \end{itemize}
 
 
