@@ -9,7 +9,7 @@ The integration challenges arising from increasing RE penetration are pointed ou
 \label{subsec:economic_benefits}
 \label{subsec:sensitivity}
 
-\subsection{Dimension 1: Increasing emission reduction limit}
+\subsection{Domestic mitigation}
 \label{subsec:increase_limit}
 Figure \ref{fig:balances-ac-0exp} depicts the supply and demand of the electricity system at increasing climate mitigation ambitions from 0\% to 100\%. At low climate ambitions, the electricity demand is mainly covered by coal power, existing (brownfield) capacities of onshore wind, hydro, and CCGT play only a minor role. 
 At increasing emissions reductions, coal power is phased out in favour of solar PV, furthermore a fuel switch from coal to gas (CCGT) is observable at increasing emission reductions. At medium climate mitigation ambitions, the dipatchable power in the electricity system is provided by OCGT. 
@@ -27,7 +27,7 @@ Additionally, the electricity demand for air heat pumps increases, supporting th
     \label{fig:balances-ac-0exp}
 \end{figure}
 
-\subsection{Dimension 2: Increasing hydrogen export volume}
+\subsection{Hydrogen exports}
 \label{subsec:increase_h2}
 
 The electricity supply at increasing hydrogen exports is displayed in Figure \ref{fig:balances-ac-co2l20}. The deployment of hydrogen exports requires a scale up of onshore wind and solar PV accordingly, as defined by the green hydrogen constraint (s. Sec. \ref{subsec:green_hydrogen_constraint}).
@@ -43,6 +43,118 @@ In contrast to the expontential increase of electricity demand observable at inc
     \caption{Electricity supply and demand at 0\% emission reduction rising hydrogen exports}
     \label{fig:balances-ac-co2l20}
 \end{figure}
+
+
+% New page
+\newpage
+\thispagestyle{empty}
+\newpage
+
+\subsection{PUNCH 1: Co-benefits of local mitigation and hydrogen export}
+\label{subsec:benefits}
+
+Topic sentence:
+\begin{itemize}
+    \item Both domestic mitigation (s. Sec. \ref{subsec:increase_limit}) and hydrogen exports (s. Sec. \ref{subsec:increase_h2}) profit from each other and show co-benefits.
+\end{itemize}
+
+
+Graph \ref{fig:expense_ac}:
+\begin{itemize}
+    \item Figure \ref{fig:expense_ac} shows the expenses of domestic electricity consumers subject to mitigation and hydrogen export volumes. The expenses are normalized to expenses at 1 TWh Hydrogen export at each mitigation level
+    \item Hydrogen exports decrease the domestic electricity expenses, especially at mitigation below 40\% and exports above 50 TWh.
+    \item Realistic area at 40-60\% mitigation and 50-100\% h2 import, where there is also a clear decline in electricity expenses for domestic costumers
+    \item Figure \ref{fig:expense_h2} shows the expenses of hydrogen exports subject to mitigation and hydrogen export volumes. The expenses are normalized to expenses at 0\% mitigation at each hydrogen export volume
+    \item The expenses for hydrogen exports at 25 - 75 TWh export volumes decrease at mitigation levels of 40 - 60 \% 
+    \item At export volumes below 25 TWh, a domestic mitigation increases the hydrogen export expenses
+\end{itemize}
+
+Punch:
+\begin{itemize}
+    \item Local electricity consumers benefit from hydrogen export (under certain circumstances)
+    \item Hydrogen exporters benefit from local decarbonisation (under certain circumstances)
+    \item Both hydrogen exporters and domestic electricity consumers benefit from each other at medium mitigation (40 - 60\%) and moderate to high hydrogen exports (25 - 150 TWh)
+\end{itemize}
+
+
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue.pdf}
+        \caption{Expense of local electricity customers (normalized to 1 TWh Hydrogen export)}
+        \label{fig:expense_ac}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue.pdf}
+        \caption{Expense of hydrogen exporters (normalized to 0\% \co reduction)}
+        \label{fig:expense_h2}
+    \end{subfigure}
+    \hfill
+    \caption{Normalized expenses of local electricity consumers (\ref{fig:expense_ac}) and hydrogen exporters (\ref{fig:expense_h2})}
+    \label{fig:expenses_default}
+\end{figure*}
+
+
+\subsection{PUNCH 2: Effects of hydrogen regulation on electricity and hydrogen expenses}
+\label{subsec:benefits_rule}
+
+\begin{itemize}
+    \item Local electricity consumers and hydrogen exports do not both profit
+    \item Explain what happens: Stricter h2 rule needs additional pv and h2 storage
+    \item Hydrogen expenses increase (because they carry the constraint and finance pv and h2 storage (in part)) 
+    \item Electricity expenses decrease (because they profit from "free" excess electricity by additional pv installations)
+    \item Message 1: Strong hydrogen regulation decarbonizes hydrogen and domestic electricity demand
+    \item Message 2: Strong hydrogen regulation decreases expenses for domestic electricity and increases for H2 exports
+    \item Figure \ref{fig:expenses_rule}
+\end{itemize}
+
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../results/gh/abs_sin_tech_200_Co2L2.0.pdf}
+        \caption{CAPEX, OPEX and total system cost by technology}
+        \label{fig:cost_rule}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_200_Co2L2.0.pdf}
+        \caption{Expenses of local electricity consumers and hydrogen exporters}
+        \label{fig:expense_h2ac}
+    \end{subfigure}
+    \hfill
+    \caption{Costs by technology (\ref{fig:costs_rule}) and expenses of consumers (\ref{fig:expense_h2ac})}
+    \label{fig:expenses_rule}
+\end{figure*}
+
+
+\subsection{PUNCH 3: The role of hydrogen regulation across mitigation and export scenarios}
+\label{subsec:rule_all}
+
+
+\begin{itemize}
+    \item Strong hydrogen regulation hedges local electricity consumers against rising prices
+    \item Realistic scenarios lead to electricity price reduction up to 30\%, other scenarios (esp. high export low decarb) up to 65\%
+    \item We can regulate the redistribution via h2 rules. Shifted/Staged onset of effects
+    \item (Additional): Strong regulation reduces carbon emissions
+    \item Figure \ref{fig:balances-ac-co2l20}
+\end{itemize}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{../../results/gh/rel_multiple.pdf}
+    \caption{Relative change of electricity/hydrogen expenses and total system cost depending on the green hydrogen regulation}
+    \label{fig:balances-ac-co2l20}
+\end{figure}
+
+
 
 
 \subsection{Integration challenges and flexibility requirements}
@@ -134,98 +246,6 @@ At low export volumes of 20 TWh and carbon reductions $<40$\%, low prices are ob
 % Going up the hydrogen export
 The same reason (additional RE installations, decreasing electrolyser capacity factors, increasing marginal cost of hydrogen) is also valid for increasing the hydrogen export volume. Nonetheless, Figure \ref{fig:export_hy_price} shows different nuances of price increases when increasing hydrogen export volumes. In the range of 0 - 50\% emission reduction, the gradient of price increase is rather high, symbolised by crossing narrow contour lines. At higher emission reductions (80 - 100\%), the contour lines are more distant, meaning the effect of hydrogen prices increasing with the hydrogen export volume is
 weakened. This is due to the capacity factor of the electrolysers: At high climate ambitions they already run at low capacity factors, an additional increase of REs (required for hydrogen export) does not lower the CF significantly (from 50\% to 40\%). Instead, increasing the hydrogen export at lower climate ambitions is linked to a decrease of capacity factor from around 90\% to less then 60\%  (s. Fig. \ref{fig:ely-cf}) resulting in a steeper increase of hydrogen prices at lower export volumes.
-
-% New page
-\newpage
-\thispagestyle{empty}
-\newpage
-
-\subsection{PUNCH 1: Co-benefits of local mitigation and hydrogen export}
-\label{subsec:benefits}
-
-\begin{itemize}
-    \item Local electricity consumers benefit from hydrogen export (under certain circumstances)
-    \item Hydrogen exporters benefit from local decarbonisation (under certain circumstances)
-    \item Do they profit commonly a certain circumstances?
-    \item Figure: \ref{fig:expenses_default}
-\end{itemize}
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue.pdf}
-        \caption{Expense of local electricity customers (normalized to 1 TWh Hydrogen export)}
-        \label{fig:expense_ac}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue.pdf}
-        \caption{Expense of hydrogen exporters (normalized to 0\% \co reduction)}
-        \label{fig:expense_h2}
-    \end{subfigure}
-    \hfill
-    \caption{Normalized expenses of local electricity consumers (\ref{fig:expense_ac}) and hydrogen exporters (\ref{fig:expense_h2})}
-    \label{fig:expenses_default}
-\end{figure*}
-
-
-\subsection{PUNCH 2: Effects of hydrogen regulation on electricity and hydrogen expenses}
-\label{subsec:benefits_rule}
-
-\begin{itemize}
-    \item Local electricity consumers and hydrogen exports do not both profit
-    \item Explain what happens: Stricter h2 rule needs additional pv and h2 storage
-    \item Hydrogen expenses increase (because they carry the constraint and finance pv and h2 storage (in part)) 
-    \item Electricity expenses decrease (because they profit from "free" excess electricity by additional pv installations)
-    \item Message 1: Strong hydrogen regulation decarbonizes hydrogen and domestic electricity demand
-    \item Message 2: Strong hydrogen regulation decreases expenses for domestic electricity and increases for H2 exports
-    \item Figure \ref{fig:expenses_rule}
-\end{itemize}
-
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../results/gh/abs_sin_tech_200_Co2L2.0.pdf}
-        \caption{CAPEX, OPEX and total system cost by technology}
-        \label{fig:cost_rule}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_200_Co2L2.0.pdf}
-        \caption{Expenses of local electricity consumers and hydrogen exporters}
-        \label{fig:expense_h2ac}
-    \end{subfigure}
-    \hfill
-    \caption{Costs by technology (\ref{fig:costs_rule}) and expenses of consumers (\ref{fig:expense_h2ac})}
-    \label{fig:expenses_rule}
-\end{figure*}
-
-
-\subsection{PUNCH 3: The role of hydrogen regulation across mitigation and export scenarios}
-\label{subsec:rule_all}
-
-
-\begin{itemize}
-    \item Strong hydrogen regulation hedges local electricity consumers against rising prices
-    \item Realistic scenarios lead to electricity price reduction up to 30\%, other scenarios (esp. high export low decarb) up to 65\%
-    \item We can regulate the redistribution via h2 rules. Shifted/Staged onset of effects
-    \item (Additional): Strong regulation reduces carbon emissions
-    \item Figure \ref{fig:balances-ac-co2l20}
-\end{itemize}
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\linewidth]{../../results/gh/rel_multiple.pdf}
-    \caption{Relative change of electricity/hydrogen expenses and total system cost depending on the green hydrogen regulation}
-    \label{fig:balances-ac-co2l20}
-\end{figure}
-
 
 
 
