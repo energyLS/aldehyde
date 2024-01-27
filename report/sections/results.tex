@@ -99,17 +99,32 @@ Punch:
 \end{figure*}
 
 
-\subsection{PUNCH 2: Effects of hydrogen regulation on electricity and hydrogen expenses}
+\subsection{PUNCH 2: Effects of hydrogen regulation on electricity and hydrogen expenses (in fossil dominated electricity systems)}
 \label{subsec:benefits_rule}
 
+Topic sentence:
 \begin{itemize}
-    \item Local electricity consumers and hydrogen exports do not both profit
-    \item Explain what happens: Stricter h2 rule needs additional pv and h2 storage
+    \item Section \ref{subsec:benefits} shows that both hydrogen exporters and domestic electricity consumers can co-benefit at certain scenarios, but careful: The hydrogen regulation plays an important role.
+    \item Strict hydrogen regulation has strong effects on electricity system dispatch (and emission factor), increasing the prices/expenses for hydrogen exporters whilst decreasing for domestic electricity consumers
+\end{itemize}
+
+Graph/Main:
+\begin{itemize}
+    \item Energy spillover I: Stricter hydrogen regulation requires additional renewable capacities (\& hydrogen storage, see appendix) to meet the electricity demand of electrolysis on an annual/monthly/hourly basis. These capacities provide excess electricity to the domestic electricity system (s. Fig. \ref{fig:dispatch_rule})
+    \item Energy spillover II:
+    \item Price spillover: (Appendix)
+    \item Graph \ref{fig:expense_h2ac}
     \item Hydrogen expenses increase (because they carry the constraint and finance pv and h2 storage (in part)) 
     \item Electricity expenses decrease (because they profit from "free" excess electricity by additional pv installations)
-    \item Message 1: Strong hydrogen regulation decarbonizes hydrogen and domestic electricity demand
-    \item Message 2: Strong hydrogen regulation decreases expenses for domestic electricity and increases for H2 exports
+    \item (Idea: Instead of looking at high export and low mitigation, maybe pick up co-benefit area from Punch 1? But effects are strongest for low mitigation, I should show that. I can pick it up again in Punch 3!)
     \item Figure \ref{fig:expenses_rule}
+\end{itemize}
+
+
+Punch:
+\begin{itemize}
+    \item Strict hydrogen regulation decarbonizes hydrogen and domestic electricity demand
+    \item Strict hydrogen regulation decreases expenses for domestic electricity and increases for H2 exports
 \end{itemize}
 
 
@@ -117,9 +132,9 @@ Punch:
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../../results/gh/abs_sin_tech_200_Co2L2.0.pdf}
+        \includegraphics[width=\linewidth]{../../results/gh/dispatch_200_Co2L2.0.pdf}
         \caption{CAPEX, OPEX and total system cost by technology}
-        \label{fig:cost_rule}
+        \label{fig:dispatch_rule}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
