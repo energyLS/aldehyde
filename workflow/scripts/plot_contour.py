@@ -108,7 +108,8 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
         )
         plt.legend()
 
-    plt.xlabel("CO$_2$ Reduction in % of base levels")
+    # plt.xlabel("CO$_2$ Reduction in % of base levels")
+    plt.xlabel("Domestic mitigation in %")
     plt.ylabel("Hydrogen Export Volume in TWh")
     if snakemake.config["plot"]["contour_plot"]["normalize"] == False:
         plt.colorbar(pad=0.14).set_label(
