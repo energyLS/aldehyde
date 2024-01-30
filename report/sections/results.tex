@@ -1,7 +1,7 @@
 Chapter \ref{sec:results} focuses on the energy system fulfilling both goals of hydrogen export and national energy transition under various green hydrogen regulations. First, Section \ref{subsec:increase_limit} investigates the supply and demand of Moroccos electricity system in high-mitigation systems (dimension 1), Section \ref{subsec:increase_h2} analyses the hydrogen export ramp up (dimension 2). Section \ref{subsec:benefits} reveals economic co-benefits of domestic mitigation and hydrogen exports along both dimensions 1 and 2. The role of hydrogen regulation and temporal matching (dimension 3) is outlined in section \ref{subsec:benefits_rule}. Section \ref{subsec:rule_all} investigates the effect of hydrogen regulation depending on domestic mitigation and hydrogen exports (dimensions 1, 2 and 3).
 
 
-% The integration challenges arising from increasing RE penetration are pointed out in Section \ref{subsec:integration_challenges} while emphasizing the importance of system flexibility provided by electricity storages and curtailment. The hydrogen and electricity prices of the integrated optimisation are analyzed in Section \ref{subsec:results_el_prices} and \ref{subsec:results_hy_prices}. 
+% The integration challenges arising from increasing RE penetration are pointed out in Section \ref{subsec:integration_challenges} while emphasizing the importance of system flexibility provided by electricity storage and curtailment. The hydrogen and electricity prices of the integrated optimisation are analyzed in Section \ref{subsec:results_el_prices} and \ref{subsec:results_hy_prices}. 
 
 
 %Based on these prices, Section \ref{subsec:economic_benefits} derives the total expenses of electricity and hydrogen and outlines economics benefits. 
@@ -14,15 +14,16 @@ Figure \ref{fig:balances-ac-0exp} depicts the supply and demand of the electrici
 At increasing emissions reductions, coal power is phased out in favour of solar PV, furthermore a fuel switch from coal to gas (CCGT) is observable at increasing emission reductions. At medium climate mitigation ambitions, the dipatchable power in the electricity system is provided by OCGT. 
 Further increasing the climate ambitions, both solar PV and wind onshore penetrate and dominate the electricity system complemented by dispatchable power from Vehicle-to-Grid (V2G) providing an almost fully renewable electricity sector at 100\% emission reduction. 
 
-At 70\% and above, the electricity demand of eletrolysers increases significantly to supply hydrogen allowing a switch from fossil oil products to Fischer-Tropsch fuels in various sectors. The Fischer-Tropsch demand in the transport sector increases, even though the increasing BEV diffusion (s. Sec. \ref{subsec:bev_diffusion}) is counterbalancing the demand for oil products. 
-Both eletrolysers and BEVs drive the electricity demand significantly up to six times of the based electricity demand. 
+At 70\% and above, the electricity demand of eletrolysers increases significantly to supply hydrogen allowing a switch from fossil oil products to Fischer-Tropsch fuels in various sectors (see breakdown in \ref{fig:oil-balance}). 
+The Fischer-Tropsch demand in the transport sector increases, even though the increasing BEV diffusion (s. Sec. \ref{subsec:bev_diffusion}) is counterbalancing the demand for oil products. 
+Both eletrolysers and BEVs drive the electricity demand significantly up to five times of the bulk electricity demand. 
 Additionally, the electricity demand for air heat pumps increases, supporting the defossilisation in the heating sector (s. Sec. TODO) and supplying heat to the DAC process (s. Sec. TODO) required for synthetic fuels.
 
 
 \begin{figure}[h!]
     \centering
     \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-AC.pdf}
-    \caption{Electricity supply and demand at 0 TWh export and rising emission reduction}
+    \caption{Electricity supply and demand at 1 TWh export. Rising domestic mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high mitigation the electricity system is fully renewable supported by flexibility through V2G and sector coupling. Increasing electricity demands cover EVs and hydrogen generation for other sectors.}
     \label{fig:balances-ac-0exp}
 \end{figure}
 
@@ -39,7 +40,8 @@ In contrast to the expontential increase of electricity demand observable at inc
 \begin{figure}[h!]
     \centering
     \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/graphs/balances-AC.pdf}
-    \caption{Electricity supply and demand at 0\% emission reduction rising hydrogen exports}
+    \caption{Electricity supply and demand at 0\% 
+    domestic mitigation and rising hydrogen exports. The additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as imposed by the hydrogen regulation. See Fig. \ref{fig:balances_AC_nogreen} for electricity balance without hydrogen regulation.}
     \label{fig:balances-ac-co2l20}
 \end{figure}
 
@@ -130,18 +132,18 @@ Punch:
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[width=\linewidth]{../../results/gh/dispatch_200_Co2L2.0.pdf}
-        \caption{CAPEX, OPEX and total system cost by technology}
+        \caption{Electricity dispatch}
         \label{fig:dispatch_rule}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_200_Co2L2.0.pdf}
-        \caption{Expenses of local electricity consumers and hydrogen exporters}
+        \caption{Expenses of domestic electricity consumers and hydrogen exporters}
         \label{fig:expense_h2ac}
     \end{subfigure}
     \hfill
-    \caption{Costs by technology (\ref{fig:costs_rule}) and expenses of consumers (\ref{fig:expense_h2ac})}
+    \caption{Electricity dispatch (\ref{fig:dispatch_rule}) and expenses of consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 200 TWh export and 0\% mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Expenses for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation.}
     \label{fig:expenses_rule}
 \end{figure*}
 
@@ -176,7 +178,7 @@ Punch:
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{../../results/gh/rel_multiple.pdf}
-    \caption{Relative change of electricity/hydrogen expenses and total system cost depending on the green hydrogen regulation}
+    \caption{Relative change of electricity and hydrogen expenses and total system cost depending on the green hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low mitigation. Hydrogen exporters experience higher expenses with stricter hydrogen regulation. The hydrogen regulation regulates the welfare distribution between both groups.}
     \label{fig:expenses_all}
 \end{figure}
 
@@ -206,7 +208,7 @@ Punch:
 % Figure \ref{fig:integration_options} reveals that at increasing hydrogen export and high emission reduction (above $70$\%) both battery storage and curtailment are reduced, due to the synergy with export driven hydrogen infrastructure and it's ability to integrate RE at large scale.
 
 % Flexibility requirements
-% Figure \ref{fig:integration_options} shows the installed capacities of battery and hydrogen storages. Both installations show a clear correlation with either the climate ambition or the export dimension. With higher climate ambitions, battery storages are deployment in larger scale at 60\% $\mathrm{CO_2}$ reduction and above, balancing the integration of variable REs (esp. solar PV). The hydrogen (underground) storages are deployed along the export dimension to buffer the hydrogen generation to meet the constant hydrogen export demand. At high climate ambition, the installed battery capacity reduces with higher export since the hydrogen storage additionally buffers daily generation patterns of Solar PV.
+% Figure \ref{fig:integration_options} shows the installed capacities of battery and hydrogen storage. Both installations show a clear correlation with either the climate ambition or the export dimension. With higher climate ambitions, battery storage are deployment in larger scale at 60\% $\mathrm{CO_2}$ reduction and above, balancing the integration of variable REs (esp. solar PV). The hydrogen (underground) storage are deployed along the export dimension to buffer the hydrogen generation to meet the constant hydrogen export demand. At high climate ambition, the installed battery capacity reduces with higher export since the hydrogen storage additionally buffers daily generation patterns of Solar PV.
 
 
 % \subsection{Local electricity prices}
@@ -220,7 +222,7 @@ Punch:
 
 % The average price of electricity for local consumers (s. Fig. \ref{fig:local_el_price}) is weighted based on the local electricity demand, hence the demand of all consumers excluding eletrolyzers. 
 % % Increasing the climate ambition
-% It shows low prices at emissions reductions below 30\%, then increasing prices along the $\mathrm{CO_2}$ reduction dimension. The low prices result from existing (brownfield) coal capacities, where the investment costs have already been written off and cheap operational expenditures of coal power plants (without carbon pricing) offer low electricity prices. Further increasing the climate ambition leads to a higher penetration of variable renewable energies, the flexibility requirements pointed out in Section \ref{subsec:integration_challenges} increase. Due to a shift in the transport sector from ICEs to BEVs with increasing climate ambitions, V2G provides a flexibility option for the integration of variable renewable energies. Curtailment rates for onshore wind and solar PV decrease when going from 0\% to 40\% emission reduction (s. Fig. \ref{fig:integration_options}). This flexibility option is counterbalanced by the increased installation of PV and onshore wind, leading to an increase in curtailment rates from 40\% to 70\% before decreasing again at emission reductions of 70\% and above due to additional flexibility provided by electrolysis and hydrogen storages (s. Fig. \ref{fig:hystorage_cap}).
+% It shows low prices at emissions reductions below 30\%, then increasing prices along the $\mathrm{CO_2}$ reduction dimension. The low prices result from existing (brownfield) coal capacities, where the investment costs have already been written off and cheap operational expenditures of coal power plants (without carbon pricing) offer low electricity prices. Further increasing the climate ambition leads to a higher penetration of variable renewable energies, the flexibility requirements pointed out in Section \ref{subsec:integration_challenges} increase. Due to a shift in the transport sector from ICEs to BEVs with increasing climate ambitions, V2G provides a flexibility option for the integration of variable renewable energies. Curtailment rates for onshore wind and solar PV decrease when going from 0\% to 40\% emission reduction (s. Fig. \ref{fig:integration_options}). This flexibility option is counterbalanced by the increased installation of PV and onshore wind, leading to an increase in curtailment rates from 40\% to 70\% before decreasing again at emission reductions of 70\% and above due to additional flexibility provided by electrolysis and hydrogen storage (s. Fig. \ref{fig:hystorage_cap}).
 
 
 
@@ -235,7 +237,7 @@ Punch:
 
 % The increase of hydrogen exports at medium emission ambitions (60\%) shows a different picture, increasing the electricity price up to 58 €/MWh. At 60\% emission reduction and no hydrogen export, the electricity sector is already almost fully renewable (s. Fig. \ref{fig:balances-ac-0exp}), the flexibility provided by V2G and BEV batteries is sufficient to integrate the variable renewable energies. In this environment, an increase of hydrogen exports (and REs accordingly) pushes the electricity system to it's integration limits, requiring more storage and increasing RE curtailment as observable in Figure \ref{fig:solar_curt}, hence increasing the price of electricity.
 
-% At high levels of emission reduction, this effect is less pronounced since the electricity system is already integrating a large amount of REs to run electrolysers and Fischer-Tropsch. Additional RE capacities induced by hydrogen exports are not significantly changing the flexibility requirements, which are already highly deployed through electrolysers, hydrogen storages and (partly) Fischer-Tropsch processes.
+% At high levels of emission reduction, this effect is less pronounced since the electricity system is already integrating a large amount of REs to run electrolysers and Fischer-Tropsch. Additional RE capacities induced by hydrogen exports do not significantly change the flexibility requirements, which are already highly deployed through electrolysers, hydrogen storage and (partly) Fischer-Tropsch processes.
 
 % \begin{figure*}[h!] % Use 'figure*' to span both columns
 %     \centering

@@ -1,37 +1,52 @@
 \section{Energy balances}
 
-Figure \ref{fig:barplots} displays the energy balances of modelled scenarios.
 
 
-\begin{figure}[h!]
+\subsection{Oil balance}
+\label{subsec:oil-balance}
+Figure \ref{fig:oil-balance} shows the Oil balance at 1 TWh export at increasing domestic mitigation.
+
+\begin{figure*}[h]
     \centering
-    \begin{subfigure}[b]{\linewidth}
-        \centering
-        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/graphs/balances-AC.pdf}
-        \caption{Balances AC}
-        \label{fig:balances_AC}
-    \end{subfigure}
-    
-    \vspace{0.5cm} % Add vertical space between the subfigures
-    
-    \begin{subfigure}[b]{\linewidth}
-        \centering
-        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/graphs/balances-energy.pdf}
-        \caption{Balances energy}
-        \label{fig:balances_energy}
-    \end{subfigure}
+    \includegraphics[width=0.5\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-oil.pdf}
+    \caption{Oil balance at 1 TWh export at increasing domestic mitigation. The exogenously defined oil demand for land transport significantly decreases due to electrification, oil demands for industrial naphta, aviation, agriculture are constant. The demand is met by fossil oil up to 80\% mitigation, then gradually replaced by Fischer-Tropsch fuels.}
+    \label{fig:oil-balance}
+\end{figure*}
 
-    \vspace{0.5cm} % Add vertical space between the subfigures
+
+
+% Figure \ref{fig:barplots} displays the energy balances of modelled scenarios.
+
+
+% \begin{figure}[h!]
+%     \centering
+%     \begin{subfigure}[b]{\linewidth}
+%         \centering
+%         \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/graphs/balances-AC.pdf}
+%         \caption{Balances AC}
+%         \label{fig:balances_AC}
+%     \end{subfigure}
     
-    \begin{subfigure}[b]{\linewidth}
-        \centering
-        \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/graphs/costs.pdf}
-        \caption{costs}
-        \label{fig:balances_costs}
-    \end{subfigure}
+%     \vspace{0.5cm} % Add vertical space between the subfigures
     
-    \caption{Electricity balance, energy balance and costs of the modelled scenarios.}
-    \label{fig:barplots}
-\end{figure}
+%     \begin{subfigure}[b]{\linewidth}
+%         \centering
+%         \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/graphs/balances-energy.pdf}
+%         \caption{Balances energy}
+%         \label{fig:balances_energy}
+%     \end{subfigure}
+
+%     \vspace{0.5cm} % Add vertical space between the subfigures
+    
+%     \begin{subfigure}[b]{\linewidth}
+%         \centering
+%         \includegraphics[trim={0 6.5cm 0 0}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/graphs/costs.pdf}
+%         \caption{costs}
+%         \label{fig:balances_costs}
+%     \end{subfigure}
+    
+%     \caption{Electricity balance, energy balance and costs of the modelled scenarios.}
+%     \label{fig:barplots}
+% \end{figure}
 
 \clearpage

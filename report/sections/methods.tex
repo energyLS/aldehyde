@@ -40,7 +40,7 @@ In addition to the time series, Atlite calculates land availabilities and linked
 \begin{figure*}[t]
     \centering
     \includegraphics[width=0.7\linewidth]{../graphics_general/brownfield_capacities_mar_el.pdf}
-    \caption{Current capacities of electricity generation and distribution, obtained from \cite{Parzen2022} and visualization based on \cite{Horsch2018}}
+    \caption{Current capacities of electricity generation and distribution, obtained from \cite{Parzen2022} and visualization based on \cite{Horsch2018}. Moroccos electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV.}
     \label{fig:MAR_brownfield}
 \end{figure*}
 
@@ -63,7 +63,7 @@ The brownfield gas pipeline infrastructure of Morocco is not considered in this 
 
 \subsection{Brownfield model and capacity expansion}
 \label{brownfield_model}
-Following the workflow of \cite{Parzen2023}, Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution of Morocco. Based on this brownfield electricity system, the sector-coupled energy model allows the capacity expansion of storages, (electricity networks), hydrogen pipelines, renewable and conventional generators.
+Following the workflow of \cite{Parzen2023}, Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution of Morocco. Based on this brownfield electricity system, the sector-coupled energy model allows the capacity expansion of storage, (electricity networks), hydrogen pipelines, renewable and conventional generators.
 
 
 \subsection{Water supply}
@@ -147,13 +147,13 @@ The energy system model allows an endogenous spatial export decision, meaning th
 
 \subsection{Scenarios}
 \label{subsec:scenarios}
-To examine the conflicts and synergies of hydrogen export and national energy transition, we sweep along two dimensions:
+To examine the conflicts and synergies of hydrogen export and national energy transition, we sweep along three dimensions:
 \begin{enumerate}
-    \item the (energy and non-energy) emission reduction between 0 - 100\% based on Morocco's current emissions of 72 Mt\coe (s. Sec. \ref{subsec:policyandtargets}) and
-    \item The hydrogen export volume varies from 0 - 200 TWh, going beyond Moroccos hydrogen export ambitions of 114.7~TWh (s. Sec. \ref{subsec:policyandtargets}).
+    \item \textbf{Mitigation}: The (energy and non-energy) emission reduction varies between 0 - 100\% based on Morocco's current emissions of 72 Mt\coe (s. Sec. \ref{subsec:climate_targets}) and
+    \item \textbf{Export}: The hydrogen export volume varies from 0 - 200 TWh, going beyond Moroccos hydrogen export ambitions of 114.7~TWh (s. Sec. \ref{subsec:strategy}).
+    \item \textbf{Hydrogen regulation}: The temporal matching (of additional renewable electricity and the electrolyser electricity demand) varies between: no regulation, annual, monthly and hourly matching (s. Sec. \ref{subsec:green_hydrogen_constraint}). 
 \end{enumerate}
-This two-dimensional scenario space leads to 121 model runs. 
-A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with its diurnal and seasonal variations in energy supply and demand. A similar study \cite{Neumann2022} finds minor underestimation of short-term battery storage and onshore wind and minor overestimation of solar photovoltaics and hydrogen storage compared to an hourly resolution, overall justifying the reduction of the model size. A high spatial resolution of 53 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, a high spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 53 nodes align with the GADM (Global Administrative Areas) regions, policy advisement can be tailored to specific regions considering local needs and constraints.
+This three-dimensional scenario space results in 484 model runs. A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with its diurnal and seasonal variations in energy supply and demand. A similar study \cite{Neumann2022} finds minor underestimation of short-term battery storage and onshore wind and minor overestimation of solar photovoltaics and hydrogen storage compared to an hourly resolution, overall justifying the reduction of the model size. A high spatial resolution of 53 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, a high spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 53 nodes align with the GADM (Global Administrative Areas) regions, policy advisement can be tailored to specific regions considering local needs and constraints.
 
 % TBD: Elaborate more on scoping decisions
 % \begin{itemize}
