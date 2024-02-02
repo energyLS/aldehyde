@@ -1,7 +1,8 @@
 \section{Green hydrogen constraint}
 \label{subsec:gh_constraint_effects}
-Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0 - 200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint.
 
+\subsection{Hourly matching prevents additional emissions induced by hydrogen exports}
+Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0 - 200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint.
 
 \begin{figure*}[h!]
     \centering
@@ -23,7 +24,21 @@ Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0 - 
     \label{fig:barplotscons}
 \end{figure*}
 
-The green hydrogen constraint has a major influence on the hydrogen prices (s. Fig. \ref{fig:marginal_prices_hy_gh_sens}) and electricity prices (s. Fig. \ref{fig:marginal_prices_el_gh_sens}) in high emission scenarios.
+
+\subsection{Effects of various temporal matchings in high export and low mitigation scenario on total system costs}
+
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{../../results/gh/abs_sin_tech_200_Co2L2.0.pdf}
+    \caption{Total system costs at 200 TWh export and 0\% domestic mitigation. Stricter hydrogen regulation mainly increases the total CAPEX of additional solar PV, electrolysis and hydrogen storage. In return, the OPEX of fossil generation (mainly gas), decreases. The large share of oil OPEX is independent of hydrogen regulation, since these expenditures are mainly linked to combustion engine cars with demands independent of hydrogen regulation.}
+    \label{fig:pdc-200-0}
+\end{figure*}
+
+
+
+
+\subsection{Electricity and hydrogen prices are dominated by temporal matching}
+Temporal matching increases hydrogen prices (s. Fig. \ref{fig:marginal_prices_hy_gh_sens}) and decreases electricity prices (s. Fig. \ref{fig:marginal_prices_el_gh_sens}) especially in low mitigation and high export scenarios.
 
 
 \begin{figure*}[h!] % Use 'figure*' to span both columns
@@ -72,6 +87,13 @@ The green hydrogen constraint has a major influence on the hydrogen prices (s. F
     \includegraphics[width=0.9\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/subcontour_supply.pdf}
     \caption{Electricity supply {\bf without} green hydrogen constraint}
     \label{fig:supply}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/subcontour_cf.pdf}
+    \caption{Capacity factor {\bf without} green hydrogen constraint}
+    \label{fig:cf-noghc}
 \end{figure}
 
 \clearpage
