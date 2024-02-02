@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import logging
 import os
+from matplotlib.colors import LinearSegmentedColormap
 
 logger = logging.getLogger(__name__)
 
@@ -57,21 +58,52 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
         vmin = None
         vmax = None
 
-    if vmax is not None:
+    if snakemake.config["plot"]["contour_plot"]["normalize"] == False:
+        if vmax is not None:
+            contour = plt.contourf(
+                opts_reverse * 100,
+                h2export,
+                np.flip(data_reshaped[plottype], axis=1),
+                levels=levels,
+                vmax=vmax[0],
+                vmin=vmin[0],
+            )
+        else:
+            contour = plt.contourf(
+                opts_reverse * 100,
+                h2export,
+                np.flip(data_reshaped[plottype], axis=1),
+                levels=levels,
+            )
+    elif snakemake.config["plot"]["contour_plot"]["normalize"] == True:
+        # Option 1 : One end max and white at 0
+        max_abs_value = np.max(np.abs(data_reshaped[plottype]))
+
+        # Option 2: Both ends predefined and white at 0
+        # max_abs_value = 60 # could also be obtained from config
+
+        # (complement option 1 or 2)
+        vmin = -max_abs_value
+        vmax = max_abs_value
+        cmap = plt.cm.RdYlGn_r
+
+        # Option 3: Full range and white at 0
+        # max_value = np.max(data_reshaped[plottype])
+        # min_value = np.min(data_reshaped[plottype])
+        # # norm = plt.Normalize(vmin=min_value, vmax=max_value)
+        # zeropos = 1 - abs(max_value) / (abs(min_value) + abs(max_value))
+        # cmap = LinearSegmentedColormap.from_list(
+        #     "custom_cmap", [(0, "green"), (zeropos, "white"), (1, "red")]
+        # )
+
         contour = plt.contourf(
             opts_reverse * 100,
             h2export,
             np.flip(data_reshaped[plottype], axis=1),
             levels=levels,
-            vmax=vmax[0],
-            vmin=vmin[0],
-        )
-    else:
-        contour = plt.contourf(
-            opts_reverse * 100,
-            h2export,
-            np.flip(data_reshaped[plottype], axis=1),
-            levels=levels,
+            vmax=vmax,
+            vmin=vmin,
+            cmap=cmap,
         )
 
     if show_minimums == True:
@@ -189,7 +221,8 @@ if __name__ == "__main__":
             == "export"
         ):
             data_reshaped[plottype] = (
-                data_reshaped[plottype] / data_reshaped[plottype][0, :][np.newaxis, :]
+                (data_reshaped[plottype] / data_reshaped[plottype][0, :][np.newaxis, :])
+                - 1
             ) * 100
         elif (
             snakemake.config["plot"]["contour_plot"]["norm_specs"][plottype][
@@ -198,7 +231,8 @@ if __name__ == "__main__":
             == "decarb"
         ):
             data_reshaped[plottype] = (
-                data_reshaped[plottype] / data_reshaped[plottype][:, 0][:, np.newaxis]
+                (data_reshaped[plottype] / data_reshaped[plottype][:, 0][:, np.newaxis])
+                - 1
             ) * 100
         elif (
             snakemake.config["plot"]["contour_plot"]["norm_specs"][plottype][
@@ -207,7 +241,7 @@ if __name__ == "__main__":
             == "exdecarb"
         ):
             data_reshaped[plottype] = (
-                data_reshaped[plottype] / data_reshaped[plottype][0, 0]
+                (data_reshaped[plottype] / data_reshaped[plottype][0, 0]) - 1
             ) * 100
         else:
             pass
