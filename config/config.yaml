@@ -5,8 +5,10 @@ pypsaearthsec: "/mnt/c/Users/scl38887/Documents/git/pypsa-earth-sec/config.defau
 
 results_dir: subworkflows/pypsa-earth-sec/results/
 summary_dir: results/
+report: 
+  path: ../report/report.tex
 
-run: decr_16_3H_ws #dyntrans_full_3H_ws
+run: decr_14_3H_ws #dyntrans_full_3H_ws
 
 retrieve_cost_data: False
 import_pypsaearthsec: False # Set true to run PyPSA-Earth-Sec subworkflow
@@ -147,10 +149,10 @@ plot:
     norm_specs:
       exp_AC_exclu_H2 El_all: 
         normalize_by: "export" #normalize_by: "export" # "export", "decarb", "exdecarb", False
-        label: "Electricity expense relative to no export in % (w/o electrolysis)"
+        label: "Relative domestic electricity expenses in % "
       exp_H2_False_False_exportonly: 
         normalize_by: "decarb"
-        label: "Hydrogen expense relative to no co2 reduction in % (export)"
+        label: "Relative export hydrogen expenses in %"
       exp_local_export:
         normalize_by: False
 
@@ -265,6 +267,9 @@ plot:
   tech_colors:
     (CAPEX < 100.0 M€ thres.): "lightgray"
     (OPEX < 100.0 M€ thres.): "gray"
+    (Dispatch < 1.0 TWh thres.): "gray"
+    H2 Electrolysis electricity: "lightgray"
+    Domestic electricity: "gray"
     SMR CC: "darkblue"
     gas for industry CC: "brown"
     process emissions CC: "gray"
@@ -272,31 +277,39 @@ plot:
     onwind: "dodgerblue"
     onshore wind: "#235ebc"
     Onshore Wind (CAPEX): "#235ebc"
+    Onshore Wind: "#235ebc"
     offwind: "#6895dd"
     offshore wind: "#6895dd"
     offwind-ac: "c"
     offshore wind (AC): "#6895dd"
+    Offshore Wind (AC): "#6895dd"
     offwind-dc: "#74c6f2"
     offshore wind (DC): "#74c6f2"
     wave: '#004444'
     hydro: '#3B5323'
     hydro reservoir: '#3B5323'
+    Reservoir & Dam: '#3B5323'
     ror: '#78AB46'
     run of river: '#78AB46'
+    Run of River: '#78AB46'
     hydroelectricity: 'blue'
     solar: "orange"
     solar PV: "#f9d002"
     Solar (CAPEX): "#f9d002"
+    Solar: "#f9d002"
     solar thermal: coral
     solar rooftop: '#ffef60'
     OCGT: wheat
     OCGT marginal: sandybrown
     OCGT-heat: '#ee8340'
     Open-Cycle Gas (CAPEX): sandybrown
+    Open-Cycle Gas: sandybrown
     gas boiler: '#ee8340'
     gas boilers: '#ee8340'
     gas boiler marginal: '#ee8340'
     urban central gas CHP (CAPEX): '#ee8340'
+    urban central gas CHP: '#ee8340'
+    urban central gas CHP CC: '#ee8340'
     residential urban decentral heat: '#ee8340'
     services urban decentral heat: '#ee8340'
     gas-to-power/heat: 'brown'
@@ -309,6 +322,7 @@ plot:
     oil: '#B5A642'
     oil boiler: '#B5A677'
     Oil (OPEX): 'black'
+    Oil: 'black'
     lines: k
     transmission lines: k
     H2: m
@@ -328,6 +342,7 @@ plot:
     H2 electrolysis: '#ff29d9'
     battery: slategray
     battery storage: slategray
+    battery discharger: slategray
     home battery: '#614700'
     home battery storage: '#614700'
     Nuclear: r
@@ -344,6 +359,7 @@ plot:
     CCGT: '#ee8340'
     CCGT marginal: '#ee8340'
     Combined-Cycle Gas (OPEX): '#ee8340'
+    Combined-Cycle Gas: '#ee8340'
     heat pumps: '#76EE00'
     heat pump: '#76EE00'
     air heat pump: '#76EE00'
@@ -369,6 +385,8 @@ plot:
     solid biomass for industry co2 from atmosphere: '#654321'
     solid biomass for industry co2 to stored: '#654321'
     solid biomass for industry CC: '#654321'
+    urban central solid biomass CHP: '#654321'
+    urban central solid biomass CHP CC: '#654321'
     gas for industry co2 to atmosphere: '#654321'
     gas for industry co2 to stored: '#654321'
     Fischer-Tropsch: '#44DD33'
@@ -417,7 +435,7 @@ plot:
     industry oil emissions: '#B2BEB5'
     industry coal emissions: '#666666'
     land transport oil emissions: '#899499'
-    land transport fuel cell: '#AAAAAA'
+    #land transport fuel cell: '#AAAAAA'
     residential oil: '#799999'
     services oil: '#499999'
     residential biomass: 'green'
@@ -436,7 +454,6 @@ plot:
     biomass EOP: "green"
     biomass emissions: "green"
     biomass: "green"
-    biomass emissions: "black"
     rail transport electricity: "black"
     rail transport oil: "black"
     electricity demand: "black"
