@@ -83,14 +83,14 @@ Punch:
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue.pdf}
-        \caption{Expense of local electricity customers (normalized to 1 TWh Hydrogen export)}
+        \caption{Relative expense of local electricity customers (normalized to 1 TWh Hydrogen export)}
         \label{fig:expense_ac}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue.pdf}
-        \caption{Expense of hydrogen exporters (normalized to 0\% \co reduction)}
+        \caption{Relative expense of hydrogen exporters (normalized to 0\% \co reduction)}
         \label{fig:expense_h2}
     \end{subfigure}
     \hfill
@@ -133,14 +133,14 @@ Idea: Instead of looking at high export and low mitigation, maybe pick up co-ben
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../../results/gh/dispatch_200_Co2L2.0.pdf}
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/dispatch_200_Co2L2.0.pdf}
         \caption{Electricity dispatch}
         \label{fig:dispatch_rule}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_200_Co2L2.0.pdf}
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_200_Co2L2.0.pdf}
         \caption{Expenses of domestic electricity consumers and hydrogen exporters}
         \label{fig:expense_h2ac}
     \end{subfigure}
@@ -183,7 +183,7 @@ Punch:
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{../../results/gh/rel_multiple.pdf}
+    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple.pdf}
     \caption{Relative change of electricity and hydrogen expenses and total system cost depending on the green hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low mitigation. Hydrogen exporters experience higher expenses with stricter hydrogen regulation. The hydrogen regulation regulates the welfare distribution between both groups.}
     \label{fig:expenses_all}
 \end{figure}
