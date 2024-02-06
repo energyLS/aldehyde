@@ -170,6 +170,7 @@ rule compare_integrated:
         "scripts/compare_integrated.py"
 
 
+
 rule test_notebook:
     input:
         network="../resources/export_only/emission_export/elec_s_10_ec_lc1.0__Co2L0.90-144H_2030_0.071_DF_20export_esc.nc"
@@ -234,8 +235,9 @@ rule make_summary:
         overrides="../workflow/subworkflows/pypsa-earth-sec/data/override_component_attrs",
         networks=expand("../workflow/subworkflows/pypsa-earth-sec/" + RDIR_pypsaearthsec
             + "/postnetworks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_{sopts}_{planning_horizons}_{discountrate}_{demand}_{h2export}export.nc",
-            **config_pes_root["scenario"],
-            **config_pes_root["costs"],
+            #**config_pes_root["scenario"],
+            **config["scenario"],
+            **config["costs"],
             **{"h2export": 1} #**config_pes_root["export"]
         ),
         costs="../workflow/subworkflows/pypsa-earth-sec/" + CDIR_pypsaearthsec + "costs_{}.csv".format(config["scenario"]["planning_horizons"][0]),
@@ -256,15 +258,38 @@ rule plot_summary:
     output:
         # costs=SDIR_pypsaearthsec + "/graphs/costs-aldehyde.pdf",
         # energy=SDIR_pypsaearthsec + "/graphs/energy-aldehyde.pdf",
-        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/graphs/balances-energy.pdf", #0exp-only
+        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/{summarytype}/graphs/balances-energy.pdf", #0exp-only
     threads: 2
     resources:
         mem_mb=10000,
-    benchmark:
-        SDIR_pypsaearthsec + "/benchmarks/plot_summary"
+    # benchmark:
+    #     SDIR_pypsaearthsec + "/benchmarks/plot_summary"
     script:
         "scripts/plot_summary.py"
 
+rule plot_summaries:
+    input:
+        expand("../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/{summarytype}/graphs/balances-energy.pdf",
+        summarytype=['0exp-only', 'co2l20-only'])
+
+
+rule report_graphs:
+    #graphics/integrated_comp/subcontour_supply.pdf from contour_subplots.ipynb
+    #graphics/rldc/rlc_diurnal_m0.10.pdf
+    #graphics/heatmaps/\heatmaplowred/cf-ts-battery charger.pdf from plot_heatmaps.ipynb
+
+# Approach: Get all graphics from the report.tex file and use them as input for the rule
+def get_graphics(tex_file):
+    with open(tex_file, "r") as file:
+        contents = file.read()
+    graphs = re.findall(r"\\includegraphics\[.*\]\{(.+?)\}", contents)
+    prefix = "results/"
+    return [prefix + graph for graph in graphs]
+
+
+rule graphics:
+    input:
+        get_graphics(config["report"]["path"])
 
 
 rule plot_spatial_figures:

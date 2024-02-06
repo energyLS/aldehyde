@@ -80,21 +80,20 @@
 \def\coe{CO${}_2$e{\:}}
 
 % Run of standard model run
-\def\runstandard{dyntrans_full_3h_ws}
+%\def\runstandard{dyntrans_full_3h_ws} %old
+\def\runstandard{decr_13_3H_ws} % hourly
 
 % Run of battery sensitivity
 \def\sensbattery{nresults_full_3H_nobat_ws} % old
 
 % Run of green hydrogen constraint sensitivity
-\def\runsensnogreenhy{nogreen_full_3H_ws}
+\def\runsensnogreenhy{decr_14_3H_ws}
 
-% Run with nice carbon mgmt, 20 MtCO2 seq (no full run)
-\def\runcarbonmgmt{newmain_bmfix_3H_ws}
 
 % Scenario of heatmaps
-\def\heatmaplowred{elec_s_4_ec_lc3.0_Co2L0.80_3H_2030_0.15_DF_40export}
-\def\heatmapmedred{elec_s_4_ec_lc3.0_Co2L0.30_3H_2030_0.15_DF_40export}
-\def\heatmaphighred{elec_s_4_ec_lc3.0_Co2L0.10_3H_2030_0.15_DF_40export}
+\def\heatmaplowred{elec_s_4_ec_lc3.0_Co2L0.80_3H_2030_0.13_DF_40export}
+\def\heatmapmedred{elec_s_4_ec_lc3.0_Co2L0.30_3H_2030_0.13_DF_40export}
+\def\heatmaphighred{elec_s_4_ec_lc3.0_Co2L0.10_3H_2030_0.13_DF_40export}
 
 
 \graphicspath{
@@ -155,7 +154,7 @@
 \input{../report/sections/introduction.tex}
 
 \section{Hydrogen export strategy and climate targets}
-\label{subsec:policyandtargets}
+\label{sec:policyandtargets}
 
 \input{../report/sections/strategies.tex}
 
@@ -169,7 +168,7 @@
 
 \input{../report/sections/results.tex}
 
-\section{Synergies and conflicts}
+\section{Transition opportunities and neo-colonial dangers}
 \label{sec:discussion}
 
 \input{../report/sections/discussion.tex}
@@ -243,6 +242,8 @@ The code to reproduce the experiments is available at \href{https://github.com/e
 \input{../report/sections/supplementary-demand.tex}
 \input{../report/sections/supplementary-supply.tex}
 \input{../report/sections/supplementary-balances.tex}
+
+\input{../report/sections/supplementary-pathways.tex}
 \input{../report/sections/supplementary-greenhydrogen.tex}
 \input{../report/sections/supplementary-electrolysis.tex}
 \input{../report/sections/supplementary-integration.tex}

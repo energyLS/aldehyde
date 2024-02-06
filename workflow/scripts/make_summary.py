@@ -7,7 +7,8 @@ import pandas as pd
 import pypsa
 import yaml
 from _helpers import override_component_attrs
-#from prepare_sector_network import prepare_costs
+
+# from prepare_sector_network import prepare_costs
 
 idx = pd.IndexSlice
 
@@ -680,7 +681,7 @@ if __name__ == "__main__":
     if "snakemake" not in globals():
         # os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-        from helpers import mock_snakemake
+        from _helpers import mock_snakemake
 
         snakemake = mock_snakemake("make_summary")
 
@@ -701,7 +702,7 @@ if __name__ == "__main__":
         for cluster in snakemake.config["scenario"]["clusters"]
         for ll in snakemake.config["scenario"]["ll"]
         for opt in snakemake.config["scenario"]["opts"]
-        for sopt in snakemake.config["scenario"]["sopts"]
+        for sopt in [snakemake.config["scenario"]["sopts"]]
         for planning_horizon in snakemake.config["scenario"]["planning_horizons"]
         for discountrate in snakemake.config["costs"]["discountrate"]
         for demand in snakemake.config["scenario"]["demand"]

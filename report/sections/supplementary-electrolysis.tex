@@ -1,48 +1,48 @@
 \section{Hydrogen cost breakdown}
 \label{subsec:electrolysis_op_comp}
 
-
+\subsection{Hourly Matching}
 
 \begin{figure*}[h!]
     \centering
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_capex_ely_rel_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue.pdf}
         \caption{CAPEX share of hydrogen costs}
         \label{fig:capex-rel}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue.pdf}
         \caption{Electrolysis capacity factor}
         \label{fig:ely-cf}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_opex_ely_rel_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue.pdf}
         \caption{OPEX share of hydrogen costs}
         \label{fig:opex-rel}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue.pdf}
         \caption{Price of electricity (electrolysis demand weighted)}
         \label{fig:electricity-price}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_compo_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_compo_20_filterTrue.pdf}
         \caption{Total hydrogen cost}
         \label{fig:hydrogen-cost}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterFalse.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue.pdf}
         \caption{Hydrogen price}
         \label{fig:hydrogen-price}
     \end{subfigure}
@@ -51,5 +51,58 @@
     \caption{Cost components of hydrogen electrolysis (CAPEX \ref{fig:capex-rel} and \ref{fig:opex-rel}) and combined cost of hydrogen via electrolysis (\ref{fig:hydrogen-cost}) along with the electrolysers capacity factor (\ref{fig:ely-cf} (influencing the CAPEX share)) and price of electricity (\ref{fig:fig:electricity-price}) (influencing the OPEX share). Marginal price of hydrogen (fig:hydrogen-price) for comparison.}
     \label{fig:electrolysis_op_comp}
 \end{figure*}
+
+
+\subsection{No hydrogen regulation}
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue.pdf}
+        \caption{CAPEX share of hydrogen costs}
+        \label{fig:capex-rel}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue.pdf}
+        \caption{Electrolysis capacity factor}
+        \label{fig:ely-cf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue.pdf}
+        \caption{OPEX share of hydrogen costs}
+        \label{fig:opex-rel}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue.pdf}
+        \caption{Price of electricity (electrolysis demand weighted)}
+        \label{fig:electricity-price}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_lcoh_compo_20_filterTrue.pdf}
+        \caption{Total hydrogen cost}
+        \label{fig:hydrogen-cost}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue.pdf}
+        \caption{Hydrogen price}
+        \label{fig:hydrogen-price}
+    \end{subfigure}
+    \hfill
+    
+    \caption{TODO: Cost and price should be identical?}
+    \label{fig:electrolysis_op_comp}
+\end{figure*}
+
 
 \clearpage
