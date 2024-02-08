@@ -26,7 +26,7 @@ Technology data was taken from
 (v0.6.2).
 
 
-In this section we describe the methods and data used in this study. First, the sector-coupled energy model is presented in Section \ref{subsec:moroccan_model}. Second, the brownfield capacities are described in Section \ref{brownfield_model}. Model details on green hydrogen and hydrogen export implementation are provided in Sections \ref{subsec:green_hydrogen_constraint} and \ref{subsec:hydrogen_export}. The scenarios on which the energy model is based on are discussed in Section \ref{subsec:scenarios}.
+In this section we describe the methods and data used in this study. First, the sector-coupled energy model is presented in Section \ref{subsec:moroccan_model}. Second, the brownfield capacities are described in Section \ref{brownfield_model}. Model details on green hydrogen and hydrogen export implementation are provided in Sections \ref{subsec:green_hydrogen_constraint} and \ref{subsec:hydrogen_export}. The scenarios on which the energy model is based on are discussed in Chapter \ref{sec:intro}.
 
 
 \subsection{Sector-coupled energy model}
@@ -45,7 +45,7 @@ Third, the annual but locationally resolved energy demand is converted to hourly
     \item Transport (incl. aviation and shipping) and
     \item Agriculture
 \end{itemize}
-are integrated in the sector coupled energy model. The inland energy demand per sector remains constant throughout the scenarios (s. Sec. \ref{subsec:scenarios}), regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, to account for increasing shares of battery electric vehicles (BEV) in the Moroccan energy system, the share of BEV's is linked to the emission reduction ambitions (s. Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% emission reduction in line with \cite{Rim2021}.
+are integrated in the sector coupled energy model. The inland energy demand per sector remains constant throughout the scenarios (s. Chap. \ref{sec:intro}), regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, to account for increasing shares of battery electric vehicles (BEV) in the Moroccan energy system, the share of BEV's is linked to the emission reduction ambitions (s. Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% emission reduction in line with \cite{Rim2021}.
 
 % TBD: Benchmark: Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
 % TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
@@ -130,13 +130,13 @@ which are required for Power Purchase Agreements (PPA) with RE-installation. Apa
     \item high share of RE in power mix ($>$ 90\%) or the
     \item avoidance of RE curtailment
 \end{itemize}
-to qualify as "green" hydrogen. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study (s. Sec. \ref{subsec:scenarios}). The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Moroccos local electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study (s. Sec. \ref{subsec:scenarios}).
+to qualify as "green" hydrogen. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study (s. Chap. \ref{sec:intro}). The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Moroccos local electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study (s. Chap. \ref{sec:intro}).
 
 % TBD: The locally demanded hydrogen does not meet the Additionality criteria (but probably the temporal correlation, be careful here)
 
 \subsection{Hydrogen export}
 \label{subsec:hydrogen_export}
-The amount of hydrogen to be exported is derived from Section~\ref{sec:policyandtargets} and implemented as an exogenous parameter in the range of 0-200~TWh (s. Sec. \ref{subsec:scenarios}). The system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) as further discussed in Section \ref{subsec:limitations}. %[TBD: justify]
+The amount of hydrogen to be exported is derived from Section~\ref{sec:policyandtargets} and implemented as an exogenous parameter in the range of 0-200~TWh (s. Chap. \ref{sec:intro}). The system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) as further discussed in Section \ref{subsec:limitations}. %[TBD: justify]
 Nonetheless, the demand pattern of ship export (landing, loading, travel time) and the resulting energy system implications (compared to a constant export profile, closer to a pipeline behaviour) are not investigated in detail, a constant hydrogen demand is assumed. The export of hydrogen is allowed via a range of selected ports in Morocco.
 % TBD: Ship export: Landing, loading, travel time Sensitvity investigation
 % [TBD: provide table or map in supplementary]. 
@@ -173,15 +173,6 @@ The energy system model allows an endogenous spatial export decision, meaning th
 % \end{itemize}
 
 
-\subsection{Scenarios}
-\label{subsec:scenarios}
-To examine the conflicts and synergies of hydrogen export and national energy transition, we sweep along three dimensions:
-\begin{enumerate}
-    \item \textbf{Mitigation}: The (energy and non-energy) emission reduction varies between 0 - 100\% based on Morocco's current emissions of 72 Mt\coe (s. Sec. \ref{subsec:climate_targets}) and
-    \item \textbf{Export}: The hydrogen export volume varies from 0 - 200 TWh, going beyond Moroccos hydrogen export ambitions of 114.7~TWh (s. Sec. \ref{subsec:strategy}).
-    \item \textbf{Hydrogen regulation}: The temporal matching (of additional renewable electricity and the electrolyser electricity demand) varies between: no regulation, annual, monthly and hourly matching (s. Sec. \ref{subsec:green_hydrogen_constraint}). 
-\end{enumerate}
-This three-dimensional scenario space results in 484 model runs. A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with its diurnal and seasonal variations in energy supply and demand. A similar study \cite{Neumann2022} finds minor underestimation of short-term battery storage and onshore wind and minor overestimation of solar photovoltaics and hydrogen storage compared to an hourly resolution, overall justifying the reduction of the model size. A high spatial resolution of 53 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, a high spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 53 nodes align with the GADM (Global Administrative Areas) regions, policy advisement can be tailored to specific regions considering local needs and constraints.
 
 % TBD: Elaborate more on scoping decisions
 % \begin{itemize}
