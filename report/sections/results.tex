@@ -110,8 +110,12 @@ Topic sentence:
 
 Main:
 \begin{itemize}
-    \item Energy and price spillover: Stricter hydrogen regulation requires additional renewable capacities (\& hydrogen storage, s. Fig. \ref{fig:pdc-200-0}) to meet the electricity demand of electrolysis on an annual/monthly/hourly basis. These renewable capacities provide i.) excess electricity to the domestic electricity system (s. Fig. \ref{fig:dispatch_rule}, energy spillover) and ii.) push out high marginal cost fossil generation (s. Fig. \ref{fig:pdc-200-0}, price spillover)
+    \item Energy and price spillover: Stricter hydrogen regulation requires additional renewable capacities (\& hydrogen storage, s. Fig. \ref{fig:tsc-200-0}) to meet the electricity demand of electrolysis on an annual/monthly/hourly basis. These renewable capacities provide i.) excess electricity to the domestic electricity system (s. Fig. \ref{fig:dispatch_rule}, energy spillover) and ii.) push out high marginal cost fossil generation (s. Fig. \ref{fig:pdc-200-0}, price spillover)
+    \item Figure \ref{fig:pdc-200-0} price spillover: Price duration curve at 200 TWh export and 0\% domestic mitigation. Stricter hydrogen regulation pushes the price duration curve towards the left,
+    since additional renewable electricity capacities phase out fossil generation
+    with higher marginal costs than renewables. Elaborate: which generation is price setting?
     \item Figure \ref{fig:dispatch_rule}: No matching: Coal and OCGT are running close to their (brownfield) capacity limits (s. Fig. \ref{fig:cf-noghc}) to supply electricity. Annual matching: RE supply equals electricity demand for electrolysis (constraint works). Monthly/Hourly matching: OCGT phased out, excess renewable electricity from hydrogen constraint is supplied to domestic electricity sector (energy spillover).
+    \item Figure \ref{fig:dispatch_rule} grid emissions reduce with stricter hydrogen regulation. There is a strong synergy between hydrogen regulation and domestic mitigation (additional to the synergy of mitigation and export shown in Section \ref{subsec:benefits})
 
     \item Figure \ref{fig:expense_h2ac}: Hydrogen expenses increase (because they carry the constraint and finance pv and h2 storage (TODO: prove in appendix)). Electricity expenses decrease because they profit from energy and price spillover shown in Figure \ref{fig:dispatch_rule} and Figure \ref{fig:pdc-200-0}. Combined expenses: They decrease (TODO: elaborate) 
     \item Redistribution of expenses between hydrogen exporters and domestic electricity consumers.
@@ -128,6 +132,16 @@ Punch:
 \end{itemize}
 
 Idea: Instead of looking at high export and low mitigation, maybe pick up co-benefit area from Punch 1? But effects are strongest for low mitigation, I should show that. I pick it up again in Punch 3 anyways, where I combine all three dimensions.
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/price_sorted_200_2.0_Hours.pdf}
+    \caption{Price duration curve at 200 TWh export and 0\% domestic mitigation. Stricter hydrogen regulation pushes the price duration curve towards the left, since additional renewable electricity capacities phase out fossil generation with higher marginal costs than renewables.}
+    \label{fig:pdc-200-0}
+\end{figure}
+
+
 
 \begin{figure*}[h!]
     \centering
