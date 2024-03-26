@@ -54,29 +54,6 @@ Without the green hydrogen constraint, the additional electricity demand of hydr
 In contrast to the expontential increase of electricity demand observable at increasing climate mitigation ambitions (s. Fig.~\ref{fig:balances-ac-0exp}), the electricity demand increases linearly with the hydrogen export ambitions.
 
 
-\subsection{Co-benefits of local mitigation and hydrogen export}
-\label{subsec:benefits}
-
-Both domestic mitigation (s. Sec. \ref{subsec:increase_limit}) and hydrogen exports (s. Sec. \ref{subsec:increase_h2}) profit from each other and show co-benefits. In this Section, we i) show the effects of hydrogen exports on domestic electricity prices, ii) the role of domestic mitigation on hydrogen export expenses, and lastly iii) common co-benefits.
-
-First, Figure \ref{fig:expense_ac} shows the costs for domestic electricity consumers subject to mitigation and hydrogen export volumes. The expenses are normalized to expenses at 1 TWh Hydrogen export at each mitigation level, displaying relative changes for domestic electricity consumers induced by hydrogen exports at a certain mitigation.
-Hydrogen exports decrease the domestic electricity expenses by up to 56\%, especially at mitigation below 40\% and exports above 50 TWh. In these ranges, the fossil dominated domestic electricity system profits from excess green electricity originating from additional renewable energy capacities required for hydrogen export (see details on the mechanism in Section \ref{subsec:benefits_rule}). The more the domestic electricity system is decarbonized (domestic mitigation above 50--60\%), the weaker is the decrease of domestic electricity prices.
-The only increase of expenses induced by hydrogen exports is observable at a low mitigation of 10\% and exports of 20 TWh. (TODO: explain why).
-
-
-Second, Figure \ref{fig:expense_h2} shows the expenses of hydrogen exports subject to mitigation and hydrogen export volumes. The expenses are normalized to expenses at 0\% mitigation at each hydrogen export volume, displaying relative changes for hydrogen exports from domestic mitigation at a certain hydrogen export volume.
-At hydrogen export volumes of 25--75 TWh, an increase of domestic mitigation up to 40--60\% decreases the hydrogen export prices up to -9\%. (TODO: elaborate reason).
-The only price increase observable in the range of our scenarios is observable at low export volumes below 20 TWh. Here, advances in domestic mitigation increase the hydrogen export expenses up to 19\% compared to no domestic mitigation.
-This expense increase results from lower electrolysis capacity factors compared to the 0 \% mitigation scenario, where we observe high electrolysis capacity factors of above 80\% (s. Fig. \ref{fig:ely-cf}) (TODO: elabore reason).
-The triangle in the top left area shows that hydrogen exporter expenses at certain export levels are independent of domestic mitigation, this is driven by hydrogen regulation further investigated in Section \ref{subsec:benefits_rule}. Here, hydrogen export infrastructure decouples from the domestic electricity system, the expenses are increasingly independent of domestic mitigation. The hydrogen exports are 2-3.5 times higher than the domestic electricity demand (s. Fig. \ref{fig:expense_h2}), dwarfing the importance of the domestic electricity system.
-
-
-Third, we derive co-benefits for domestic mitigation and hydrogen exports. 
-Within the area of 40-60\% mitigation and 50-100 TWh hydrogen exports, we see i) domestic electricity consumers profit from hydrogen exports compared to very low (1 TWh) exports and ii) hydrogen exporters decrease their expenses compared to no (0 \%) domestic mitigation. Hence, both domestic mitigation and hydrogen exports show clear co-benefits at medium mitigation (40--60\%) and moderate to high hydrogen exports (25--150 TWh). 
-% This area is realistic, refer to third punch?
-
-
-
 \begin{figure*}[h!]
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
@@ -102,32 +79,26 @@ Within the area of 40-60\% mitigation and 50-100 TWh hydrogen exports, we see i)
 \end{figure*}
 
 
+\subsection{Co-benefits of local mitigation and hydrogen export}
+\label{subsec:benefits}
 
-\subsection{Hydrogen regulation reduces domestic electricity prices and emissions}
-% Old: PUNCH 2: Effects of hydrogen regulation on electricity and hydrogen expenses (in fossil dominated electricity systems
-\label{subsec:benefits_rule}
+Both domestic mitigation (s. Sec. \ref{subsec:increase_limit}) and hydrogen exports (s. Sec. \ref{subsec:increase_h2}) profit from each other and show co-benefits. In this Section, we i) show the effects of hydrogen exports on domestic electricity prices, ii) the role of domestic mitigation on hydrogen export expenses, and lastly iii) common co-benefits.
 
-Hydrogen regulation has strong effects on electricity system dispatch (and emissions), increasing the prices and expenses for hydrogen exporters whilst decreasing for domestic electricity consumers. This Section shows the mechanisms of temporal matching in the 200 TWh export and 0\% domestic mitigation scenario.
-
-As the temporal matching becomes stricter, additional renewable capacities and complementing hydrogen storage are required to meet the electricity demand of electrolysis on an annual, monthly and hourly basis, as shown in Figure \ref{fig:tsc-200-0}. These renewable capacities i.) push out high marginal cost fossil generation (\textit{price spillover}) and ii.) provide excess electricity to the domestic electricity system (\textit{energy spillover}).
-%Merit order: the price spillover is a consequence of the energy spillover
-
-The \textit{price spillover} is observable in Figure \ref{fig:pdc-200-0} depicting the price duration curve at 200 TWh export and 0\% domestic mitigation. The price duration curve describes the sorted price of electricity (spatial mean) at every hour of the year.
-Stricter hydrogen regulation pushes the price duration curve towards the left, since additional renewable electricity capacities phase out fossil generation with higher marginal costs than renewable electricity. (Elaborate: which generation is price setting?)
+First, Figure \ref{fig:expense_ac} shows the costs for domestic electricity consumers subject to mitigation and hydrogen export volumes. The expenses are normalized to expenses at 1 TWh Hydrogen export at each mitigation level, displaying relative changes for domestic electricity consumers induced by hydrogen exports at a certain mitigation.
+Hydrogen exports decrease the domestic electricity expenses by up to 56\%, especially at mitigation below 40\% and exports above 50 TWh. In these ranges, the fossil dominated domestic electricity system profits from excess green electricity originating from additional renewable energy capacities required for hydrogen export (see details on the mechanism in Section \ref{subsec:benefits_rule}). The more the domestic electricity system is decarbonized (domestic mitigation above 50--60\%), the weaker is the decrease of domestic electricity prices.
+The only increase of expenses induced by hydrogen exports is observable at a low mitigation of 10\% and exports of 20 TWh. (TODO: explain why).
 
 
-The \textit{energy spillover} is shown in Figure \ref{fig:dispatch_rule}. In the \textit{no rule} scenario, which does not constrain the electricity input of hydrogen electrolysis, Coal and OCGT are running close to their (brownfield) capacity limits to supply electricity (see capacity factors in Figure \ref{fig:cf-noghc}). If annual matching is applied, the renewable electricity supply to the electricity system equals the annual demand for electrolysis, increasing the supply of solar PV by 36 TWh while decreasing the supply of fossil electricity generation. 
-Monthly matching increases this trend, while hourly matching completely phases out OCGT and CCGT. Figure \ref{fig:dispatch_rule} highlights the \textit{energy spillover} effect: going beyond the electricity demand of hydrogen electrolysis, renewable capacities installations necessary to meet the temporal matching decarbonize the domestic electricity demand and grid emissions. This effect is steered by the strictness of temporal matching.
-In addition to the synergies between hydrogen export and domestic mitigation pointed out in Section \ref{subsec:benefits}, the \textit{energy spillover} outlines a clear synergy between domestic mitigation and hydrogen regulation.
+Second, Figure \ref{fig:expense_h2} shows the expenses of hydrogen exports subject to mitigation and hydrogen export volumes. The expenses are normalized to expenses at 0\% mitigation at each hydrogen export volume, displaying relative changes for hydrogen exports from domestic mitigation at a certain hydrogen export volume.
+At hydrogen export volumes of 25--75 TWh, an increase of domestic mitigation up to 40--60\% decreases the hydrogen export prices up to -9\%. (TODO: elaborate reason).
+The only price increase observable in the range of our scenarios is observable at low export volumes below 20 TWh. Here, advances in domestic mitigation increase the hydrogen export expenses up to 19\% compared to no domestic mitigation.
+This expense increase results from lower electrolysis capacity factors compared to the 0\% mitigation scenario, where we observe high electrolysis capacity factors of above 80\% (s. Fig. \ref{fig:ely-cf}) (TODO: elabore reason).
+The triangle in the top left area shows that hydrogen exporter expenses at certain export levels are independent of domestic mitigation, this is driven by hydrogen regulation further investigated in Section \ref{subsec:benefits_rule}. Here, hydrogen export infrastructure decouples from the domestic electricity system, the expenses are increasingly independent of domestic mitigation. The hydrogen exports are 2-3.5 times higher than the domestic electricity demand (s. Fig. \ref{fig:expense_h2}), dwarfing the importance of the domestic electricity system.
 
 
-
-The \textit{price spillover} effects results in lower electricity prices for domestic consumers. Taking the electricity demand into account, the decrease of prices results in a decrease of electricity expenses shown in 
-Figure \ref{fig:expense_h2ac}. Stricter hydrogen regulation decreases the domestic electricity spending from 2.8 B€ to 1.0 B€ (decrease by -65\%). In contrast, the expenses for hydrogen exporters increase from 16.9 B€ to 17.9 B€ (increase by 6\%), carrying the cost of the temporal matching constraint and hence financing additional solar PV and hydrogen storage required to meet the electrolysis electricity demand on a certain temporal basis (TODO: prove in appendix). (TODO: Combined expenses decrease: elaborate). (TODO: explain why there is a slight increase in annual/monthly generation)
-
-
-To sum up, hydrogen regulation is a policy instrument acting in a twofold way. It steers the redistribution between hydrogen exports and domestic electricity consumers (based on the \textit{price spillover} effect), decreasing the expenses for domestic electricity consumers and increasing the expenses for hydrogen exporters. The \textit{energy spillover} effect not only decarbonizes hydrogen exports but decreases grid emissions for  domestic electricity demand as well. Both effects scale with stricter temporal matching.
-
+Third, we derive co-benefits for domestic mitigation and hydrogen exports. 
+Within the area of 40-60\% mitigation and 50-100 TWh hydrogen exports, we see i) domestic electricity consumers profit from hydrogen exports compared to very low (1 TWh) exports and ii) hydrogen exporters decrease their expenses compared to no (0 \%) domestic mitigation. Hence, both domestic mitigation and hydrogen exports show clear co-benefits at medium mitigation (40--60\%) and moderate to high hydrogen exports (25--150 TWh). 
+% This area is realistic, refer to third punch?
 
 \begin{figure}[h!]
     \centering
@@ -159,6 +130,35 @@ To sum up, hydrogen regulation is a policy instrument acting in a twofold way. I
 \end{figure*}
 
 
+\subsection{Hydrogen regulation reduces domestic electricity prices and emissions}
+% Old: PUNCH 2: Effects of hydrogen regulation on electricity and hydrogen expenses (in fossil dominated electricity systems
+\label{subsec:benefits_rule}
+
+Hydrogen regulation has strong effects on electricity system dispatch (and emissions), increasing the prices and expenses for hydrogen exporters whilst decreasing for domestic electricity consumers. This Section shows the mechanisms of temporal matching in the 200 TWh export and 0\% domestic mitigation scenario.
+
+As the temporal matching becomes stricter, additional renewable capacities and complementing hydrogen storage are required to meet the electricity demand of electrolysis on an annual, monthly and hourly basis, as shown in Figure \ref{fig:tsc-200-0}. These renewable capacities i.) push out high marginal cost fossil generation (\textit{price spillover}) and ii.) provide excess electricity to the domestic electricity system (\textit{energy spillover}).
+%Merit order: the price spillover is a consequence of the energy spillover
+
+The \textit{price spillover} is observable in Figure \ref{fig:pdc-200-0} depicting the price duration curve at 200 TWh export and 0\% domestic mitigation. The price duration curve describes the sorted price of electricity (spatial mean) at every hour of the year.
+Stricter hydrogen regulation pushes the price duration curve towards the left, since additional renewable electricity capacities phase out fossil generation with higher marginal costs than renewable electricity. (Elaborate: which generation is price setting?)
+
+
+The \textit{energy spillover} is shown in Figure \ref{fig:dispatch_rule}. In the \textit{no rule} scenario, which does not constrain the electricity input of hydrogen electrolysis, Coal and OCGT are running close to their (brownfield) capacity limits to supply electricity (see capacity factors in Figure \ref{fig:cf-noghc}). If annual matching is applied, the renewable electricity supply to the electricity system equals the annual demand for electrolysis, increasing the supply of solar PV by 36 TWh while decreasing the supply of fossil electricity generation. 
+Monthly matching increases this trend, while hourly matching completely phases out OCGT and CCGT. Figure \ref{fig:dispatch_rule} highlights the \textit{energy spillover} effect: going beyond the electricity demand of hydrogen electrolysis, renewable capacities installations necessary to meet the temporal matching decarbonize the domestic electricity demand and grid emissions. This effect is steered by the strictness of temporal matching.
+In addition to the synergies between hydrogen export and domestic mitigation pointed out in Section \ref{subsec:benefits}, the \textit{energy spillover} outlines a clear synergy between domestic mitigation and hydrogen regulation.
+
+
+
+The \textit{price spillover} effects results in lower electricity prices for domestic consumers. Taking the electricity demand into account, the decrease of prices results in a decrease of electricity expenses shown in 
+Figure \ref{fig:expense_h2ac}. Stricter hydrogen regulation decreases the domestic electricity spending from 2.8 B€ to 1.0 B€ (decrease by -65\%). In contrast, the expenses for hydrogen exporters increase from 16.9 B€ to 17.9 B€ (increase by 6\%), carrying the cost of the temporal matching constraint and hence financing additional solar PV and hydrogen storage required to meet the electrolysis electricity demand on a certain temporal basis (TODO: prove in appendix). (TODO: Combined expenses decrease: elaborate). (TODO: explain why there is a slight increase in annual/monthly generation)
+
+
+To sum up, hydrogen regulation is a policy instrument acting in a twofold way. It steers the redistribution between hydrogen exports and domestic electricity consumers (based on the \textit{price spillover} effect), decreasing the expenses for domestic electricity consumers and increasing the expenses for hydrogen exporters. The \textit{energy spillover} effect not only decarbonizes hydrogen exports but decreases grid emissions for  domestic electricity demand as well. Both effects scale with stricter temporal matching.
+
+
+
+
+
 \subsection{Hydrogen regulation across all mitigation and export scenarios}
 % Old PUNCH 3: The role of hydrogen regulation across mitigation and export scenarios
 \label{subsec:rule_all}
@@ -171,6 +171,15 @@ Across all scenarios, hydrogen regulation hedges local electricity consumers aga
 In contrast, in medium to high mitigation scenarios only the hourly matching has observable effects, since the electricity system is already  dominated by renewable electricity and only hourly matching phases out the remaining fossil generation. The differentiation among the domestic mitigation leads to these staged effects of hydrogen regulation on domestic electricity expenses.
 
 In only three out of 121 scenarios, hourly matching regulation increases the hydrogen expenses above 7\% compared to no hydrogen regulation. These scenarios are defined by low export volumes (TODO: number) where the relative change is above 7\% but the absolute increase is comparably low.
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple.pdf}
+    \caption{Relative change of electricity and hydrogen expenses and total system cost depending on the green hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low mitigation. Hydrogen exporters experience higher expenses with stricter hydrogen regulation. The hydrogen regulation regulates the welfare distribution between both groups.}
+    \label{fig:expenses_all}
+\end{figure}
+
 
 
 Figure \ref{fig:expenses_all} highlights the realistic scenarios for the Morocco case. We have derived a set of mitigation-export combinations following the pathway \textit{balanced exports and mitigation} displayed in Figure \ref{fig:expenses_default_path}. These "realistic" combinations exclude the extremes of either i) quick exports and slow mitigation or ii)
@@ -189,12 +198,6 @@ Cluster 1 represents export regions as Morocco, pursing both domestic mitigation
 To sum up, Section \ref{subsec:rule_all} outlines an integrated analysis of benefits and burdens for domestic electricity consumers and hydrogen exports among the dimensions of domestic mitigation, hydrogen export and hydrogen regulation. The effects of hydrogen regulation are strongest at low mitigation and high export scenarios, hydrogen regulation can effectively hedge domestic electricity consumers against rising prices across all mitigation and export scenarios. The hydrogen regulation is most effective in fossil-dominated electricity systems paired with high export volumes, providing tailored policy recommendation for export regions with different prequesites.
 
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple.pdf}
-    \caption{Relative change of electricity and hydrogen expenses and total system cost depending on the green hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low mitigation. Hydrogen exporters experience higher expenses with stricter hydrogen regulation. The hydrogen regulation regulates the welfare distribution between both groups.}
-    \label{fig:expenses_all}
-\end{figure}
 
 
 
