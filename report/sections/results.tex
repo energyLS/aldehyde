@@ -7,9 +7,31 @@ Chapter \ref{sec:results} focuses on the energy system fulfilling both goals of 
 %Based on these prices, Section \ref{subsec:economic_benefits} derives the total expenses of electricity and hydrogen and outlines economics benefits. 
 %The sensitivity analysis in Section \ref{subsec:sensitivity} examines key parameters and their influence on the main results.
 
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-AC.pdf}
+        \caption{Fixed (1 TWh) export and 0--100\% domestic mitigation}
+        \label{fig:balances-ac-0exp}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/graphs/balances-AC.pdf}
+        \caption{Fixed (0\%) domestic mitigation and 0--200 TWh export}
+        \label{fig:balances-ac-co2l20}
+    \end{subfigure}
+    \hfill
+    \caption{Electricity supply and demand at fixed export levels and increasing domestic mitigation export (\ref{fig:balances-ac-0exp}) and vice versa (\ref{fig:balances-ac-co2l20}). Increasing domestic mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high mitigation the electricity system is fully renewable supported by flexibility through V2G and sector coupling. Increasing electricity demands cover EVs and hydrogen generation for other sectors.
+    At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as imposed by the hydrogen regulation. See  Fig. \ref{fig:balances_AC_nogreen} for electricity balance without hydrogen regulation.}
+    \label{fig:open}
+\end{figure*}
+
 
 \subsection{Domestic mitigation}
 \label{subsec:increase_limit}
+
 Figure \ref{fig:balances-ac-0exp} depicts the supply and demand of the electricity system at increasing climate mitigation ambitions from 0\% to 100\%. At low climate ambitions, the electricity demand is mainly covered by coal power, existing (brownfield) capacities of onshore wind, hydro, and CCGT play only a minor role. 
 At increasing emissions reductions, coal power is phased out in favour of solar PV, furthermore a fuel switch from coal to gas (CCGT) is observable at increasing emission reductions. At medium climate mitigation ambitions, the dipatchable power in the electricity system is provided by OCGT. 
 Further increasing the climate ambitions, both solar PV and wind onshore penetrate and dominate the electricity system complemented by dispatchable power from Vehicle-to-Grid (V2G) providing an almost fully renewable electricity sector at 100\% emission reduction. 
@@ -20,12 +42,7 @@ Both electrolysers and BEVs drive the electricity demand significantly up to fiv
 Additionally, the electricity demand for air heat pumps increases, supporting the defossilisation in the heating sector (s. Sec. TODO) and supplying heat to the DAC process (s. Sec. TODO) required for synthetic fuels.
 
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-AC.pdf}
-    \caption{Electricity supply and demand at 1 TWh export. Rising domestic mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high mitigation the electricity system is fully renewable supported by flexibility through V2G and sector coupling. Increasing electricity demands cover EVs and hydrogen generation for other sectors.}
-    \label{fig:balances-ac-0exp}
-\end{figure}
+
 
 \subsection{Hydrogen exports}
 \label{subsec:increase_h2}
@@ -33,17 +50,6 @@ Additionally, the electricity demand for air heat pumps increases, supporting th
 The electricity supply at increasing hydrogen exports is displayed in Figure \ref{fig:balances-ac-co2l20}. The deployment of hydrogen exports requires a scale up of onshore wind and solar PV accordingly, as defined by the green hydrogen constraint (s. Sec. \ref{subsec:green_hydrogen_constraint}).
 Without the green hydrogen constraint, the additional electricity demand of hydrogen exports would be covered by coal power plants and CCGT (by increasing the capacity factor of existing brownfield coal and CCGT capacities) and an expansion of OCGT installation and supply as pointed out in Section \ref{subsec:gh_constraint_effects}.
 In contrast to the expontential increase of electricity demand observable at increasing climate mitigation ambitions (s. Fig.~\ref{fig:balances-ac-0exp}), the electricity demand increases linearly with the hydrogen export ambitions.
-
-% TODO Ref to supplementary and the effect of green hydrogen constraint -> Role of storage here? -> New run without gh constraint and check storage
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/graphs/balances-AC.pdf}
-    \caption{Electricity supply and demand at 0\% 
-    domestic mitigation and rising hydrogen exports. The additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as imposed by the hydrogen regulation. See Fig. \ref{fig:balances_AC_nogreen} for electricity balance without hydrogen regulation.}
-    \label{fig:balances-ac-co2l20}
-\end{figure}
 
 
 \subsection{Co-benefits of local mitigation and hydrogen export}
