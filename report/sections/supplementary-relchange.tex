@@ -1,0 +1,47 @@
+\section{High export scenarios}
+
+\subsection{Relative change of electricity and hydrogen costs in all scenarios}
+Figure \ref{fig:expenses_all} shows 
+
+
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_120exp_Co2L2.0dec_additionalreal.pdf}
+        \caption{All scenarios up to 120 TWh}
+        \label{fig:expenses_all_120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_200exp_Co2L2.0dec_additionalreal.pdf}
+        \caption{All scenarios up to 200 TWh}
+        \label{fig:expenses_all_200}
+    \end{subfigure}
+    \hfill
+    \caption{Supplement to Fig. \ref{fig:expenses_real_120}. Relative change of electricity and hydrogen expenses and total system cost depending on the green hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low mitigation. Hydrogen exporters experience higher expenses with stricter hydrogen regulation. The hydrogen regulation regulates the welfare distribution between both groups.}
+    \label{fig:expenses_all}
+\end{figure*}
+
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/graphs/balances-AC.pdf}
+        \caption{Electricity balance {\bf with} green hydrogen constraint}
+        \label{fig:balances_AC_monthlymatch}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l20-only/graphs/balances-AC.pdf}
+        \caption{Electricity balance {\bf without} green hydrogen constraint}
+        \label{fig:balances_AC_nogreen}
+    \end{subfigure}
+    \hfill
+    \caption{Electricity balance ramp up from 0--200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint}
+    \label{fig:barplotscons}
+\end{figure*}
