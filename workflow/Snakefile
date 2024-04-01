@@ -183,17 +183,18 @@ rule plot_contour:
     input:
         stats= "../results/" + config_pypsaearthsec["run"] +"/integrated_comp/stats.csv",
     output:
-        contour_plot="../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}_n{norm}.pdf"
+        contour_plot="../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}_n{norm}_exp{explimit}.pdf"
     script:
         "scripts/plot_contour.py"
 
 rule plot_all_contours:
     input:
-        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}_n{norm}.pdf",
+        expand("../results/" + config_pypsaearthsec["run"] +"/graphics/integrated_comp/contour_{plottype}_{levels}_filter{zerofilter}_n{norm}_exp{explimit}.pdf",
             plottype = config["plot"]["contour_plot"]["type"],
             levels = config["plot"]["contour_plot"]["levels"],
             zerofilter =  config["plot"]["contour_plot"]["zerofilter"],
             norm = config["plot"]["contour_plot"]["normalize"],
+            explimit = config["plot"]["contour_plot"]["explimit"],
         )
 
 rule plot_general_figures:

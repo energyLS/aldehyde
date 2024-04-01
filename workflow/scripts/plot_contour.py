@@ -156,7 +156,7 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
 
     ax2 = plt.gca().twinx()
     h2export_secondary = h2export / el_base_demand
-    ax2.set_ylabel("H2-Exp/El-base-demand")
+    ax2.set_ylabel("H2-Export/Domestic electricity ratio")
     ax2.set_ylim(0, max(h2export_secondary))  # Adjust the limit based on your data
 
     # Save the plot
@@ -180,6 +180,8 @@ if __name__ == "__main__":
             plottype="exp_AC_exclu_H2 El_all",
             levels=20,
             zerofilter="False",
+            norm=True,
+            explimit=120,
         )
 
         sets_path_to_root("aldehyde")
@@ -191,12 +193,16 @@ if __name__ == "__main__":
     plottype = snakemake.wildcards.plottype
     zerofilter = snakemake.config["plot"]["contour_plot"]["zerofilter"]
     levels = int(snakemake.wildcards.levels)
+    explimit = int(snakemake.wildcards.explimit)
 
     # Prepare the data
     data = prepare_data(data, zerofilter=zerofilter)
+    # remove columns with h2export higher than explimit
+    data = data[data["h2export"] <= explimit]
 
-    # Get the unique values for opts and h2export required for the reshaping
+    # Get the unique values for opts and h2export required for the reshaping, limit h2export according to explimit
     h2export = np.unique(data["h2export"])
+    h2export = h2export[h2export <= explimit]
     opts = np.unique(
         data["opts"].fillna(100).astype(float)
     )  # TODO improve the fillna value
