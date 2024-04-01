@@ -2,25 +2,25 @@
 \label{subsec:gh_constraint_effects}
 
 \subsection{Hourly matching prevents additional emissions induced by hydrogen exports}
-Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0--200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint.
+Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0--120 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint.
 
 \begin{figure*}[h!]
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/graphs/balances-AC.pdf}
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/120/graphs/balances-AC.pdf}
         \caption{Electricity balance {\bf with} green hydrogen constraint}
         \label{fig:balances_AC_monthlymatch}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l20-only/graphs/balances-AC.pdf}
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l20-only/120/graphs/balances-AC.pdf}
         \caption{Electricity balance {\bf without} green hydrogen constraint}
         \label{fig:balances_AC_nogreen}
     \end{subfigure}
     \hfill
-    \caption{Electricity balance ramp up from 0--200 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint}
+    \caption{Electricity balance ramp up from 0--120 TWh with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint}
     \label{fig:barplotscons}
 \end{figure*}
 
