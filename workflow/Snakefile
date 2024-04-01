@@ -259,7 +259,7 @@ rule plot_summary:
     output:
         # costs=SDIR_pypsaearthsec + "/graphs/costs-aldehyde.pdf",
         # energy=SDIR_pypsaearthsec + "/graphs/energy-aldehyde.pdf",
-        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/{summarytype}/graphs/balances-energy.pdf", #0exp-only
+        balances="../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/{summarytype}/{explimit}/graphs/balances-energy.pdf", #0exp-only
     threads: 2
     resources:
         mem_mb=10000,
@@ -270,8 +270,9 @@ rule plot_summary:
 
 rule plot_summaries:
     input:
-        expand("../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/{summarytype}/graphs/balances-energy.pdf",
-        summarytype=['0exp-only', 'co2l20-only'])
+        expand("../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/{summarytype}/{explimit}/graphs/balances-energy.pdf",
+        summarytype=['0exp-only', 'co2l20-only'],
+        explimit=[120])
 
 
 rule report_graphs:
