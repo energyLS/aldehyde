@@ -25,14 +25,14 @@ Technology data was taken from
 \href{https://github.com/pypsa/technology-data}{github.com/pypsa/technology-data} (v0.4.0).
 
 
-In this Section we describe the methods and data used in this study. First, the sector-coupled energy model is presented in Section \ref{subsec:moroccan_model}. Second, the brownfield capacities are described in Section \ref{brownfield_model}. Model details on green hydrogen and hydrogen export implementation are provided in Sections \ref{subsec:green_hydrogen_constraint} and \ref{subsec:hydrogen_export}. The scenarios on which the energy model is based on are discussed in Chapter \ref{sec:intro}.
+% In this Section we describe the methods and data used in this study. First, the sector-coupled energy model is presented in Section \ref{subsec:moroccan_model}. Second, the brownfield capacities are described in Section \ref{brownfield_model}. Model details on green hydrogen and hydrogen export implementation are provided in Sections \ref{subsec:green_hydrogen_constraint} and \ref{subsec:hydrogen_export}. The scenarios on which the energy model is based on are discussed in Chapter \ref{sec:intro}.
 
 
-\subsection{Sector-coupled energy model}
+\subsection*{Sector-coupled energy model}
 \label{subsec:moroccan_model}
-The sector-coupled energy model is based on PyPSA-Earth \cite{Parzen2023} and adds a sector extension similar to \cite{Brown2018a} using linear optimisation and overnight scenarios. This capacity extension model optimises the generation, transmission and storage capacities of Moroccos energy system by minimising the the total annualised system costs constrained by e.g. climate targets or green hydrogen policies (s. Sec. \ref{subsec:green_hydrogen_constraint}).
+The sector-coupled energy model is based on PyPSA-Earth \cite{Parzen2023} and adds a sector extension similar to \cite{Brown2018a} using linear optimisation and overnight scenarios. This capacity extension model optimises the generation, transmission and storage capacities of Moroccos energy system by minimising the the total annualised system costs constrained by e.g. climate targets or green hydrogen policies.
 
-\subsubsection{Energy demand}
+\subsubsection*{Energy demand}
 In a first step, the annual energy demand is obtained from \cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2035 is projected according to efficiency gains and activity growth rates similar to \cite{Muller2023}.
 In a second step, the annual and national energy demand is distributed according to the production sites of Morocco. % based on data of [TBD].
 In case of subsectors where no spatially resolved production sites are included/available (e.g. paper industry), the demand is distributed according to GDP. %(TBD: currently Population). 
@@ -44,7 +44,7 @@ Third, the annual but locationally resolved energy demand is converted to hourly
     \item Transport (incl. aviation and shipping) and
     \item Agriculture
 \end{itemize}
-are integrated in the sector coupled energy model. The inland energy demand per sector remains constant throughout the scenarios (s. Chap. \ref{sec:intro}), regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, to account for increasing shares of battery electric vehicles (BEV) in the Moroccan energy system, the share of BEV's is linked to the emission reduction ambitions (s. Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% emission reduction in line with \cite{Rim2021}.
+are integrated in the sector coupled energy model. The inland energy demand per sector remains constant throughout the scenarios presented in the \nameref{sec:intro}, regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, to account for increasing shares of battery electric vehicles (BEV) in the Moroccan energy system, the share of BEV's is linked to the emission reduction ambitions (s. Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% emission reduction in accordance with \cite{Rim2021}.
 
 % TBD: Benchmark: Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
 % TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
@@ -53,7 +53,7 @@ are integrated in the sector coupled energy model. The inland energy demand per 
 
 
 
-\subsubsection{Renewable Energy Sources}
+\subsubsection*{Renewable Energy Sources}
 The sector-coupled energy model follows the data pipeline of \cite{Parzen2023} by incorporating solar PV, onshore wind and hydro power using the open source package Atlite \cite{Hofmann2021}. % (TBD: offshore wind)
 Atlite obtains technology-specific time series based on weather data (ERA5 reanalysis data \cite{Hersbach2020}, SARAH-2 satellite data \cite{Pfeifroth2017}). % as well as bathmetry \cite{GCG2022} (required for offshore wind).
 In addition to the time series, Atlite calculates land availabilities and linked potentials using the Copernicus Global Land Service \cite{Buchhorn2020}.
@@ -72,14 +72,14 @@ In addition to the time series, Atlite calculates land availabilities and linked
 \end{figure*}
 
 
-\subsubsection{Conventional electricity generation}
+\subsubsection*{Conventional electricity generation}
 The conventional electricity generators are obtained from the \textit{powerplantmatching} tool \cite{Powerplantmatching2019}. \textit{Powerplantmatching} uses various input sources as OpenStreetMap2022, Global Energy Monitor, IRENA \cite{IRENA2022, OpenStreetMap2022, GlobalEnergyMonitor} to download, filter and merge the datasets. 
 In this study, \textit{powerplantmatching} is applied to Morocco delivering the conventional power plants% listed in Table \ref{tab:powerplants}. 
 %[TBD: Benchmark with national statistics]
 % Benchmark: S\&P Global Kraftwerksliste (used by Fraunhofer IEE), \cite[p. 26]{Ersoy2022} 
 
 
-\subsubsection{Electricity networks and gas pipelines}
+\subsubsection*{Electricity networks and gas pipelines}
 The electricity network is based on the PyPSA-Earth workflow using OpenStreetMap2022 data \cite{OpenStreetMap2022} as presented in \cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build \cite{Parzen2023}. 
 The brownfield gas pipeline infrastructure of Morocco is not considered in this study. The Maghreb-Europe pipeline passing through Morocco is the only pipeline in operation but currently subject to political disputes \cite{Rachidi2022}. Further proposed projects are excluded due to insignificant capacity compared to Moroccos energy system (Tendrara LNG Terminal, 100 million cubic meters per year %\cite{GEM2023})
  or uncertain commissioning dates (Nigeria-Morocco Pipeline, start year 2046 \cite{GEM2023b}).
@@ -88,16 +88,16 @@ The brownfield gas pipeline infrastructure of Morocco is not considered in this 
 %11,780 km of 60 kV lines \cite[p. 6, primary 44]{Boulakhbar2020}
 
 
-\subsection{Brownfield model and capacity expansion}
+\subsection*{Brownfield model and capacity expansion}
 \label{brownfield_model}
 Following the workflow of \cite{Parzen2023}, Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution of Morocco. Based on this brownfield electricity system, the sector-coupled energy model allows the capacity expansion of storage, (electricity networks), hydrogen pipelines, renewable and conventional generators.
 
-\subsection{Technology and cost assumptions}
+\subsection*{Technology and cost assumptions}
 \label{subsec:tech_assump}
 All technology and cost assumptions are based on the year 2030, taken from \href{https://github.com/pypsa/technologydata}{github.com/pypsa/technologydata} version 0.4.0. A discount rate of 13\% is applied.
 
 
-\subsection{Water supply}
+\subsection*{Water supply}
 \label{subsec:water_supply}
 Hydrogen production through electrolysis requires fresh water, alternatives as the direct use of high saline water sources are still in the experimental stages \cite{Tong2020}. The depletion of freshwater resources and it's competition with other water uses is a concern, especially in regions such as Morocco which is ranked 27th among the world's most water-stressed countries \cite{Maddocks2015}. 
 Sea Water Reverse Osmosis (SWRO) emerges as a feasible solution to address this issue. In this model, the additional water cost of 0.80 €/\si{\cubic\metre} through desalination and transport is considered in line with the base scenario for Morocco in 2030 in \cite{Caldera2020}. These findings are comparable to \cite{Kettani2020} and \cite{Caldera2016} stating the water costs of 1\$/$m^3$ resp. 0.60 - 1.50 €/\si{\cubic\metre} for Morocco in 2030. Given a water demand of 9~$m^3/kg_{hydrogen}$
@@ -114,7 +114,7 @@ However, the challenge of brine disposal presents environmental concerns due to 
 %     \item Transfer of water from North to South is planned, secondary source \cite{Ersoy2022}.
 % \end{itemize}
 
-\subsection{Green hydrogen policy}
+\subsection*{Green hydrogen policy}
 \label{subsec:green_hydrogen_constraint}
 % https://www.ffe.de/en/publications/how-is-green-hydrogen-defined-according-to-the-eus-delegated-act/
 
@@ -133,14 +133,13 @@ which are required for Power Purchase Agreements (PPA) with RE-installation. Apa
     \item high share of RE in power mix ($>$ 90\%) or the
     \item avoidance of RE curtailment
 \end{itemize}
-to qualify as "green" hydrogen. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study (s. Chap. \ref{sec:intro}). The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Moroccos local electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study (s. Chap. \ref{sec:intro}).
+to qualify as "green" hydrogen. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study. The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Moroccos local electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study presented in the \nameref{sec:intro}).
 
 % TBD: The locally demanded hydrogen does not meet the Additionality criteria (but probably the temporal correlation, be careful here)
 
-\subsection{Hydrogen export}
+\subsection*{Hydrogen export}
 \label{subsec:hydrogen_export}
-The amount of hydrogen to be exported is derived from Section~\ref{sec:policyandtargets} and implemented as an exogenous parameter in the range of 0-200~TWh (s. Chap. \ref{sec:intro}). The system boundary is the country border of Morocco, hence not considering various transport options (as shipping or pipeline) or further conversions (Methane, Ammonia, etc.) as further discussed in Section \ref{subsec:limitations}. %[TBD: justify]
-Nonetheless, the demand pattern of ship export (landing, loading, travel time) and the resulting energy system implications (compared to a constant export profile, closer to a pipeline behaviour) are not investigated in detail, a constant hydrogen demand is assumed. The export of hydrogen is allowed via a range of selected ports in Morocco.
+The amount of hydrogen to be exported or further synthesized for export is  implemented as an exogenous parameter in the range of 0-120~TWh (s. Chap. \ref{sec:intro}), with sensitivity analysis up to 200 TWh presented in the \nameref{sec:si} section \nameref{sec:highexportsens}. The system boundary is the country border of Morocco, hence transport options (as shipping or pipeline) are not considered in detail. Nonetheless, the demand pattern of ship export (landing, loading, travel time) and the resulting energy system implications (compared to a constant export profile, closer to a pipeline behaviour) are not investigated in detail, a constant hydrogen demand for export is assumed. The export of hydrogen is allowed via a range of selected ports in Morocco.
 % TBD: Ship export: Landing, loading, travel time Sensitvity investigation
 % [TBD: provide table or map in supplementary]. 
 
