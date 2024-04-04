@@ -20,7 +20,7 @@ Simultaneously, several countries are positioning themselves as potential export
 These countries are expected to play a significant role in the global energy market by supplying clean hydrogen and therefore contributing to global decarbonization efforts. However, pursuing both (on-grid) hydrogen exports and national energy transition raises questions on welfare redistribution, prices and co-benefits that require in-depth analysis, additionally shining a light on the role of hydrogen regulation.
 
 % Second: Need
-Morocco serves as a blueprint for investigating these dependencies. Morocco, which has vast solar and wind resources \cite{Peters2023, Touili2018, Sterl2022}, has proposed ambitious renewable energy adoption objectives, displaying a commitment to lowering its own greenhouse gas emissions \cite{CAT2021}. At the same time, the country is strategically positioned to deploy its renewable energy potentials to export green hydrogen, opening the door to substantial economic opportunities (and local value chains \cite{Ersoy2022}). Furthermore, the country is a net importer of energy \cite{IEA2022}, and green hydrogen could help reduce its dependency on energy imports. The proximity to Europe, which is expected to be a major hydrogen importer, makes Morocco an attractive potential exporter. %https://www.giz.de/de/downloads/giz2012-en-solar-plan-morocco.pdf
+Morocco serves as a blueprint for investigating these dependencies. Morocco, which has vast solar and wind resources \cite{Peters2023, Touili2018, Sterl2022}, has proposed ambitious renewable energy adoption objectives, displaying a commitment to lowering its own greenhouse gas emissions \cite{CAT2021}. At the same time, the country is strategically positioned to deploy its renewable energy potentials to export green hydrogen, opening the door to substantial economic opportunities and local value chains \cite{Ersoy2022}. Furthermore, the country is a net importer of energy \cite{IEA2022}, and green hydrogen could help reduce its dependency on energy imports. The proximity to Europe, which is expected to be a major hydrogen importer, makes Morocco an attractive potential exporter. %https://www.giz.de/de/downloads/giz2012-en-solar-plan-morocco.pdf
 
 
 These conditions are the motivation of several studies \cite{vanWijk2021, AbouSeada2022, vanderZwaan2021, Schellekens2010, Cavana2021, Touili2022, Timmerberg2019a, Sens2022} examining the potential of hydrogen in Africa and synergies with European demand. A more detailed study of Morocco has been undertaken by \cite{Boulakhbar2020} examining challenges in integrating Renewable Energies, \cite{Khouya2020} determining the Levelized Cost of Hydrogen based on CSP and wind farms, and \cite{Touili2018} investigating the potential of hydrogen from solar energy. \cite{Hampp2021} investigates various PtX products and their transportation to Europe, and \cite{Eichhammer2019} highlights diverse opportunities and challenges related to exporting hydrogen and PtX from Morocco. While several studies \cite{Hampp2021, AbouSeada2022, vanWijk2021} have examined the potential of hydrogen as a low-carbon energy carrier and others have explored various countries' climate targets and aspirations \cite{Boulakhbar2020}, a significant research gap remains regarding the integrated investigation of both perspectives. 
@@ -39,13 +39,13 @@ Numerous studies focus exclusively on either hydrogen exports, domestic climate 
 The novelty compared to the existing literature is that
 our analysis presents a scenario vector of domestic climate mitigation, hydrogen exports and hydrogen regulation, sweeping along these three dimensions:
 \begin{enumerate}
-    \item \textbf{Mitigation}: The (energy and non-energy) emission reduction varies between 0~--~100\% based on Morocco's current emissions of 72 Mt\coe (s. Sec. \ref{subsec:climate_targets}),
-    \item \textbf{Export}: The hydrogen export volume varies from 0~--~120 TWh, in accordance with Moroccos hydrogen export ambitions of 114.7~TWh (s. Sec. \ref{subsec:strategy}) and
-    \item \textbf{Hydrogen regulation}: The temporal matching (of additional renewable electricity and the electrolyser electricity demand) varies between: no regulation, annual, monthly and hourly matching (s. Sec. \ref{subsec:green_hydrogen_constraint}). 
+    \item \textbf{Mitigation}: The (energy and non-energy) emission reduction varies between 0--100\% based on Morocco's current emissions of 72 Mt\coe,
+    \item \textbf{Export}: The hydrogen export volume varies from 0--120 TWh, in accordance with Moroccos hydrogen export ambitions of 114.7~TWh and
+    \item \textbf{Hydrogen regulation}: The temporal matching (of additional renewable electricity and the electrolyser electricity demand) varies between: no regulation, annual, monthly and hourly matching.
 \end{enumerate}
-This three-dimensional scenario space results in 484 model runs to grasp the full extend of the interaction between various parameters.
+This three-dimensional scenario space results in 264 model runs (excluding sensitivity analysis) to grasp the full extend of the interaction between various parameters.
 A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with its diurnal and seasonal variations in energy supply and demand. A similar study \cite{Neumann2022} finds minor underestimation of short-term battery storage and onshore wind and minor overestimation of solar photovoltaics and hydrogen storage compared to an hourly resolution, overall justifying the reduction of the model size. 
-A spatial resolution of 14 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, the spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 14 nodes align with the GADM (Global Administrative Areas) level 1 regions, policy advisement can be tailored to specific regions considering local needs and constraints.
+A spatial resolution of 14 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, the spatial resolution provides insights on land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 14 nodes align with the GADM (Global Administrative Areas) level 1 regions, policy advisement can be tailored to specific regions considering domestic needs and constraints.
 
 
 % Forth: Task
@@ -53,10 +53,10 @@ To investigate interactions between hydrogen exports, domestic mitigation and hy
 Shortcomings of studies on highly renewable energy systems in Africa as low temporal and spatial resolutions as well as the lack of sector-coupled energy models as pointed out in \cite{Oyewo2023} are tackled in this study. The analysis of Morocco's energy system contributes to the expanding research that aims to inform policymaking and decision-making regarding sustainable energy transitions. This study provides valuable insights into the pathways unlocking synergies and reducing conflicts between hydrogen exports and national energy transition, enabling Morocco and other potential exporting regions to follow a harmonious and sustainable trajectory while facing similar energy system planning challenges.
 
 %  Fith: Overview of the study
-Chapter \nameref{sec:policyandtargets} presents Morocco's hydrogen strategy and climate targets and outlines potential conflicts and synergies between these two goals. Introducing the results along these three dimensions step-by-step, Chapter \nameref{sec:results} evaluates synergies and conflicts based on prices and total cost for domestic electricity consumers and hydrogen exporters. These results are contextualized along policy recommendations in Chapter \nameref{sec:discussion} and concluded in Chapter \nameref{sec:conclusion}. Chapter \nameref{sec:methods} presents the applied sector-coupled energy model and scenario dimensions required to expose the export-mitigation-regulation nexus.
+Chapter \nameref{sec:policyandtargets} presents Morocco's hydrogen strategy and climate targets and outlines potential conflicts and synergies between these two goals. Introducing the results along these three dimensions step-by-step, \nameref{sec:results} evaluates synergies and conflicts based on prices and total cost for domestic electricity consumers and hydrogen exporters, with emphazised consideration of hydrogen regulation. These results are contextualized along policy recommendations in the \nameref{sec:discussion} and concluded in the \nameref{sec:conclusion}. \nameref{sec:methods} presents the applied sector-coupled energy model and scenario dimensions required to expose the export-mitigation-regulation nexus.
 
 
-% We explore the intricacies of technology lock-in, local energy-related greenhouse gas emissions, rising local energy prices, land use implications and neo-colonialism \cite{HabeckEnergieimperialismus, Terrapon-Pfaff2019, Hanger2016}, providing a comprehensive overview of the challenges and opportunities that emerge while pursuing these dual objectives.
+% We explore the intricacies of technology lock-in, domestic energy-related greenhouse gas emissions, rising domestic energy prices, land use implications and neo-colonialism \cite{HabeckEnergieimperialismus, Terrapon-Pfaff2019, Hanger2016}, providing a comprehensive overview of the challenges and opportunities that emerge while pursuing these dual objectives.
 
 %\subsection{Miscellaneous}
 %
@@ -76,7 +76,7 @@ Chapter \nameref{sec:policyandtargets} presents Morocco's hydrogen strategy and 
 
 %Literature review (specific):
 %\begin{itemize}
-%    \item Local energy demand considered in: MenaFuels and \cite{Hampp2021}. According to MenaFuels the local demand is usually just some percentages of the potential
+%    \item domestic energy demand considered in: MenaFuels and \cite{Hampp2021}. According to MenaFuels the domestic demand is usually just some percentages of the potential
 %    \item Hydrogen from (North-)Africa (to Europe): \cite{vanWijk2021} \cite{AbouSeada2022} \cite{vanderZwaan2021} and \cite{Schellekens2010} and \cite{Cavana2021}, specific countries from Africa: \cite{Hampp2021}, PV technologies for Hydrogen production in Africa \cite{Touili2022}, Pipeline blend \cite{Timmerberg2019a}, hydrogen cost \cite{Sens2022}
 %    \item Morocco: Renewable Integration \cite{Boulakhbar2020}, LCOH hydrogen CSP and wind farms \cite{Khouya2020}, Discussion paper PtX \cite{Eichhammer2019}, hydrogen potential from solar energy \cite{Touili2018}
 %    \item Literature review on energy systems in Africa \cite{Oyewo2023} and \cite{Oyewo2022}
@@ -84,7 +84,7 @@ Chapter \nameref{sec:policyandtargets} presents Morocco's hydrogen strategy and 
 %    \item \cite{vanderZwaan2021} Also looks into North Africa, but on country resolution. they don't look at biomass either
 %    \item Overview of the global hydrogen market and potential exporting countries
 %    \item Key challenges and opportunities of simultaneous hydrogen export and energy transition
-%    \item Previous research on technology lock-in, local emissions, land use, and neo-colonialism
+%    \item Previous research on technology lock-in, domestic emissions, land use, and neo-colonialism
 %\end{itemize}
 
 
@@ -92,7 +92,7 @@ Chapter \nameref{sec:policyandtargets} presents Morocco's hydrogen strategy and 
 %Narrative: 
 %\begin{itemize}
 %    \item Security of supply/economic growth/cheap energy for North Africa and Morocco
-%    \item Fair cooperation and partnerships by: including local energy demands, investigation of conflicts/synergies
+%    \item Fair cooperation and partnerships by: including domestic energy demands, investigation of conflicts/synergies
 %    \item Best locations with high FLH should not be reserved for export (as done in Global PtX Atlas)
 %    \item EU can rely on cost-effective green hydrogen
 %    \item Discuss why it is important to understand synergies and conflicts
@@ -109,7 +109,7 @@ Chapter \nameref{sec:policyandtargets} presents Morocco's hydrogen strategy and 
 % Research questions:
 % \begin{itemize}
 %     \item Are there wealth, cost and emission benefits of an integrated optimisation compared to separated analyses?
-%     \item Are there competing RE potential resources and where are they located? Should these resources used for local decarbonization or for export purposes?
+%     \item Are there competing RE potential resources and where are they located? Should these resources used for domestic decarbonization or for export purposes?
 %     \item What is the role of green/grey hydrogen?   
 %     \item Can an integrated analysis avoid carbon leakage?
 %     \item Does ongrid integration avoid installing excess RES and El capacity? (That's a finding of e.g. \cite{Ruhnau2022})
