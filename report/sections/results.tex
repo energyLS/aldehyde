@@ -19,7 +19,7 @@
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/120/graphs/balances-AC.pdf}
-        \caption{Fixed (0\%) domestic climate change mitigation and 0--120 TWh/a export}
+        \caption{Fixed (0\%) domestic climate change mitigation and 1--120 TWh/a export}
         \label{fig:balances-ac-co2l20-120}
     \end{subfigure}
     \hfill
@@ -49,7 +49,7 @@ Additionally, the electricity demand for air heat pumps increases, supporting th
 \label{subsec:increase_h2}
 
 Here, we analyse the hydrogen export ramp up (dimension 2). The electricity supply at increasing hydrogen exports is displayed in Figure \ref{fig:balances-ac-co2l20-120}. The deployment of hydrogen exports requires a scale up of onshore wind and solar PV accordingly, as defined by the green hydrogen constraint outlined in \nameref{subsec:green_hydrogen_constraint}.
-Without the green hydrogen constraint, the additional electricity demand of hydrogen exports is covered by coal power plants and CCGT (by increasing the capacity factor of existing brownfield coal and CCGT capacities) and an expansion of OCGT installation and supply as pointed out in Figure \ref{fig:barplotscons}.
+Without the temporal hydrogen regulation, the additional electricity demand of hydrogen exports is covered by coal power plants and CCGT (by increasing the capacity factor of existing brownfield coal and CCGT capacities) and an expansion of OCGT installation and supply as pointed out in Figure \ref{fig:barplotscons}.
 In contrast to the expontential increase of electricity demand observable at increasing climate mitigation ambitions displayed in Figure \ref{fig:balances-ac-0exp-120}, the electricity demand increases linearly with the hydrogen export ambitions.
 
 
@@ -249,7 +249,7 @@ In contrast, in the \textit{slow exports and quick climate change mitigation} sc
 % Medium emission: Already 100% renewable electricity system has challenges integrating further REs
 % High emission: Already high RE capacity and many flexibilities through electrolysis (and FT)
 
-% At low emission reductions, additional hydrogen exports do not increase the electricity price for domestic consumers significantly. This is due to the fact, that additional hydrogen exports scale renewable energies accordingly as required by the green hydrogen constraint (s. Sec. \ref{subsec:green_hydrogen_constraint}). This means, that green hydrogen exports provide additional renewable energy capacity participating the electricity markets and keeping the electricity price constant at low emission reductions. Without the green hydrogen constraint, the marginal price of electricity increases with hydrogen exports as pointed out in Section \ref{subsec:gh_constraint_effects}.
+% At low emission reductions, additional hydrogen exports do not increase the electricity price for domestic consumers significantly. This is due to the fact, that additional hydrogen exports scale renewable energies accordingly as required by the temporal hydrogen regulation (s. Sec. \ref{subsec:green_hydrogen_constraint}). This means, that green hydrogen exports provide additional renewable energy capacity participating the electricity markets and keeping the electricity price constant at low emission reductions. Without the temporal hydrogen regulation, the marginal price of electricity increases with hydrogen exports as pointed out in Section \ref{subsec:gh_constraint_effects}.
 
 % The increase of hydrogen exports at medium emission ambitions (60\%) shows a different picture, increasing the electricity price up to 58 €/MWh. At 60\% emission reduction and no hydrogen export, the electricity sector is already almost fully renewable (s. Fig. \ref{fig:balances-ac-0exp}), the flexibility provided by Vehicle-to-Grid and BEV batteries is sufficient to integrate the variable renewable energies. In this environment, an increase of hydrogen exports (and REs accordingly) pushes the electricity system to it's integration limits, requiring more storage and increasing RE curtailment as observable in Figure \ref{fig:solar_curt}, hence increasing the price of electricity.
 
@@ -281,7 +281,7 @@ In contrast, in the \textit{slow exports and quick climate change mitigation} sc
 % The average price of hydrogen for export (s. Fig. \ref{fig:export_hy_price}) is weighted based on the hydrogen demand at the export nodes. 
 % The price of hydrogen highly depends on the operation of electrolysers (CAPEX share) and the cost of electricity required for the process (OPEX share). The CAPEX share of hydrogen costs (\ref{fig:capex-rel}) is indirectly proportional to the capacity factor of electrolysis (\ref{fig:ely-cf}). A high capacity factor leads to a low share of CAPEX in the total hydrogen costs. The OPEX share of hydrogen costs (\ref{fig:opex-rel}) is directly proportional to the price of electricity (\ref{fig:electricity-price}), the cost of water or operation-dependent maintenance is neglectable. % Sources, e.g.  Hampp2023
 
-% Combining the CAPEX and OPEX share leads to the total hydrogen costs displayed in Figure (\ref{fig:hydrogen-cost}). The cost of hydrogen differs to the price of hydrogen determined as marginal prices (\ref{fig:hydrogen-price}). At emission reductions $<40$\%, the hydrogen cost (in particular the OPEX) is very low due to the access to cheap electricity across the whole hydrogen export dimension. In contrast, the hydrogen (marginal) price, defined as additional cost per extra unit of hydrogen, depends on the hydrogen export volume also at low emission reductions. The reason for this is the green hydrogen constraint (s. Sec. \ref{subsec:green_hydrogen_constraint}), which requires the additional installation of renewable energies per extra unit of hydrogen accordingly as shown in Section \ref{subsec:increase_h2}. This leads to in general higher hydrogen prices (including additional REs) than hydrogen costs (not including additional REs). 
+% Combining the CAPEX and OPEX share leads to the total hydrogen costs displayed in Figure (\ref{fig:hydrogen-cost}). The cost of hydrogen differs to the price of hydrogen determined as marginal prices (\ref{fig:hydrogen-price}). At emission reductions $<40$\%, the hydrogen cost (in particular the OPEX) is very low due to the access to cheap electricity across the whole hydrogen export dimension. In contrast, the hydrogen (marginal) price, defined as additional cost per extra unit of hydrogen, depends on the hydrogen export volume also at low emission reductions. The reason for this is the temporal hydrogen regulation (s. Sec. \ref{subsec:green_hydrogen_constraint}), which requires the additional installation of renewable energies per extra unit of hydrogen accordingly as shown in Section \ref{subsec:increase_h2}. This leads to in general higher hydrogen prices (including additional REs) than hydrogen costs (not including additional REs). 
 
 % The difference between hydrogen costs and hydrogen prices is more pronounced at low climate ambitions, since coal power supplies cheap electricity (s. Fig. \ref{fig:coal-supply}) resulting in low OPEX for electrolysis, whereas the hydrogen price includes the financing of additional renewable energies. At high climate ambitions, the trends of costs and prices are very similar: in both cases, the absence of carbon-intensive electricity generation units requires additional renewable energy installations, regardless of taking the green hydrogen into account (hydrogen price) or not (hydrogen cost).
 
@@ -345,7 +345,7 @@ In contrast, in the \textit{slow exports and quick climate change mitigation} sc
 % \begin{itemize}
 %     \item Slightly more hydrogen storage
 %     \item Lower capacity factor of electrolysers at low $\mathrm{CO_2}$ reductions
-%     \item More curtailment at low $\mathrm{CO_2}$ reductions and high export (massive wind curtailment $\rightarrow$ Due to green hydrogen constraint? Why is there so much excess wind?)
+%     \item More curtailment at low $\mathrm{CO_2}$ reductions and high export (massive wind curtailment $\rightarrow$ Due to temporal hydrogen regulation? Why is there so much excess wind?)
 % \end{itemize}
 
 % Sensitivity analysis on:

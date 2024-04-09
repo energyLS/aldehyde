@@ -1,26 +1,26 @@
-\section{Green hydrogen constraint}
+\section{Temporal hydrogen regulation}
 \label{subsec:gh_constraint_effects}
 
 \subsection{Hourly matching prevents additional emissions induced by hydrogen exports}
-Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0--120 TWh/a with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint.
+Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 1--120 TWh/a at 0\% domestic climate change mitigation with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) temporal hydrogen regulation.
 
 \begin{figure*}[h!]
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/120/graphs/balances-AC.pdf}
-        \caption{Electricity balance {\bf with} green hydrogen constraint}
+        \caption{Electricity balance {\bf with} temporal hydrogen regulation}
         \label{fig:balances_AC_monthlymatch}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l20-only/120/graphs/balances-AC.pdf}
-        \caption{Electricity balance {\bf without} green hydrogen constraint}
+        \caption{Electricity balance {\bf without} temporal hydrogen regulation}
         \label{fig:balances_AC_nogreen}
     \end{subfigure}
     \hfill
-    \caption{Electricity balance ramp up from 0--120 TWh/a with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) green hydrogen constraint}
+    \caption{Electricity balance ramp up from 1--120 TWh/a at 0\% domestic climate change mitigation with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) temporal hydrogen regulation}
     \label{fig:barplotscons}
 \end{figure*}
 
@@ -38,7 +38,7 @@ Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 0--1
 
 
 \subsection{Electricity and hydrogen prices are dominated by temporal matching}
-Temporal matching increases hydrogen prices (s. Fig. \ref{fig:marginal_prices_hy_gh_sens}) and decreases electricity prices (s. Fig. \ref{fig:marginal_prices_el_gh_sens}) especially in low climate change mitigation and high export scenarios.
+Temporal matching increases hydrogen prices (s. Fig. \ref{fig:marginal_prices_hy_gh_sens}) and decreases electricity prices (s. Fig. \ref{fig:marginal_prices_el_gh_sens}) especially in low domestic climate change mitigation and high export scenarios.
 
 
 \begin{figure*}[h!] % Use 'figure*' to span both columns
@@ -46,18 +46,18 @@ Temporal matching increases hydrogen prices (s. Fig. \ref{fig:marginal_prices_hy
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterTrue.pdf}
-        \caption{Average price of electricity for domestic consumers {\bf with} green hydrogen constraint}
+        \caption{Price of electricity for domestic consumers {\bf with} temporal hydrogen regulation}
         \label{fig:local_el_price}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterTrue.pdf}
-        \caption{Average price of electricity for domestic consumers {\bf without} green hydrogen constraint}
+        \caption{Price of electricity for domestic consumers {\bf without} temporal hydrogen regulation}
         \label{fig:local_el_price_nogreen}
     \end{subfigure}
     \hfill
-    \caption{Marginal prices of electricity with and without green hydrogen constraint}
+    \caption{Marginal prices of electricity with and without temporal hydrogen regulation}
     \label{fig:marginal_prices_el_gh_sens}
 \end{figure*}
 
@@ -67,33 +67,33 @@ Temporal matching increases hydrogen prices (s. Fig. \ref{fig:marginal_prices_hy
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_exportonly_20_filterTrue.pdf}
-        \caption{Average price of hydrogen for export {\bf with} green hydrogen constraint}
+        \caption{Average price of hydrogen for export {\bf with} temporal hydrogen regulation}
         \label{fig:local_hy_price}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_H2_False_False_exportonly_20_filterTrue.pdf}
-        \caption{Average price of hydrogen for export {\bf without} green hydrogen constraint}
+        \caption{Price of hydrogen for export {\bf without} temporal hydrogen regulation}
         \label{fig:local_hy_price_nogreen}
     \end{subfigure}
     \hfill
-    \caption{Marginal prices of hydrogen for export with and without green hydrogen constraint}
+    \caption{Marginal prices of hydrogen for export with and without temporal hydrogen regulation}
     \label{fig:marginal_prices_hy_gh_sens}
 \end{figure*}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/subcontour_supply.pdf}
-    \caption{Electricity supply {\bf without} green hydrogen constraint}
-    \label{fig:supply}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.9\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/subcontour_supply.pdf}
+%     \caption{Electricity supply {\bf without} temporal hydrogen regulation}
+%     \label{fig:supply}
+% \end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/subcontour_cf.pdf}
-    \caption{Capacity factor {\bf without} green hydrogen constraint}
-    \label{fig:cf-noghc}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.9\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/subcontour_cf.pdf}
+%     \caption{Capacity factor {\bf without} temporal hydrogen regulation}
+%     \label{fig:cf-noghc}
+% \end{figure}
 
 \clearpage
