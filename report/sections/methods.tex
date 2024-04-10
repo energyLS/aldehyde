@@ -14,15 +14,11 @@ The study did not generate new materials.
 
 \subsubsection*{Data and Code Availability}
 
-A dataset of the model results is available at \href{zenodoTBA}{doi:zenodoTBA}.
-The code to reproduce the experiments is available at \href{https://github.com/energyLS/aldehyde}{github.com/energyLS/aldehyde}.
-
-We also refer to the documentation of PyPSA
-(\href{https://pypsa.readthedocs.io}{pypsa.readthedocs.io}) and PyPSA-Earth (\href{https://pypsa-earth.readthedocs.io}{pypsa-earth.readthedocs.io}), and the code of PyPSA-Earth-Sec
-(\href{https://github.com/pypsa-meets-earth/pypsa-earth-sec}{github.com/pypsa-meets-earth/pypsa-earth-sec}).
-
-Technology data was taken from
-\href{https://github.com/pypsa/technology-data}{github.com/pypsa/technology-data} (v0.4.0).
+A dataset of the model results is available on \href{https://doi.org/10.5281/zenodo.10951650}{Zenodo}. The code to reproduce the experiments is available on \href{https://github.com/energyLS/aldehyde}{GitHub}.
+We also refer to the documentations of \href{https://pypsa.readthedocs.io}{PyPSA} and  \href{https://pypsa-earth.readthedocs.io}{PyPSA-Earth}, and the code of 
+\href{https://github.com/pypsa-meets-earth/pypsa-earth-sec}{PyPSA-Earth-Sec}.
+Technology data was taken from the
+\href{https://github.com/pypsa/technology-data}{technology-data repository} (v0.4.0).
 
 
 % In this Section we describe the methods and data used in this study. First, the sector-coupled energy model is presented in Section \ref{subsec:moroccan_model}. Second, the brownfield capacities are described in Section \ref{brownfield_model}. Model details on green hydrogen and hydrogen export implementation are provided in Sections \ref{subsec:green_hydrogen_constraint} and \ref{subsec:hydrogen_export}. The scenarios on which the energy model is based on are discussed in Chapter \ref{sec:intro}.
@@ -66,8 +62,9 @@ In addition to the time series, Atlite calculates land availabilities and linked
 
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=0.7\linewidth]{../graphics_general/brownfield_capacities_mar_el.pdf}
-    \caption{Current capacities of electricity generation and distribution, obtained from \cite{Parzen2022} and visualization based on \cite{Horsch2018}. Morocco's electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV.}
+    \includegraphics[width=0.7\linewidth]{../graphics_general/brownfield_capacities.pdf}
+    \caption{Current capacities of electricity generation and distribution, obtained from \cite{Parzen2022} and visualization based on \cite{Horsch2018}. Morocco's electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV. Boundaries depicted are based on the Global Administrative Areas and are intended for illustrative purposes only, not implying territorial claims.
+    }
     \label{fig:MAR_brownfield}
 \end{figure*}
 
