@@ -1,0 +1,82 @@
+\section{High export scenarios}
+\label{sec:highexportsens}
+\subsection{Electricity supply and demand}
+
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/200/graphs/balances-AC.pdf}
+        \caption{Fixed (1 TWh) export and 0--100\% domestic climate change mitigation}
+        \label{fig:balances-ac-0exp}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/200/graphs/balances-AC.pdf}
+        \caption{Fixed (0\%) domestic climate change mitigation and 1--200 TWh/a export}
+        \label{fig:balances-ac-co2l20-200}
+    \end{subfigure}
+    \hfill
+    \caption{Electricity supply and demand at fixed export levels and increasing domestic climate change mitigation (\ref{fig:balances-ac-0exp}) and vice versa (\ref{fig:balances-ac-co2l20-200}). Increasing domestic climate change mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high domestic climate change mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands cover EVs and hydrogen generation for other sectors.
+    At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as imposed by the temporal hydrogen regulation. 
+    %See Fig. \ref{fig:balances_AC_nogreen} for electricity balance without hydrogen regulation.
+    }
+    \label{fig:balances-ac}
+\end{figure*}
+
+
+
+
+
+\subsection{Relative cost of domestic electricity and hydrogen export}
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp200-PATH.pdf}
+        \caption{Rel. cost of electricity for domestic customers (normalized to 1 TWh/a hydrogen export)}
+        \label{fig:expense_ac_200}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp200-PATH.pdf}
+        \caption{Rel. cost of hydrogen for exporters (normalized to 0\% \co reduction)}
+        \label{fig:expense_h2_200}
+    \end{subfigure}
+    \hfill
+    \caption{  
+    Rel. cost for domestic electricity consumers (\ref{fig:expense_ac_200}) and hydrogen exporters (\ref{fig:expense_h2_200}),
+    normalized to costs at 1 TWh/a hydrogen export (\ref{fig:expense_ac_200}) and
+    to 0\% \co reduction (\ref{fig:expense_h2_200})
+    at each domestic climate change mitigation level. Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic climate change mitigation and high exports. Hydrogen exporters profit from domestic climate change mitigation at medium mitigation efforts. Both (\ref{fig:expense_ac_200}) and (\ref{fig:expense_h2_200}) include possible pathways of i) quick exports and slow climate change mitigation, ii) balanced exports and mitigation and iii) slow exports and quick climate change mitigation.}
+    \label{fig:expenses_default_200}
+\end{figure*}
+
+
+\subsection{Effect of temporal hydrogen regulation on electricity and hydrogen costs in all scenarios} 
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_120exp_Co2L2.0dec_additionalreal.pdf}
+        \caption{All scenarios up to 120 TWh}
+        \label{fig:expenses_all_120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_200exp_Co2L2.0dec_additionalreal.pdf}
+        \caption{All scenarios up to 200 TWh}
+        \label{fig:expenses_all_200}
+    \end{subfigure}
+    \hfill
+    \caption{Supplement to Fig. \ref{fig:expenses_real_120}. Relative change of electricity and hydrogen cost and total system cost depending on the temporal hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low climate change mitigation. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen regulation regulates the welfare distribution between both groups.}
+    \label{fig:expenses_all}
+\end{figure*}
+
+\clearpage

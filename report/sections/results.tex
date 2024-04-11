@@ -1,191 +1,201 @@
-Chapter \ref{sec:results} focuses on the energy system fulfilling both goals of hydrogen export and national energy transition under various green hydrogen regulations. First, Section \ref{subsec:increase_limit} investigates the supply and demand of Moroccos electricity system depending on domestic mitigation (dimension 1), Section \ref{subsec:increase_h2} analyses the hydrogen export ramp up (dimension 2). Section \ref{subsec:benefits} reveals economic co-benefits of domestic mitigation and hydrogen exports along both dimensions 1 and 2. The role of hydrogen regulation and temporal matching (dimension 3) is outlined in section \ref{subsec:benefits_rule}. Section \ref{subsec:rule_all} investigates the effect of hydrogen regulation depending on domestic mitigation and hydrogen exports (dimensions 1, 2 and 3).
+% Chapter \ref{sec:results} focuses on the energy system fulfilling both goals of hydrogen export and national energy transition under various green hydrogen regulations. First, Section \ref{subsec:increase_limit} investigates the supply and demand of Morocco's electricity system depending on domestic climate change mitigation (dimension 1), Section \ref{subsec:increase_h2} analyses the hydrogen export ramp up (dimension 2). Section \nameref{subsec:benefits} reveals economic co-benefits of domestic climate change mitigation and hydrogen exports along both dimensions 1 and 2. The role of hydrogen regulation and temporal matching (dimension 3) is outlined in Section \ref{subsec:benefits_rule}. Section \ref{subsec:rule_all} investigates the effect of hydrogen regulation depending on domestic climate change mitigation and hydrogen exports (dimensions 1, 2 and 3).
 
 
 % The integration challenges arising from increasing RE penetration are pointed out in Section \ref{subsec:integration_challenges} while emphasizing the importance of system flexibility provided by electricity storage and curtailment. The hydrogen and electricity prices of the integrated optimisation are analyzed in Section \ref{subsec:results_el_prices} and \ref{subsec:results_hy_prices}. 
 
 
-%Based on these prices, Section \ref{subsec:economic_benefits} derives the total expenses of electricity and hydrogen and outlines economics benefits. 
+%Based on these prices, Section \ref{subsec:economic_benefits} derives the total cost of electricity and hydrogen and outlines economics benefits. 
 %The sensitivity analysis in Section \ref{subsec:sensitivity} examines key parameters and their influence on the main results.
-
-
-\subsection{Domestic mitigation}
-\label{subsec:increase_limit}
-Figure \ref{fig:balances-ac-0exp} depicts the supply and demand of the electricity system at increasing climate mitigation ambitions from 0\% to 100\%. At low climate ambitions, the electricity demand is mainly covered by coal power, existing (brownfield) capacities of onshore wind, hydro, and CCGT play only a minor role. 
-At increasing emissions reductions, coal power is phased out in favour of solar PV, furthermore a fuel switch from coal to gas (CCGT) is observable at increasing emission reductions. At medium climate mitigation ambitions, the dipatchable power in the electricity system is provided by OCGT. 
-Further increasing the climate ambitions, both solar PV and wind onshore penetrate and dominate the electricity system complemented by dispatchable power from Vehicle-to-Grid (V2G) providing an almost fully renewable electricity sector at 100\% emission reduction. 
-
-At 70\% and above, the electricity demand of eletrolysers increases significantly to supply hydrogen allowing a switch from fossil oil products to Fischer-Tropsch fuels in various sectors (see breakdown in \ref{fig:oil-balance}). 
-The Fischer-Tropsch demand in the transport sector increases, even though the increasing BEV diffusion (s. Sec. \ref{subsec:bev_diffusion}) is counterbalancing the demand for oil products. 
-Both eletrolysers and BEVs drive the electricity demand significantly up to five times of the bulk electricity demand. 
-Additionally, the electricity demand for air heat pumps increases, supporting the defossilisation in the heating sector (s. Sec. TODO) and supplying heat to the DAC process (s. Sec. TODO) required for synthetic fuels.
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-AC.pdf}
-    \caption{Electricity supply and demand at 1 TWh export. Rising domestic mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high mitigation the electricity system is fully renewable supported by flexibility through V2G and sector coupling. Increasing electricity demands cover EVs and hydrogen generation for other sectors.}
-    \label{fig:balances-ac-0exp}
-\end{figure}
-
-\subsection{Hydrogen exports}
-\label{subsec:increase_h2}
-
-The electricity supply at increasing hydrogen exports is displayed in Figure \ref{fig:balances-ac-co2l20}. The deployment of hydrogen exports requires a scale up of onshore wind and solar PV accordingly, as defined by the green hydrogen constraint (s. Sec. \ref{subsec:green_hydrogen_constraint}).
-Without the green hydrogen constraint, the additional electricity demand of hydrogen exports would be covered by coal power plants and CCGT (by increasing the capacity factor of existing brownfield coal and CCGT capacities) and an expansion of OCGT installation and supply as pointed out in Section \ref{subsec:gh_constraint_effects}.
-In contrast to the expontential increase of electricity demand observable at increasing climate mitigation ambitions (s. Fig. \ref{fig:balances-ac-0exp}), the electricity demand increases linearly with the hydrogen export ambitions.
-
-% TODO Ref to supplementary and the effect of green hydrogen constraint -> Role of storage here? -> New run without gh constraint and check storage
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/graphs/balances-AC.pdf}
-    \caption{Electricity supply and demand at 0\% 
-    domestic mitigation and rising hydrogen exports. The additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as imposed by the hydrogen regulation. See Fig. \ref{fig:balances_AC_nogreen} for electricity balance without hydrogen regulation.}
-    \label{fig:balances-ac-co2l20}
-\end{figure}
-
-
-\subsection{PUNCH 1: Co-benefits of local mitigation and hydrogen export}
-\label{subsec:benefits}
-
-Topic sentence:
-\begin{itemize}
-    \item Both domestic mitigation (s. Sec. \ref{subsec:increase_limit}) and hydrogen exports (s. Sec. \ref{subsec:increase_h2}) profit from each other and show co-benefits.
-\end{itemize}
-
-
-Main:
-\begin{itemize}
-    \item Figure \ref{fig:expense_ac} shows the expenses of domestic electricity consumers subject to mitigation and hydrogen export volumes. The expenses are normalized to expenses at 1 TWh Hydrogen export at each mitigation level. This shows benefits for domestic electricity consumers from hydrogen exports at a certain mitigation.
-    \item Hydrogen exports decrease the domestic electricity expenses, especially at mitigation below 40\% and exports above 50 TWh.
-    \item Realistic area at 40-60\% mitigation and 50-100 TWh hydrogen exports, where there is also a clear decline in electricity expenses for domestic costumers
-    \item Increase of expenses in 10\% and 20 TWh area. TODO: explain why
-    \item Figure \ref{fig:expense_h2} shows the expenses of hydrogen exports subject to mitigation and hydrogen export volumes. The expenses are normalized to expenses at 0\% mitigation at each hydrogen export volume. This shows benefits for hydrogen exports from domestic mitigation at a certain hydrogen export volume.
-    \item The expenses for hydrogen exports at 25 - 75 TWh export volumes decrease at mitigation levels of 40 - 60\%, clear synergy 
-    \item At export volumes below 20 TWh, a domestic mitigation increases the hydrogen export expenses
-    Reason: at export volumes below 20 TWh and mitigation below 20\%, the electrolysis capacity factor is above 80\% (s. Fig. \ref{fig:ely-cf}) (TODO: elabore why)
-    \item The triangle in the top left area shows that hydrogen exporter expenses at certain export levels are independent of domestic mitigation, this is driven by hydrogen regulation further investigated in section \ref{subsec:benefits_rule}
-    \item Note on figures: I plan to set the colorbar 100\% to white, increases towards red coloring and decreases towards green. Maybe: same scales for electricity and hydrogen. Makes it easier for the reader.
-\end{itemize}
-
-Punch:
-\begin{itemize}
-    \item Local electricity consumers benefit from hydrogen export (under certain circumstances)
-    \item Hydrogen exporters benefit from local decarbonisation (under certain circumstances)
-    \item Both hydrogen exporters and domestic electricity consumers benefit from each other at medium mitigation (40 - 60\%) and moderate to high hydrogen exports (25 - 150 TWh)
-\end{itemize}
-
-
 
 \begin{figure*}[h!]
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue.pdf}
-        \caption{Relative expense of local electricity customers (normalized to 1 TWh Hydrogen export)}
-        \label{fig:expense_ac}
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/120/graphs/balances-AC.pdf}
+        \caption{Fixed (1 TWh) export and 0--100\% domestic climate change mitigation}
+        \label{fig:balances-ac-0exp-120}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue.pdf}
-        \caption{Relative expense of hydrogen exporters (normalized to 0\% \co reduction)}
-        \label{fig:expense_h2}
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/120/graphs/balances-AC.pdf}
+        \caption{Fixed (0\%) domestic climate change mitigation and 1--120 TWh/a export}
+        \label{fig:balances-ac-co2l20-120}
     \end{subfigure}
     \hfill
-    \caption{Normalized expenses of local electricity consumers (\ref{fig:expense_ac}) and hydrogen exporters (\ref{fig:expense_h2}). Local electricity consumers profit from increasing hydrogen exports, especially at low domestic mitigation and high exports. Hydrogen exporters profit from domestic mitigation at medium mitigation efforts.}
-    \label{fig:expenses_default}
+    \caption{Electricity supply and demand at fixed export levels and increasing domestic climate change mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}). Increasing domestic climate change mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high domestic climate change mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen generation for other sectors.
+    At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as imposed by the temporal hydrogen regulation. 
+    %See Fig. \ref{fig:balances_AC_nogreen} for electricity balance without hydrogen regulation.
+    }
+    \label{fig:balances-ac}
 \end{figure*}
 
 
-\subsection{PUNCH 2: Effects of hydrogen regulation on electricity and hydrogen expenses (in fossil dominated electricity systems)}
-\label{subsec:benefits_rule}
+\subsection*{Domestic climate change mitigation increases the domestic electricity demand}
+\label{subsec:increase_limit}
+First of all, we investigate the supply and demand of Morocco's electricity system depending on domestic climate change mitigation (dimension 1). Figure \ref{fig:balances-ac-0exp-120} depicts the supply and demand of the electricity system at increasing climate mitigation ambitions from 0\% to 100\%. At low climate ambitions, the electricity demand is mainly covered by coal power, existing (brownfield) capacities of onshore wind, hydro, and combined-cycle gas turbines (CCGT) play only a minor role. 
+At increasing domestic climate change mitigation, coal power is phased out in favour of solar PV, furthermore a fuel switch from coal to gas (CCGT) is observable at increasing emission reductions. At medium climate mitigation ambitions, the dipatchable power in the electricity system is provided by CCGT. 
+Further increasing the climate ambitions, wind onshore and especially solar PV penetrate and dominate the electricity system complemented by dispatchable power from Vehicle-to-Grid providing an almost fully renewable electricity sector at 100\% emission reduction. 
 
-Topic sentence:
-\begin{itemize}
-    \item Section \ref{subsec:benefits} shows that both hydrogen exporters and domestic electricity consumers can co-benefit at certain scenarios, but careful: The hydrogen regulation plays an important role.
-    \item Strict hydrogen regulation has strong effects on electricity system dispatch (and emissions), increasing the prices/expenses for hydrogen exporters whilst decreasing for domestic electricity consumers
-\end{itemize}
-
-Main:
-\begin{itemize}
-    \item Energy and price spillover: Stricter hydrogen regulation requires additional renewable capacities (\& hydrogen storage, s. Fig. \ref{fig:pdc-200-0}) to meet the electricity demand of electrolysis on an annual/monthly/hourly basis. These renewable capacities provide i.) excess electricity to the domestic electricity system (s. Fig. \ref{fig:dispatch_rule}, energy spillover) and ii.) push out high marginal cost fossil generation (s. Fig. \ref{fig:pdc-200-0}, price spillover)
-    \item Figure \ref{fig:dispatch_rule}: No matching: Coal and OCGT are running close to their (brownfield) capacity limits (s. Fig. \ref{fig:cf-noghc}) to supply electricity. Annual matching: RE supply equals electricity demand for electrolysis (constraint works). Monthly/Hourly matching: OCGT phased out, excess renewable electricity from hydrogen constraint is supplied to domestic electricity sector (energy spillover).
-
-    \item Figure \ref{fig:expense_h2ac}: Hydrogen expenses increase (because they carry the constraint and finance pv and h2 storage (TODO: prove in appendix)). Electricity expenses decrease because they profit from energy and price spillover shown in Figure \ref{fig:dispatch_rule} and Figure \ref{fig:pdc-200-0}. Combined expenses: They decrease (TODO: elaborate) 
-    \item Redistribution of expenses between hydrogen exporters and domestic electricity consumers.
-    \item Note: these findings are valid for high export and low mitigation scenarios. Section \ref{subsec:rule_all} expores all combinations of export/mititgation/h2rule
-    \item TODO: explain why there is a slight increase in annual/monthly generation
-\end{itemize}
+At 70\% and above, the electricity demand of eletrolysers increases substantially to supply hydrogen allowing a switch from fossil oil products to Fischer-Tropsch fuels in various sectors (s. Fig. \ref{fig:oil-balance}). 
+The Fischer-Tropsch demand in the transport sector increases, even though the increasing Battery Electric Vehicle (BEV) diffusion is counterbalancing the demand for oil products (see \nameref{sec:si} section \nameref{subsec:bev_diffusion}). 
+Both electrolysers and BEVs drive the electricity demand substantially, up to two times of the domestic end-use electricity demand. 
+Additionally, the electricity demand for air heat pumps increases, supporting the defossilisation in the heating sector and supplying heat for Direct Air Capture required for synthetic fuels.
+% Could be proven here: workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/0exp-only/graphs/balances-urban_central_heat.pdf
 
 
-Punch:
-\begin{itemize}
-    \item Stricter hydrogen regulation decarbonizes hydrogen and domestic electricity demand (energy spillover)
-    \item Stricter hydrogen regulation decreases expenses for domestic electricity (price spillover) and increases for H2 exports
-    \item Hydrogen regulation acts as a mechanism to steer redistribution between hydrogen exports and domestic electricity consumers.
-\end{itemize}
 
-Idea: Instead of looking at high export and low mitigation, maybe pick up co-benefit area from Punch 1? But effects are strongest for low mitigation, I should show that. I pick it up again in Punch 3 anyways, where I combine all three dimensions.
+\subsection*{Hydrogen exports require a multiple of the domestic electricity demand}
+\label{subsec:increase_h2}
+
+Here, we analyse the hydrogen export ramp up (dimension 2). The electricity supply at increasing hydrogen exports is displayed in Figure \ref{fig:balances-ac-co2l20-120}. The deployment of hydrogen exports requires a scale up of onshore wind and solar PV accordingly, as defined by the green hydrogen constraint outlined in \nameref{subsec:green_hydrogen_constraint}.
+Without the temporal hydrogen regulation, the additional electricity demand of hydrogen exports is covered by coal power plants and CCGT (by increasing the capacity factor of existing brownfield coal and CCGT capacities) and an expansion of open-cycle gas turbines (OCGT) installation and supply as pointed out in Figure \ref{fig:barplotscons}.
+In contrast to the exponential increase of electricity demand observable at increasing climate mitigation ambitions displayed in Figure \ref{fig:balances-ac-0exp-120}, the electricity demand increases linearly with the hydrogen export ambitions.
+
 
 \begin{figure*}[h!]
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/dispatch_200_Co2L2.0.pdf}
-        \caption{Electricity dispatch}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120-PATH.pdf}
+        \caption{Relative cost of electricity for domestic customers (normalized to 1 TWh/a hydrogen export)}
+        \label{fig:expense_ac_120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120-PATH.pdf}
+        \caption{Relative cost of hydrogen for exporters (normalized to 0\% \co reduction)}
+        \label{fig:expense_h2_120}
+    \end{subfigure}
+    \hfill
+    \caption{  
+    Cost for domestic electricity consumers (\ref{fig:expense_ac_120}) and hydrogen exporters (\ref{fig:expense_h2_120}),
+    normalized to costs at 1 TWh/a hydrogen export (\ref{fig:expense_ac_120}) and
+    to 0\% \co reduction (\ref{fig:expense_h2_120})
+    at each domestic climate change mitigation level. Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic climate change mitigation and high exports. Hydrogen exporters profit from domestic climate change mitigation at medium mitigation efforts. Both (\ref{fig:expense_ac_120}) and (\ref{fig:expense_h2_120}) include possible pathways of i) quick exports and slow climate change mitigation, ii) balanced exports and mitigation and iii) slow exports and quick climate change mitigation. Years are illustrative.}
+    \label{fig:expenses_default_120}
+\end{figure*}
+
+
+\subsection*{Domestic climate change mitigation and hydrogen export show co-benefits}
+\label{subsec:benefits}
+
+
+In an integrated analysis of domestic climate change mitigation (dimension 1) and hydrogen exports (dimension 2) is study outlines that both domestic climate change mitigation and hydrogen exports profit from each other and show co-benefits. In this Section, we i) show the effects of hydrogen exports on domestic electricity prices, ii) the role of domestic climate change mitigation on hydrogen export cost, and lastly iii) common co-benefits.
+
+First, Figure \ref{fig:expense_ac_120} shows the cost for domestic electricity consumers subject to mitigation and hydrogen export volumes. The costs are normalized to costs at 1 TWh/a Hydrogen export at each domestic climate change mitigation level, displaying relative changes for domestic electricity consumers induced by hydrogen exports at a certain domestic climate change mitigation.
+Hydrogen exports decrease the relative domestic electricity cost by up to 45\%, especially at mitigation below 40\% and exports above 50 TWh. In these ranges, the fossil dominated domestic electricity system profits from excess green electricity originating from additional renewable energy capacities required for hydrogen export. The more the domestic electricity system is decarbonized (domestic climate change mitigation above 50--60\%), the weaker is the decrease of domestic electricity prices with hydrogen exports.
+The only increase of cost induced by hydrogen exports is observable at a low climate change mitigation of 10\% and exports of 20 TWh. 
+%(TODO: explain why)
+
+Second, Figure \ref{fig:expense_h2_120} shows the cost of hydrogen exports subject to mitigation and hydrogen export volumes. The costs are normalized to costs at 0\% climate change mitigation at each hydrogen export volume, displaying relative changes for hydrogen exports from domestic climate change mitigation at a certain hydrogen export volume.
+At hydrogen export volumes of 25--75 TWh, an increase of domestic climate change mitigation up to 40--60\% decreases the hydrogen export prices up to -9\%. 
+%(TODO: elaborate reason).
+The only price increase observable in the range of our scenarios is observable at low export volumes below 20 TWh. Here, advances in domestic climate change mitigation increase the hydrogen export cost by up to 19\% compared to no domestic climate change mitigation.
+This cost increase results from lower electrolysis capacity factors compared to the 0\% climate change mitigation scenario, where we observe high electrolysis capacity factors of above 80\% (s. Fig. \ref{fig:ely-cf})
+The triangle in the top left area shows that cost for hydrogen exporters at certain export levels are independent of domestic climate change mitigation, this is driven by temporal hydrogen regulation further investigated in section \nameref{subsec:benefits_rule}. Here, hydrogen export infrastructure decouples from the domestic electricity system, the cost is increasingly independent of domestic climate change mitigation. The hydrogen exports are 2 times higher than the domestic electricity demand (s. Fig. \ref{fig:expense_h2_120}), dwarfing the importance of the domestic electricity system.
+
+
+Third, we derive co-benefits for domestic climate change mitigation and hydrogen exports. 
+Within the area of 40-60\% climate change mitigation and 50-100 TWh/a hydrogen exports, we see i) domestic electricity consumers profit from hydrogen exports compared to very low (1 TWh) exports and ii) hydrogen exporters decrease their cost compared to no (0\%) domestic climate change mitigation. Hence, both domestic climate change mitigation and hydrogen exports show clear co-benefits at medium mitigation (40--60\%) and moderate to high hydrogen exports (25--120 TWh). 
+% This area is realistic, refer to third punch?
+
+
+% Speed of transformation: Introducting the pathways
+Apart from the cost of electricity for domestic customers and cost of hydrogen for exporters, Figure \ref{fig:expenses_default_120} presents possible pathways of climate change mitigation and export. We have derived three illustrative mitigation-export pathways presenting various speeds of transformation:
+\begin{enumerate}
+    \item \textbf{Quick exports and slow climate change mitigation},
+    \item \textbf{Balanced exports and climate change mitigation} and
+    \item \textbf{Slow exports and quick climate change mitigation}.
+\end{enumerate}
+
+In the long run, domestic electricity consumers profit in all pathways from hydrogen exports. A slight and short increase of domestic electricity prices in the early transformation phase (2030) is compensated by later (2050) strong (pathway 1) and medium (pathway 2) benefits for domestic electricity customers, profiting from hydrogen exports.
+In pathway 3, the short-term price increases are only marginal, but the long-term benefit from decreased is not as strong as in the scenarios with quicker export scale-ups. Figure \ref{fig:expense_h2_120} shows that hydrogen exporters have clear benefits in pathway 2, the cost of hydrogen for exports decrease compared to no domestic climate change mitigation. By ramping up hydrogen exports in an early stage of domestic climate change mitigation, high relative cost of hydrogen can be avoided.
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/price_sorted_AC_120_2.0_Hours.pdf}
+    \caption{Price duration curve at 120 TWh/a export and 0\% domestic climate change mitigation. Stricter temporal hydrogen regulation pushes the price duration curve towards the left, since additional renewable electricity capacities phase out fossil generation with higher marginal costs than renewables. Negative prices below -50 €/MWh are cut off.}
+    \label{fig:pdc-120-0}
+\end{figure}
+
+
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/dispatch_120_Co2L2.0.pdf}
+        \caption{Electricity dispatch and demand}
         \label{fig:dispatch_rule}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_200_Co2L2.0.pdf}
-        \caption{Expenses of domestic electricity consumers and hydrogen exporters}
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_120_Co2L2.0.pdf}
+        \caption{Cost for domestic electricity consumers and hydrogen exporters}
         \label{fig:expense_h2ac}
     \end{subfigure}
     \hfill
-    \caption{Electricity dispatch (\ref{fig:dispatch_rule}) and expenses of consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 200 TWh export and 0\% mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Expenses for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation.}
+    \caption{Electricity dispatch and demand (\ref{fig:dispatch_rule}) and cost for consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 120 TWh/a export and 0\% climate change mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Cost for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation.}
     \label{fig:expenses_rule}
 \end{figure*}
 
 
-\subsection{PUNCH 3: The role of hydrogen regulation across mitigation and export scenarios}
+\subsection*{Hydrogen regulation reduces domestic electricity prices and emissions}
+% Old: PUNCH 2: Effects of hydrogen regulation on electricity and hydrogen cost (in fossil dominated electricity systems
+\label{subsec:benefits_rule}
+
+Hydrogen regulation has strong effects on electricity system dispatch (and emissions), increasing the prices and cost for hydrogen exporters whilst decreasing for domestic electricity consumers. This section shows the mechanisms of temporal matching in the 120 TWh/a export and 0\% domestic climate change mitigation scenario.
+
+As the temporal matching becomes stricter, additional renewable capacities and complementing hydrogen storage are required to meet the electricity demand of electrolysis on an annual, monthly and hourly basis, as shown in Figure \ref{fig:tsc-120-0}. These renewable capacities i.) push out high marginal cost fossil generation (\textit{price spillover}) and ii.) provide excess electricity to the domestic electricity system (\textit{energy spillover}). Both spillover effects are linked, the energy spillover causes a merit order effect affecting the domestic electricity prices.
+
+The \textit{price spillover} is observable in Figure \ref{fig:pdc-120-0} depicting the price duration curve at 120 TWh/a export and 0\% domestic climate change mitigation. The price duration curve describes the sorted price of electricity (spatial mean) at every hour of the year.
+Stricter hydrogen regulation pushes the price duration curve towards the left, since additional renewable electricity capacities phase out fossil generation with higher marginal costs than renewable electricity.
+
+
+The \textit{energy spillover} is shown in Figure \ref{fig:dispatch_rule}. In the \textit{no rule} scenario, which does not constrain the electricity input of hydrogen electrolysis, coal and OCGT are running close to their (brownfield) capacity limits to supply electricity (see capacity factors in Figure \ref{fig:cf-noghc}). If annual matching is applied, the renewable electricity supply to the electricity system equals the annual demand for electrolysis, increasing the supply of solar PV by 20 TWh/a while decreasing the supply of fossil electricity generation. 
+Monthly matching increases this trend, while hourly matching completely phases out OCGT and CCGT. Figure \ref{fig:dispatch_rule} highlights the \textit{energy spillover} effect: going beyond the electricity demand of hydrogen electrolysis, renewable capacities installations necessary to meet the temporal matching decarbonize the domestic electricity demand and decrease the grid emissions. This effect is steered by the strictness of temporal matching, hence stricter temporal matching rules enable a further decrease in emissions.
+The slight increase in total dispatch for annual and monthly matching is balanced by resistive heaters in the heating sector.
+In addition to the synergies between hydrogen export and domestic climate change mitigation, the \textit{energy spillover} outlines a clear synergy between domestic climate change mitigation and temporal hydrogen regulation.
+
+
+
+The \textit{price spillover} effects results in lower electricity prices for domestic consumers. Taking the electricity demand into account, the decrease of prices results in a decrease of electricity cost shown in 
+Figure \ref{fig:expense_h2ac}. Stricter temporal hydrogen regulation decreases the domestic electricity cost from 2.7 B€ to 1.2 B€. In contrast, the hydrogen cost for exporters increases from 10.1 B€ to 10.6 B€, carrying the cost of the temporal matching constraint and hence financing additional solar PV and hydrogen storage required to meet the electrolysis electricity demand on a certain temporal basis.
+
+The combined cost of domestic electricity and export hydrogen decreases with stricter temporal hydrogen regulation, whereas the total system cost increase as displayed in Figure \ref{fig:tsc-120-0}. This seeming inconsistency is based on the fact, that electricity consumers (domestic and hydrogen electrolyser input) pay less contribution margin to the cost of capital of coal power plants, since they get phased out with stricter temporal hydrogen regulation. On the other hand, the cost of capital of existing coal power plants is not part of the optimization-based total system cost, since they are a brownfield capacity and not extended. In short, the reduction of utilisation of the brownfield coal power assets decreases the cost for electricity consumers, whereas the additional renewable capacities required to meet the temporal hydrogen regulation drive the total system cost as shown in Figure \ref{fig:tsc-120-0}. 
+
+
+To sum up, temporal hydrogen regulation is a policy instrument acting in a twofold way. It steers the redistribution between hydrogen exports and domestic electricity consumers (based on the \textit{price spillover} effect), decreasing the cost for domestic electricity consumers and increasing the cost for hydrogen exporters. The \textit{energy spillover} effect not only decarbonizes hydrogen exports but decreases grid emissions for  domestic electricity demand as well. Both effects scale with stricter temporal matching.
+
+
+
+\subsection*{The effects of temporal hydrogen regulation are strongest in high export and low climate change mitigation systems}
+% Old PUNCH 3: The role of hydrogen regulation across mitigation and export scenarios
 \label{subsec:rule_all}
 
-Topic sentence:
-\begin{itemize}
-    \item The effects of hydrogen regulation are strongest at low mitigation and high export scenarios, hydrogen regulation can effectively hedge domestic electricity consumers against rising prices across mitigation and export scenarios.
-\end{itemize}
+Based on the effects of temporal hydrogen regulation in the scenario of 120 TWh/a export and 0\% climate change mitigation presented in the previous section, this section explores the temporal hydrogen regulation across the pathway ii.) \textit{Balanced exports and mitigation} by combining all three dimensions of domestic climate change mitigation, hydrogen export and temporal hydrogen regulation. Figure \ref{fig:expenses_real_120} shows the relative change of electricity and hydrogen cost of the \textit{balanced exports and mitigation} scenarios in dependence of temporal matching. 
+Across all displayed scenarios, temporal hydrogen regulation hedges domestic electricity consumers against rising prices. Depending on the domestic climate change mitigation and hydrogen export, hourly matching decreases the cost of electricity for domestic consumers by up to 31\%.
 
-Main:
-\begin{itemize}
-    \item Figure \ref{fig:expenses_all} shows:
-    \item Across all scenarios: hydrogen regulation hedges local electricity consumers against rising prices and hydrogen exporter expenses increase with stricter matching
-    \item Shifted/Staged onset of effects I: For low mitigation and high export the introduction of annual matching as already a striking effect, because the energy spillover observed in Figure \ref{fig:dispatch_rule} provides excess electricity to the domestic electricity system which is fossil-dominated (with high marginal costs of coal/gas) without hydrogen regulation. See jump of renewables from no matching to annual in Figure \ref{fig:dispatch_rule}.
-    \item Shifted/Staged onset of effects II: In medium to high mitigation and low to medium export scenarios only hourly matching changes has observable effects, since the electricity system is already RE dominated and only hourly matching brings in more REs
-    \item The relative increase of expenses for hydrogen exporters is high at low export volumes (clarify: and which mitigation?), the absolute increase is not. In only three out of 121 scenarios, hourly matching regulation increases the hydrogen expenses above 10\% compared to no hydrogen regulation.
-    \item Morocco perspective: Realistic scenarios (for Morocco) lead to electricity price reduction up to 30\%, other scenarios (esp. high export low decarb) up to 65\%
-\end{itemize}
+The scenarios of the \textit{balanced exports and mitigation} pathway in Figure \ref{fig:expenses_real_120} show that in only three mitigation-export combinations the annual or monthly matching decreases the cost for domestic electricity, whereas all other combinations of the \textit{Balanced exports and mitigation} pathway are only sensitive to the strictest -- hourly matching -- hydrogen regulation. 
 
-Punch: 
-\begin{itemize}
-    \item Effects of hydrogen regulation are strongest for low mitigation and high export scenarios. 
-    \item hydrogen expenses: In only three out
-    of 121 scenarios, strict matching regulation increases the
-    hydrogen expenses above 10\%
-    \item domestic electricity expenses: They decrease up to -65\% (or up to -30\% in scenarios realistic for Morocco)
-    \item Generic key takeaway I: in countries with high export ambitions and no/low mitigation a strict hydrogen regulation is most effective.
-    \item Generic key takeaway II: in countries with (V)RE-based electricity systems (e.g. New Zealand) the hydrogen regulation is not as important, the effects are less pronounced
-    export ambitions and no/low mitigation a strict hydrogen regulation is most effective.
-\end{itemize}
+In only two scenarios, hourly matching regulation increases the hydrogen cost above 7\% compared to no temporal hydrogen regulation. This is the case for 0\% climate change mitigation and 1 and 20 TWh/a export scenarios.
+
+The effects of temporal hydrogen regulation on domestic electricity prices are most dominant in high export and low climate change mitigation scenarios. 
+In these cases, the introduction of annual matching has already a striking effect, because the \textit{price spillover} observed in Figure \ref{fig:pdc-120-0} decreases (domestic) electricity prices. The \textit{price spillover} unfolds in fossil-dominated (hence low domestic climate change mitigation) systems, combined with high hydrogen exports providing a strong \textit{energy spillover} effect.
+See also Figure \ref{fig:expenses_all_200} for  scenarios following the \textit{quick exports and slow climate change mitigation} pathway in which the effect of temporal hydrogen regulation is even stronger.
+
+In contrast, in the \textit{slow exports and quick climate change mitigation} scenarios only the hourly matching has observable effects, since the electricity system is already  dominated by renewable electricity and only hourly matching phases out the remaining fossil generation (s. Fig. \ref{fig:expenses_all_200}). The differentiation among the domestic climate change mitigation leads to these staged effects of temporal hydrogen regulation on domestic electricity cost.
 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple.pdf}
-    \caption{Relative change of electricity and hydrogen expenses and total system cost depending on the green hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low mitigation. Hydrogen exporters experience higher expenses with stricter hydrogen regulation. The hydrogen regulation regulates the welfare distribution between both groups.}
-    \label{fig:expenses_all}
+    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_120exp_Co2L2.0dec_onlyreal.pdf}
+    \caption{Relative change of electricity and hydrogen cost and total system cost depending on the temporal hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low climate change mitigation. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen regulation regulates the welfare distribution between both groups.}
+    \label{fig:expenses_real_120}
 \end{figure}
 
 
@@ -198,7 +208,7 @@ Punch:
 % The intermittent profile of solar PV (and onshore wind) is reflected in Figure \ref{fig:diurnal}, showing the diurnal residual load (electricity load minus solar PV and wind power generation) at 0 export and 0 - 100\% emission reduction. At high emission reductions, a high penetration of RE generation (especially solar PV) leads to negative residual loads at noon imposing great system integration challenges. 
 % Increasing hydrogen exports and variable renewable energies accordingly leads to similar integration challenges (s. Fig. \ref{fig:diurnal_exportdim}).
 
-% On the electricity system level, these flexibility requirements are provided by (EV) batteries and curtailment of onshore wind and solar PV (s. Fig. \ref{fig:integration_options}). %(TODO show EV batteries in appendix)
+% On the electricity system level, these flexibility requirements are provided by (EV) batteries and curtailment of onshore wind and solar PV (s. Fig. \ref{fig:integration_options}). 
 % The main drivers of increasing capacities of variable renewable energies (hydrogen export and climate ambition) are also the requiring the expansion of a hydrogen infrastructure providing additional flexibility to the electricity system. Hydrogen electrolysis is the link and enabler of additional flexibility by coupling the energy carriers electricity and hydrogen (unidirectional), displayed in Figure \ref{fig:electrolysis_p_nom_opt}. The electrolysis capacity shows a clear correlation with either the climate ambition or the export dimension. The capacity increases only slightly up to 60\% of $\mathrm{CO_2}$ reduction because the carbon emission abatement is mainly achieved in the electricity sector by phasing out carbon-intensive energy carriers as pointed out in Section \ref{subsec:increase_limit}. A further increase of the carbon limit is achieved by DAC and Fischer-Tropsch fuels, for which hydrogen (and hence electrolysis capacity) is necessary. At increasing hydrogen exports, the electrolyser capacity increases accordingly (s. Fig. \ref{fig:electrolysis_p_nom_opt}).
 
 % The export-driven and climate-driven hydrogen infrastructure provides the ability to integrate RE at large scale, mainly due to the deployment of hydrogen storage (s. Fig. \ref{fig:integration_options}) buffering the daily generation patterns of Solar PV (for daily patterns see Figure \ref{fig:operation-ely-ft}).
@@ -217,18 +227,18 @@ Punch:
 % Figure \ref{fig:integration_options} shows the installed capacities of battery and hydrogen storage. Both installations show a clear correlation with either the climate ambition or the export dimension. With higher climate ambitions, battery storage are deployment in larger scale at 60\% $\mathrm{CO_2}$ reduction and above, balancing the integration of variable REs (esp. solar PV). The hydrogen (underground) storage are deployed along the export dimension to buffer the hydrogen generation to meet the constant hydrogen export demand. At high climate ambition, the installed battery capacity reduces with higher export since the hydrogen storage additionally buffers daily generation patterns of Solar PV.
 
 
-% \subsection{Local electricity prices}
+% \subsection{domestic electricity prices}
 % \label{subsec:results_el_prices}
 
 % % General price explaination
 % First, both the electricity and hydrogen prices are derived from the nodal power balance constraint, representing the prices in a "perfect" market. %\cite{Zeyen2022}
 % In a second step, these temporally and spatially resolved prices are weighted based on different consumptions in 3-hourly resolution to obtain a uniform, annual and weighted marginal price of hydrogen and electricity of Morocco in each scenario. 
 
-% The weighted marginal prices are displayed in Figure \ref{fig:marginal_prices}. Both subfigures are based on the same scenarios which varies the hydrogen export volume from 0 - 200 TWh, and the emission reduction between 0 - 100\% resulting in 121 optimisation results per subfigure (s. Sec. \ref{subsec:scenarios}).
+% The weighted marginal prices are displayed in Figure \ref{fig:marginal_prices}. Both subfigures are based on the same scenarios which varies the hydrogen export volume from 0 - 200 TWh, and the emission reduction between 0 - 100\% resulting in 121 optimisation results per subfigure (s. Chap. \ref{sec:intro}).
 
-% The average price of electricity for local consumers (s. Fig. \ref{fig:local_el_price}) is weighted based on the local electricity demand, hence the demand of all consumers excluding eletrolyzers. 
+% The average price of electricity for domestic consumers (s. Fig. \ref{fig:local_el_price}) is weighted based on the domestic electricity demand, hence the demand of all consumers excluding eletrolyzers. 
 % % Increasing the climate ambition
-% It shows low prices at emissions reductions below 30\%, then increasing prices along the $\mathrm{CO_2}$ reduction dimension. The low prices result from existing (brownfield) coal capacities, where the investment costs have already been written off and cheap operational expenditures of coal power plants (without carbon pricing) offer low electricity prices. Further increasing the climate ambition leads to a higher penetration of variable renewable energies, the flexibility requirements pointed out in Section \ref{subsec:integration_challenges} increase. Due to a shift in the transport sector from ICEs to BEVs with increasing climate ambitions, V2G provides a flexibility option for the integration of variable renewable energies. Curtailment rates for onshore wind and solar PV decrease when going from 0\% to 40\% emission reduction (s. Fig. \ref{fig:integration_options}). This flexibility option is counterbalanced by the increased installation of PV and onshore wind, leading to an increase in curtailment rates from 40\% to 70\% before decreasing again at emission reductions of 70\% and above due to additional flexibility provided by electrolysis and hydrogen storage (s. Fig. \ref{fig:hystorage_cap}).
+% It shows low prices at emissions reductions below 30\%, then increasing prices along the $\mathrm{CO_2}$ reduction dimension. The low prices result from existing (brownfield) coal capacities, where the investment costs have already been written off and cheap operational expenditures of coal power plants (without carbon pricing) offer low electricity prices. Further increasing the climate ambition leads to a higher penetration of variable renewable energies, the flexibility requirements pointed out in Section \ref{subsec:integration_challenges} increase. Due to a shift in the transport sector from ICEs to BEVs with increasing climate ambitions, Vehicle-to-Grid provides a flexibility option for the integration of variable renewable energies. Curtailment rates for onshore wind and solar PV decrease when going from 0\% to 40\% emission reduction (s. Fig. \ref{fig:integration_options}). This flexibility option is counterbalanced by the increased installation of PV and onshore wind, leading to an increase in curtailment rates from 40\% to 70\% before decreasing again at emission reductions of 70\% and above due to additional flexibility provided by electrolysis and hydrogen storage (s. Fig. \ref{fig:hystorage_cap}).
 
 
 
@@ -239,9 +249,9 @@ Punch:
 % Medium emission: Already 100% renewable electricity system has challenges integrating further REs
 % High emission: Already high RE capacity and many flexibilities through electrolysis (and FT)
 
-% At low emission reductions, additional hydrogen exports do not increase the electricity price for local consumers significantly. This is due to the fact, that additional hydrogen exports scale renewable energies accordingly as required by the green hydrogen constraint (s. Sec. \ref{subsec:green_hydrogen_constraint}). This means, that green hydrogen exports provide additional renewable energy capacity participating the electricity markets and keeping the electricity price constant at low emission reductions. Without the green hydrogen constraint, the marginal price of electricity increases with hydrogen exports as pointed out in Section \ref{subsec:gh_constraint_effects}.
+% At low emission reductions, additional hydrogen exports do not increase the electricity price for domestic consumers significantly. This is due to the fact, that additional hydrogen exports scale renewable energies accordingly as required by the temporal hydrogen regulation (s. Sec. \ref{subsec:green_hydrogen_constraint}). This means, that green hydrogen exports provide additional renewable energy capacity participating the electricity markets and keeping the electricity price constant at low emission reductions. Without the temporal hydrogen regulation, the marginal price of electricity increases with hydrogen exports as pointed out in Section \ref{subsec:gh_constraint_effects}.
 
-% The increase of hydrogen exports at medium emission ambitions (60\%) shows a different picture, increasing the electricity price up to 58 €/MWh. At 60\% emission reduction and no hydrogen export, the electricity sector is already almost fully renewable (s. Fig. \ref{fig:balances-ac-0exp}), the flexibility provided by V2G and BEV batteries is sufficient to integrate the variable renewable energies. In this environment, an increase of hydrogen exports (and REs accordingly) pushes the electricity system to it's integration limits, requiring more storage and increasing RE curtailment as observable in Figure \ref{fig:solar_curt}, hence increasing the price of electricity.
+% The increase of hydrogen exports at medium emission ambitions (60\%) shows a different picture, increasing the electricity price up to 58 €/MWh. At 60\% emission reduction and no hydrogen export, the electricity sector is already almost fully renewable (s. Fig. \ref{fig:balances-ac-0exp}), the flexibility provided by Vehicle-to-Grid and BEV batteries is sufficient to integrate the variable renewable energies. In this environment, an increase of hydrogen exports (and REs accordingly) pushes the electricity system to it's integration limits, requiring more storage and increasing RE curtailment as observable in Figure \ref{fig:solar_curt}, hence increasing the price of electricity.
 
 % At high levels of emission reduction, this effect is less pronounced since the electricity system is already integrating a large amount of REs to run electrolysers and Fischer-Tropsch. Additional RE capacities induced by hydrogen exports do not significantly change the flexibility requirements, which are already highly deployed through electrolysers, hydrogen storage and (partly) Fischer-Tropsch processes.
 
@@ -250,7 +260,7 @@ Punch:
 %     \begin{subfigure}[b]{0.49\linewidth}
 %         \centering
 %         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterTrue.pdf}
-%         \caption{Average price of electricity for local consumers}
+%         \caption{Average price of electricity for domestic consumers}
 %         \label{fig:local_el_price}
 %     \end{subfigure}
 %     \hfill
@@ -271,12 +281,12 @@ Punch:
 % The average price of hydrogen for export (s. Fig. \ref{fig:export_hy_price}) is weighted based on the hydrogen demand at the export nodes. 
 % The price of hydrogen highly depends on the operation of electrolysers (CAPEX share) and the cost of electricity required for the process (OPEX share). The CAPEX share of hydrogen costs (\ref{fig:capex-rel}) is indirectly proportional to the capacity factor of electrolysis (\ref{fig:ely-cf}). A high capacity factor leads to a low share of CAPEX in the total hydrogen costs. The OPEX share of hydrogen costs (\ref{fig:opex-rel}) is directly proportional to the price of electricity (\ref{fig:electricity-price}), the cost of water or operation-dependent maintenance is neglectable. % Sources, e.g.  Hampp2023
 
-% Combining the CAPEX and OPEX share leads to the total hydrogen costs displayed in Figure (\ref{fig:hydrogen-cost}). The cost of hydrogen differs to the price of hydrogen determined as marginal prices (\ref{fig:hydrogen-price}). At emission reductions $<40$\%, the hydrogen cost (in particular the OPEX) is very low due to the access to cheap electricity across the whole hydrogen export dimension. In contrast, the hydrogen (marginal) price, defined as additional cost per extra unit of hydrogen, depends on the hydrogen export volume also at low emission reductions. The reason for this is the green hydrogen constraint (s. Sec. \ref{subsec:green_hydrogen_constraint}), which requires the additional installation of renewable energies per extra unit of hydrogen accordingly as shown in Section \ref{subsec:increase_h2}. This leads to in general higher hydrogen prices (including additional REs) than hydrogen costs (not including additional REs). 
+% Combining the CAPEX and OPEX share leads to the total hydrogen costs displayed in Figure (\ref{fig:hydrogen-cost}). The cost of hydrogen differs to the price of hydrogen determined as marginal prices (\ref{fig:hydrogen-price}). At emission reductions $<40$\%, the hydrogen cost (in particular the OPEX) is very low due to the access to cheap electricity across the whole hydrogen export dimension. In contrast, the hydrogen (marginal) price, defined as additional cost per extra unit of hydrogen, depends on the hydrogen export volume also at low emission reductions. The reason for this is the temporal hydrogen regulation (s. Sec. \ref{subsec:green_hydrogen_constraint}), which requires the additional installation of renewable energies per extra unit of hydrogen accordingly as shown in Section \ref{subsec:increase_h2}. This leads to in general higher hydrogen prices (including additional REs) than hydrogen costs (not including additional REs). 
 
 % The difference between hydrogen costs and hydrogen prices is more pronounced at low climate ambitions, since coal power supplies cheap electricity (s. Fig. \ref{fig:coal-supply}) resulting in low OPEX for electrolysis, whereas the hydrogen price includes the financing of additional renewable energies. At high climate ambitions, the trends of costs and prices are very similar: in both cases, the absence of carbon-intensive electricity generation units requires additional renewable energy installations, regardless of taking the green hydrogen into account (hydrogen price) or not (hydrogen cost).
 
 % % Increasing the climate ambition
-% At low export volumes of 20 TWh and carbon reductions $<40$\%, low prices are observable. In these scenarios, the hydrogen demand is comparably low (low hydrogen export, no Fischer-Tropsch demand), hence the electrolysers can run at a high capacity factor above 90\% and utilize their capital-intensive investments resulting in a low contribition of CAPEX costs to the price of hydrogen as shown in Figure \ref{fig:capex-rel}. Increasing the climate ambition (still at low export volumes) goes along with increasing the renewable energy installations, decreasing the capacity factor of electrolysis and ulimatively increasing the hydrogen price as pointed out in \cite{Ruggles2021}.
+% At low export volumes of 20 TWh/a and carbon reductions $<40$\%, low prices are observable. In these scenarios, the hydrogen demand is comparably low (low hydrogen export, no Fischer-Tropsch demand), hence the electrolysers can run at a high capacity factor above 90\% and utilize their capital-intensive investments resulting in a low contribition of CAPEX costs to the price of hydrogen as shown in Figure \ref{fig:capex-rel}. Increasing the climate ambition (still at low export volumes) goes along with increasing the renewable energy installations, decreasing the capacity factor of electrolysis and ulimatively increasing the hydrogen price as pointed out in \cite{Ruggles2021}.
 
 % % Going up the hydrogen export
 % The same reason (additional RE installations, decreasing electrolyser capacity factors, increasing marginal cost of hydrogen) is also valid for increasing the hydrogen export volume. Nonetheless, Figure \ref{fig:export_hy_price} shows different nuances of price increases when increasing hydrogen export volumes. In the range of 0 - 50\% emission reduction, the gradient of price increase is rather high, symbolised by crossing narrow contour lines. At higher emission reductions (80 - 100\%), the contour lines are more distant, meaning the effect of hydrogen prices increasing with the hydrogen export volume is
@@ -288,13 +298,13 @@ Punch:
 
 % % Flattening out
 % At low emission reductions and high hydrogen exports, the effect of increasing hydrogen prices flattens out. The energy system is dominated by the hydrogen export infrastructure. A further increase of hydrogen exports 
-% would push the system towards it's wind onshore and solar PV potential limits, forced to use less favourable renewable energy sites (lower capacity factors). % TODO get proof for this by simulating high export scenarios
+% would push the system towards it's wind onshore and solar PV potential limits, forced to use less favourable renewable energy sites (lower capacity factors).
 
 % \begin{itemize}
 %     \item Increasing electricity prices up to $60$--$70$\%, then decreasing electricity prices 
-%     \item When hydrogen export is above 1.5 fold of local electricity demand, the price decrease flattens out
+%     \item When hydrogen export is above 1.5 fold of domestic electricity demand, the price decrease flattens out
 %     \item Synergy in top right corner at high reduction and high export: lower prices here 
-%     \item Above 70\%: local hydrogen production ramps up as well. Until then: no benefit/synergy. Theory: Battery kicking in and smoothing el prices?
+%     \item Above 70\%: domestic hydrogen production ramps up as well. Until then: no benefit/synergy. Theory: Battery kicking in and smoothing el prices?
 % \end{itemize}
 
 
@@ -304,25 +314,25 @@ Punch:
 %     \item electricity consumption on each node ($\rightarrow$ electricity prices everyone sees: "Export-Local-Average"),
 %     \item hydrogen consumption on each node ($\rightarrow$ hydrogen prices everyone sees: "Export-Local-Average"),
 %     \item electricity demand of electrolysers on each node ($\rightarrow$ electricity prices which electrolysers see: "Export-orientated") and
-%     \item electricity demand of all consumers except electrolysers ($\rightarrow$ electricity prices which local consumers see: "Local-orientated").
+%     \item electricity demand of all consumers except electrolysers ($\rightarrow$ electricity prices which domestic consumers see: "Local-orientated").
 % \end{enumerate}
 
 
-% \subsection{Electricity prices for local consumers and eletrolysers}
+% \subsection{Electricity prices for domestic consumers and eletrolysers}
 % \label{subsec:economic_benefits}
-% Derived from the Figure \ref{fig:marginal_prices}, Figure \ref{fig:pricecut} disregards the export dimension and shows the weighted electricity prices for local consumers, electrolysers and average prices at an export volume of 100~TWh. It shows that at low emission reductions ($0$--$10$\%), both the prices for local consumers and electrolysers rise from $40$~\euro/MWh to approx. $50$~\euro/MWh. The higher the emission reduction from $10$\% onwards, the more both prices diverge. At high climate ambitions ($100$\%), the electricity price for local consumers is at $78$~\euro/MWh; $47$\% higher than the electricity price for electrolysers ($53$~\euro/MWh).
+% Derived from the Figure \ref{fig:marginal_prices}, Figure \ref{fig:pricecut} disregards the export dimension and shows the weighted electricity prices for domestic consumers, electrolysers and average prices at an export volume of 100~TWh. It shows that at low emission reductions ($0$--$10$\%), both the prices for domestic consumers and electrolysers rise from $40$~\euro/MWh to approx. $50$~\euro/MWh. The higher the emission reduction from $10$\% onwards, the more both prices diverge. At high climate ambitions ($100$\%), the electricity price for domestic consumers is at $78$~\euro/MWh; $47$\% higher than the electricity price for electrolysers ($53$~\euro/MWh).
 
-% The observed difference in weighted prices results from the operation of the energy system: The (non-weighted) price of electricity is cheaper when the electrolysers are running and more expensive when local industry and households are consuming electricity.
+% The observed difference in weighted prices results from the operation of the energy system: The (non-weighted) price of electricity is cheaper when the electrolysers are running and more expensive when domestic industry and households are consuming electricity.
 % % \begin{itemize}
 % %     \item TBD: Why does this effect amplify at higher climate ambition?
-% %     \item TBD: Reason could be: at 100 TWh hydrogen export, the export demand dominates hence from a total system cost it makes sense to favour electrolysers. BUT: at lower export volumes, this effect is even more pronounced.
-% %     \item Visualize: AC prices heatmap, electrolyser heatmap, local demand heatmap. $\rightarrow$ the higher the climate ambition, the higher the correlation between AC prices and electrolysers should be
+% %     \item TBD: Reason could be: at 100 TWh/a hydrogen export, the export demand dominates hence from a total system cost it makes sense to favour electrolysers. BUT: at lower export volumes, this effect is even more pronounced.
+% %     \item Visualize: AC prices heatmap, electrolyser heatmap, domestic demand heatmap. $\rightarrow$ the higher the climate ambition, the higher the correlation between AC prices and electrolysers should be
 % % \end{itemize}
 
 % \begin{figure}[h!]
 %     \centering
 %     \includegraphics[width=\linewidth]{graphics/pricecuts/electricity100.pdf}
-%     \caption{Weighted electricity prices for local consumers, electrolysers and average at 100 TWh export volume}
+%     \caption{Weighted electricity prices for domestic consumers, electrolysers and average at 100 TWh/a export volume}
 %     \label{fig:pricecut}
 % \end{figure}
 
@@ -335,7 +345,7 @@ Punch:
 % \begin{itemize}
 %     \item Slightly more hydrogen storage
 %     \item Lower capacity factor of electrolysers at low $\mathrm{CO_2}$ reductions
-%     \item More curtailment at low $\mathrm{CO_2}$ reductions and high export (massive wind curtailment $\rightarrow$ Due to green hydrogen constraint? Why is there so much excess wind?)
+%     \item More curtailment at low $\mathrm{CO_2}$ reductions and high export (massive wind curtailment $\rightarrow$ Due to temporal hydrogen regulation? Why is there so much excess wind?)
 % \end{itemize}
 
 % Sensitivity analysis on:

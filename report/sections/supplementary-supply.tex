@@ -1,7 +1,11 @@
 
 \clearpage
 
-\section{Energy supply}
+\section{Electricity supply}
+
+The electricity supply with hourly temporal matching is displayed in Figure \ref{fig:supply}, along with the generation capacities
+in Figure \ref{fig:el-cap} and capacity factors in Figure  \ref{fig:el_cf}.
+
 \subsection{Electricity supply}
 \label{subsec:el-supply}
 
@@ -247,7 +251,7 @@
         \centering
         \includegraphics[width=\textwidth]{graphics/heatmaps/cop-ts-ground-sourced heat pump.pdf}
     \end{subfigure}
-    \caption{Capacity factors of renewable sources, cf. \cite{Neumann2022}}
+    \caption{Capacity factors of renewable sources, graph style adapted from Neumann et al. \cite{Neumann2022}}
     \label{fig:ren-cfs}
 \end{figure}
 
@@ -260,14 +264,14 @@
     \centering
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_electrolysis_p_nom_opt_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_electrolysis_p_nom_opt_20_filterTrue_nFalse_exp200.pdf}
         \caption{Electrolysis optimal capacity}
         \label{fig:ely-p-nom-opt}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_ft_p_nom_opt_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_ft_p_nom_opt_20_filterTrue_nFalse_exp200.pdf}
         \caption{Fischer-Tropsch optimal capacity}
         \label{fig:ft-p-nom-opt}
     \end{subfigure}

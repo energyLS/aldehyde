@@ -8,7 +8,7 @@ summary_dir: results/
 report: 
   path: ../report/report.tex
 
-run: decr_14_3H_ws #dyntrans_full_3H_ws
+run: decr_13_3H_ws #dyntrans_full_3H_ws
 
 retrieve_cost_data: False
 import_pypsaearthsec: False # Set true to run PyPSA-Earth-Sec subworkflow
@@ -123,7 +123,7 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["exp_AC_exclu_H2 El_all", "exp_H2_False_False_exportonly"] #, "exp_local_export"]
+    type: ["cf_electrolysis", "ft_cf"] #, "exp_local_export"]
     
     # ["mg_co2",
     # "mg_H2_False_False_all",
@@ -135,6 +135,7 @@ plot:
     # "capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all",  "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex", "mg_co2", "lcoh_compo", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", exp_H2_False_False_all, exp_H2_False_False_exportonly, exp_H2_False_False_noexport, exp_AC_False_False_all, exp_AC_inclu_H2 El_all, exp_AC_exclu_H2 El_all, exp_oil_False_False_all, exp_gas_False_False_all, exp_local_export]
 
     levels: [20]
+    explimit: [200] #[120, 200]
     vcontrol:
       mg_H2_False_False_all: [25, 90]
       mg_H2_False_False_noexport: [25, 90]
@@ -145,14 +146,14 @@ plot:
 
     show_minimums: False
     zerofilter: True # Filter out zero values of export and co2 reduction wildcards for plotting
-    normalize: True
+    normalize: False
     norm_specs:
       exp_AC_exclu_H2 El_all: 
         normalize_by: "export" #normalize_by: "export" # "export", "decarb", "exdecarb", False
-        label: "Relative domestic electricity expenses in % "
+        label: "Relative domestic electricity cost in % "
       exp_H2_False_False_exportonly: 
         normalize_by: "decarb"
-        label: "Relative export hydrogen expenses in %"
+        label: "Relative export hydrogen cost in %"
       exp_local_export:
         normalize_by: False
 
@@ -216,15 +217,15 @@ plot:
       mg_AC_False_False_all: "Marginal price of electricity (all electricity nodes) in €/MWh"
       mg_AC_inclu_H2 El_all: "Marginal (electrolysis) marginal price of electricity in €/MWh"
       mg_AC_exclu_H2 El_all: "Marginal (no electrolysis) marginal price of electricity in €/MWh"
-      exp_H2_False_False_all: "Expense in M€"
-      exp_H2_False_False_exportonly: "Expense in M€"
-      exp_H2_False_False_noexport: "Expense in M€"
-      exp_oil_False_False_all: "Expense in M€"
-      exp_gas_False_False_all: "Expense in M€"
-      exp_AC_False_False_all: "Expense in M€"
-      exp_AC_inclu_H2 El_all: "Expense in M€"
-      exp_AC_exclu_H2 El_all: "Expense in M€"
-      exp_local_export: "Expense in M€"
+      exp_H2_False_False_all: "Cost in M€"
+      exp_H2_False_False_exportonly: "Cost in M€"
+      exp_H2_False_False_noexport: "Cost in M€"
+      exp_oil_False_False_all: "Cost in M€"
+      exp_gas_False_False_all: "Cost in M€"
+      exp_AC_False_False_all: "Cost in M€"
+      exp_AC_inclu_H2 El_all: "Cost in M€"
+      exp_AC_exclu_H2 El_all: "Cost in M€"
+      exp_local_export: "Cost in M€"
       mg_co2: "Marginal price of CO2 in €/t"
       mean_mg_AC: "Mean marginal price of electricity in €/MWh"
       mean_mg_H2: "Mean marginal price of hydrogen in €/MWh"
@@ -261,7 +262,7 @@ plot:
   energy_threshold: 15
   specific_xticks: "opt" #"opt" #"export" # Choose from wildcards. Default "False". Be sure to change the "specific_xlabel" accordingly. Warning: "opt" uses predefined xticks values
   #specific_xlabel:  "$\\mathrm{CO_2}$ reduction in % of base levels" #"Export in TWh" #"$\\mathrm{CO_2}$ reduction in % of base levels"
-  xlabel_0exp: "$\\mathrm{CO_2}$ reduction in % of base levels"
+  xlabel_0exp: "Domestic mitigation"
   xlabel_2co2: "Export in TWh"
 
   tech_colors:
@@ -372,7 +373,9 @@ plot:
     power-to-liquid: 'darkgreen'
     helmeth: '#7D0552'
     DAC: 'deeppink'
+    DAC (CAPEX): 'deeppink'
     co2 stored: '#123456'
+    co2 stored (CAPEX): '#123456'
     CO2 sequestration: '#123456'
     CC: k
     co2: '#123456'
@@ -424,6 +427,7 @@ plot:
     V2G: grey
     land transport EV: grey
     electricity: k
+    end-use electricity: k
     gas for industry: '#333333'
     solid biomass for industry: '#555555'
     industry electricity: '#222222'

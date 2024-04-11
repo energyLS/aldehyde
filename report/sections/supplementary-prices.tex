@@ -5,7 +5,7 @@
 % \begin{itemize}
 %     \item Low prices at emissions below 20\%
 %     \item Increasing electricity prices up to $60$--$70$\%, then decreasing electricity prices (Battery kicking in and smoothing el prices?)
-%     \item When hydrogen export is above 1.5 fold of local electricity demand, the price decrease flattens out
+%     \item When hydrogen export is above 1.5 fold of domestic electricity demand, the price decrease flattens out
 %     \item Synergy in top right corner at high reduction and high export: lower prices here 
 % \end{itemize}
 
@@ -22,56 +22,49 @@
 
 % The Export-orientated electricity price (s. Fig. \ref{fig:export_el_price}):
 % \begin{itemize}
-%     \item Opposite to local orientated electricity price: decrease of prices seen by electrolysers when increasing climate ambition. especially low at no export and 60-70\% reduction, then increasing again
+%     \item Opposite to domestic orientated electricity price: decrease of prices seen by electrolysers when increasing climate ambition. especially low at no export and 60-70\% reduction, then increasing again
 % \end{itemize}
 
 
-\subsection{Price duration curve}
-\begin{figure*}[h]
-    \centering
-    \includegraphics[width=0.5\linewidth]{../../results/gh/price_sorted_200_2.0_Hours.pdf}
-    \caption{Price duration curve at 200 TWh export and 0\% domestic mitigation. Stricter hydrogen regulation pushes the price duration curve towards the left, since additional renewable electricity capacities phase out fossil generation with comparable high marginal costs compared to renewables.}
-    \label{fig:pdc-200-0}
-\end{figure*}
 
 
 
 
-\subsection{Weighted marginal prices of electricity and hydrogen}
+% \subsection{Weighted marginal prices of electricity and hydrogen}
 
-\begin{figure*}[h] % Use 'figure*' to span both columns
-    \centering
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_False_False_all_20_filterTrue.pdf}
-        \caption{Export-Local-Average electricity price}
-        \label{fig:export_local_el_price}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue.pdf}
-        \caption{Export-Local-Average hydrogen price}
-        \label{fig:export_local_hy_price}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterTrue.pdf}
-        \caption{Local-orientated electricity price}
-        \label{fig:local_el_price_appendix}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue.pdf}
-        \caption{Export-orientated electricity price}
-        \label{fig:export_el_price}
-    \end{subfigure}
-    \hfill
+% \begin{figure*}[h] % Use 'figure*' to span both columns
+%     \centering
+%     \begin{subfigure}[b]{0.45\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_False_False_all_20_filterTrue.pdf}
+%         \caption{Export-Local-Average electricity price}
+%         \label{fig:export_local_el_price}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.45\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue.pdf}
+%         \caption{Export-Local-Average hydrogen price}
+%         \label{fig:export_local_hy_price}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.45\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_exclu_H2 El_all_20_filterTrue.pdf}
+%         \caption{Local-orientated electricity price}
+%         \label{fig:local_el_price_appendix}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.45\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue.pdf}
+%         \caption{Export-orientated electricity price}
+%         \label{fig:export_el_price}
+%     \end{subfigure}
+%     \hfill
 
-    \caption{Marginal prices of electricity and hydrogen subject to export volumes and emission limits depending on various weightings. Black lines indicate the lowest price at each emission limit.}
-    \label{fig:prices_all}
-\end{figure*}
+%     \caption{Marginal prices of electricity and hydrogen subject to export volumes and emission limits depending on various weightings. Black lines indicate the lowest price at each emission limit.}
+%     \label{fig:prices_all}
+% \end{figure*}
 
 \clearpage

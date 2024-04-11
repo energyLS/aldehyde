@@ -53,7 +53,8 @@ def rename_techs(label):
         "PHS": "hydroelectricity",
         "co2 Store": "DAC",
         "co2 stored": "CO2 sequestration",
-        "AC": "electricity",
+        "AC": "end-use electricity",
+        "electricity": "end-use electricity",
         "DC": "transmission lines",
         "B2B": "transmission lines",
     }
@@ -79,6 +80,7 @@ def rename_techs(label):
 preferred_order = pd.Index(
     [
         "electricity",
+        "end-use electricity",
         "H2 electrolysis",
         "transmission lines",
         "resistive heater",
@@ -267,6 +269,12 @@ def plot_balances():
             balances_df.columns.get_level_values("opt") == "Co2L2.0-3H"
         ]
         balances_df = balances_df.loc[:, cols]
+        # Filter for max export values according to explimit
+        balances_df = balances_df.loc[
+            :,
+            balances_df.columns.get_level_values("export").values.astype(int)
+            <= explimit,
+        ]
 
     balances = {i.replace(" ", "_"): [i] for i in balances_df.index.levels[0]}
     balances["energy"] = [
@@ -282,9 +290,11 @@ def plot_balances():
 
         # remove trailing link ports
         df.index = [
-            i[:-1]
-            if ((i != "co2") and (i != "H2") and (i[-1:] in ["0", "1", "2", "3"]))
-            else i
+            (
+                i[:-1]
+                if ((i != "co2") and (i != "H2") and (i[-1:] in ["0", "1", "2", "3"]))
+                else i
+            )
             for i in df.index
         ]
 
@@ -589,11 +599,13 @@ if __name__ == "__main__":
         snakemake = mock_snakemake(
             "plot_summary",
             summarytype="co2l20-only",
+            explimit=120,
         )
 
     n_header = 7  # Header lines in the csv files
 
     summarytype = snakemake.wildcards.summarytype
+    explimit = int(snakemake.wildcards.explimit)
 
     # plot_costs()
 

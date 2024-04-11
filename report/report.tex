@@ -1,9 +1,11 @@
-\documentclass[5p]{elsarticle}
+\documentclass[5p,numafflabel]{elsarticle}
 
-\journal{TBA}
+\journal{Joule}
 
 \bibliographystyle{elsarticle-num}
-\biboptions{numbers, sort&compress}
+\biboptions{numbers,sort&compress,super}
+
+\abstracttitle{Summary}
 
 % format hacks
 \usepackage{libertine}
@@ -53,9 +55,8 @@
 \usepackage{lipsum}
 
 \usepackage[resetlabels,labeled]{multibib}
-\newcites{S}{Supplementary References}
-\bibliographystyleS{elsarticle-num}
-
+% \newcites{S}{Supplementary References}
+% \bibliographystyleS{elsarticle-num}
 
 
 % \usepackage[
@@ -66,7 +67,7 @@
 
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\set}[1]{\left\{#1\right\} }
+\newcommand{\set}[1]{\left\{#1\right\}}
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \newcommand{\R}{\mathbb{R} }
 \newcommand{\B}{\mathbb{B} }
@@ -77,7 +78,7 @@
 \def\deg{${}^\circ$}
 
 \def\co{CO${}_2${\:}}
-\def\coe{CO${}_2$e{\:}}
+\def\coe{CO${}_2$e}
 
 % Run of standard model run
 %\def\runstandard{dyntrans_full_3h_ws} %old
@@ -86,7 +87,7 @@
 % Run of battery sensitivity
 \def\sensbattery{nresults_full_3H_nobat_ws} % old
 
-% Run of green hydrogen constraint sensitivity
+% Run of temporal hydrogen regulation sensitivity
 \def\runsensnogreenhy{decr_14_3H_ws}
 
 
@@ -105,42 +106,44 @@
 
 \begin{frontmatter}
 
-	\title{Synergies and Conflicts of Hydrogen Export and National Energy Transition in Morocco}
+	\title{The impact of temporal hydrogen regulation on hydrogen exporters and their domestic energy transition}
+	% On the cost competitiveness of blue and green hydrogen
+	% Benefits of a hydrogen network in europe
+	% The potential role of a hydrogen network in Europe
+	% Temporal hydrogen regulation reduces domestic electricity prices of hydrogen exporters
     
-	\author[tub, oth]{Leon~Schumm}
-	\author[ieg]{Hazem~Abdel-Khalek}
+	\author[oth,tub,lead]{Leon~Schumm\,\corref{correspondingauthor}}
+	%\ead{leon1.schumm@oth-regensburg.de}
+	\author[ieg,alu]{Hazem~Abdel-Khalek}
 	\author[tub]{Tom Brown}
 	\author[pik]{Falko Ueckerdt}
 	\author[oth]{Michael Sterner}
 	\author[uoe]{Maximilian~Parzen}
 	\author[unipi]{Davide~Fioriti}
-	%\ead{leon1.schumm@oth-regensburg.de}
 
+	\cortext[correspondingauthor]{Correspondence: leon1.schumm@oth-regensburg.de}
 
+	\address[oth]{Research Center on Energy Transmission and Storage (FENES), Faculty of Electrical and Information Technology, University of Applied Sciences (OTH) Regensburg, Seybothstr. 2, 93053 Regensburg, Germany}
 	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology, Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
-	\address[oth]{Research Center on Energy Transmission and Storage (FENES), Faculty of Electrical and Information Technology, University of Applied Sciences (OTH) Regensburg, Seybothstrasse 2, 93053 Regensburg, Germany}
-	\address[ieg]{Fraunhofer Research Institution for Energy Infrastructures and Geothermal Systems IEG, Cottbus, Germany}
-	\address[pik]{Potsdam Institute for Climate Impact Research (PIK), Potsdam, Germany}
+	\address[ieg]{Fraunhofer Research Institution for Energy Infrastructures and Geothermal Systems IEG, Gulbener Straße 23, 03046 Cottbus, Germany}
+	\address[alu]{Albert-Ludwigs Universität Freiburg, Faculty of Environment and Natural Resources, Tennenbacher Str. 4, 79106 Freiburg im Breisgau, Germany}
+	\address[pik]{Potsdam Institute for Climate Impact Research, Telegrafenberg, 14473 Potsdam, Germany}
 	\address[uoe]{University of Edinburgh, Institute for Energy Systems, EH9 3DW Edinburgh, United Kingdom}
-	\address[unipi]{University of Pisa, Department of Energy, Systems, Territory and Construction Engineering, Largo Lucio Lazzarino, 56122 Pisa, Italy}
+	\address[unipi]{University of Pisa, Department of Energy Systems, Territory and Construction Engineering, Largo Lucio Lazzarino, 56122 Pisa, Italy}
+	\address[lead]{Lead contact}
 
 	\begin{abstract}
 		\input{../report/sections/abstract.tex}
 	\end{abstract}
 
 	\begin{keyword}
-		Energy Transition, Co-Optimization, Hydrogen export, climate-neutral, Neo-colonialism, Hydrogen prices
+		Energy Transition, Hydrogen regulation, Hydrogen export, Climate-neutral, Domestic prices, Hydrogen prices, Power-to-X
 	\end{keyword}
 
 	% \begin{graphicalabstract}
 	% \end{graphicalabstract}
 
-	%\begin{highlights}
-	%	\item Synergies and conflicts between Morocco's energy transition and its hydrogen export
-	%	\item High spatial and temporal resolution PyPSA-Earth model
-	%	\item Identifies potential conflicts with the country's renewable energy deployment, particularly in terms of competing demands for land use
-	%	\item Discusses the potential risks of neocolonialism in the context of hydrogen exports
-	%\end{highlights}
+
 
 \end{frontmatter}
 
@@ -148,71 +151,195 @@
 
 % \tableofcontents
 
-\section{Introduction}
+% \section*{Highlights}
+
+% \begin{itemize}
+% 	\item Both domestic climate change mitigation and hydrogen exports benefit from each other
+% 	\item Hourly matching decreases the cost for domestic electricity consumers up to -31\%, highest decrease for high exports and low climate change mitigation 
+% 	\item Effect of hourly matching on cost for hydrogen exporters is minimal, highest for high exports and low climate change mitigation 
+% 	\item Green hydrogen regulation hedges domestic customers against rising electricity prices, across all export and mitigation scenarios
+% \item Idea: "May be good to highlight the comprehensive methodology that has been developed"
+% \end{itemize}
+
+% \par\noindent\rule{\textwidth}{0.4pt}
+
+\section*{Context \& Scale}
+
+\input{sections/context.tex}
+
+% \par\noindent\rule{\textwidth}{0.4pt}
+
+
+\section*{Introduction}
 \label{sec:intro}
 
 \input{../report/sections/introduction.tex}
 
-\section{Hydrogen export strategy and climate targets}
+% \section*{Hydrogen export strategy and climate targets}
 \label{sec:policyandtargets}
 
 \input{../report/sections/strategies.tex}
 
-\section{Methods}
-\label{sec:methods}
 
-\input{../report/sections/methods.tex}
 
-\section{Results}
+\section*{Results}
 \label{sec:results}
 
 \input{../report/sections/results.tex}
 
-\section{Transition opportunities and neo-colonial dangers}
+\section*{Discussion}
 \label{sec:discussion}
 
 \input{../report/sections/discussion.tex}
 
-\section{Conclusion}
+% \section*{Conclusion}
 \label{sec:conclusion}
 
 \input{../report/sections/conclusion.tex}
 
-\section*{Acknowledgements}
-This work was supported by the Federal Ministry of Education
-and Research [grant number: 03SF0703A].
+\section*{Experimental Procedures}
+\label{sec:methods}
 
-% XY gratefully acknowledge funding from XY under grant no. 00000.
+\input{../report/sections/methods.tex}
 
-\section*{License}
+% \section*{License}
+
+% \href{http://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0
+% International License (CC-BY-4.0)}
+
+
 % \doclicenseLongText
 % \doclicenseIcon
 
-% \section*{Author Contributions}
 
-% % following https://casrai.org/credit/
+% \section*{Supplemental Information}
 
-% \textbf{Author LS}:
-% Conceptualization --
-% Data curation --
-% Formal Analysis --
-% Funding acquisition --
-% Investigation --
-% Methodology --
-% Project administration --
-% Resources --
-% Software --
-% Supervision --
-% Validation --
-% Visualization --
-% Writing - original draft --
-% Writing - review \& editing
+% Supplemental information can be found online at %\nameref{sec:si}.
+
+\section*{Acknowledgements}
+
+We are grateful for helpful comments by Alexander Meisinger and Anton Achhammer.
+We thank the reviewers for their valuable feedback and suggestions. 
+
+We gratefully acknowledge funding from the H2Global meets Africa project (03SF0703A) and the HYPAT project (03SF0620A) by the German Federal Ministry of Education and Research.
 
 
-\section*{Data and Code Availability}
 
-A dataset of the model results is available at \href{zenodoTBA}{doi:zenodoTBA}.
-The code to reproduce the experiments is available at \href{https://github.com/energyLS/aldehyde}{github.com/energyLS/aldehyde}.
+\section*{Author Contributions}
+
+% following https://casrai.org/credit/
+% see https://www.cell.com/pb/assets/raw/shared/guidelines/CRediT-taxonomy.pdf for details
+
+\textbf{L.S.}:
+Conceptualization,
+Data curation,
+Formal Analysis,
+Funding acquisition,
+Investigation,
+Methodology,
+Project administration,
+% Resources,
+Software,
+% Supervision,
+Validation,
+Visualization,
+Writing - original draft,
+Writing - review \& editing;
+\textbf{H.A-K.}:
+% Conceptualization,
+Data curation,
+% Formal Analysis,
+% Funding acquisition,
+% Investigation,
+Methodology,
+Project administration,
+% Resources,
+Software,
+% Supervision,
+Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{T.B.}:
+Conceptualization,
+% Data curation,
+Formal Analysis,
+% Funding acquisition,
+% Investigation,
+Methodology,
+% Project administration,
+% Resources,
+% Software,
+Supervision,
+% Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{F.U.}:
+Conceptualization,
+% Data curation,
+Formal Analysis,
+% Funding acquisition,
+% Investigation,
+% Methodology,
+% Project administration,
+% Resources,
+% Software,
+Supervision,
+% Validation,
+Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{M.S.}:
+% Conceptualization,
+% Data curation,
+% Formal Analysis,
+Funding acquisition,
+% Investigation,
+% Methodology,
+Project administration,
+Resources,
+% Software,
+Supervision,
+% Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{M.P.}:
+% Conceptualization,
+% Data curation,
+% Formal Analysis,
+% Funding acquisition,
+% Investigation,
+Methodology,
+% Project administration,
+% Resources,
+Software,
+% Supervision,
+% Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{D.F.}:
+Conceptualization,
+% Data curation,
+Formal Analysis,
+% Funding acquisition,
+% Investigation,
+Methodology,
+% Project administration,
+% Resources,
+Software,
+% Supervision,
+% Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing.
+
+
+\section*{Declaration of Interests}
+
+The authors declare no competing interests.
 
 % tidy with https://flamingtempura.github.io/bibtex-tidy/
 \addcontentsline{toc}{section}{References}
@@ -243,19 +370,23 @@ The code to reproduce the experiments is available at \href{https://github.com/e
 \input{../report/sections/supplementary-supply.tex}
 \input{../report/sections/supplementary-balances.tex}
 
-\input{../report/sections/supplementary-pathways.tex}
 \input{../report/sections/supplementary-greenhydrogen.tex}
 \input{../report/sections/supplementary-electrolysis.tex}
-\input{../report/sections/supplementary-integration.tex}
+% \input{../report/sections/supplementary-integration.tex}
+
+\input{../report/sections/supplementary-relchange.tex}
 
 \input{../report/sections/supplementary-carbonmgmt.tex}
 \input{../report/sections/supplementary-operation.tex}
 %\input{../report/sections/supplementary-sensitivity.tex}
-\input{../report/sections/supplementary-prices.tex}
+% \input{../report/sections/supplementary-prices.tex}
 \input{../report/sections/supplementary-misc.tex}
+
+% \input{../report/sections/supplementary-powerplants.tex}
 
 \addcontentsline{toc}{section}{Supplementary References}
 \renewcommand{\ttdefault}{\sfdefault}
-\bibliographyS{references_mylibrary}
+
+% \bibliographyS{references_mylibrary}
 
 \end{document}
