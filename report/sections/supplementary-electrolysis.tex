@@ -1,107 +1,108 @@
 \section{Hydrogen cost breakdown}
 \label{subsec:electrolysis_op_comp}
 
-\subsection{Hourly Matching}
+The price of hydrogen depends on single cost components as well as the temporal hydrogen regulation. Figure \ref{fig:costbreakdown_hourly} displays the cost breakdown of hydrogen 
+whereas the combined cost in Figure \ref{fig:hydrogen-cost-hourly} differs from the price of hydrogen in Figure \ref{fig:hydrogen-price-hourly}. This is due to the temporal hydrogen regulation, the costs for the required installation of additional RE capacities are not reflected in the cost breakdown but included in the price of hydrogen. This effect is most striking in high export and low domestic climate change mitigation scenarios. 
+In constrast, if there is no temporal hydrogen regulation applied, both hydrogen cost (s. Fig. \ref{fig:hydrogen-cost-norule}) and hydrogen price (s. Fig. \ref{fig:hydrogen-price-norule}) show similar trends across all domestic climate change mitigation and export scenarios.
+
 
 \begin{figure*}[h!]
     \centering
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
         \caption{CAPEX share of hydrogen costs}
-        \label{fig:capex-rel}
+        \label{fig:capex-rel-hourly}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue_nFalse_exp200.pdf}
         \caption{Electrolysis capacity factor}
-        \label{fig:ely-cf}
+        \label{fig:ely-cf-hourly}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
         \caption{OPEX share of hydrogen costs}
-        \label{fig:opex-rel}
+        \label{fig:opex-rel-hourly}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue_nFalse_exp200.pdf}
         \caption{Price of electricity (electrolysis demand weighted)}
-        \label{fig:electricity-price}
+        \label{fig:electricity-price-hourly}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_compo_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_compo_20_filterTrue_nFalse_exp200.pdf}
         \caption{Total hydrogen cost}
-        \label{fig:hydrogen-cost}
+        \label{fig:hydrogen-cost-hourly}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue_nFalse_exp200.pdf}
         \caption{Hydrogen price}
-        \label{fig:hydrogen-price}
+        \label{fig:hydrogen-price-hourly}
     \end{subfigure}
     \hfill
     
-    \caption{Cost components of hydrogen electrolysis (CAPEX \ref{fig:capex-rel} and \ref{fig:opex-rel}) and combined cost of hydrogen via electrolysis (\ref{fig:hydrogen-cost}) along with the electrolysers capacity factor (\ref{fig:ely-cf} (influencing the CAPEX share)) and price of electricity (\ref{fig:electricity-price}) (influencing the OPEX share). Marginal price of hydrogen \ref{fig:hydrogen-price} for comparison.}
-    \label{fig:electrolysis_op_comp}
+    \caption{Cost components of hydrogen electrolysis and the respective main influence factors on it {\bf with} hourly temporal matching. The CAPEX (\ref{fig:capex-rel-hourly}) depends on the electrolysis capacity factor (\ref{fig:ely-cf-hourly}), whereas the OPEX (\ref{fig:opex-rel-hourly}) is influenced by the price of electricity for electrolysis (\ref{fig:electricity-price-hourly}). With temporal hydrogen regulation, the cost of hydrogen  (\ref{fig:hydrogen-cost-hourly}) is not reflected by the price of hydrogen (\ref{fig:hydrogen-price-hourly}), which includes the additional constraint of hourly matching and hence the installation of RE and storage capacities.}
+    \label{fig:costbreakdown_hourly}
 \end{figure*}
 
 
-\subsection{No temporal hydrogen regulation}
-
 \begin{figure*}[h!]
     \centering
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
         \caption{CAPEX share of hydrogen costs}
-        \label{fig:capex-rel}
+        \label{fig:capex-rel-norule}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue_nFalse_exp200.pdf}
         \caption{Electrolysis capacity factor}
-        \label{fig:ely-cf}
+        \label{fig:ely-cf-norule}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
         \caption{OPEX share of hydrogen costs}
-        \label{fig:opex-rel}
+        \label{fig:opex-rel-norule}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue_nFalse_exp200.pdf}
         \caption{Price of electricity (electrolysis demand weighted)}
-        \label{fig:electricity-price}
+        \label{fig:electricity-price-norule}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_lcoh_compo_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_lcoh_compo_20_filterTrue_nFalse_exp200.pdf}
         \caption{Total hydrogen cost}
-        \label{fig:hydrogen-cost}
+        \label{fig:hydrogen-cost-norule}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue.pdf}
+        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue_nFalse_exp200.pdf}
         \caption{Hydrogen price}
-        \label{fig:hydrogen-price}
+        \label{fig:hydrogen-price-norule}
     \end{subfigure}
     \hfill
     
-    \caption{Hydrogen cost breakdown for no temporal hydrogen regulation}
-    \label{fig:electrolysis_op_comp}
+    \caption{Cost components of hydrogen electrolysis and the respective main influence factors on it {\bf without} temporal hydrogen regulation. The CAPEX (\ref{fig:capex-rel-norule}) depends on the electrolysis capacity factor (\ref{fig:ely-cf-norule}), whereas the OPEX (\ref{fig:opex-rel-norule}) is influenced by the price of electricity for electrolysis (\ref{fig:electricity-price-norule}). With temporal hydrogen regulation, the cost of hydrogen  (\ref{fig:hydrogen-cost-norule}) is not reflected by the price of hydrogen (\ref{fig:hydrogen-price-norule}), which includes the additional constraint of hourly matching and hence the installation of RE and storage capacities.}
+    \label{fig:costbreakdown_norule}
 \end{figure*}
 
 

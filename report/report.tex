@@ -55,9 +55,8 @@
 \usepackage{lipsum}
 
 \usepackage[resetlabels,labeled]{multibib}
-\newcites{S}{Supplementary References}
-\bibliographystyleS{elsarticle-num}
-
+% \newcites{S}{Supplementary References}
+% \bibliographystyleS{elsarticle-num}
 
 
 % \usepackage[
@@ -68,7 +67,7 @@
 
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\set}[1]{\left\{#1\right\} }
+\newcommand{\set}[1]{\left\{#1\right\}}
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \newcommand{\R}{\mathbb{R} }
 \newcommand{\B}{\mathbb{B} }
@@ -387,6 +386,7 @@ The authors declare no competing interests.
 
 \addcontentsline{toc}{section}{Supplementary References}
 \renewcommand{\ttdefault}{\sfdefault}
-\bibliographyS{references_mylibrary}
+
+% \bibliographyS{references_mylibrary}
 
 \end{document}

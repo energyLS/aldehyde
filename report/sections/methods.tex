@@ -26,13 +26,13 @@ Technology data was taken from the
 
 \subsection*{Sector-coupled energy model}
 \label{subsec:moroccan_model}
-The sector-coupled energy model of Morocco is based on the global electricity model  PyPSA-Earth \cite{Parzen2023} and the sector-coupling extension of \cite{Abdel-Khalek2024} using linear optimisation and overnight scenarios. This capacity extension model optimises the generation, transmission and storage capacities of Morocco's energy system by minimising the the total annualised system costs constrained by e.g. climate targets or green hydrogen policies.
+The sector-coupled energy model of Morocco is based on the global electricity model  PyPSA-Earth \cite{Parzen2023} and the sector-coupling extension \cite{Abdel-Khalek2024} using linear optimisation and overnight scenarios. This capacity extension model optimises the generation, transmission and storage capacities of Morocco's energy system by minimising the the total annualised system costs constrained by e.g. climate targets or green hydrogen policies.
 
 \subsubsection*{Energy demand}
-To obtain the annual energy demand, we use the workflow presented in \cite{Abdel-Khalek2024}. In a first step, the annual energy demand is obtained from \cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2035 is projected according to efficiency gains and activity growth rates similar to \cite{Muller2023}.
+To obtain the annual energy demand, we use the workflow presented by Abdel-Khalek et al.\cite{Abdel-Khalek2024}. In a first step, the annual energy demand is obtained from the United Nations Statistics Database\cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2035 is projected according to efficiency gains and activity growth rates similar to M{\"u}ller et al.\cite{Muller2023}.
 In a second step, the annual and national energy demand is distributed according to the production sites of Morocco. % based on data of [TBD].
-In case of subsectors where no spatially resolved production sites are included/available (e.g. paper industry), the demand is distributed according to GDP. %(TBD: currently Population). 
-Third, the annual but locationally resolved energy demand is converted to hourly demands. In this study, a constant hourly demand of the industry and agriculture sector is assumed whereas electricity, heating, transport are temporally resolved based on time series derived from \cite{Brown2018a}. The resulting temporal and spatial energy demands of the sectors:
+In case of subsectors where no spatially resolved production sites are available (e.g. paper industry), the demand is distributed according to GDP. %(TBD: currently Population). 
+Third, the annual but locationally resolved energy demand is converted to hourly demands. In this study, a constant hourly demand of the industry and agriculture sector is assumed whereas electricity, heating, transport are temporally resolved based on time series derived from Brown et al.\cite{Brown2018a}. The resulting temporal and spatial energy demands of the sectors:
 \begin{itemize}
     \item Electricity,
     \item Heating,
@@ -40,7 +40,7 @@ Third, the annual but locationally resolved energy demand is converted to hourly
     \item Transport (incl. aviation and shipping) and
     \item Agriculture
 \end{itemize}
-are integrated in the sector coupled energy model. The inland energy demand per sector remains constant throughout the scenarios presented in the \nameref{sec:intro}, regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, to account for increasing shares of battery electric vehicles (BEV) in the Moroccan energy system, the share of BEV's is linked to the emission reduction ambitions (s. Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% domestic climate change mitigation in accordance with \cite{Rim2021}.
+are integrated in the sector coupled energy model. The inland energy demand per sector remains constant throughout the scenarios presented in the \nameref{sec:intro}, regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, to account for increasing shares of battery electric vehicles (BEV) in the Moroccan energy system, the share of BEV's is linked to the emission reduction ambitions (s. Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% domestic climate change mitigation in accordance with Rim et al.\cite{Rim2021}.
 
 % TBD: Benchmark: Electricity demand also stated in \cite[primary source 25]{Boulakhbar2020}
 % TBD: More infos on MenaFuels: see \cite[p. 35]{Ersoy2022}, better: "Teilbericht 9"
@@ -77,7 +77,7 @@ In this study, \textit{powerplantmatching} is applied to Morocco delivering the 
 
 
 \subsubsection*{Electricity networks and gas pipelines}
-The electricity network is based on the PyPSA-Earth workflow using OpenStreetMap2022 data \cite{OpenStreetMap2022} as presented in \cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build \cite{Parzen2023}. 
+The electricity network is based on the PyPSA-Earth workflow using OpenStreetMap2022 data \cite{OpenStreetMap2022} as presented in Parzen et al.\cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build\cite{Parzen2023}. 
 The brownfield gas pipeline infrastructure of Morocco is not considered in this study. The Maghreb-Europe pipeline passing through Morocco is the only pipeline in operation but currently subject to political disputes \cite{Rachidi2022}. Further proposed projects are excluded due to  miniscule capacity compared to Morocco's energy system (Tendrara LNG Terminal, 100 million cubic meters per year %\cite{GEM2023})
  or uncertain commissioning dates (Nigeria-Morocco Pipeline, start year 2046 \cite{GEM2023b}).
 % [TBD: Benchmark electricity network]
@@ -97,7 +97,7 @@ All technology and cost assumptions are based on the year 2030, taken from \href
 \subsection*{Water supply}
 \label{subsec:water_supply}
 Hydrogen production through electrolysis requires fresh water, alternatives as the direct use of high saline water sources are still in the experimental stages \cite{Tong2020}. The depletion of freshwater resources and it's competition with other water uses is a concern, especially in regions such as Morocco which is ranked 27th among the world's most water-stressed countries \cite{Maddocks2015}. 
-Sea Water Reverse Osmosis (SWRO) emerges as a feasible solution to address this issue. In this model, the additional water cost of 0.80 €/\si{\cubic\metre} through desalination and transport is considered in line with the base scenario for Morocco in 2030 in \cite{Caldera2020}. These findings are comparable to \cite{Kettani2020} and \cite{Caldera2016} stating the water costs of 1\$/$m^3$ resp. 0.60 - 1.50 €/\si{\cubic\metre} for Morocco in 2030. Given a water demand of 9~$m^3/kg_{hydrogen}$
+Sea Water Reverse Osmosis (SWRO) emerges as a feasible solution to address this issue. In this model, the additional water cost of 0.80 €/\si{\cubic\metre} through desalination and transport is considered in line with the base scenario for Morocco in 2030 in Caldera et al.\cite{Caldera2020}. These findings are comparable to Kettani et al.\cite{Kettani2020} and Caldera et al.\cite{Caldera2016} stating the water costs of 1\$/$m^3$ resp. 0.60 - 1.50 €/\si{\cubic\metre} for Morocco in 2030. Given a water demand of 9~$m^3/kg_{hydrogen}$
 \cite{Hampp2023}, the additional costs for electrolysers result in 0.216~$MWh/kg_{hydrogen}$ (LHV).
 
 However, the challenge of brine disposal presents environmental concerns due to treatment chemicals and high salinity as discussed by \cite{Thomann2022, Dresp2019, Tonelli2023} that require a careful site selection of desalination plants. A minimum distance of four kilometers from marine protected areas is recommended in \cite{Thomann2022}.
