@@ -15,10 +15,7 @@ As global demand for green hydrogen rises, potential hydrogen exporters move int
    ```bash
        .../some/path/without/spaces % git clone --recurse-submodules https://github.com/energyLS/aldehyde.git
    ```
-   To make sure you run the latest version of the submodule (if desired), run the following command to update the git submodules:
-   ```bash
-       .../some/path/without/spaces % git submodule update
-   ```
+
 
 2. Move the current directory to the head of the repository.
    ```bash
@@ -34,7 +31,7 @@ As global demand for green hydrogen rises, potential hydrogen exporters move int
        .../aldehyde/pypsa-earth-sec % conda env create -f pypsa-earth/envs/environment.yaml
    ```
 
-5. For running the optimization one has to install the solver. We can recommend the open source HiGHs solver which installation manual is given [here](https://github.com/PyPSA/PyPSA/blob/633669d3f940ea256fb0a2313c7a499cbe0122a5/pypsa/linopt.py#L608-L632).
+5. For running the optimization one has to install the solver. We can recommend the open source HiGHs solver, see more details on solvers in the documentation of [PyPSA-Earth](https://pypsa-earth.readthedocs.io/en/latest/)
 
 
 
@@ -59,6 +56,14 @@ snakemake -j 1 solve_all_networks -n
 
 Please follow the documentation of [PyPSA-Earth](https://pypsa-earth.readthedocs.io/en/latest/) and the [Readme of PyPSA-Earth-Sec](https://github.com/pypsa-meets-earth/pypsa-earth-sec/blob/main/README.md) for more details.
 
+## Reproducibility
+The paper results and analysis are created on the following commits:s
+
+* `aldehyde`: on commit https://github.com/energyLS/aldehyde/commit/465750d6f12716c44f77980e8ea56f05997c20ba which includes the submodule of
+
+* `PyPSA-Earth-Sec` on the commit https://github.com/pypsa-meets-earth/pypsa-earth-sec/tree/6ab3255d5b6f5f9182ddddc04da658ab1902f975 which includes the submodule of
+
+* `PyPSA-Earth` on the commit https://github.com/pypsa-meets-earth/pypsa-earth/tree/84a0aa4470be9663657aa17540cdf08c8fa0f0b6
 
 ## License
 
