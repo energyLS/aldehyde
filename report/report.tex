@@ -1,6 +1,6 @@
 \documentclass[5p,numafflabel]{elsarticle}
 
-\journal{Joule}
+\journal{Nature Communications}
 
 \bibliographystyle{elsarticle-num}
 \biboptions{numbers,sort&compress,super}
@@ -42,6 +42,8 @@
 \usepackage[nameinlink,sort&compress,capitalise,noabbrev]{cleveref}
 \usepackage[leftcaption,raggedright]{sidecap}
 \usepackage[prependcaption,textsize=footnotesize]{todonotes}
+
+\usepackage{lineno}
 
 \usepackage{siunitx}
 \sisetup{
@@ -163,11 +165,14 @@
 
 % \par\noindent\rule{\textwidth}{0.4pt}
 
-\section*{Context \& Scale}
+% \section*{Context \& Scale}
 
-\input{sections/context.tex}
+% \input{sections/context.tex}
 
 % \par\noindent\rule{\textwidth}{0.4pt}
+
+% Use line numbering
+\linenumbers
 
 
 \section*{Introduction}
@@ -197,7 +202,7 @@
 
 \input{../report/sections/conclusion.tex}
 
-\section*{Experimental Procedures}
+\section*{Methods}
 \label{sec:methods}
 
 \input{../report/sections/methods.tex}
@@ -216,10 +221,30 @@
 
 % Supplemental information can be found online at %\nameref{sec:si}.
 
+
+
+
+\section*{Data availability}
+A dataset of the model results is available on \href{https://doi.org/10.5281/zenodo.10951650}{Zenodo} under a CC-BY-4.0 license. 
+Technology data was taken from the
+\href{https://github.com/pypsa/technology-data}{technology-data repository} (v0.4.0).
+
+\section*{Code availability}
+The code to reproduce the experiments is available on \href{https://github.com/energyLS/aldehyde}{GitHub}.
+We also refer to the documentations of \href{https://pypsa.readthedocs.io}{PyPSA} and  \href{https://pypsa-earth.readthedocs.io}{PyPSA-Earth}, and the code of 
+\href{https://github.com/pypsa-meets-earth/pypsa-earth-sec}{PyPSA-Earth-Sec}.
+
+
+
+% tidy with https://flamingtempura.github.io/bibtex-tidy/
+\addcontentsline{toc}{section}{References}
+\renewcommand{\ttdefault}{\sfdefault}
+\bibliography{references_mylibrary}
+
+
 \section*{Acknowledgements}
 
 We are grateful for helpful comments by Alexander Meisinger and Anton Achhammer.
-We thank the reviewers for their valuable feedback and suggestions. 
 
 We gratefully acknowledge funding from the H2Global meets Africa project (03SF0703A) and the HYPAT project (03SF0620A) by the German Federal Ministry of Education and Research.
 
@@ -341,10 +366,13 @@ Writing - review \& editing.
 
 The authors declare no competing interests.
 
-% tidy with https://flamingtempura.github.io/bibtex-tidy/
-\addcontentsline{toc}{section}{References}
-\renewcommand{\ttdefault}{\sfdefault}
-\bibliography{references_mylibrary}
+
+\section*{Materials \& Correspondence}
+
+Requests for further information, resources and materials should be directed to and will be fulfilled by the lead contact, Leon Schumm
+(\href{mailto:leon1.schumm@oth-regensburg.de}{leon1.schumm@oth-regensburg.de}).
+
+
 
 % supplementary information
 
