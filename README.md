@@ -31,7 +31,9 @@ As global demand for green hydrogen rises, potential hydrogen exporters move int
        .../aldehyde/pypsa-earth-sec % conda env create -f pypsa-earth/envs/environment.yaml
    ```
 
-5. For running the optimization one has to install the solver. We can recommend the open source HiGHs solver, see more details on solvers in the documentation of [PyPSA-Earth](https://pypsa-earth.readthedocs.io/en/latest/)
+5. For running the optimization one has to install the solver. We can recommend the open source HiGHs solver, see more details on solvers in the documentation of [PyPSA-Earth](https://pypsa-earth.readthedocs.io/en/latest/).
+
+The total installation time of cloning the repository and installing the environment is approximately 30 mins, given the prior installation of conda or mamba.
 
 
 
@@ -54,7 +56,7 @@ To solve all networks, run the following command:
 snakemake -j 1 solve_all_networks -n
 ```
 
-Please follow the documentation of [PyPSA-Earth](https://pypsa-earth.readthedocs.io/en/latest/) and the [Readme of PyPSA-Earth-Sec](https://github.com/pypsa-meets-earth/pypsa-earth-sec/blob/main/README.md) for more details.
+Please follow the documentation of [PyPSA-Earth](https://pypsa-earth.readthedocs.io/en/latest/) and the [Readme of PyPSA-Earth-Sec](https://github.com/pypsa-meets-earth/pypsa-earth-sec/blob/main/README.md) for more details. The estimated time to run one single optimization is 40 mins on a standard laptop, the full set of paper results includes over 360 optimizations. To run the full set, a high-performance computer is recommended.
 
 ## Reproducibility
 The paper results and analysis are created on the following commits:s
