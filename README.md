@@ -1,70 +1,64 @@
 # ALDEHYDE - locAL DEcarbonization and HYDrogen Export
 
-This repository contains the entire scientific project, including code and report. The philosophy behind this repository is that no intermediary results are included, but all results are computed from raw data and code.
-
-## Run new scenarios
-In `aldehyde`:
-
-* in `config/config.yaml`: set `scenario`, `export`
-    
-* in `config/config.pypsa-earth-sec.yaml`: set `H2_network: True`, `H2_network_limit: 10000`, `run`
-
-In `workflow/subworkflows/pypsa-earth-sec`:
-* in `config.pypsa-earth.yaml`: set `["electricity"]["co2base"]: 40.0e+6`. Note: if you change that, make sure to delete the old networks `elec.nc`
-* * in `config.pypsa-earth.yaml`: set `["costs"]["fill_values"]["discount rate"]: 0.071`. Note: if you change that, make sure to delete the old networks `elec.nc`
-* in `config.pypsa-earth.yaml`: set `["cluster_options"]["alternative_clustering"]: True`
-
-In ``:
-
-## Analyse new scenarios
-In `aldehyde`:
-
-* Contour -> `config/config.yaml`: takes the `scenario` and `export` params. Plot specifics in `plots["contour_plot"]`
-* Spatials (e.g. potentials) -> `config/config.yaml`: takes the `plots["spatial_plot"]`
-* PyPSA-Earth-Sec (e.g. Balances, H2-network) -> `config/config.pypsa-earth-sec.yaml`: takes the `scenario` and `export` params.
+This repository contains the entire scientific project, including code and report for the paper **"The impact of temporal hydrogen regulation on hydrogen exporters and their domestic energy transition"**.
 
 
-
-## Getting ready
-
-You need [mamba](https://mamba.readthedocs.io/en/latest/) to run the analysis. Using mamba, you can create an environment from within you can run it:
-
-    mamba env create -f environment.yaml
-
-## Run the analysis
-
-    snakemake -call
-
-This will run all analysis steps to reproduce results and eventually build the report.
-
-To generate a PDF of the dependency graph of all steps `build/dag.pdf` run:
-
-    snakemake -c1 --use-conda -f dag
+## Abstract
+As global demand for green hydrogen rises, potential hydrogen exporters move into the spotlight. However, the large-scale installation of on-grid hydrogen electrolysis for export can have profound impacts on domestic energy prices and energy-related emissions. Our investigation explores the interplay of hydrogen exports, domestic energy transition and temporal hydrogen regulation, employing a sector-coupled energy model in Morocco. We find substantial co-benefits of domestic climate change mitigation and hydrogen exports, whereby exports can reduce domestic electricity prices while mitigation reduces hydrogen export prices. However, increasing hydrogen exports quickly in a system that is still dominated by fossil fuels can substantially raise domestic electricity prices, if green hydrogen production is not regulated. Surprisingly, temporal matching of hydrogen production lowers domestic electricity cost by up to 31% while the effect on exporters is minimal. This policy instrument can steer the welfare (re-)distribution between hydrogen exporting firms, hydrogen importers, and domestic electricity consumers and hereby increases acceptance among actors.
 
 
-## Clone the repository
+## Installation and Usage
 
+1. Open your terminal at a location where you want to install the repository aldehyde including it's subworkflows PyPSA-Earth and PyPSA-Earth-Sec. Type the following in your terminal to download the package and the dependency (pypsa-earth) from GitHub.
+   Note that the tag `--recursive-submodules` is needed to automatically clone also the pypsa-earth dependency.
+
+   ```bash
+       .../some/path/without/spaces % git clone --recurse-submodules https://github.com/energyLS/aldehyde.git
+   ```
+   To make sure you run the latest version of the submodule (if desired), run the following command to update the git submodules:
+   ```bash
+       .../some/path/without/spaces % git submodule update
+   ```
+
+2. Move the current directory to the head of the repository.
+   ```bash
+       .../some/path/without/spaces % cd aldehyde
+   ```
+
+
+
+4. The python package requirements are curated in the `workflow/subworkflows/pypsa-earth-sec/pypsa-earth/envs/environment.yaml` file of the pypsa-earth repository. The environment can be installed using `conda` or `mamba`:
+
+   ```bash
+        cd aldehyde/workflow/subworkflows/pypsa-earth-sec
+       .../aldehyde/pypsa-earth-sec % conda env create -f pypsa-earth/envs/environment.yaml
+   ```
+
+5. For running the optimization one has to install the solver. We can recommend the open source HiGHs solver which installation manual is given [here](https://github.com/PyPSA/PyPSA/blob/633669d3f940ea256fb0a2313c7a499cbe0122a5/pypsa/linopt.py#L608-L632).
+
+
+
+## Repository structure
+
+* `config`: contains configuration files for aldehyde (`config.yaml`) and PyPSA-Earth-Sec (`config.pypsa-earth-sec.yaml`) for high-level plotting
+
+* `report`: contains the .tex files for the paper
+* `workflow/notebooks`: contains the Jupyter notebooks used for the evaluation of results
+* `workflow/scripts`: contains the scripts used for the evaluation of results
+* `workflow/subworkflows`: contains the `PyPSA-Earth-Sec` workflow which includes the `PyPSA-Earth` workflow. PyPSA-Earth-Sec is based on the configuration in `config.paper.yaml` and PyPSA-Earth is based on the configuration in `config.pypsa-earth.yaml`.
+
+## Run scenarios
+For running the model, navigate to the PyPSA-Earth-Sec model by:
 ```bash
-    git clone --recursive https://github.com/energyLS/aldehyde.git
+cd workflow/subworkflows/pypsa-earth-sec
+```
+To solve all networks, run the following command:
+```bash
+snakemake -j 1 solve_all_networks -n
 ```
 
-Set the git submodule to a certain commit: adjust it in the .gitmodules file and run:
-```bash	
-    git submodule update
-```
+Please follow the documentation of [PyPSA-Earth](https://pypsa-earth.readthedocs.io/en/latest/) and the [Readme of PyPSA-Earth-Sec](https://github.com/pypsa-meets-earth/pypsa-earth-sec/blob/main/README.md) for more details.
 
-## Config
-
-Set the configuration in config/config.yaml. The scenario wildcards are propagated to all rules, so you can run the analysis for different scenarios.
-Set PyPSA-Earth-Sec specific parameters in config/config.pypsa-eur-sec.yaml.
-
-## Repo structure
-
-* `config`: configurations used in the study
-* `data`: place for raw data
-* `report`: contains all files necessary to build the report; plots and result files are generated automatically
-* `workflow`: contains the Snakemake workflow
-* `build`: will contain all results (does not exist initially)
 
 ## License
 
