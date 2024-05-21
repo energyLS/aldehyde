@@ -83,7 +83,6 @@
 \def\coe{CO${}_2$e}
 
 % Run of standard model run
-%\def\runstandard{dyntrans_full_3h_ws} %old
 \def\runstandard{decr_13_3H_ws} % hourly
 
 % Run of battery sensitivity
@@ -100,7 +99,7 @@
 
 
 \graphicspath{
-    {../results/\runstandard/}, %results_full_3H_ws
+    {../results/\runstandard/},
 }
 
 
@@ -109,10 +108,7 @@
 \begin{frontmatter}
 
 	\title{The impact of temporal hydrogen regulation on hydrogen exporters and their domestic energy transition}
-	% On the cost competitiveness of blue and green hydrogen
-	% Benefits of a hydrogen network in europe
-	% The potential role of a hydrogen network in Europe
-	% Temporal hydrogen regulation reduces domestic electricity prices of hydrogen exporters
+
     
 	\author[oth,tub,lead]{Leon~Schumm\,\corref{correspondingauthor}}
 	%\ead{leon1.schumm@oth-regensburg.de}
@@ -160,7 +156,6 @@
 % 	\item Hourly matching decreases the cost for domestic electricity consumers up to -31\%, highest decrease for high exports and low climate change mitigation 
 % 	\item Effect of hourly matching on cost for hydrogen exporters is minimal, highest for high exports and low climate change mitigation 
 % 	\item Green hydrogen regulation hedges domestic customers against rising electricity prices, across all export and mitigation scenarios
-% \item Idea: "May be good to highlight the comprehensive methodology that has been developed"
 % \end{itemize}
 
 % \par\noindent\rule{\textwidth}{0.4pt}
@@ -181,7 +176,7 @@
 \input{../report/sections/introduction.tex}
 
 % \section*{Hydrogen export strategy and climate targets}
-\label{sec:policyandtargets}
+%\label{sec:policyandtargets}
 
 \input{../report/sections/strategies.tex}
 
@@ -400,17 +395,12 @@ Requests for further information, resources and materials should be directed to 
 
 \input{../report/sections/supplementary-greenhydrogen.tex}
 \input{../report/sections/supplementary-electrolysis.tex}
-% \input{../report/sections/supplementary-integration.tex}
 
 \input{../report/sections/supplementary-relchange.tex}
 
 \input{../report/sections/supplementary-carbonmgmt.tex}
 \input{../report/sections/supplementary-operation.tex}
-%\input{../report/sections/supplementary-sensitivity.tex}
-% \input{../report/sections/supplementary-prices.tex}
-\input{../report/sections/supplementary-misc.tex}
 
-% \input{../report/sections/supplementary-powerplants.tex}
 
 \addcontentsline{toc}{section}{Supplementary References}
 \renewcommand{\ttdefault}{\sfdefault}
