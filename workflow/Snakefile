@@ -272,7 +272,7 @@ rule plot_summaries:
     input:
         expand("../workflow/subworkflows/pypsa-earth-sec/" + SDIR_pypsaearthsec + "/{summarytype}/{explimit}/graphs/balances-energy.pdf",
         summarytype=['0exp-only', 'co2l20-only'],
-        explimit=[120])
+        explimit=[120, 200])
 
 
 rule report_graphs:
