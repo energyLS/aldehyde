@@ -376,6 +376,13 @@ def plot_balances():
 
         ax.grid(axis="x")
 
+        # Adjust limits for the AC and Co2 plot
+        if v[0] in ["AC", "co2"]:
+            y_lim = ax.get_ylim()  # Get current limits
+            ax.set_ylim(y_lim[0], y_lim[1] * 1.1)
+        else:
+            pass
+
         ax.legend(
             handles,
             labels,
@@ -598,7 +605,7 @@ if __name__ == "__main__":
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         snakemake = mock_snakemake(
             "plot_summary",
-            summarytype="co2l20-only",
+            summarytype="0exp-only",
             explimit=120,
         )
 
