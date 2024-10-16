@@ -123,7 +123,7 @@ electricity:
 
 plot:
   contour_plot:
-    type: ["cf_electrolysis", "ft_cf"] #, "exp_local_export"]
+    type: ["mg_AC_exclu_H2 El_all", "mg_H2_False_False_exportonly"] #, "exp_local_export"]
     
     # ["mg_co2",
     # "mg_H2_False_False_all",
@@ -135,7 +135,7 @@ plot:
     # "capex_ely_rel", "opex_ely_rel", "cf_electrolysis", "cost", "H2_GWh", "Battery_GWh", "H2export_GWh", "curtailmentrate_solar", "curtailmentrate_wind", "mg_oil_False_False_all", "mg_gas_False_False_all",  "pv_capex", "pv_p_nom_opt", "onshore_capex", "onshore_p_nom_opt", "coal_capex", "coal_p_nom_opt", "ccgt_capex", "ccgt_p_nom_opt", "ror_capex", "ror_p_nom_opt", "oil_capex", "oil_p_nom_opt", "ocgt_capex", "ocgt_p_nom_opt", "pv_supply", "pv_cf", "onshore_supply", "onshore_cf", "coal_supply", "coal_cf", "ccgt_supply", "ccgt_cf", "ror_supply", "ror_cf", "oil_supply", "oil_cf", "ocgt_supply", "ocgt_cf", "ft_capex", "ft_p_nom_opt", "ft_supply", "ft_cf", "electrolysis_p_nom_opt", "electrolysis_supply", "electrolysis_capex", "mg_co2", "lcoh_compo", "ratio_H2_Battery", "curtailmentrate_solar", "curtailmentrate_wind", exp_H2_False_False_all, exp_H2_False_False_exportonly, exp_H2_False_False_noexport, exp_AC_False_False_all, exp_AC_inclu_H2 El_all, exp_AC_exclu_H2 El_all, exp_oil_False_False_all, exp_gas_False_False_all, exp_local_export]
 
     levels: [20]
-    explimit: [200] #[120, 200]
+    explimit: [120] #[120, 200]
     vcontrol:
       mg_H2_False_False_all: [25, 90]
       mg_H2_False_False_noexport: [25, 90]
@@ -149,10 +149,11 @@ plot:
     normalize: False
     norm_specs:
       exp_AC_exclu_H2 El_all: 
-        normalize_by: "export" #normalize_by: "export" # "export", "decarb", "exdecarb", False
-        label: "Relative domestic electricity cost in % "
+        normalize_by: "export" #"export" 
+        #normalize_by: "export" # "export", "decarb", "exdecarb", False
+        label: "Relative domestic electricity cost in %"
       exp_H2_False_False_exportonly: 
-        normalize_by: "decarb"
+        normalize_by: "decarb" #"decarb"
         label: "Relative export hydrogen cost in %"
       exp_local_export:
         normalize_by: False
