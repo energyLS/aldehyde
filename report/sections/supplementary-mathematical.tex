@@ -1,2 +1,15 @@
 \section{Mathematical Model Formulation}
+\label{subsec:math-formulation}
 
+The core mathematical model formulation of the sector-coupled energy model is based on the European model PyPSA-Eur described in Neumann et al.\cite{Neumann2023} and the global model PyPSA-Earth and it's sector-coupled extension presented in Abdel-Khalek et al.\cite{Abdel-Khalek2024}. The objective of the optimisation is minimizing the annual energy system costs including annualized investment costs and operational expenditures of generation, storage, transmission and conversion infrastructure\cite{Neumann2023} and is described in Abdel-Khalek et al.\cite{Abdel-Khalek2024} as follows:
+
+\begin{equation}
+    \begin{aligned}
+        \min _{\substack{G_{n, k}, E_{n, k},  C_{n, k}, F_{l, c} \\ \dot{G}_{n, k, t}, \dot{E}_{n, k, t},\dot{C}_{n, k, t}, \dot{F}_{l, c, t}}} &\overbrace{\sum_{n \in N} \sum_{k \in K} c_{k} G_{n, k}+\sum_{n \in N} \sum_{k \in K} c_{k} E_{n, k}+\sum_{n \in N} \sum_{k \in K} c_{k} C_{n, k}+\sum_{l \in L} c_l F_{l,c}}^{\mathclap{\scalebox{0.8}{\text{annualized capital costs}}}}\\
+        &\hspace{-2cm}\underbrace{+\sum_{t \in T} \left[w_t\left(\sum_{n \in N} \sum_{k\in K} o_{k} \dot{G}_{n, k, t}+\sum_{n \in N} \sum_{k \in K} o_{k} \dot{E}_{n, k, t}+\sum_{n \in N} \sum_{k \in K} o_{k} \dot{C}_{n, k, t}+\sum_{l \in L} o_{l} \dot{F}_{l, c, t}\right)\right]}_{\mathclap{\scalebox{0.8}{\text{marginal costs}}}}
+    \end{aligned}
+\end{equation}
+
+where the decision variables cover both the optimal capacity of the technology and the optimal hourly dispatch. The model operates on a set of nodes $N$, set of carriers $C$, set of technologies $K$, set of inter-nodal connections $L$, and a timeframe $T$, which in this study is a full year. $G_{n, k}$ denotes the optimal generation capacity of an asset of technology $k$ at node $n$ and $\dot{G}_{n, k, t}$ denotes the optimal dispatch of that asset at timestep $t$. Similarly, the decision variables of storage, converters and energy flow are presented as $E_{n,k}$, $C_{n,k}$ and $F_{l,c}$ respectively where $k$ uniquely identifies the technology for each category, $c$ uniquely identifies the carrier, and $l$ uniquely identifies the inter-nodal connections. The coefficients represent the different cost components: $c_k$ represents the annualized capital cost in technology $k$ while $o_k$ represent the operating costs. The $w_t$ weight variable represents the duration of the timestep $t$ and is decided by the model configuration, in this study it is three-hourly.
+
+In addition to the core mathematical formulation, the model consists of linear constraints on the spatio-temporal availability of renewable energy sources, storage consistency equations, generation, storage, conversion and transmission infrastructure, a limit for \co emissions and transmission and a multi-period linearised optimal power flow (LOPF) formulation. All constraints are described in detail in Neumann et al.\cite{Neumann2023} resulting in a linear problem (LP).
