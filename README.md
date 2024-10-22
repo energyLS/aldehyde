@@ -67,6 +67,9 @@ The paper results and analysis are created on the following commits:s
 
 * `PyPSA-Earth` on the commit https://github.com/pypsa-meets-earth/pypsa-earth/tree/84a0aa4470be9663657aa17540cdf08c8fa0f0b6
 
+## Result data
+A dataset of the model results is available on \href{https://doi.org/10.5281/zenodo.10951650}{Zenodo} under a CC-BY-4.0 license.
+
 ## License
 
 The code in this repo is MIT licensed, see `./LICENSE.md`.
