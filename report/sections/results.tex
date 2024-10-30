@@ -169,23 +169,38 @@ not only decarbonizes hydrogen exports, but additionally decreases grid emission
 \subsection*{The effects of temporal hydrogen regulation are strongest in high export and low climate change mitigation systems}
 \label{subsec:rule_all}
 
-Based on the effects of temporal hydrogen regulation in the scenario of 120 TWh/a export and 0\% climate change mitigation presented in the previous section, this section explores the temporal hydrogen regulation across the pathway ii.) \textit{Balanced exports and mitigation} by combining all three dimensions of domestic climate change mitigation, hydrogen export and temporal hydrogen regulation. Figure \ref{fig:expenses_real_120} shows the relative change of electricity and hydrogen cost of the \textit{balanced exports and mitigation} scenarios in dependence of temporal matching. 
-Across all displayed scenarios, temporal hydrogen regulation hedges domestic electricity consumers against rising prices. Depending on the domestic climate change mitigation and hydrogen export, hourly matching decreases the cost of electricity for domestic consumers by up to 31\%.
+%%% SELECTION
+Based on the effects of temporal hydrogen regulation in the scenario of 120 TWh/a export and 0\% climate change mitigation presented in the previous section, this section explores the temporal hydrogen regulation across all mitigation (0--100\%) and export (0-120 TWh/a) scenarios. We have grouped these scenarios into three illustrative mitigation-export pathways presenting various speeds of transformation, further elaborated in Figure \ref{fig:scenario-sel-120}:
+\begin{enumerate}
+    \item \textbf{Quick exports and slow \co mitigation},
+    \item \textbf{Balanced exports and \co mitigation} and
+    \item \textbf{Slow exports and quick \co mitigation}.
+\end{enumerate}
+%%% BRIDGE TO FIGURE
+Figure \ref{fig:expenses-relative-120} shows the relative change of electricity and hydrogen cost of all mitigation-export scenarios (grouped by speed of transformation) in dependence of temporal matching. 
 
-The scenarios of the \textit{balanced exports and mitigation} pathway in Figure \ref{fig:expenses_real_120} show that in only three mitigation-export combinations the annual or monthly matching decreases the cost for domestic electricity, whereas all other combinations of the \textit{Balanced exports and mitigation} pathway are only sensitive to the strictest -- hourly matching -- hydrogen regulation. 
+%%% FIGURE DESCRIPTION
 
-In only two scenarios, hourly matching regulation increases the hydrogen cost above 7\% compared to no temporal hydrogen regulation. This is the case for 0\% climate change mitigation and 1 and 20 TWh/a export scenarios.
+% Quick export
+The effects of temporal hydrogen regulation on domestic electricity prices are most dominant in the group \textit{Quick exports and slow \co mitigation}.
+In this group, the introduction of annual matching has already a striking effect, because the \textit{price spillover} observed in Figure \ref{fig:pdc-120-0} decreases (domestic) electricity prices. The \textit{price spillover} unfolds in fossil-dominated (hence low domestic climate change mitigation) systems, combined with high hydrogen exports providing a strong \textit{energy spillover} effect. In the most extreme cases, characterized by high exports and no domestic \co mitigation, the cost of electricity for domestic consumers reduces up to -55\%.
+This effect is even more pronounced at even higher export quantities, as observable in the sensitivity analysis carried out in Figure \ref{fig:expenses-relative-200}.
 
-The effects of temporal hydrogen regulation on domestic electricity prices are most dominant in high export and low climate change mitigation scenarios. 
-In these cases, the introduction of annual matching has already a striking effect, because the \textit{price spillover} observed in Figure \ref{fig:pdc-120-0} decreases (domestic) electricity prices. The \textit{price spillover} unfolds in fossil-dominated (hence low domestic climate change mitigation) systems, combined with high hydrogen exports providing a strong \textit{energy spillover} effect.
-See also Figure \ref{fig:expenses_all_200} for  scenarios following the \textit{quick exports and slow climate change mitigation} pathway in which the effect of temporal hydrogen regulation is even stronger.
+% Balanced
+In the group of \textit{Balanced exports and \co mitigation} the effect of temporal hydrogen regulation is less dominant.
+In only two scenarios, hourly matching regulation increases the hydrogen cost above 7\% (above 11\% across all groups) compared to no temporal hydrogen regulation. This is the case for 0\% climate change mitigation and 1 and 20 TWh/a export scenarios. 
+However, even in the \textit{Balanced exports and \co mitigation} group the benefit of temporal hydrogen regulation for domestic  consumers is substantial, reducing their cost of electricity up to -31\%. In only two mitigation-export scenarios the annual or monthly matching decreases the cost for domestic electricity, whereas all other combinations of the \textit{Balanced exports and \co mitigation} group are only sensitive to the strictest -- hourly matching -- hydrogen regulation. 
 
-In contrast, in the \textit{slow exports and quick climate change mitigation} scenarios only the hourly matching has observable effects, since the electricity system is already  dominated by renewable electricity and only hourly matching phases out the remaining fossil generation (s. Fig. \ref{fig:expenses_all_200}). The differentiation among the domestic climate change mitigation leads to these staged effects of temporal hydrogen regulation on domestic electricity cost.
+% Slow exports
+In the \textit{slow exports and quick \co mitigation} group, only the hourly matching has observable effects, since the electricity system is already dominated by renewable electricity and only hourly matching phases out the remaining fossil generation. Therefore, the impacts on the cost for domestic electricity consumers (-11\%) and hydrogen exporters (8\%) are moderate.
 
+%%% FIGURE/SECTION CONCLUSION
+Figure \ref{fig:expenses-relative-120} shows, that temporal hydrogen regulation hedges domestic electricity consumers against rising prices across all scenario groups.
+Putting the extreme scenarios of the \textit{Quick exports and slow \co mitigation} group aside (based on the assumption that export quantities above 80 TWh without domestic \co mitigation are unlikely), hourly matching decreases the cost of electricity for domestic consumers by up to 31\%. The cost for hydrogen exporters increase only slightly in the vast majority of all mitigation-export scenarios.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_120exp_three_scen.pdf}
-    \caption{Relative change of electricity and hydrogen cost and total system cost depending on the temporal hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low climate change mitigation. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen regulation regulates the welfare distribution between both groups.}
-    \label{fig:expenses_relative_120}
+    \caption{Relative change of electricity and hydrogen cost and depending on the temporal hydrogen regulation. Each line represents a single mitigation-export scenario, grouped into different speeds of transformation. Domestic electricity consumers profit across all export and mitigation scenarios but most in the group of slow export and quick \co mitigation scenarios. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen regulation regulates the welfare distribution between both groups. See Figure \ref{fig:expenses-relative-200} for the sensitivity of the export quantities.}
+    \label{fig:expenses-relative-120}
 \end{figure}
