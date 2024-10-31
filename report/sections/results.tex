@@ -15,8 +15,9 @@
         \label{fig:balances-ac-co2l20-120}
     \end{subfigure}
     \hfill
-    \caption{Electricity supply and demand at fixed export levels and increasing domestic climate change mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}). Increasing domestic climate change mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high domestic climate change mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen generation for other sectors.
+    \caption{Electricity supply and demand at fixed export levels and increasing domestic climate change mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}) with hourly temporal hydrogen regulation. Increasing domestic climate change mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high domestic climate change mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen generation for other sectors.
     At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as imposed by the temporal hydrogen regulation. 
+    See Figure \ref{fig:balances-ac-noreg} for electricity supply and demand if no hydrogen regulation is in place.
     }
     \label{fig:balances-ac}
 \end{figure*}
@@ -39,7 +40,7 @@ Additionally, the electricity demand for air heat pumps increases, supporting th
 \label{subsec:increase_h2}
 
 Here, we analyse the hydrogen export ramp up (dimension 2). The electricity supply at increasing hydrogen exports is displayed in Figure \ref{fig:balances-ac-co2l20-120}. The deployment of hydrogen exports requires a scale up of onshore wind and solar PV accordingly, as defined by the green hydrogen constraint outlined in \nameref{subsec:green_hydrogen_constraint}.
-Without the temporal hydrogen regulation, the additional electricity demand of hydrogen exports is covered by coal power plants and CCGT (by increasing the capacity factor of existing brownfield coal and CCGT capacities) and an expansion of open-cycle gas turbines (OCGT) installation and supply as pointed out in Figure \ref{fig:barplotscons}.
+Without the temporal hydrogen regulation, the additional electricity demand of hydrogen exports is covered by coal power plants and CCGT (by increasing the capacity factor of existing brownfield coal and CCGT capacities) and an expansion of open-cycle gas turbines (OCGT) installation and supply as pointed out in Figure \ref{fig:balances-ac-noreg}.
 The cost-optimal solution of the model shows, that increasing hydrogen exports do not necessarily require additional renewable capacities. Instead, the electricity demand for hydrogen electrolysis is covered by additional electricity supply from fossil generation. However, if the cost-optimal solution is constrained by the green hydrogen policy, an increase of hydrogen exports goes along with additional renewable electricity capacites as defined in the EU's delegated Act.
 In contrast to the exponential increase of electricity demand observable at increasing climate mitigation ambitions displayed in Figure \ref{fig:balances-ac-0exp-120}, the electricity demand increases linearly with the hydrogen export ambitions.
 
@@ -61,10 +62,10 @@ In contrast to the exponential increase of electricity demand observable at incr
     \end{subfigure}
     \hfill
     \caption{  
-    Figure \ref{fig:expense_ac_120} shows the effect of hydrogen exports on domestic electricity cost. Therefore, the effect of hydrogen exports is isolated by normalizing the costs to 1 TWh/a hydrogen export in each column. This approach allows for a vertical interpretation in Figure \ref{fig:expense_ac_120} only, displaying the effects of hydrogen exports (vertical) at a certain domestic \co mitigation level.
-    Figure \ref{fig:expense_h2_120} shows the effect of domestic \co mitigation on hydrogen export cost. Therefore, the effect of domestic \co mitigation is isolated by normalizing the costs to 0\% \co mitigation in each row. This approach allows for a horizontal interpretation in Figure \ref{fig:expense_h2_120} only, displaying the effects of domestic \co mitigation (horizontal) at a certain hydrogen export quantity.
+    Figure \ref{fig:expense_ac_120} shows the effect of hydrogen exports on domestic electricity cost with hourly hydrogen regulation. Therefore, the effect of hydrogen exports is isolated by normalizing the costs to 1 TWh/a hydrogen export in each column. This approach allows for a vertical interpretation in Figure \ref{fig:expense_ac_120} only, displaying the effects of hydrogen exports (vertical) at a certain domestic \co mitigation level.
+    Figure \ref{fig:expense_h2_120} shows the effect of domestic \co mitigation on hydrogen export cost with hourly hydrogen regulation. Therefore, the effect of domestic \co mitigation is isolated by normalizing the costs to 0\% \co mitigation in each row. This approach allows for a horizontal interpretation in Figure \ref{fig:expense_h2_120} only, displaying the effects of domestic \co mitigation (horizontal) at a certain hydrogen export quantity.
     Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic climate change mitigation and high exports. Hydrogen exporters profit from domestic climate change mitigation at medium mitigation efforts.
-    See Figure \ref{fig:expenses_abs_120} for absolute cost for domestic electricity consumers and hydrogen exporters.
+    See Figure \ref{fig:expenses_abs_120} for absolute cost for domestic electricity consumers and hydrogen exporters and Figure \ref{fig:expenses_default_120-noreg} for the interplay of hydrogen exports and domestic \co mitigation if no hydrogen regulation is in place.
     }
     \label{fig:expenses_default_120}
 \end{figure*}
