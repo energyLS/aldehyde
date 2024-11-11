@@ -13,14 +13,12 @@ To obtain the annual energy demand, we use the workflow presented by Abdel-Khale
 In a second step, the annual and national energy demand is distributed according to the production sites of Morocco.
 In case of subsectors where no spatially resolved production sites are available (e.g. paper industry), the demand is distributed according to GDP.
 Third, the annual but locationally resolved energy demand is converted to hourly demands. In this study, a constant hourly demand of the industry and agriculture sector is assumed whereas residential, services and transport are temporally resolved based on time series \cite{Brown2018a,Neumann2023,Abdel-Khalek2024}. 
-The resulting temporal and spatial energy demands of the sectors:
-\begin{itemize}
-    \item Residential,
-    \item Services,
-    \item Industry,
-    \item Transport (road, rail, aviation and navigation) and
-    \item Agriculture
-\end{itemize}
+The resulting temporal and spatial energy demands of the sectors
+(i) residential,
+(ii) services,
+(iii) industry,
+(iv) transport (road, rail, aviation and navigation) and
+(v) agriculture
 are integrated in the sector coupled energy model, including the energy carriers electricity, hydrogen, natural gas, biomass, oil, and heat, as well as carbon dioxide in the form of emissions and feed-stock for the synthesis of other carriers (s. Fig. \ref{fig:carbon-mgmt}). 
 The domestic energy services per sector remain constant throughout the scenarios presented in the \nameref{sec:intro}, regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, while energy services (e.g., demand for transportation or heating) are fixed, the primary and final energy consumption are subject to \co mitigation targets. To reflect the impact of increasing shares of BEVs in the Moroccan energy system, the share of BEVs is linked to emission reduction ambitions (s. Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% domestic \co mitigation in accordance with Rim et al.\cite{Rim2021}.
 In the case of low domestic \co mitigation, a low BEV share results in a high fuel demand for e.g. Internal Combustion Engine Cars, as observable in Figure \ref{fig:tsc-120-0}. This reflects a constant energy service demand (transportation) while the primary energy is subject to \co mitigation.
@@ -78,19 +76,15 @@ However, the challenge of brine disposal presents environmental concerns due to 
 
 
 A key constraint on the model is that the hydrogen exported from Morocco requires to meet sustainability criteria ("green" hydrogen). A variety of studies looks into various dimensions (temporal, geographical, electricity origin) of green hydrogen and their trade-offs \cite{Brauer2022, Ruhnau2022, Zeyen2024}.
-Envisioning hydrogen offtakers from the European Union, the green hydrogen constraint applied in this study aligns with the \emph{Delegated regulation on Union methodology for RFNBOs} of the European Commission \cite{Commission2023} defining green hydrogen  based on the following criteria:
+Envisioning hydrogen offtakers from the European Union, the green hydrogen constraint applied in this study aligns with the \emph{Delegated regulation on Union methodology for RFNBOs} of the European Commission \cite{Commission2023} defining green hydrogen based on the following criteria:
+(i) additionality: The electricity demand of electrolysers must be provided by additional RE power generation (less than 3 years before the installation of electrolysers, from 1.1.2028 onwards), and
+(ii) temporal correlation: Monthly matching until 31.12.2029, and hourly matching from 1.1.2030 onwards, and
+(iii) geographical correlation.
 
-\begin{enumerate}
-    \item Additionality: The electricity demand of electrolysers must be provided by additional RE power generation (less than 3 years before the installation of electrolysers, from 1.1.2028 onwards),
-    \item Temporal correlation: Monthly matching until 31.12.2029, and hourly matching from 1.1.2030 onwards and
-    \item Geographical correlation
-\end{enumerate}
-which are required for Power Purchase Agreements (PPA) with RE-installation. Apart from the PPAs, the delegated act also considers the possibility of:
-\begin{itemize}
-    \item direct connection of RE and electrolysers,
-    \item high share of RE in power mix ($>$ 90\%) or the
-    \item avoidance of RE curtailment
-\end{itemize}
+Those criteria are required for Power Purchase Agreements (PPA) with RE-installation. Apart from the PPAs, the delegated act also considers the possibility of:
+(i) direct connection of RE and electrolysers, or
+(ii) high share of RE in power mix ($>$ 90\%) or the
+(iii) avoidance of RE curtailment
 to qualify as "green" hydrogen. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study. The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Morocco's domestic electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study presented in the \nameref{sec:intro}).
 
 
