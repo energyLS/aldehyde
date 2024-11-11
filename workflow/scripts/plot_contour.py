@@ -85,7 +85,9 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
         # (complement option 1 or 2)
         vmin = -max_abs_value
         vmax = max_abs_value
-        cmap = plt.cm.RdYlGn_r
+        # cmap = plt.cm.RdYlGn_r
+        # cmap = plt.cm.RdBu_r
+        cmap = plt.cm.PRGn_r
 
         # Option 3: Full range and white at 0
         # max_value = np.max(data_reshaped[plottype])
