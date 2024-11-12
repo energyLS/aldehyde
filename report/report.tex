@@ -16,7 +16,7 @@
 %     bottom=35mm,
 % }
 
-
+\usepackage{xr}
 \usepackage{amsmath}
 \usepackage{bbold}
 \usepackage{graphicx}
@@ -105,6 +105,8 @@
     {../results/\runstandard/},
 }
 
+% Definition of external document for xr package
+\externaldocument{supplementary}
 
 \begin{document}
 
@@ -366,51 +368,6 @@ Writing - review \& editing.
 
 The authors declare no competing interests.
 
-
+\end{document}
 % supplementary information
 
-\newpage
-\onecolumn
-
-\makeatletter
-\renewcommand \thesection{S\@arabic\c@section}
-\renewcommand\thetable{S\@arabic\c@table}
-\renewcommand \thefigure{S\@arabic\c@figure}
-\makeatother
-\renewcommand{\citenumfont}[1]{S#1}
-\setcounter{equation}{0}
-\setcounter{figure}{0}
-\setcounter{table}{0}
-\setcounter{section}{0}
-
-
-\section*{Supplementary Information}
-\label{sec:si}
-
-\input{sections/supplementary-mathematical.tex}
-
-\input{sections/supplementary-overview.tex}
-
-\input{sections/supplementary-demand.tex}
-\input{sections/supplementary-supply.tex}
-
-\input{sections/supplementary-absolutecost.tex}
-\input{sections/supplementary-balances.tex}
-
-\input{sections/supplementary-greenhydrogen.tex}
-\input{sections/supplementary-electrolysis.tex}
-
-\input{sections/supplementary-scenarioselec.tex}
-
-\input{sections/supplementary-relchange.tex}
-
-\input{sections/supplementary-carbonmgmt.tex}
-\input{sections/supplementary-operation.tex}
-
-
-\addcontentsline{toc}{section}{Supplementary References}
-\renewcommand{\ttdefault}{\sfdefault}
-
-% \bibliographyS{references_mylibrary}
-
-\end{document}

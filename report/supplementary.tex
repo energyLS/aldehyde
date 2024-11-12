@@ -1,0 +1,186 @@
+\documentclass[5p,numafflabel]{elsarticle}
+
+\journal{Nature Communications}
+
+\bibliographystyle{naturemag}
+\biboptions{numbers,sort&compress,super}
+
+
+% format hacks
+\usepackage{libertine}
+\usepackage{libertinust1math}
+% \usepackage{geometry}
+% \geometry{
+%     top=30mm,
+%     bottom=35mm,
+% }
+
+
+\usepackage{amsmath}
+\usepackage{bbold}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{xfrac}
+\usepackage{tabularx}
+\usepackage{bm}
+\usepackage{subcaption}
+\usepackage{blindtext}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{pdflscape}
+\usepackage[acronym]{glossaries}
+\usepackage[export]{adjustbox}
+\usepackage[version=4]{mhchem}
+\usepackage[colorlinks]{hyperref}
+\usepackage[parfill]{parskip}
+\usepackage[nameinlink,sort&compress,capitalise,noabbrev]{cleveref}
+\usepackage[leftcaption,raggedright]{sidecap}
+\usepackage[prependcaption,textsize=footnotesize]{todonotes}
+
+\usepackage{lineno}
+
+\usepackage{siunitx}
+\sisetup{
+	range-units = single,
+	per-mode = symbol
+}
+\DeclareSIUnit\year{a}
+\DeclareSIUnit{\tco}{t_{\ce{CO2}}}
+\DeclareSIUnit{\sieuro}{\mbox{\euro}}
+
+\usepackage{lipsum}
+
+\usepackage[resetlabels,labeled]{multibib}
+% \newcites{S}{Supplementary References}
+% \bibliographystyleS{elsarticle-num}
+
+
+% \usepackage[
+% 	type={CC},
+% 	modifier={by},
+% 	version={4.0},
+% ]{doclicense}
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\newcommand{\R}{\mathbb{R} }
+\newcommand{\B}{\mathbb{B} }
+\newcommand{\N}{\mathbb{N} }
+\newcommand{\co}{\ce{CO2}~}
+
+\def\el{${}_{\textrm{el}}$}
+\def\th{${}_{\textrm{th}}$}
+\def\deg{${}^\circ$}
+
+\def\co{CO${}_2${\:}}
+\def\coe{CO${}_2$e}
+
+\def\h{H${}_2${\:}}
+
+% Run of standard model run
+\def\runstandard{decr_13_3H_ws} % hourly
+
+% Run of battery sensitivity
+\def\sensbattery{nresults_full_3H_nobat_ws} % old
+
+% Run of temporal hydrogen regulation sensitivity
+\def\runsensnogreenhy{decr_14_3H_ws}
+
+
+% Scenario of heatmaps
+\def\heatmaplowred{elec_s_4_ec_lc3.0_Co2L0.80_3H_2030_0.13_DF_40export}
+\def\heatmapmedred{elec_s_4_ec_lc3.0_Co2L0.30_3H_2030_0.13_DF_40export}
+\def\heatmaphighred{elec_s_4_ec_lc3.0_Co2L0.10_3H_2030_0.13_DF_40export}
+
+
+\graphicspath{
+    {../results/\runstandard/},
+}
+
+
+\begin{document}
+
+\begin{frontmatter}
+
+	\title{\textbf{Supplementary Information} \\ The impact of temporal hydrogen regulation on hydrogen exporters and their domestic energy transition}
+
+    
+	\author[oth,tub,lead]{Leon~Schumm\,\corref{correspondingauthor}}
+	%\ead{leon1.schumm@oth-regensburg.de}
+	\author[ieg,alu]{Hazem~Abdel-Khalek}
+	\author[tub]{Tom Brown}
+	\author[pik]{Falko Ueckerdt}
+	\author[oth]{Michael Sterner}
+	\author[uoe]{Maximilian~Parzen}
+	\author[unipi]{Davide~Fioriti}
+
+	\cortext[correspondingauthor]{Correspondence: leon1.schumm@oth-regensburg.de}
+
+	\address[oth]{Research Center on Energy Transmission and Storage (FENES), Faculty of Electrical and Information Technology, University of Applied Sciences (OTH) Regensburg, Seybothstr. 2, 93053 Regensburg, Germany}
+	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology, Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
+	\address[ieg]{Fraunhofer Research Institution for Energy Infrastructures and Geothermal Systems IEG, Gulbener Straße 23, 03046 Cottbus, Germany}
+	\address[alu]{Albert-Ludwigs Universität Freiburg, Faculty of Environment and Natural Resources, Tennenbacher Str. 4, 79106 Freiburg im Breisgau, Germany}
+	\address[pik]{Potsdam Institute for Climate Impact Research, Telegrafenberg, 14473 Potsdam, Germany}
+	\address[uoe]{University of Edinburgh, Institute for Energy Systems, EH9 3DW Edinburgh, United Kingdom}
+	\address[unipi]{University of Pisa, Department of Energy Systems, Territory and Construction Engineering, Largo Lucio Lazzarino, 56122 Pisa, Italy}
+	\address[lead]{Lead contact}
+
+\end{frontmatter}
+
+
+% supplementary information
+
+
+\newpage
+\onecolumn
+
+\makeatletter
+\renewcommand \thesection{S\@arabic\c@section}
+\renewcommand\thetable{S\@arabic\c@table}
+\renewcommand \thefigure{S\@arabic\c@figure}
+\makeatother
+\renewcommand{\citenumfont}[1]{S#1}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{section}{0}
+
+
+\section*{Supplementary Information}
+\label{sec:si}
+
+\input{sections/supplementary-mathematical.tex}
+
+\input{sections/supplementary-overview.tex}
+
+\input{sections/supplementary-demand.tex}
+\input{sections/supplementary-supply.tex}
+
+\input{sections/supplementary-absolutecost.tex}
+\input{sections/supplementary-balances.tex}
+
+\input{sections/supplementary-greenhydrogen.tex}
+\input{sections/supplementary-electrolysis.tex}
+
+\input{sections/supplementary-scenarioselec.tex}
+
+\input{sections/supplementary-relchange.tex}
+
+\input{sections/supplementary-carbonmgmt.tex}
+\input{sections/supplementary-operation.tex}
+
+
+\addcontentsline{toc}{section}{Supplementary References}
+\renewcommand{\ttdefault}{\sfdefault}
+
+% \bibliographyS{references_mylibrary}
+
+
+\end{document}
