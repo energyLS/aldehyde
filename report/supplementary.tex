@@ -16,6 +16,7 @@
 % }
 
 
+\usepackage{xr}
 \usepackage{amsmath}
 \usepackage{bbold}
 \usepackage{graphicx}
@@ -104,6 +105,8 @@
     {../results/\runstandard/},
 }
 
+% Definition of external document for xr package
+\externaldocument{report}
 
 \begin{document}
 
@@ -180,7 +183,7 @@
 \addcontentsline{toc}{section}{Supplementary References}
 \renewcommand{\ttdefault}{\sfdefault}
 
-% \bibliographyS{references_mylibrary}
+\bibliography{references_mylibrary}
 
 
 \end{document}
