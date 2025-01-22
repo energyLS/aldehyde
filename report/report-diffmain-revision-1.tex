@@ -1,7 +1,7 @@
 \documentclass[5p,numafflabel]{elsarticle}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL ./latexdiff-vc-main/report.tex         Wed Oct  2 12:05:03 2024
-%DIF ADD ./latexdiff-vc-revision-1/report.tex   Thu Nov 14 11:09:16 2024
+%DIF ADD ./latexdiff-vc-revision-1/report.tex   Wed Jan 22 11:16:00 2025
 
 \journal{Nature Communications}
 
@@ -426,8 +426,8 @@ A spatial resolution of 14 nodes represents the geographical heterogeneity of RE
 
 %DIF >  Forth: Task
 \DIFadd{Here, we show the substantial co-benefits of domestic carbon dioxide mitigation and hydrogen exports, whereby exports can reduce costs }\DIFaddend for domestic electricity consumers \DIFdelbegin \DIFdel{and hydrogen exporters, with emphazised consideration of temporal hydrogen regulation. These results are contextualized along policy recommendations in the }%DIFDELCMD < \nameref{sec:discussion}%%%
-\DIFdel{.
-}%DIFDELCMD < \nameref{sec:methods} %%%
+\DIFdelend \DIFaddbegin \DIFadd{while mitigation reduces costs for hydrogen exporters}\DIFaddend .
+\DIFdelbegin %DIFDELCMD < \nameref{sec:methods} %%%
 \DIFdel{presents the applied sector-coupled energy model and scenario dimensions required to expose the export-mitigation-regulation nexus.
 }%DIFDELCMD < 
 
@@ -451,8 +451,7 @@ A spatial resolution of 14 nodes represents the geographical heterogeneity of RE
 %DIF <  \subsection*{Moroccan Hydrogen Strategy}
 %DIF <  \label{subsec:strategy}
 \DIFdel{Figure \ref{fig:mar_hydrogen_strategy} shows the hydrogen strategy of Morocco, including national and export demands.
-By 2030, the total hydrogen demand adds up to 13.9 TWh/a and ramps up to 67.9 TWh/a in 2040 }\DIFdelend \DIFaddbegin \DIFadd{while mitigation reduces costs for hydrogen exporters.
-Under various hydrogen export volumes, climate targets }\DIFaddend and \DIFdelbegin \DIFdel{153.9 TWh/a in 2050, 
+By 2030, the total hydrogen demand adds up to 13.9 TWh/a and ramps up to 67.9 TWh/a in 2040 }\DIFdelend \DIFaddbegin \DIFadd{Under various hydrogen export volumes, climate targets }\DIFaddend and \DIFdelbegin \DIFdel{153.9 TWh/a in 2050, 
 clearly listing higher demands for export than for domestic use. The hydrogen generation is backed by 5.2 GW of RE in 2030, 23 GW in 2040, and 57.4 GW in 2050 in the export sector.
 To cover the national demand of hydrogen, a Renewable Energy deployment of 1.6 GW in 2030, 7.0 GW in 2040 and 10.3 GW in 2050 is planned in Morocco's Hydrogen Strategy\mbox{%DIFAUXCMD
 \cite{MarHyStrat2021}}\hspace{0pt}%DIFAUXCMD
@@ -1103,7 +1102,7 @@ In this study, \DIFdelbegin \textit{\DIFdel{powerplantmatching}} %DIFAUXCMD
 \DIFdelend \DIFaddbegin \DIFadd{powerplantmatching }\DIFaddend is applied to Morocco delivering the conventional power plants.
 
 \subsubsection*{Electricity networks and gas pipelines}
-The electricity network is based on the PyPSA-Earth workflow using OpenStreetMap2022 data \cite{OpenStreetMap2022} as presented in Parzen et al.\cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build\cite{Parzen2023}. 
+The electricity network is based on the PyPSA-Earth workflow using \DIFdelbegin \DIFdel{OpenStreetMap2022 }\DIFdelend \DIFaddbegin \DIFadd{OpenStreetMap }\DIFaddend data \cite{OpenStreetMap2022} as presented in Parzen et al.\cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build\cite{Parzen2023}. 
 The brownfield gas pipeline infrastructure of Morocco is not considered in this study. The Maghreb-Europe pipeline passing through Morocco is the only pipeline in operation but currently subject to political disputes \cite{Rachidi2022}. Further proposed projects are excluded due to  miniscule capacity compared to Morocco's energy system (Tendrara LNG Terminal, 100 million cubic meters per year or uncertain commissioning dates (Nigeria-Morocco Pipeline, start year 2046 \cite{GEM2023b}).
 
 
