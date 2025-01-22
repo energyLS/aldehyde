@@ -1,7 +1,7 @@
 \documentclass[5p,numafflabel]{elsarticle}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL ./latexdiff-vc-main/report.tex         Wed Oct  2 12:05:03 2024
-%DIF ADD ./latexdiff-vc-revision-1/report.tex   Tue Nov 12 14:34:09 2024
+%DIF ADD ./latexdiff-vc-revision-1/report.tex   Thu Nov 14 11:09:16 2024
 
 \journal{Nature Communications}
 
@@ -27,7 +27,11 @@
 %     bottom=35mm,
 % }
 
-
+%DIF 19c19
+%DIF < 
+%DIF -------
+\usepackage{xr} %DIF > 
+%DIF -------
 \usepackage{amsmath}
 \usepackage{bbold}
 \usepackage{graphicx}
@@ -95,11 +99,11 @@
 
 \def\co{CO${}_2${\:}}
 \def\coe{CO${}_2$e}
-%DIF 84a85-86
- %DIF > 
-\def\h{H${}_2${\:}} %DIF > 
-%DIF -------
 
+%DIF 85a86-87
+\def\h{H${}_2${\:}} %DIF > 
+ %DIF > 
+%DIF -------
 % Run of standard model run
 \def\runstandard{decr_13_3H_ws} % hourly
 
@@ -115,10 +119,20 @@
 \def\heatmapmedred{elec_s_4_ec_lc3.0_Co2L0.30_3H_2030_0.13_DF_40export}
 \def\heatmaphighred{elec_s_4_ec_lc3.0_Co2L0.10_3H_2030_0.13_DF_40export}
 
+%DIF 100a103-106
+%  Graphicspath not used atm, to support latex-flatten package %DIF > 
+% \graphicspath{ %DIF > 
+%     {../results/\runstandard/}, %DIF > 
+% } %DIF > 
+%DIF -------
 
-\graphicspath{
-    {../results/\runstandard/},
-}
+%DIF < \graphicspath{
+%DIF -------
+ %DIF > 
+%DIF <     {../results/\runstandard/},
+% Definition of external document for xr package %DIF > 
+%DIF < }
+\externaldocument{supplementary} %DIF > 
 %DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
 %DIF UNDERLINE PREAMBLE %DIF PREAMBLE
 \RequirePackage[normalem]{ulem} %DIF PREAMBLE
@@ -300,10 +314,10 @@ A growing number of countries are investigating green hydrogen production and us
 }\DIFaddend .
 Simultaneously, several countries are positioning themselves as potential exporters of hydrogen and Power-to-X products, discovering an opportunity to leverage their renewable energy resources and technological advances \DIFdelbegin \DIFdel{. %DIF <  [TBD: add examples]
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
-\cite{IEA2024}}\hspace{0pt}%DIFAUXCMD
+\cite{InternationalEnergyAgency2024}}\hspace{0pt}%DIFAUXCMD
 .
 }\DIFaddend These countries are expected to play a substantial role in the global energy market by supplying clean hydrogen and therefore contributing to global decarbonization efforts\DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
-\cite{IEA2024}}\hspace{0pt}%DIFAUXCMD
+\cite{InternationalEnergyAgency2024}}\hspace{0pt}%DIFAUXCMD
 }\DIFaddend . However, pursuing both (on-grid) hydrogen exports and national energy transition raises questions on welfare redistribution, prices and co-benefits that require in-depth analysis, additionally shining a light on the role of temporal hydrogen regulation.
 
 % Second: Need
@@ -381,7 +395,7 @@ Additionally, we present a broad scenario vector, sweeping along \DIFdelbegin \D
 \textbf{\DIFdel{Temporal hydrogen regulation}}%DIFAUXCMD
 \DIFdelend \DIFaddbegin \DIFadd{(iii) Temporal hydrogen regulation}\DIFaddend : The temporal matching (of additional renewable electricity and the electrolyser electricity demand) varies between: no regulation, annual, monthly and hourly matching. \DIFdelbegin %DIFDELCMD < \end{enumerate}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{The temporal matching regulation is implemented via a mimimum constraint, stating that the renewable electricity generation is required to be equal or higher than the electricity demand for electrolytic hydrogen within every year (annual matching), month (monthly matching) or hour (hourly matching). 
+\DIFdelend \DIFaddbegin \DIFadd{The temporal matching regulation is implemented via a minimum constraint, stating that the renewable electricity generation is required to be equal or higher than the electricity demand for electrolytic hydrogen within every year (annual matching), month (monthly matching) or hour (hourly matching). 
 We use the term hourly matching despite our three-hourly model because the principle of matching electricity demand for electrolysis and renewable electricity supply at each timestep is the same. This term effectively captures the mechanism, regardless of the model’s resolution. In the no regulation case, no such minimum constraint is applied.
 }
 
@@ -467,65 +481,87 @@ Limited resources (e.g. land availability, renewable potentials, workforce, capi
 We use costs referring to model inputs and system costs, while prices denote endogenous shadow prices (representing idealized market prices) derived from the model. Payments made by consumers (calculated as energy price times energy volume) are described as (consumer) costs or, alternatively, (consumer) payments to highlight their financial impact}\DIFaddend .
 
 
-\begin{figure}
-    \centering
-    \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{../graphics_general/policy/mar_hydrogen_strategy_semistacked.pdf}
+
+
+
+\DIFdelbegin %DIFDELCMD < \begin{figure}
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=\linewidth]{../graphics_general/policy/mar_hydrogen_strategy_semistacked.pdf}
 %DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.7\linewidth]{../graphics_general/policy/mar_hydrogen_strategy_semistacked.pdf}
-    \DIFaddendFL \caption{Hydrogen Strategy of Morocco \cite{MarHyStrat2021}. The export volume rises up to 115~TWh/a in 2050, the \DIFdelbeginFL \DIFdelFL{national }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{domestic }\DIFaddendFL demand up to 40 TWh/a in 2050. \DIFaddbeginFL \DIFaddFL{The largest share of domestic demand is in the industry sector. The exports are dominated by hydrogen, followed by synthetic fuels.}\DIFaddendFL }
-    \label{fig:mar_hydrogen_strategy}
-\end{figure}
-
-
-\begin{figure}[h!]
-    \centering
-    \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{../graphics_general/morocco_em.pdf}
-%DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.7\linewidth]{../graphics_general/morocco_em.pdf}
-    \DIFaddendFL \caption{Morocco's historical \co and greenhouse gas emissions (GHG). While emissions are rising, emission targets are in the range between 75 Mt\coe\ (conditional) and 115 Mt\coe\ (unconditional)\DIFaddbeginFL \DIFaddFL{\mbox{%DIFAUXCMD
-\cite{CAT2021}}\hspace{0pt}%DIFAUXCMD
-}\DIFaddendFL .}
-    \label{fig:morocco_em}
-\end{figure}
-
-
-%DIF >  \section*{Hydrogen export strategy and climate targets}
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Hydrogen Strategy of Morocco \mbox{%DIFAUXCMD
+\cite{MarHyStrat2021}}\hspace{0pt}%DIFAUXCMD
+. The export volume rises up to 115~TWh/a in 2050, the national demand up to 40 TWh/a in 2050.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:mar_hydrogen_strategy}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < %%%
+\DIFdelend %DIF >  \section*{Hydrogen export strategy and climate targets}
 %DIF > \label{sec:policyandtargets}
-\DIFaddbegin 
 
-%DIF >  \input{sections/strategies.tex}
+\DIFdelbegin %DIFDELCMD < \begin{figure}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=\linewidth]{../graphics_general/morocco_em.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Morocco's historical }%DIFDELCMD < \co %%%
+\DIFdelFL{and greenhouse gas emissions (GHG). While emissions are rising, emission targets are in the range between 75 Mt}%DIFDELCMD < \coe%%%
+\DIFdelFL{\ (conditional) and 115 Mt}%DIFDELCMD < \coe%%%
+\DIFdelFL{\ (unconditional).}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:morocco_em}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < %%%
+\DIFdelend %DIF >  \input{sections/strategies.tex}
 
 
 
-\DIFaddend \section*{Results}
+\section*{Results}
 \label{sec:results}
 
 
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/120/graphs/balances-AC.pdf}
-        \caption{Fixed (1 TWh) export and 0--100\% domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation}
-        \label{fig:balances-ac-0exp-120}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/120/graphs/balances-AC.pdf}
-        \caption{Fixed (0\%) domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation and 1--120 TWh/a export}
-        \label{fig:balances-ac-co2l20-120}
-    \end{subfigure}
-    \hfill
-    \caption{Electricity supply and demand at fixed export levels and increasing domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}) \DIFaddbeginFL \DIFaddFL{with hourly temporal hydrogen regulation}\DIFaddendFL . Increasing domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation first phases out carbon-intensive coal generation in favor of \DIFaddbeginFL \DIFaddFL{combined-cycle gas turbines (}\DIFaddendFL CCGT\DIFaddbeginFL \DIFaddFL{)}\DIFaddendFL , at medium to high domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen \DIFaddbeginFL \DIFaddFL{(}{\DIFaddFL{H${}_2$}{}}\DIFaddFL{) }\DIFaddendFL generation for other sectors.
-    At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar \DIFaddbeginFL \DIFaddFL{photovoltaics (}\DIFaddendFL PV\DIFaddbeginFL \DIFaddFL{)}\DIFaddendFL , as imposed by the temporal hydrogen regulation. 
-    \DIFaddbeginFL \DIFaddFL{See Figure \ref{fig:balances-ac-noreg} for electricity supply and demand if no hydrogen regulation is in place and Figure \ref{fig:balances-ac-200} for hydrogen exports up to 200 TWh/a.
-    }\DIFaddendFL }
-    \label{fig:balances-ac}
-\end{figure*}
 
 
-%DIF >  \subsection*{Domestic \co mitigation increases the domestic electricity demand}
+
+\DIFdelbegin %DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/120/graphs/balances-AC.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Fixed (1 TWh) export and 0--100\% domestic climate change mitigation}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances-ac-0exp-120}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/120/graphs/balances-AC.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Fixed (0\%) domestic climate change mitigation and 1--120 TWh/a export}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances-ac-co2l20-120}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity supply and demand at fixed export levels and increasing domestic climate change mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}). Increasing domestic climate change mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high domestic climate change mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen generation for other sectors.
+    At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as imposed by the temporal hydrogen regulation. 
+    }}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances-ac}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend %DIF >  \subsection*{Domestic \co mitigation increases the domestic electricity demand}
 \subsection*{\DIFdelbegin \DIFdel{Domestic climate change }\DIFdelend \DIFaddbegin \DIFadd{Impacts of domestic }\co \DIFaddend mitigation \DIFdelbegin \DIFdel{increases }\DIFdelend \DIFaddbegin \DIFadd{on }\DIFaddend the \DIFdelbegin \DIFdel{domestic }\DIFdelend electricity \DIFdelbegin \DIFdel{demand}\DIFdelend \DIFaddbegin \DIFadd{system}\DIFaddend }
 \label{subsec:increase_limit}
 First of all, we investigate the supply and demand of Morocco's electricity system depending on domestic \DIFdelbegin \DIFdel{climate change }\DIFdelend \DIFaddbegin \co \DIFaddend mitigation (dimension 1). Figure \ref{fig:balances-ac-0exp-120} depicts the supply and demand of the electricity system at increasing climate mitigation ambitions from 0\% to 100\%. At low climate ambitions, the electricity demand is mainly covered by coal power, existing (brownfield) capacities of onshore wind, hydro, and combined-cycle gas turbines (CCGT) play only a minor role. 
@@ -550,39 +586,47 @@ The cost-optimal solution of the model shows, that increasing hydrogen exports d
 In contrast to the exponential increase of electricity demand observable at increasing climate mitigation ambitions displayed in Figure \ref{fig:balances-ac-0exp-120}, the electricity demand increases linearly with the hydrogen export ambitions.
 
 
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120-PATH.pdf}
-%DIFDELCMD <         %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120.pdf}
-        \DIFaddendFL \caption{Relative cost of electricity for domestic customers (normalized to 1 TWh/a hydrogen export)}
-        \label{fig:expense_ac_120}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120-PATH.pdf}
-%DIFDELCMD <         %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120.pdf}
-        \DIFaddendFL \caption{Relative cost of hydrogen for exporters (normalized to 0\% domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation)}
-        \label{fig:expense_h2_120}
-    \end{subfigure}
-    \hfill
-    \caption{
-    \DIFdelbeginFL \DIFdelFL{Cost for }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{The effects of hydrogen exports on }\DIFaddendFL domestic electricity consumers \DIFdelbeginFL \DIFdelFL{(\ref{fig:expense_ac_120}) }\DIFdelendFL and \DIFaddbeginFL \DIFaddFL{domestic }\co \DIFaddFL{mitigation on }\DIFaddendFL hydrogen exporters\DIFaddbeginFL \DIFaddFL{.
-    Figure \ref{fig:expense_ac_120} shows the effect of hydrogen }\DIFaddendFL (\DIFdelbeginFL \DIFdelFL{\ref{fig:expense_h2_120}}\DIFdelendFL \DIFaddbeginFL {\DIFaddFL{H${}_2$}{}}\DIFaddendFL ) \DIFaddbeginFL \DIFaddFL{exports on domestic electricity cost with hourly hydrogen regulation. Therefore}\DIFaddendFL , \DIFdelbeginFL \DIFdelFL{normalized to }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{the effect of hydrogen exports is isolated by normalizing the }\DIFaddendFL costs \DIFdelbeginFL \DIFdelFL{at }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{to }\DIFaddendFL 1 TWh/a hydrogen export \DIFdelbeginFL \DIFdelFL{(}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{in each column. This approach allows for a vertical interpretation in Figure }\DIFaddendFL \ref{fig:expense_ac_120} \DIFaddbeginFL \DIFaddFL{only, displaying the effects of hydrogen exports (vertical}\DIFaddendFL ) \DIFdelbeginFL \DIFdelFL{and
-    }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{at a certain domestic }\co \DIFaddFL{mitigation level.
-    Figure \ref{fig:expense_h2_120} shows the effect of domestic }\co \DIFaddFL{mitigation on hydrogen export cost with hourly hydrogen regulation. Therefore, the effect of domestic }\co \DIFaddFL{mitigation is isolated by normalizing the costs }\DIFaddendFL to 0\% \co \DIFdelbeginFL \DIFdelFL{reduction (\ref{fig:expense_h2_120})
-    at }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{mitigation in }\DIFaddendFL each \DIFaddbeginFL \DIFaddFL{row. This approach allows for a horizontal interpretation in Figure \ref{fig:expense_h2_120} only, displaying the effects of }\DIFaddendFL domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation \DIFdelbeginFL \DIFdelFL{level}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{(horizontal) at a certain hydrogen export quantity}\DIFaddendFL .
-    Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation and high exports. Hydrogen exporters profit from domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation at medium mitigation efforts.
-    \DIFdelbeginFL \DIFdelFL{Both (\ref{fig:expense_ac_120}) and (\ref{fig:expense_h2_120}) include possible pathways of i) quick exports }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{See Figure \ref{fig:expenses_abs_120} for absolute cost for domestic electricity consumers }\DIFaddendFL and \DIFdelbeginFL \DIFdelFL{slow climate change mitigation}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{hydrogen exporters}\DIFaddendFL , \DIFdelbeginFL \DIFdelFL{ii) balanced }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Figure \ref{fig:expenses_default_120-noreg} for the interplay of hydrogen }\DIFaddendFL exports and \DIFaddbeginFL \DIFaddFL{domestic }\co \DIFaddendFL mitigation \DIFaddbeginFL \DIFaddFL{if no hydrogen regulation is in place }\DIFaddendFL and \DIFdelbeginFL \DIFdelFL{iii) slow }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Figure \ref{fig:expenses_default_200} for hydrogen }\DIFaddendFL exports \DIFdelbeginFL \DIFdelFL{and quick climate change mitigation. Years are illustrative}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{up to 200 TWh/a}\DIFaddendFL .
-    }
-    \label{fig:expenses_default_120}
-\end{figure*}
 
-%DIF >  \subsection*{Domestic \co mitigation and hydrogen export show co-benefits}
+
+\DIFdelbegin %DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120-PATH.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Relative cost of electricity for domestic customers (normalized to 1 TWh/a hydrogen export)}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expense_ac_120}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120-PATH.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Relative cost of hydrogen for exporters (normalized to 0\% domestic climate change mitigation)}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expense_h2_120}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Cost for domestic electricity consumers (\ref{fig:expense_ac_120}) and hydrogen exporters (\ref{fig:expense_h2_120}),
+    normalized to costs at 1 TWh/a hydrogen export (\ref{fig:expense_ac_120}) and
+    to 0\% }%DIFDELCMD < \co %%%
+\DIFdelFL{reduction (\ref{fig:expense_h2_120})
+    at each domestic climate change mitigation level. Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic climate change mitigation and high exports. Hydrogen exporters profit from domestic climate change mitigation at medium mitigation efforts. Both (\ref{fig:expense_ac_120}) and (\ref{fig:expense_h2_120}) include possible pathways of i) quick exports and slow climate change mitigation, ii) balanced exports and mitigation and iii) slow exports and quick climate change mitigation. Years are illustrative.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses_default_120}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend %DIF >  \subsection*{Domestic \co mitigation and hydrogen export show co-benefits}
 \subsection*{\DIFdelbegin \DIFdel{Domestic climate change }\DIFdelend \DIFaddbegin \DIFadd{Co-benefits of domestic }\co \DIFaddend mitigation and hydrogen \DIFdelbegin \DIFdel{export show co-benefits}\DIFdelend \DIFaddbegin \DIFadd{exports}\DIFaddend }
 \label{subsec:benefits}
 
@@ -630,6 +674,23 @@ Hence, both domestic \DIFdelbegin \DIFdel{climate change }\DIFdelend \DIFaddbegi
 }
 \end{enumerate}%DIFAUXCMD
 %DIFDELCMD < \end{enumerate}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{In the long run, domestic electricity consumers profit in all pathways from hydrogen exports. A slight and short increase of domestic electricity prices in the early transformation phase (2030) is compensated by later (2050) strong (pathway 1) and medium (pathway 2) benefits for domestic electricity customers, profiting from hydrogen exports.
+In pathway 3, the short-term price increases are only marginal, but the long-term benefit from decreased is not as strong as in the scenarios with quicker export scale-ups. Figure \ref{fig:expense_h2_120} shows that hydrogen exporters have clear benefits in pathway 2, the cost of hydrogen for exports decrease compared to no domestic climate change mitigation. By ramping up hydrogen exports in an early stage of domestic climate change mitigation, high relative cost of hydrogen can be avoided.
+}%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/price_sorted_AC_120_2.0_Hours.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Price duration curve at 120 TWh/a export and 0\% domestic climate change mitigation. Stricter temporal hydrogen regulation pushes the price duration curve towards the left, since additional renewable electricity capacities phase out fossil generation with higher marginal costs than renewables. Negative prices below -50 €/MWh are cut off.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:pdc-120-0}
+%DIFDELCMD < \end{figure}
 %DIFDELCMD < %%%
 \DIFdelend %DIF >  Apart from the cost of electricity for domestic customers and cost of hydrogen for exporters, Figure \ref{fig:expenses_default_120} presents possible pathways of \co mitigation and export. We have derived three illustrative mitigation-export pathways presenting various speeds of transformation:
 %DIF >  \begin{enumerate}
@@ -638,46 +699,42 @@ Hence, both domestic \DIFdelbegin \DIFdel{climate change }\DIFdelend \DIFaddbegi
 %DIF >      \item Slow exports and quick \co mitigation.
 %DIF >  \end{enumerate}
 
-\DIFdelbegin \DIFdel{In the long run, domestic electricity consumers profit in all pathways from hydrogen exports. A slight and short increase of domestic electricity prices in the early transformation phase (2030) is compensated by later (2050) strong (pathway 1) and medium (pathway 2) benefits for domestic electricity customers, profiting from hydrogen exports.
-In pathway 3, the short-term price increases are only marginal, but the long-term benefit from decreased is not as strong as in the scenarios with quicker export scale-ups. Figure \ref{fig:expense_h2_120} shows that hydrogen exporters have clear benefits in pathway 2, the cost of hydrogen for exports decrease compared to no domestic climate change mitigation. By ramping up hydrogen exports in an early stage of domestic climate change mitigation, high relative cost of hydrogen can be avoided.
-}\DIFdelend %DIF >  In the long run, domestic electricity consumers profit in all pathways from hydrogen exports. A slight and short increase of domestic electricity prices in the early transformation phase (2030) is compensated by later (2050) strong (pathway 1) and medium (pathway 2) benefits for domestic electricity customers, profiting from hydrogen exports.
+\DIFdelbegin %DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/dispatch_120_Co2L2.0.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity dispatch and demand}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:dispatch_rule}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_120_Co2L2.0.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Cost for domestic electricity consumers and hydrogen exporters}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expense_h2ac}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity dispatch and demand (\ref{fig:dispatch_rule}) and cost for consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 120 TWh/a export and 0\% climate change mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Cost for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses_rule}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < %%%
+\DIFdelend %DIF >  In the long run, domestic electricity consumers profit in all pathways from hydrogen exports. A slight and short increase of domestic electricity prices in the early transformation phase (2030) is compensated by later (2050) strong (pathway 1) and medium (pathway 2) benefits for domestic electricity customers, profiting from hydrogen exports.
 %DIF >  In pathway 3, the short-term price increases are only marginal, but the long-term benefit from decreased is not as strong as in the scenarios with quicker export scale-ups. Figure \ref{fig:expense_h2_120} shows that hydrogen exporters have clear benefits in pathway 2, the cost of hydrogen for exports decrease compared to no domestic \co mitigation. By ramping up hydrogen exports in an early stage of domestic \co mitigation, high relative cost of hydrogen can be avoided.
 
 
-\begin{figure}[h!]
-    \centering
-    \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/price_sorted_AC_120_2.0_Hours.pdf}
-%DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.7\linewidth]{../../results/gh/price_sorted_AC_120_2.0_Hours.pdf}
-    \DIFaddendFL \caption{\DIFdelbeginFL \DIFdelFL{Price }\DIFdelendFL 
-    \DIFaddbeginFL \DIFaddFL{The effect of temporal hydrogen regulation on electricity prices.
-    Figure \ref{fig:pdc-120-0} shows the price }\DIFaddendFL duration curve at 120 TWh/a export and 0\% domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation. Stricter temporal hydrogen regulation pushes the price duration curve towards the left, \DIFdelbeginFL \DIFdelFL{since }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{as }\DIFaddendFL additional renewable electricity capacities phase out fossil generation with higher \DIFaddbeginFL \DIFaddFL{short-term }\DIFaddendFL marginal costs than renewables. Negative prices below -50 €/MWh are cut off.}
-    \label{fig:pdc-120-0}
-\end{figure}
-
-
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/dispatch_120_Co2L2.0.pdf}
-        \caption{Electricity dispatch and demand}
-        \label{fig:dispatch_rule}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_120_Co2L2.0.pdf}
-        \caption{Cost for domestic electricity consumers and hydrogen exporters}
-        \label{fig:expense_h2ac}
-    \end{subfigure}
-    \hfill
-    \caption{\DIFdelbeginFL \DIFdelFL{Electricity }\DIFdelendFL 
-    \DIFaddbeginFL \DIFaddFL{The effect of temporal hydrogen regulation on the electricity system and consumer costs.
-    Figure \ref{fig:expenses_rule} shows the electricity }\DIFaddendFL dispatch and demand (\ref{fig:dispatch_rule}) and cost for consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 120 TWh/a export and 0\% \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Cost for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation \DIFaddbeginFL \DIFaddFL{(s. Fig. \ref{fig:expense_h2ac})}\DIFaddendFL .}
-    \label{fig:expenses_rule}
-\end{figure*}
 
 
 %DIF >  \subsection*{Hydrogen regulation reduces domestic electricity prices and emissions}
@@ -748,12 +805,9 @@ Figure \ref{fig:expenses_real_120} }\DIFdelend \DIFaddbegin \DIFadd{all mitigati
 %DIF > %% BRIDGE TO FIGURE
 \DIFadd{Figure \ref{fig:expenses-relative-120} }\DIFaddend shows the relative change of electricity and hydrogen cost of \DIFdelbegin \DIFdel{the }\textit{\DIFdel{balanced exports and mitigation}} %DIFAUXCMD
 \DIFdel{scenarios }\DIFdelend \DIFaddbegin \DIFadd{all mitigation-export scenarios (grouped by speed of transformation) }\DIFaddend in dependence of temporal matching. 
-\DIFdelbegin \DIFdel{Across all displayed scenarios, }\DIFdelend \DIFaddbegin 
-
-%DIF > %% FIGURE DESCRIPTION
-
+\DIFdelbegin \DIFdel{Across all displayed scenarios, }\DIFdelend %DIF > %% FIGURE DESCRIPTION
 %DIF >  Quick export
-\DIFadd{The effects of }\DIFaddend temporal hydrogen regulation \DIFdelbegin \DIFdel{hedges }\DIFdelend \DIFaddbegin \DIFadd{costs for }\DIFaddend domestic electricity consumers \DIFdelbegin \DIFdel{against rising prices.
+\DIFaddbegin \DIFadd{The effects of }\DIFaddend temporal hydrogen regulation \DIFdelbegin \DIFdel{hedges }\DIFdelend \DIFaddbegin \DIFadd{costs for }\DIFaddend domestic electricity consumers \DIFdelbegin \DIFdel{against rising prices.
 Depending on the domestic climate change mitigationand hydrogen export, hourly matching decreases }\DIFdelend \DIFaddbegin \DIFadd{are most dominant in the group of Quick exports and slow }\co \DIFadd{mitigation.
 In this group, the introduction of annual matching has already a striking effect, because the price spillover observed in Figure \ref{fig:pdc-120-0} decreases (domestic) electricity prices. The price spillover unfolds in fossil-dominated (hence low domestic }\co \DIFadd{mitigation) systems, combined with high hydrogen exports providing a strong energy spillover effect. In the cases of high exports and no domestic }\co \DIFadd{mitigation, }\DIFaddend the cost of electricity for domestic consumers \DIFdelbegin \DIFdel{by up to 31\%.
 }%DIFDELCMD < 
@@ -788,19 +842,21 @@ See also Figure \ref{fig:expenses_all_200} for  scenarios following the }\textit
 \DIFadd{Figure \ref{fig:expenses-relative-120} shows, that }\DIFaddend temporal hydrogen regulation \DIFdelbegin \DIFdel{on domestic electricity cost}\DIFdelend \DIFaddbegin \DIFadd{hedges domestic electricity consumers against rising costs across all scenario groups.
 Setting aside the less likely scenarios of the Quick exports and slow }\co \DIFadd{mitigation group (based on the assumption that export quantities above 80 TWh without domestic }\co \DIFadd{mitigation are unlikely), hourly matching decreases the cost of electricity for domestic consumers by up to 31\%. The cost for hydrogen exporters increase only slightly in the vast majority of all mitigation-export scenarios}\DIFaddend .
 
-\begin{figure}[h!]
-    \centering
-    \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_120exp_Co2L2.0dec_onlyreal.pdf}
+
+\DIFdelbegin %DIFDELCMD < \begin{figure}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_120exp_Co2L2.0dec_onlyreal.pdf}
 %DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.7\linewidth]{../../results/gh/rel_multiple_120exp_three_scen.pdf}
-    \DIFaddendFL \caption{Relative change of electricity and hydrogen \DIFdelbeginFL \DIFdelFL{cost and total system }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{consumer }\DIFaddendFL cost depending on the temporal hydrogen regulation. \DIFaddbeginFL \DIFaddFL{Each line represents a single mitigation-export scenario, grouped into different speeds of transformation. }\DIFaddendFL Domestic electricity consumers profit across all export and mitigation scenarios but most \DIFdelbeginFL \DIFdelFL{at high }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{in the group of slow }\DIFaddendFL export and \DIFdelbeginFL \DIFdelFL{low climate change }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{quick }\co \DIFaddendFL mitigation \DIFaddbeginFL \DIFaddFL{scenarios}\DIFaddendFL . Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen \DIFaddbeginFL \DIFaddFL{(}{\DIFaddFL{H${}_2$}{}}\DIFaddFL{) }\DIFaddendFL regulation regulates the welfare distribution between both groups. \DIFaddbeginFL \DIFaddFL{See Figure \ref{fig:expenses-relative-200} for the sensitivity of the export quantities and Figure \ref{fig:scenario-sel} for scenario grouping.}\DIFaddendFL }
-    \DIFdelbeginFL %DIFDELCMD < \label{fig:expenses_real_120}
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Relative change of electricity and hydrogen cost and total system cost depending on the temporal hydrogen regulation. Domestic electricity consumers profit across all export and mitigation scenarios but most at high export and low climate change mitigation. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen regulation regulates the welfare distribution between both groups.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses_real_120}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
 %DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:expenses-relative-120}
-\DIFaddendFL \end{figure}
-
-
-\section*{Discussion}
+\DIFdelend \section*{Discussion}
 \label{sec:discussion}
 
 
@@ -1019,26 +1075,27 @@ Atlite obtains technology-specific time series \DIFdelbegin \DIFdel{based on wea
 
 
 
-\begin{figure*}[t]
-    \centering
-    \includegraphics[width=0.7\linewidth]{../graphics_general/brownfield_capacities.pdf}
-    \caption{Current capacities of electricity generation and distribution \DIFdelbeginFL \DIFdelFL{, obtained from \mbox{%DIFAUXCMD
+
+
+\DIFdelbegin %DIFDELCMD < \begin{figure*}[t]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=0.7\linewidth]{../graphics_general/brownfield_capacities.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Current capacities of electricity generation and distribution, obtained from \mbox{%DIFAUXCMD
 \cite{Parzen2022} }\hspace{0pt}%DIFAUXCMD
 and visualization based on \mbox{%DIFAUXCMD
 \cite{Horsch2018}}\hspace{0pt}%DIFAUXCMD
-}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{in Morocco}\DIFaddendFL . Morocco's electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV. \DIFaddbeginFL \DIFaddFL{The data is obtained from Parzen et al.\mbox{%DIFAUXCMD
-\cite{Parzen2023} }\hspace{0pt}%DIFAUXCMD
-and the visualization is based on H\"orsch et al.\mbox{%DIFAUXCMD
-\cite{Horsch2018}}\hspace{0pt}%DIFAUXCMD
-. }\DIFaddendFL Boundaries depicted are based on the Global Administrative Areas\DIFaddbeginFL \DIFaddFL{\mbox{%DIFAUXCMD
-\cite{gadm2022} }\hspace{0pt}%DIFAUXCMD
-}\DIFaddendFL and are intended for illustrative purposes only, not implying territorial claims.
-    }
-    \label{fig:MAR_brownfield}
-\end{figure*}
+. Morocco's electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV. Boundaries depicted are based on the Global Administrative Areas and are intended for illustrative purposes only, not implying territorial claims.
+    }}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:MAR_brownfield}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
-
-\subsubsection*{Conventional electricity generation}
+%DIFDELCMD < %%%
+\DIFdelend \subsubsection*{Conventional electricity generation}
 The conventional electricity generators are obtained from the \DIFdelbegin \textit{\DIFdel{powerplantmatching}} %DIFAUXCMD
 \DIFdelend \DIFaddbegin \DIFadd{powerplantmatching }\DIFaddend tool \cite{Powerplantmatching2019}. \DIFdelbegin \textit{\DIFdel{Powerplantmatching}} %DIFAUXCMD
 \DIFdelend \DIFaddbegin \DIFadd{Powerplantmatching }\DIFaddend uses various input sources as OpenStreetMap2022, Global Energy Monitor, IRENA \cite{IRENA2022, OpenStreetMap2022, GlobalEnergyMonitor} to download, filter and merge the datasets. 
@@ -1191,7 +1248,133 @@ We gratefully acknowledge funding from the H2Global meets Africa project (03SF07
 % following https://casrai.org/credit/
 % see https://www.cell.com/pb/assets/raw/shared/guidelines/CRediT-taxonomy.pdf for details
 
-\textbf{L.S.}:
+\DIFaddbegin \begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../results/graphics_general/policy/mar_hydrogen_strategy_semistacked.pdf}
+    \caption{\DIFaddFL{Hydrogen Strategy of Morocco \mbox{%DIFAUXCMD
+\cite{MarHyStrat2021}}\hspace{0pt}%DIFAUXCMD
+. The export volume rises up to 115~TWh/a in 2050, the domestic demand up to 40 TWh/a in 2050. The largest share of domestic demand is in the industry sector. The exports are dominated by hydrogen, followed by synthetic fuels.}}
+    \label{fig:mar_hydrogen_strategy}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../results/graphics_general/morocco_em.pdf}
+    \caption{\DIFaddFL{Morocco's historical }\co \DIFaddFL{and greenhouse gas emissions (GHG). While emissions are rising, emission targets are in the range between 75 Mt}\coe\DIFaddFL{\ (conditional) and 115 Mt}\coe\DIFaddFL{\ (unconditional)\mbox{%DIFAUXCMD
+\cite{CAT2021}}\hspace{0pt}%DIFAUXCMD
+.}}
+    \label{fig:morocco_em}
+\end{figure}
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/0exp-only/120/graphs/balances-AC.pdf}
+        \caption{\DIFaddFL{Fixed (1 TWh) export and 0--100\% domestic }\co \DIFaddFL{mitigation}}
+        \label{fig:balances-ac-0exp-120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/co2l20-only/120/graphs/balances-AC.pdf}
+        \caption{\DIFaddFL{Fixed (0\%) domestic }\co \DIFaddFL{mitigation and 1--120 TWh/a export}}
+        \label{fig:balances-ac-co2l20-120}
+    \end{subfigure}
+    \hfill
+    \caption{\DIFaddFL{Electricity supply and demand at fixed export levels and increasing domestic }\co \DIFaddFL{mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}) with hourly temporal hydrogen regulation. Increasing domestic }\co \DIFaddFL{mitigation first phases out carbon-intensive coal generation in favor of combined-cycle gas turbines (CCGT), at medium to high domestic }\co \DIFaddFL{mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen (}{\DIFaddFL{H${}_2$}{}}\DIFaddFL{) generation for other sectors.
+    At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar photovoltaics (PV), as imposed by the temporal hydrogen regulation. 
+    See Figure \ref{fig:balances-ac-noreg} for electricity supply and demand if no hydrogen regulation is in place and Figure \ref{fig:balances-ac-200} for hydrogen exports up to 200 TWh/a.
+    }}
+    \label{fig:balances-ac}
+\end{figure*}
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120.pdf}
+        \caption{\DIFaddFL{Relative cost of electricity for domestic customers (normalized to 1 TWh/a hydrogen export)}}
+        \label{fig:expense_ac_120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120.pdf}
+        \caption{\DIFaddFL{Relative cost of hydrogen for exporters (normalized to 0\% domestic }\co \DIFaddFL{mitigation)}}
+        \label{fig:expense_h2_120}
+    \end{subfigure}
+    \hfill
+    \caption{
+    \DIFaddFL{The effects of hydrogen exports on domestic electricity consumers and domestic }\co \DIFaddFL{mitigation on hydrogen exporters.
+    Figure \ref{fig:expense_ac_120} shows the effect of hydrogen (}{\DIFaddFL{H${}_2$}{}}\DIFaddFL{) exports on domestic electricity cost with hourly hydrogen regulation. Therefore, the effect of hydrogen exports is isolated by normalizing the costs to 1 TWh/a hydrogen export in each column. This approach allows for a vertical interpretation in Figure \ref{fig:expense_ac_120} only, displaying the effects of hydrogen exports (vertical) at a certain domestic }\co \DIFaddFL{mitigation level.
+    Figure \ref{fig:expense_h2_120} shows the effect of domestic }\co \DIFaddFL{mitigation on hydrogen export cost with hourly hydrogen regulation. Therefore, the effect of domestic }\co \DIFaddFL{mitigation is isolated by normalizing the costs to 0\% }\co \DIFaddFL{mitigation in each row. This approach allows for a horizontal interpretation in Figure \ref{fig:expense_h2_120} only, displaying the effects of domestic }\co \DIFaddFL{mitigation (horizontal) at a certain hydrogen export quantity.
+    Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic }\co \DIFaddFL{mitigation and high exports. Hydrogen exporters profit from domestic }\co \DIFaddFL{mitigation at medium mitigation efforts.
+    See Figure \ref{fig:expenses_abs_120} for absolute cost for domestic electricity consumers and hydrogen exporters, Figure \ref{fig:expenses_default_120-noreg} for the interplay of hydrogen exports and domestic }\co \DIFaddFL{mitigation if no hydrogen regulation is in place and Figure \ref{fig:expenses_default_200} for hydrogen exports up to 200 TWh/a.
+    }}
+    \label{fig:expenses_default_120}
+\end{figure*}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.7\linewidth]{../results/gh/price_sorted_AC_120_2.0_Hours.pdf}
+    \caption{
+    \DIFaddFL{The effect of temporal hydrogen regulation on electricity prices.
+    Figure \ref{fig:pdc-120-0} shows the price duration curve at 120 TWh/a export and 0\% domestic }\co \DIFaddFL{mitigation. Stricter temporal hydrogen regulation pushes the price duration curve towards the left, as additional renewable electricity capacities phase out fossil generation with higher short-term marginal costs than renewables. Negative prices below -50 €/MWh are cut off.}}
+    \label{fig:pdc-120-0}
+\end{figure}
+
+
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/dispatch_120_Co2L2.0.pdf}
+        \caption{\DIFaddFL{Electricity dispatch and demand}}
+        \label{fig:dispatch_rule}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/abs_sin_expenses_h2ac_120_Co2L2.0.pdf}
+        \caption{\DIFaddFL{Cost for domestic electricity consumers and hydrogen exporters}}
+        \label{fig:expense_h2ac}
+    \end{subfigure}
+    \hfill
+    \caption{
+    \DIFaddFL{The effect of temporal hydrogen regulation on the electricity system and consumer costs.
+    Figure \ref{fig:expenses_rule} shows the electricity dispatch and demand (\ref{fig:dispatch_rule}) and cost for consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 120 TWh/a export and 0\% }\co \DIFaddFL{mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Cost for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation (s. Fig. \ref{fig:expense_h2ac}).}}
+    \label{fig:expenses_rule}
+\end{figure*}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.7\linewidth]{../results/gh/rel_multiple_120exp_three_scen.pdf}
+    \caption{\DIFaddFL{Relative change of electricity and hydrogen consumer cost depending on the temporal hydrogen regulation. Each line represents a single mitigation-export scenario, grouped into different speeds of transformation. Domestic electricity consumers profit across all export and mitigation scenarios but most in the group of slow export and quick }\co \DIFaddFL{mitigation scenarios. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen (}{\DIFaddFL{H${}_2$}{}}\DIFaddFL{) regulation regulates the welfare distribution between both groups. See Figure \ref{fig:expenses-relative-200} for the sensitivity of the export quantities and Figure \ref{fig:scenario-sel} for scenario grouping.}}
+    \label{fig:expenses-relative-120}
+\end{figure}
+
+
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../results/graphics_general/brownfield_capacities.pdf}
+    \caption{\DIFaddFL{Current capacities of electricity generation and distribution in Morocco. Morocco's electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV. The data is obtained from Parzen et al.\mbox{%DIFAUXCMD
+\cite{Parzen2023} }\hspace{0pt}%DIFAUXCMD
+and the visualization is based on H\"orsch et al.\mbox{%DIFAUXCMD
+\cite{Horsch2018}}\hspace{0pt}%DIFAUXCMD
+. Boundaries depicted are based on the Global Administrative Areas\mbox{%DIFAUXCMD
+\cite{gadm2022} }\hspace{0pt}%DIFAUXCMD
+and are intended for illustrative purposes only, not implying territorial claims.
+    }}
+    \label{fig:MAR_brownfield}
+\end{figure*}
+
+
+\DIFaddend \textbf{L.S.}:
 Conceptualization,
 Data curation,
 Formal Analysis,
@@ -1303,9 +1486,8 @@ Writing - review \& editing.
 The authors declare no competing interests.
 
 
-\DIFdelbegin \section*{\DIFdel{Materials \& Correspondence}}
-%DIFAUXCMD
-%DIFDELCMD < 
+\section*{\DIFdelbegin \DIFdel{Materials \& Correspondence}\DIFdelend \DIFaddbegin \DIFadd{Figures}\DIFaddend }
+\DIFdelbegin %DIFDELCMD < 
 
 %DIFDELCMD < %%%
 \DIFdel{Requests for further information, resources and materials should be directed to and will be fulfilled by the lead contact, Leon Schumm
@@ -1314,551 +1496,590 @@ The authors declare no competing interests.
 }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdelend % supplementary information
+%DIF <  supplementary information
+%DIFDELCMD < 
 
-\newpage
-\onecolumn
+%DIFDELCMD < \newpage
+%DIFDELCMD < \onecolumn
+%DIFDELCMD < 
 
-\makeatletter
-\renewcommand \thesection{S\@arabic\c@section}
-\renewcommand\thetable{S\@arabic\c@table}
-\renewcommand \thefigure{S\@arabic\c@figure}
-\makeatother
-\renewcommand{\citenumfont}[1]{S#1}
-\setcounter{equation}{0}
-\setcounter{figure}{0}
-\setcounter{table}{0}
-\setcounter{section}{0}
+%DIFDELCMD < \makeatletter
+%DIFDELCMD < \renewcommand \thesection{S\@arabic\c@section}
+%DIFDELCMD < \renewcommand\thetable{S\@arabic\c@table}
+%DIFDELCMD < \renewcommand \thefigure{S\@arabic\c@figure}
+%DIFDELCMD < \makeatother
+%DIFDELCMD < \renewcommand{\citenumfont}[1]{S#1}
+%DIFDELCMD < \setcounter{equation}{0}
+%DIFDELCMD < \setcounter{figure}{0}
+%DIFDELCMD < \setcounter{table}{0}
+%DIFDELCMD < \setcounter{section}{0}
+%DIFDELCMD < 
 
-
-\section*{Supplementary Information}
-\label{sec:si}
-
-\DIFaddbegin \section{\DIFadd{Mathematical Model Formulation}}
-\label{subsec:math-formulation}
-
-\DIFadd{The core mathematical model formulation of the sector-coupled energy model is based on the European model PyPSA-Eur described in Neumann et al.\mbox{%DIFAUXCMD
-\cite{Neumann2023} }\hspace{0pt}%DIFAUXCMD
-and the global model PyPSA-Earth and it's sector-coupled extension presented in Abdel-Khalek et al.\mbox{%DIFAUXCMD
-\cite{Abdel-Khalek2024}}\hspace{0pt}%DIFAUXCMD
-. The objective of the optimisation is minimizing the annual energy system costs including annualized investment costs and operational expenditures of generation, storage, transmission and conversion infrastructure\mbox{%DIFAUXCMD
-\cite{Neumann2023} }\hspace{0pt}%DIFAUXCMD
-and is described in Abdel-Khalek et al.\mbox{%DIFAUXCMD
-\cite{Abdel-Khalek2024} }\hspace{0pt}%DIFAUXCMD
-as follows:
-}
-
-\begin{equation}
-    \DIFadd{\begin{aligned}
-        \min _{\substack{G_{n, k}, E_{n, k},  C_{n, k}, F_{l, c} \\ \dot{G}_{n, k, t}, \dot{E}_{n, k, t},\dot{C}_{n, k, t}, \dot{F}_{l, c, t}}} &\overbrace{\sum_{n \in N} \sum_{k \in K} c_{k} G_{n, k}+\sum_{n \in N} \sum_{k \in K} c_{k} E_{n, k}+\sum_{n \in N} \sum_{k \in K} c_{k} C_{n, k}+\sum_{l \in L} c_l F_{l,c}}^{\mathclap{\scalebox{0.8}{\text{annualized capital costs}}}}\\
-        &\hspace{-2cm}\underbrace{+\sum_{t \in T} \left[w_t\left(\sum_{n \in N} \sum_{k\in K} o_{k} \dot{G}_{n, k, t}+\sum_{n \in N} \sum_{k \in K} o_{k} \dot{E}_{n, k, t}+\sum_{n \in N} \sum_{k \in K} o_{k} \dot{C}_{n, k, t}+\sum_{l \in L} o_{l} \dot{F}_{l, c, t}\right)\right]}_{\mathclap{\scalebox{0.8}{\text{marginal costs}}}}
-    \end{aligned}
-}\end{equation}
-
-\DIFadd{where the decision variables cover both the optimal capacity of the technology and the optimal hourly dispatch. The model operates on a set of nodes $N$, set of carriers $C$, set of technologies $K$, set of inter-nodal connections $L$, and a timeframe $T$, which in this study is a full year. $G_{n, k}$ denotes the optimal generation capacity of an asset of technology $k$ at node $n$ and $\dot{G}_{n, k, t}$ denotes the optimal dispatch of that asset at timestep $t$. Similarly, the decision variables of storage, converters and energy flow are presented as $E_{n,k}$, $C_{n,k}$ and $F_{l,c}$ respectively where $k$ uniquely identifies the technology for each category, $c$ uniquely identifies the carrier, and $l$ uniquely identifies the inter-nodal connections. The coefficients represent the different cost components: $c_k$ represents the annualized capital cost in technology $k$ while $o_k$ represent the operating costs. The $w_t$ weight variable represents the duration of the timestep $t$ and is decided by the model configuration, in this study it is three-hourly.
-}
-
-\DIFadd{In addition to the core mathematical formulation, the model consists of linear constraints on the spatio-temporal availability of renewable energy sources, storage consistency equations, generation, storage, conversion and transmission infrastructure, a limit for }\co \DIFadd{emissions and transmission and a multi-period linearised optimal power flow (LOPF) formulation. All constraints are described in detail in Neumann et al.\mbox{%DIFAUXCMD
-\cite{Neumann2023} }\hspace{0pt}%DIFAUXCMD
-resulting in a linear problem (LP).
-}
-
-
-
-\section{\DIFadd{System overview}}
-\label{sec:system-overview}
-
-\DIFadd{Figure \ref{fig:system-overview} shows the system overview of the applied model as presented in Abdel-Khalek et al. \mbox{%DIFAUXCMD
-\cite{Abdel-Khalek2024}}\hspace{0pt}%DIFAUXCMD
-. The sector-coupled model includes various energy carriers (liquid fossil, biomass, heat, electricity, hydrogen and natural gas), multiple sectors and network infrastructure (power transmission lines, hydrogen pipelines and natural gas network)\mbox{%DIFAUXCMD
-\cite{Abdel-Khalek2024}}\hspace{0pt}%DIFAUXCMD
-.
-}
-
-\begin{figure*}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{../graphics_general/system-overview.pdf}
-    \caption{\DIFaddFL{System overview of the sector-coupled model. It includes various energy carriers (liquid fossil, biomass, heat, electricity, hydrogen and natural gas), multiple sectors and network infrastructure (power transmission lines, hydrogen pipelines and natural gas network)\mbox{%DIFAUXCMD
-\cite{Abdel-Khalek2024}}\hspace{0pt}%DIFAUXCMD
-. Note, Figure \ref{fig:system-overview} represents only single node of the multi-nodal energy system.}}
-    \label{fig:system-overview}
-\end{figure*}
-
-\clearpage
-
-
-
-
-\DIFaddend \section{Energy demand}
-
-\subsection{Diffusion of Battery Electric Vehicles}
-\label{subsec:bev_diffusion}
-Figure \ref{fig:bev_diffusion} shows the diffusion of battery electric vehicles depending on the domestic \DIFdelbegin \DIFdel{climate change }\DIFdelend \DIFaddbegin \co \DIFaddend mitigation, displaying electric vehicle stock in Morocco. The share rises from 2\% (today's levels) up to a share of 88\% at 100\% domestic \DIFdelbegin \DIFdel{climate change mitigation . %DIF <  in accordance with \cite{Rim2021}.
-}\DIFdelend \DIFaddbegin \co \DIFadd{mitigation in accordance with Rim et al.\mbox{%DIFAUXCMD
-\cite{Rim2021}}\hspace{0pt}%DIFAUXCMD
-.
-}\DIFaddend 
-
-\begin{figure*}[h]
-    \centering
-    \includegraphics[width=0.7\linewidth]{../graphics_general/policy/bev_share.pdf}
-    \caption{Market diffusion of Battery Electricity Vehicles in Morocco\DIFdelbeginFL \DIFdelFL{, }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{. The market diffusion is }\DIFaddendFL synthesized based on an s-curve with a growth rate $k=0.2$ and inflection point $x_0=2040$. \DIFaddbeginFL \DIFaddFL{The share rises from 2\% (today's levels) up to a share of 88\% at 100\% domestic }\co \DIFaddFL{mitigation.}\DIFaddendFL }
-    \label{fig:bev_diffusion}
-\end{figure*}
-
-\clearpage
-
-
-\clearpage
-
-\section{Electricity supply}
-
-The electricity supply with hourly temporal matching is displayed in Figure \ref{fig:supply}, along with the generation capacities
-in Figure \ref{fig:el-cap} and capacity factors in Figure  \DIFdelbegin \DIFdel{\ref{fig:el_cf}}\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:el-cf}}\DIFaddend .
-
-\subsection{Electricity supply}
-\label{subsec:el-supply}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{graphics/integrated_comp/subcontour_supply.pdf}
-    \caption{Electricity supply}
-    \label{fig:supply}
-\end{figure}
-
-\subsection{Electricity capacities}
-\label{subsec:el-cap}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{graphics/integrated_comp/subcontour_capacity.pdf}
-    \caption{Electricity capacities}
-    \label{fig:el-cap}
-\end{figure}
-
-\subsection{Electricity capacity factors}
-\label{subsec:el-cf}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{graphics/integrated_comp/subcontour_cf.pdf}
-    \caption{Electricity capacity factors}
-    \DIFdelbeginFL %DIFDELCMD < \label{fig:el_cf}
 %DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:el-cf}
-\DIFaddendFL \end{figure}
+\section*{\DIFdel{Supplementary Information}}
+%DIFAUXCMD
+%DIFDELCMD < \label{sec:si}
+%DIFDELCMD < 
 
+%DIFDELCMD < %%%
+\section{\DIFdel{Energy demand}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIFDELCMD < 
 
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Diffusion of Battery Electric Vehicles}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{subsec:bev_diffusion}
+%DIFDELCMD < %%%
+\DIFdel{Figure \ref{fig:bev_diffusion} shows the diffusion of battery electric vehicles depending on the domestic climate change mitigation, displaying electric vehicle stock in Morocco. The share rises from 2\% (today's levels) up to a share of 88\% at 100\% domestic climate change mitigation. %DIF <  in accordance with \cite{Rim2021}.
+}%DIFDELCMD < 
 
-\clearpage
-\begin{figure}
-    \centering
-        \begin{subfigure}[h]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{graphics/heatmaps/cf-raw-ts-onshore wind.pdf}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{graphics/heatmaps/cf-raw-ts-solar thermal.pdf}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{graphics/heatmaps/cf-raw-ts-solar PV.pdf}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{graphics/heatmaps/cf-raw-ts-run of river.pdf}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{graphics/heatmaps/cop-ts-air-sourced heat pump.pdf}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{graphics/heatmaps/cop-ts-ground-sourced heat pump.pdf}
-    \end{subfigure}
-    \caption{Capacity factors of renewable sources, \DIFdelbeginFL \DIFdelFL{graph style adapted from Neumann et al}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{and Coefficient of Performance (COP) of air-sourced and ground-sources heat pumps}\DIFaddendFL .\DIFdelbeginFL \DIFdelFL{\mbox{%DIFAUXCMD
+%DIFDELCMD < \begin{figure*}[h]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=0.7\linewidth]{../graphics_general/policy/bev_share.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Market diffusion of Battery Electricity Vehicles in Morocco, synthesized based on an s-curve with a growth rate $k=0.2$ and inflection point $x_0=2040$.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:bev_diffusion}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
+%DIFDELCMD < \clearpage
+%DIFDELCMD < 
+
+%DIFDELCMD < \clearpage
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\section{\DIFdel{Electricity supply}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{The electricity supply with hourly temporal matching is displayed in Figure \ref{fig:supply}, along with the generation capacities
+in Figure \ref{fig:el-cap} and capacity factors in Figure  \ref{fig:el_cf}.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Electricity supply}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{subsec:el-supply}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}[h]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=0.9\linewidth]{graphics/integrated_comp/subcontour_supply.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity supply}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:supply}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Electricity capacities}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{subsec:el-cap}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}[h]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=0.9\linewidth]{graphics/integrated_comp/subcontour_capacity.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity capacities}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:el-cap}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Electricity capacity factors}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{subsec:el-cf}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}[h]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=0.9\linewidth]{graphics/integrated_comp/subcontour_cf.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity capacity factors}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:el_cf}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < \clearpage
+%DIFDELCMD < \begin{figure}
+%DIFDELCMD <     \centering
+%DIFDELCMD <         \begin{subfigure}[h]{0.49\textwidth}
+%DIFDELCMD <             \centering
+%DIFDELCMD <         \includegraphics[width=\textwidth]{graphics/heatmaps/cf-raw-ts-onshore wind.pdf}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \begin{subfigure}[h]{0.49\textwidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\textwidth]{graphics/heatmaps/cf-raw-ts-solar thermal.pdf}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \begin{subfigure}[h]{0.49\textwidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\textwidth]{graphics/heatmaps/cf-raw-ts-solar PV.pdf}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \begin{subfigure}[h]{0.49\textwidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\textwidth]{graphics/heatmaps/cf-raw-ts-run of river.pdf}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \begin{subfigure}[h]{0.49\textwidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\textwidth]{graphics/heatmaps/cop-ts-air-sourced heat pump.pdf}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \begin{subfigure}[h]{0.49\textwidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\textwidth]{graphics/heatmaps/cop-ts-ground-sourced heat pump.pdf}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Capacity factors of renewable sources, graph style adapted from Neumann et al. \mbox{%DIFAUXCMD
 \cite{Neumann2022}}\hspace{0pt}%DIFAUXCMD
-}\DIFdelendFL }
-    \label{fig:ren-cfs}
-\end{figure}
+}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:ren-cfs}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
 
-
-
-\subsection{Electrolyser and Fischer-Tropsch capacity}
-
-
-\begin{figure*}[h] % Use 'figure*' to span both columns
-    \centering
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_electrolysis_p_nom_opt_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Electrolysis optimal capacity}
-        \label{fig:ely-p-nom-opt}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_ft_p_nom_opt_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Fischer-Tropsch optimal capacity}
-        \label{fig:ft-p-nom-opt}
-    \end{subfigure}
-
-    \hfill
-
-    \caption{Electrolysis and Fischer-Tropsch capacities}
-    \label{fig:ely-ft-p-nom-opt}
-\end{figure*}
-
-\clearpage
-\DIFaddbegin 
-
-\section{\DIFadd{Absolute cost for domestic electricity consumers and hydrogen exporters}}
-\label{subsec:expenses-abs}
-
-\DIFadd{Figure \ref{fig:expenses_abs_120} shows the absolute cost for domestic electricity consumers and hydrogen exporters.
-}
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nFalse_exp120.pdf}
-        \caption{\DIFaddFL{Absolute cost of electricity for domestic customers}}
-        \label{fig:expense_ac_abs_120}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nFalse_exp120.pdf}
-        \caption{\DIFaddFL{Absolute cost of hydrogen for exporters}}
-        \label{fig:expense_h2_abs_120}
-    \end{subfigure}
-    \hfill
-    \caption{  
-        \DIFaddFL{Absolute cost for domestic electricity consumers and hydrogen exporters}}
-    \label{fig:expenses_abs_120}
-\end{figure*}
-
-
-\clearpage
-\DIFaddend \section{Energy balances}
-
-
-
-\subsection{Oil balance}
-\label{subsec:oil-balance}
-Figure \ref{fig:oil-balance} shows the oil balance at 1 TWh/a export at increasing domestic \DIFdelbegin \DIFdel{climate change }\DIFdelend \DIFaddbegin \co \DIFaddend mitigation.
-
-\begin{figure*}[h]
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=0.5\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-oil.pdf}
-    \caption{Oil balance at 1 TWh/a export at increasing domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation. The exogenously defined oil demand for land transport substantially decreases due to electrification, whereas oil demands for industrial naphta, aviation, agriculture are constant. The demand is met by fossil oil up to 80\% \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation, then gradually replaced by Fischer-Tropsch fuels.}
-    \label{fig:oil-balance}
-\end{figure*}
-
-
-\clearpage
-
-\section{Temporal hydrogen regulation}
-\label{subsec:gh_constraint_effects}
-
-\subsection{\DIFdelbegin \DIFdel{Hourly matching prevents additional emissions induced by }\DIFdelend \DIFaddbegin \DIFadd{Electricity supply and demand without temporal }\DIFaddend hydrogen \DIFdelbegin \DIFdel{exports}%DIFDELCMD < \MBLOCKRIGHTBRACE
 %DIFDELCMD < %%%
-\DIFdel{Figure \ref{fig:barplotscons} displays the electricity balance }\DIFdelend \DIFaddbegin \DIFadd{regulation}}
+\subsection{\DIFdel{Electrolyser and Fischer-Tropsch capacity}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < 
 
-\DIFadd{Figure \ref{fig:balances-ac-co2l20-120-noreg} shows the effect of increasing domestic }\co \DIFadd{mitigation at constant (1 TWh) hydrogen exports without temporal matching. Since there are no substantial hydrogen exports, the difference of temporal matching (displayed in Figure \ref{fig:balances-ac-co2l20-120}) is only marginal. Figure \ref{fig:balances-ac-0exp-120-noreg} displays the hydrogen export }\DIFaddend ramp up from 1--120 TWh/a at 0\% domestic \DIFdelbegin \DIFdel{climate change mitigation with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) temporal hydrogen regulation. }\DIFdelend \DIFaddbegin \co \DIFadd{mitigation without temporal regulation. If the no temporal regulation is applied, the dispatch of coal and gas generators increase, which is in contrast to the hydrogen export ramp up with hourly matching, displayed in Figure \ref{fig:balances-ac-0exp-120}.
-}\DIFaddend 
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/120/graphs/balances-AC.pdf}
+%DIFDELCMD < \begin{figure*}[h] %%%
+%DIF <  Use 'figure*' to span both columns
+    %DIFDELCMD < \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_electrolysis_p_nom_opt_20_filterTrue_nFalse_exp200.pdf}
 %DIFDELCMD <         %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/0exp-only/120/graphs/balances-AC.pdf}
-        \DIFaddendFL \caption{\DIFdelbeginFL \DIFdelFL{Electricity balance }%DIFDELCMD < {\bf %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electrolysis optimal capacity}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:ely-p-nom-opt}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_ft_p_nom_opt_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Fischer-Tropsch optimal capacity}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:ft-p-nom-opt}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD < 
+
+%DIFDELCMD <     \hfill
+%DIFDELCMD < 
+
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electrolysis and Fischer-Tropsch capacities}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:ely-ft-p-nom-opt}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
+%DIFDELCMD < \clearpage
+%DIFDELCMD < %%%
+\section{\DIFdel{Energy balances}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Oil balance}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{subsec:oil-balance}
+%DIFDELCMD < %%%
+\DIFdel{Figure \ref{fig:oil-balance} shows the oil balance at 1 TWh/a export at increasing domestic climate change mitigation.
+}%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure*}[h]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=0.5\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-oil.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Oil balance at 1 TWh/a export at increasing domestic climate change mitigation. The exogenously defined oil demand for land transport substantially decreases due to electrification, whereas oil demands for industrial naphta, aviation, agriculture are constant. The demand is met by fossil oil up to 80\% climate change mitigation, then gradually replaced by Fischer-Tropsch fuels.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:oil-balance}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
+%DIFDELCMD < \clearpage
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\section{\DIFdel{Temporal hydrogen regulation}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{subsec:gh_constraint_effects}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Hourly matching prevents additional emissions induced by hydrogen exports}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdel{Figure \ref{fig:barplotscons} displays the electricity balance ramp up from 1--120 TWh/a at 0\% domestic climate change mitigation with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) temporal hydrogen regulation.
+}%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/120/graphs/balances-AC.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity balance }%DIFDELCMD < {\bf %%%
 \DIFdelFL{with}%DIFDELCMD < } %%%
-\DIFdelFL{temporal hydrogen regulation}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Fixed (1 TWh) export and 0--100\% domestic }\co \DIFaddFL{mitigation}\DIFaddendFL }
-        \DIFdelbeginFL %DIFDELCMD < \label{fig:balances_AC_monthlymatch}
-%DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:balances-ac-0exp-120-noreg}
-    \DIFaddendFL \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l20-only/120/graphs/balances-AC.pdf}
-        \caption{\DIFdelbeginFL \DIFdelFL{Electricity balance }%DIFDELCMD < {\bf %%%
+\DIFdelFL{temporal hydrogen regulation}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances_AC_monthlymatch}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runsensnogreenhy/co2l20-only/120/graphs/balances-AC.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity balance }%DIFDELCMD < {\bf %%%
 \DIFdelFL{without}%DIFDELCMD < } %%%
-\DIFdelFL{temporal hydrogen regulation}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Fixed (0\%) domestic }\co \DIFaddFL{mitigation and 1--120 TWh/a export}\DIFaddendFL }
-        \DIFdelbeginFL %DIFDELCMD < \label{fig:balances_AC_nogreen}
+\DIFdelFL{temporal hydrogen regulation}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances_AC_nogreen}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
 %DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:balances-ac-co2l20-120-noreg}
-    \DIFaddendFL \end{subfigure}
-    \hfill
-    \caption{\DIFaddbeginFL \DIFaddFL{Supplement to Figure \ref{fig:balances-ac} without temporal hydrogen regulation. }\DIFaddendFL Electricity \DIFdelbeginFL \DIFdelFL{balance ramp up from 1--120 TWh/a }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{supply and demand }\DIFaddendFL at \DIFdelbeginFL \DIFdelFL{0\% }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{fixed export levels and increasing }\DIFaddendFL domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation \DIFdelbeginFL \DIFdelFL{with }\DIFdelendFL (\DIFdelbeginFL \DIFdelFL{\ref{fig:balances_AC_monthlymatch}}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{\ref{fig:balances-ac-0exp-120-noreg}}\DIFaddendFL ) and \DIFdelbeginFL \DIFdelFL{without }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{vice versa }\DIFaddendFL (\DIFdelbeginFL \DIFdelFL{\ref{fig:balances_AC_nogreen}}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{\ref{fig:balances-ac-co2l20-120-noreg}). Increasing domestic }\co \DIFaddFL{mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high domestic }\co \DIFaddFL{mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV}\DIFaddendFL ) \DIFaddbeginFL \DIFaddFL{and hydrogen generation for other sectors. At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as well as coal and gas power plants since no }\DIFaddendFL temporal hydrogen regulation \DIFaddbeginFL \DIFaddFL{is in place.}\DIFaddendFL }
-    \DIFdelbeginFL %DIFDELCMD < \label{fig:barplotscons}
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity balance ramp up from 1--120 TWh/a at 0\% domestic climate change mitigation with (\ref{fig:balances_AC_monthlymatch}) and without (\ref{fig:balances_AC_nogreen}) temporal hydrogen regulation}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:barplotscons}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
 %DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:balances-ac-noreg}
-\DIFaddendFL \end{figure*}
+\subsection{\DIFdel{Effects of temporal matching in a high export and low climate change mitigation scenario on total system costs}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < 
 
+%DIFDELCMD < \begin{figure*}[h]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.6\linewidth]{../../results/gh/abs_sin_tech_120_Co2L2.0.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Total system costs at 120 TWh/a export and 0\% domestic climate change mitigation. Stricter temporal hydrogen regulation mainly increases the total CAPEX of additional solar PV, electrolysis and hydrogen storage. In return, the OPEX of fossil generation (mainly gas), decreases. The large share of oil OPEX is independent of temporal hydrogen regulation, since these costs are mainly linked to combustion engine cars with demands independent of temporal hydrogen regulation.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:tsc-120-0}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
-\subsection{Effects of temporal matching in a high export and low \DIFdelbegin \DIFdel{climate change }\DIFdelend \DIFaddbegin \co \DIFaddend mitigation scenario on total system costs}
+%DIFDELCMD < \clearpage
+%DIFDELCMD < %%%
+\section{\DIFdel{Hydrogen cost breakdown}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{subsec:electrolysis_op_comp}
+%DIFDELCMD < 
 
-\begin{figure*}[h]
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.6\linewidth]{../../results/gh/abs_sin_tech_120_Co2L2.0.pdf}
-    \caption{Total system costs at 120 TWh/a export and 0\% domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation. Stricter temporal hydrogen regulation mainly increases the total CAPEX of additional solar PV, electrolysis and hydrogen storage. In return, the OPEX of fossil generation (mainly gas), decreases. The large share of oil OPEX is independent of temporal hydrogen regulation, since these costs are mainly linked to combustion engine cars with demands independent of temporal hydrogen regulation.}
-    \label{fig:tsc-120-0}
-\end{figure*}
+%DIFDELCMD < %%%
+\DIFdel{The price of hydrogen depends on single cost components as well as the temporal hydrogen regulation. Figure \ref{fig:costbreakdown_hourly} displays the cost breakdown of hydrogen 
+whereas the combined cost in Figure \ref{fig:hydrogen-cost-hourly} differs from the price of hydrogen in Figure \ref{fig:hydrogen-price-hourly}. This is due to the temporal hydrogen regulation, the costs for the required installation of additional RE capacities are not reflected in the cost breakdown but included in the price of hydrogen. This effect is most striking in high export and low domestic climate change mitigation scenarios. 
+In constrast, if there is no temporal hydrogen regulation applied, both hydrogen cost (s. Fig. \ref{fig:hydrogen-cost-norule}) and hydrogen price (s. Fig. \ref{fig:hydrogen-price-norule}) show similar trends across all domestic climate change mitigation and export scenarios.
+}%DIFDELCMD < 
 
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{CAPEX share of hydrogen costs}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:capex-rel-hourly}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electrolysis capacity factor}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:ely-cf-hourly}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{OPEX share of hydrogen costs}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:opex-rel-hourly}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Price of electricity (electrolysis demand weighted)}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:electricity-price-hourly}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_compo_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Total hydrogen cost}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:hydrogen-cost-hourly}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Hydrogen price}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:hydrogen-price-hourly}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     
 
-\DIFaddbegin \subsection{\DIFadd{Cost for domestic electricity consumers and hydrogen exporters without hydrogen regulation}}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Cost components of hydrogen electrolysis and the respective main influence factors on it }%DIFDELCMD < {\bf %%%
+\DIFdelFL{with}%DIFDELCMD < } %%%
+\DIFdelFL{hourly temporal matching. The CAPEX (\ref{fig:capex-rel-hourly}) depends on the electrolysis capacity factor (\ref{fig:ely-cf-hourly}), whereas the OPEX (\ref{fig:opex-rel-hourly}) is influenced by the price of electricity for electrolysis (\ref{fig:electricity-price-hourly}). With temporal hydrogen regulation, the cost of hydrogen  (\ref{fig:hydrogen-cost-hourly}) is not reflected by the price of hydrogen (\ref{fig:hydrogen-price-hourly}), which includes the additional constraint of hourly matching and hence the installation of RE and storage capacities.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:costbreakdown_hourly}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
-\DIFadd{Figure \ref{fig:expenses_default_120-noreg} shows, that increasing hydrogen exports quickly in a system that is still dominated by fossil fuels substantially raises costs for domestic electricity consumers, if green hydrogen production is not regulated. At low hydrogen exports (1-20 TWh), an increase of domestic }\co \DIFadd{mitigation increases the cost for hydrogen exporters.
-}
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{CAPEX share of hydrogen costs}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:capex-rel-norule}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electrolysis capacity factor}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:ely-cf-norule}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{OPEX share of hydrogen costs}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:opex-rel-norule}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Price of electricity (electrolysis demand weighted)}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:electricity-price-norule}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_lcoh_compo_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Total hydrogen cost}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:hydrogen-cost-norule}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.45\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Hydrogen price}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:hydrogen-price-norule}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     
 
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Cost components of hydrogen electrolysis and the respective main influence factors on it }%DIFDELCMD < {\bf %%%
+\DIFdelFL{without}%DIFDELCMD < } %%%
+\DIFdelFL{temporal hydrogen regulation. The CAPEX (\ref{fig:capex-rel-norule}) depends on the electrolysis capacity factor (\ref{fig:ely-cf-norule}), whereas the OPEX (\ref{fig:opex-rel-norule}) is influenced by the price of electricity for electrolysis (\ref{fig:electricity-price-norule}). With temporal hydrogen regulation, the cost of hydrogen  (\ref{fig:hydrogen-cost-norule}) is not reflected by the price of hydrogen (\ref{fig:hydrogen-price-norule}), which includes the additional constraint of hourly matching and hence the installation of RE and storage capacities.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:costbreakdown_norule}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120.pdf}
-        \caption{\DIFaddFL{Relative cost of electricity for domestic customers (normalized to 1 TWh/a hydrogen export)}}
-        \label{fig:expense_ac_120-noreg}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120.pdf}
-        \caption{\DIFaddFL{Relative cost of hydrogen for exporters (normalized to 0\% domestic }\co \DIFaddFL{mitigation)}}
-        \label{fig:expense_h2_120-noreg}
-    \end{subfigure}
-    \hfill
-    \caption{  
-    \DIFaddFL{Supplement to Figure \ref{fig:expenses_default_120} without temporal hydrogen regulation. Figure \ref{fig:expense_ac_120-noreg} shows the effect of hydrogen exports on domestic electricity cost . Therefore, the effect of hydrogen exports is isolated by normalizing the costs to 1 TWh/a hydrogen export in each column. This approach allows for a vertical interpretation in Figure \ref{fig:expense_ac_120-noreg} only, displaying the effects of hydrogen exports (vertical) at a certain domestic }\co \DIFaddFL{mitigation level.
-    Figure \ref{fig:expense_h2_120-noreg} shows the effect of domestic }\co \DIFaddFL{mitigation on hydrogen export cost. Therefore, the effect of domestic }\co \DIFaddFL{mitigation is isolated by normalizing the costs to 0\% }\co \DIFaddFL{mitigation in each row. This approach allows for a horizontal interpretation in Figure \ref{fig:expense_h2_120-noreg} only, displaying the effects of domestic }\co \DIFaddFL{mitigation (horizontal) at a certain hydrogen export quantity.
-    Increasing hydrogen exports quickly in a system that is still dominated by fossil fuels substantially raises costs for domestic electricity consumers, if green hydrogen production is not regulated.
-    At low hydrogen exports (1-20 TWh), an increase of domestic }\co \DIFaddFL{mitigation increases the cost for hydrogen exporters.
-    }}
-    \label{fig:expenses_default_120-noreg}
-\end{figure*}
+%DIFDELCMD < \clearpage
+%DIFDELCMD < 
 
+%DIFDELCMD < %%%
+\section{\DIFdel{High export scenarios}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:highexportsens}
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Electricity supply and demand}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < 
 
-
-\DIFaddend \clearpage
-\section{Hydrogen cost breakdown}
-\label{subsec:electrolysis_op_comp}
-
-The \DIFaddbegin \DIFadd{endogenous }\DIFaddend price of hydrogen depends on single cost components as well as the temporal hydrogen regulation. Figure \ref{fig:costbreakdown_hourly} displays the cost breakdown of hydrogen 
-whereas the combined cost in Figure \ref{fig:hydrogen-cost-hourly} differs from the price of hydrogen in Figure \ref{fig:hydrogen-price-hourly}. This is due to the temporal hydrogen regulation, the costs for the required installation of additional RE capacities are not reflected in the cost breakdown but included in the price of hydrogen. This effect is most striking in high export and low domestic \DIFdelbegin \DIFdel{climate change }\DIFdelend \DIFaddbegin \co \DIFaddend mitigation scenarios. 
-In constrast, if there is no temporal hydrogen regulation applied, both hydrogen cost (s. Fig. \ref{fig:hydrogen-cost-norule}) and hydrogen price (s. Fig. \ref{fig:hydrogen-price-norule}) show similar trends across all domestic \DIFdelbegin \DIFdel{climate change }\DIFdelend \DIFaddbegin \co \DIFaddend mitigation and export scenarios.
-
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
-        \caption{CAPEX share of hydrogen costs}
-        \label{fig:capex-rel-hourly}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Electrolysis capacity factor}
-        \label{fig:ely-cf-hourly}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
-        \caption{OPEX share of hydrogen costs}
-        \label{fig:opex-rel-hourly}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Price of electricity (electrolysis demand weighted)}
-        \label{fig:electricity-price-hourly}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_lcoh_compo_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Total hydrogen cost}
-        \label{fig:hydrogen-cost-hourly}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Hydrogen price}
-        \label{fig:hydrogen-price-hourly}
-    \end{subfigure}
-    \hfill
-
-    \caption{Cost components of hydrogen electrolysis and the respective main influence factors on it \DIFdelbeginFL %DIFDELCMD < {\bf %%%
-\DIFdelendFL with \DIFdelbeginFL %DIFDELCMD < } %%%
-\DIFdelendFL hourly temporal matching. The CAPEX (\ref{fig:capex-rel-hourly}) depends on the electrolysis capacity factor (\ref{fig:ely-cf-hourly}), whereas the OPEX (\ref{fig:opex-rel-hourly}) is influenced by the price of electricity for electrolysis (\ref{fig:electricity-price-hourly}). With temporal hydrogen regulation, the cost of hydrogen  (\ref{fig:hydrogen-cost-hourly}) is not reflected by the price of hydrogen (\ref{fig:hydrogen-price-hourly}), which includes the additional constraint of hourly matching and hence the installation of RE and storage capacities.}
-    \label{fig:costbreakdown_hourly}
-\end{figure*}
-
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_capex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
-        \caption{CAPEX share of hydrogen costs}
-        \label{fig:capex-rel-norule}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Electrolysis capacity factor}
-        \label{fig:ely-cf-norule}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_opex_ely_rel_20_filterTrue_nFalse_exp200.pdf}
-        \caption{OPEX share of hydrogen costs}
-        \label{fig:opex-rel-norule}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_AC_inclu_H2 El_all_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Price of electricity (electrolysis demand weighted)}
-        \label{fig:electricity-price-norule}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_lcoh_compo_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Total hydrogen cost}
-        \label{fig:hydrogen-cost-norule}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/\runsensnogreenhy/graphics/integrated_comp/contour_mg_H2_False_False_all_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Hydrogen price}
-        \label{fig:hydrogen-price-norule}
-    \end{subfigure}
-    \hfill
-
-    \caption{Cost components of hydrogen electrolysis and the respective main influence factors on it \DIFdelbeginFL %DIFDELCMD < {\bf %%%
-\DIFdelendFL without \DIFdelbeginFL %DIFDELCMD < } %%%
-\DIFdelendFL temporal hydrogen regulation. The CAPEX (\ref{fig:capex-rel-norule}) depends on the electrolysis capacity factor (\ref{fig:ely-cf-norule}), whereas the OPEX (\ref{fig:opex-rel-norule}) is influenced by the price of electricity for electrolysis (\ref{fig:electricity-price-norule}). With temporal hydrogen regulation, the cost of hydrogen  (\ref{fig:hydrogen-cost-norule}) is not reflected by the price of hydrogen (\ref{fig:hydrogen-price-norule}), which includes the additional constraint of hourly matching and hence the installation of RE and storage capacities.}
-    \label{fig:costbreakdown_norule}
-\end{figure*}
-
-
-\clearpage
-
-\DIFaddbegin \section{\DIFadd{Scenario groups}}
-\label{subsec:scen-select}
-
-\DIFadd{Figure \ref{fig:scenario-sel} shows the categorization of the mitigation-export scenarios into different groups, divided into 
-pathways of i) quick exports and slow }\co \DIFadd{mitigation, ii) balanced exports and }\co \DIFadd{mitigation and iii) slow exports and quick }\co \DIFadd{mitigation. Figure \ref{fig:scenario-sel-120} shows the categorization for export scenarios up to 120 TWh/a as displayed in Figure \ref{fig:expenses-relative-120}. Figure \ref{fig:scenario-sel-200} extends this categorization taking export quantities up to 200 TWh/a into account, as basis for the sensitivity analysis on high export scenarios shown in Figure \ref{fig:expenses-relative-200}
-}
-
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_120exp_scen_selection.pdf}
-        \caption{\DIFaddFL{Scenario selection up to 120 TWh}}
-        \label{fig:scenario-sel-120}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_200exp_scen_selection.pdf}
-        \caption{\DIFaddFL{Scenario selection up to 200 TWh}}
-        \label{fig:scenario-sel-200}
-    \end{subfigure}
-    \hfill
-    \caption{\DIFaddFL{Supplement to Fig. \ref{fig:expenses-relative-120}. Scenario grouping of all scenarios up to 120 TWh/a (s. Fig. \ref{fig:scenario-sel-120}) and the scenario grouping including the sensitivity on hydrogen exports of up to 200 TWh/a (s. Fig. \ref{fig:scenario-sel-200}).}}
-    \label{fig:scenario-sel}
-\end{figure*}
-
-\clearpage
-
-\DIFaddend \section{High export scenarios}
-\label{sec:highexportsens}
-\subsection{Electricity supply and demand \DIFaddbegin \DIFadd{in high export scenarios}\DIFaddend }
-
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/200/graphs/balances-AC.pdf}
-        \caption{Fixed (1 TWh) export and 0--100\% domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation}
-        \label{fig:balances-ac-0exp}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/200/graphs/balances-AC.pdf}
-        \caption{Fixed (0\%) domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation and 1--200 TWh/a export}
-        \label{fig:balances-ac-co2l20-200}
-    \end{subfigure}
-    \hfill
-    \caption{Electricity supply and demand at fixed export levels and increasing domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation (\ref{fig:balances-ac-0exp}) and vice versa (\ref{fig:balances-ac-co2l20-200}). Increasing domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands cover EVs and hydrogen generation for other sectors.
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/200/graphs/balances-AC.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Fixed (1 TWh) export and 0--100\% domestic climate change mitigation}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances-ac-0exp}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/co2l20-only/200/graphs/balances-AC.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Fixed (0\%) domestic climate change mitigation and 1--200 TWh/a export}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances-ac-co2l20-200}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity supply and demand at fixed export levels and increasing domestic climate change mitigation (\ref{fig:balances-ac-0exp}) and vice versa (\ref{fig:balances-ac-co2l20-200}). Increasing domestic climate change mitigation first phases out carbon-intensive coal generation in favor of CCGT, at medium to high domestic climate change mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands cover EVs and hydrogen generation for other sectors.
     At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar PV, as imposed by the temporal hydrogen regulation. 
-    }
-    \DIFdelbeginFL %DIFDELCMD < \label{fig:balances-ac}
+    }}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances-ac}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
 %DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:balances-ac-200}
-\DIFaddendFL \end{figure*}
+\subsection{\DIFdel{Relative cost of domestic electricity and hydrogen export}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < 
 
-
-
-
-
-\subsection{Relative cost of domestic electricity and hydrogen export \DIFaddbegin \DIFadd{in high export scenarios}\DIFaddend }
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp200-PATH.pdf}
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp200-PATH.pdf}
 %DIFDELCMD <         %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp200.pdf}
-        \DIFaddendFL \caption{Rel. cost of electricity for domestic customers (normalized to 1 TWh/a hydrogen export)}
-        \label{fig:expense_ac_200}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp200-PATH.pdf}
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Rel. cost of electricity for domestic customers (normalized to 1 TWh/a hydrogen export)}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expense_ac_200}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp200-PATH.pdf}
 %DIFDELCMD <         %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp200.pdf}
-        \DIFaddendFL \caption{Rel. cost of hydrogen for exporters (normalized to 0\% \co reduction)}
-        \label{fig:expense_h2_200}
-    \end{subfigure}
-    \hfill
-    \caption{  
-    \DIFdelbeginFL \DIFdelFL{Rel. }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Relative }\DIFaddendFL cost for domestic electricity consumers (\ref{fig:expense_ac_200}) and hydrogen exporters (\ref{fig:expense_h2_200}),
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Rel. cost of hydrogen for exporters (normalized to 0\% }%DIFDELCMD < \co %%%
+\DIFdelFL{reduction)}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expense_h2_200}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Rel. cost for domestic electricity consumers (\ref{fig:expense_ac_200}) and hydrogen exporters (\ref{fig:expense_h2_200}),
     normalized to costs at 1 TWh/a hydrogen export (\ref{fig:expense_ac_200}) and
-    to 0\% \co reduction (\ref{fig:expense_h2_200})
-    at each domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation level. Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation and high exports. Hydrogen exporters profit from domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL mitigation at medium mitigation efforts.\DIFdelbeginFL \DIFdelFL{Both (\ref{fig:expense_ac_200}) and (\ref{fig:expense_h2_200}) include possible pathways of i) quick exports and slow climate change mitigation, ii) balanced exports and mitigation and iii) slow exports and quick climate change mitigation.}\DIFdelendFL }
-    \label{fig:expenses_default_200}
-\end{figure*}
+    to 0\% }%DIFDELCMD < \co %%%
+\DIFdelFL{reduction (\ref{fig:expense_h2_200})
+    at each domestic climate change mitigation level. Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic climate change mitigation and high exports. Hydrogen exporters profit from domestic climate change mitigation at medium mitigation efforts. Both (\ref{fig:expense_ac_200}) and (\ref{fig:expense_h2_200}) include possible pathways of i) quick exports and slow climate change mitigation, ii) balanced exports and mitigation and iii) slow exports and quick climate change mitigation.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses_default_200}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Effect of temporal hydrogen regulation on electricity and hydrogen costs in all scenarios}} 
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < 
 
-\subsection{Effect of temporal hydrogen regulation on electricity and hydrogen costs in \DIFdelbegin \DIFdel{all }\DIFdelend \DIFaddbegin \DIFadd{high export }\DIFaddend scenarios} 
-
-
-\DIFdelbegin %DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD < \begin{figure*}[h!]
 %DIFDELCMD <     \centering
 %DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
 %DIFDELCMD <         \centering
@@ -1872,14 +2093,14 @@ pathways of i) quick exports and slow }\co \DIFadd{mitigation, ii) balanced expo
 %DIFDELCMD <     \end{subfigure}
 %DIFDELCMD <     \hfill
 %DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_200exp_Co2L2.0dec_additionalreal.pdf}
 %DIFDELCMD <         %%%
-\DIFdelendFL \DIFaddbeginFL \begin{figure}[h!]
-    \DIFaddendFL \centering
-    \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_200exp_Co2L2.0dec_additionalreal.pdf}
-%DIFDELCMD <         %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.6\linewidth]{../../results/gh/rel_multiple_200exp_three_scen.pdf}
-    \DIFaddendFL \caption{\DIFdelbeginFL \DIFdelFL{All }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Relative change of electricity and hydrogen cost and depending on the temporal hydrogen regulation. Each line represents a single mitigation-export scenario, grouped into different speeds of transformation. Domestic electricity consumers profit across all export and mitigation }\DIFaddendFL scenarios \DIFdelbeginFL \DIFdelFL{up to 200 TWh}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{but most in the group of slow export and quick }\co \DIFaddFL{mitigation scenarios. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen regulation regulates the welfare distribution between both groups.}\DIFaddendFL }
-    \DIFdelbeginFL %DIFDELCMD < \label{fig:expenses_all_200}
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{All scenarios up to 200 TWh}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses_all_200}
 %DIFDELCMD <     \end{subfigure}
 %DIFDELCMD <     \hfill
 %DIFDELCMD <     %%%
@@ -1889,51 +2110,64 @@ pathways of i) quick exports and slow }\co \DIFadd{mitigation, ii) balanced expo
     %DIFAUXCMD
 %DIFDELCMD < \label{fig:expenses_all}
 %DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
+%DIFDELCMD < \clearpage
+%DIFDELCMD < 
+
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \label{fig:expenses-relative-200}
-\end{figure}
-\DIFaddend 
+\section{\DIFdel{Carbon Management}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{subsec:carbon_mgmt}
+%DIFDELCMD < 
 
+%DIFDELCMD < %%%
+\DIFdel{Figure \ref{fig:carbon-mgmt} shows the carbon management of scenarios with increasing emission limit at 1 TWh/a export volume.
+}%DIFDELCMD < 
 
-\clearpage
-
-\section{Carbon Management}
-\label{subsec:carbon_mgmt}
-
-Figure \ref{fig:carbon-mgmt} shows the carbon management of scenarios with increasing emission limit at 1 TWh/a export volume.
-
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-co2.pdf}
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-co2.pdf}
 %DIFDELCMD <         %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/120/graphs/balances-co2.pdf}
-        \DIFaddendFL \caption{\DIFdelbeginFL \DIFdelFL{Carbon dioxide }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL emissions and capturing of non-electricity sectors}
-        \label{fig:carbon-atmo}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-co2_stored.pdf}
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Carbon dioxide emissions and capturing of non-electricity sectors}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:carbon-atmo}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/graphs/balances-co2_stored.pdf}
 %DIFDELCMD <         %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{../../workflow/subworkflows/pypsa-earth-sec/results/\runstandard/0exp-only/120/graphs/balances-co2_stored.pdf}
-        \DIFaddendFL \caption{\DIFdelbeginFL \DIFdelFL{Carbon dioxide balance }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Balance }\DIFaddendFL of captured \DIFdelbeginFL \DIFdelFL{carbon dioxide}\DIFdelendFL \DIFaddbeginFL \co\DIFaddendFL }
-        \label{fig:carbon-store}
-    \end{subfigure}
-    \hfill
-    \caption{\DIFdelbeginFL \DIFdelFL{Carbon dioxide \ref{fig:carbon-atmo} }\DIFdelendFL \DIFaddbeginFL \co \DIFaddendFL emissions and capturing \DIFaddbeginFL \DIFaddFL{(\ref{fig:carbon-atmo}) }\DIFaddendFL as well as \DIFdelbeginFL \DIFdelFL{\ref{fig:carbon-store} }\DIFdelendFL management of captured \DIFdelbeginFL \DIFdelFL{carbon dioxide}\DIFdelendFL \DIFaddbeginFL \co \DIFaddFL{(\ref{fig:carbon-store}).}\DIFaddendFL }
-    \label{fig:carbon-mgmt}
-\end{figure*}
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Carbon dioxide balance of captured carbon dioxide}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:carbon-store}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Carbon dioxide \ref{fig:carbon-atmo} emissions and capturing as well as \ref{fig:carbon-store} management of captured carbon dioxide}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:carbon-mgmt}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
+%DIFDELCMD < \clearpage
+%DIFDELCMD < %%%
+\section{\DIFdel{System operation}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+%DIFDELCMD < 
 
-\clearpage
-\section{System operation}
-
-
-
-\DIFdelbegin \subsection{\DIFdel{Operation of electrolysers and Fischer-Tropsch in dependence of domestic climate change mitigation}}
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Operation of electrolysers and Fischer-Tropsch in dependence of domestic climate change mitigation}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
 %DIFDELCMD < 
@@ -2028,36 +2262,61 @@ Figure \ref{fig:carbon-mgmt} shows the carbon management of scenarios with incre
 %DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdelend \subsection{Capacity factors of electrolysis and Fischer-Tropsch}
+\subsection{\DIFdel{Capacity factors of electrolysis and Fischer-Tropsch}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < 
 
-\begin{figure*}[h] % Use 'figure*' to span both columns
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Capacity factor of electrolysis}
-        \label{fig:cf-ely}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_ft_cf_20_filterTrue_nFalse_exp200.pdf}
-        \caption{Capacity factor of Fischer-Tropsch}
-        \label{fig:cf-ft}
-    \end{subfigure}
-    \hfill
-    \caption{Capacity factors of electrolysis and Fischer-Tropsch. The electrolysis has a high capacity factor in low export and low domestic \DIFdelbeginFL \DIFdelFL{climate change }\DIFdelendFL \DIFaddbeginFL \co \DIFaddFL{mitigation }\DIFaddendFL scenarios. The capacity factor for Fischer-Tropsch is close to 1 given the limited flexibility of the process.}
-    \label{fig:cf-ely-ft}
-\end{figure*}
+%DIFDELCMD < \begin{figure*}[h] %%%
+%DIF <  Use 'figure*' to span both columns
+    %DIFDELCMD < \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_cf_electrolysis_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Capacity factor of electrolysis}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:cf-ely}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{graphics/integrated_comp/contour_ft_cf_20_filterTrue_nFalse_exp200.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Capacity factor of Fischer-Tropsch}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:cf-ft}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Capacity factors of electrolysis and Fischer-Tropsch. The electrolysis has a high capacity factor in low export and low domestic climate change scenarios. The capacity factor for Fischer-Tropsch is close to 1 given the limited flexibility of the process.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:cf-ely-ft}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
+%DIFDELCMD < \clearpage
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\addcontentsline{toc}{section}{\DIFdel{Supplementary References}}
+%DIFAUXCMD
+%DIFDELCMD < \renewcommand{\ttdefault}{\sfdefault}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+%DIF <  \bibliographyS{references_mylibrary}
+\DIFdelend 
 
 
 
-\clearpage
-
-
-\addcontentsline{toc}{section}{Supplementary References}
-\renewcommand{\ttdefault}{\sfdefault}
-
-% \bibliographyS{references_mylibrary}
 
 \end{document}
+% supplementary information
+
