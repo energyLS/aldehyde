@@ -147,13 +147,16 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
             # Vertical arrow and text
             x_pos_v = 20  # X position of vertical arrow
             y_start_v = 1  # Y start position of vertical arrow
-            y_length_v = 99  # Length of vertical arrow
-            text_offset_v = 3.2  # Text offset for vertical arrow
-            # z_value_v = 10000
-            # z_value_v = Z[np.argmin(abs(x - x_pos_v)), np.argmin(abs(y - (y_start_v + y_length_v)))]
+            y_head_v = 3  # Head of vertical arrow
+            text_offset_v = 3.5  # Text offset for vertical arrow
+
+            if explimit == 120:
+                y_length_v = 96  # Length of vertical arrow
+            elif explimit == 200:
+                y_length_v = 116
 
             h_idx = np.argmin(np.abs(opts_reverse - (100 - x_pos_v) * 0.01))
-            v_idx = np.argmin(np.abs(h2export - (y_start_v + y_length_v)))
+            v_idx = np.argmin(np.abs(h2export - (y_start_v + y_length_v + y_head_v)))
 
             z_value_v = data_reshaped["exp_AC_exclu_H2 El_all"][v_idx, h_idx]
 
@@ -163,10 +166,10 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
                 0,
                 y_length_v,
                 head_width=2,
-                head_length=3,
+                head_length=y_head_v,
                 fc="black",
                 ec="black",
-                alpha=1,
+                alpha=0.7,
             )
 
             plt.text(
@@ -177,7 +180,49 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
                 va="center",
                 rotation=90,
                 color="black",
-                alpha=1,
+                alpha=0.7,
+            )
+
+        elif plottype == "exp_H2_False_False_exportonly":
+            # Horizontal arrow and text
+            x_start_h = 0  # X start position of horizontal arrow
+            y_pos_h = 40  # Y position of horizontal arrow
+            x_length_h = 48  # Length of horizontal arrow
+            x_head_h = 2  # Head of horizontal arrow
+            text_x_h = 25  # Text position X
+
+            if explimit == 120:
+                text_y_h = 45  # Text position Y
+            elif explimit == 200:
+                text_y_h = 48
+
+            h_idx = np.argmin(
+                np.abs(opts_reverse - (x_start_h + x_length_h + x_head_h) * 0.01)
+            )
+            v_idx = np.argmin(np.abs(h2export - (y_pos_h)))
+
+            z_value_h = data_reshaped["exp_H2_False_False_exportonly"][v_idx, h_idx]
+
+            plt.arrow(
+                x_start_h,
+                y_pos_h,
+                x_length_h,
+                0,
+                head_width=3,
+                head_length=x_head_h,
+                fc="black",
+                ec="black",
+                alpha=0.7,
+            )
+
+            plt.text(
+                text_x_h,
+                text_y_h,
+                f"$\mathrm{{CO_2}}$ reduction reduces \n hydrogen export costs by {z_value_h:.1f}%",
+                ha="center",
+                va="center",
+                color="black",
+                alpha=0.7,
             )
 
     # plt.xlabel("CO$_2$ Reduction in % of base levels")
@@ -217,7 +262,7 @@ if __name__ == "__main__":
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         snakemake = mock_snakemake(
             "plot_contour",
-            plottype="exp_AC_exclu_H2 El_all",
+            plottype="exp_H2_False_False_exportonly",
             levels=20,
             zerofilter="False",
             norm=True,
