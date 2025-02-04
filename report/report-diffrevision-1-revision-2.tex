@@ -1,7 +1,7 @@
 \documentclass[5p,numafflabel]{elsarticle}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL ./latexdiff-vc-revision-1/report.tex   Wed Jan 22 11:18:41 2025
-%DIF ADD ./latexdiff-vc-revision-2/report.tex   Wed Jan 22 11:18:41 2025
+%DIF ADD ./latexdiff-vc-revision-2/report.tex   Tue Feb  4 15:15:18 2025
 
 \journal{Nature Communications}
 
@@ -299,7 +299,7 @@ Apart from hydrogen exports and domestic carbon dioxide (CO${}_2$) mitigation, t
 Temporal hydrogen regulation defines the rules for green hydrogen production when there is no direct connection between the electrolyser and green electricity production.
 Temporal matching in selected European countries is investigated in Zeyen et al.\cite{Zeyen2024}, whereas Ruhnau et al.\cite{Ruhnau2023a} points out the effect of relaxing simultaneity requirements of RE supply and hydrogen generation on project design, economics, and power sector emissions.
 The effect of regulatory options on social welfare and carbon emissions is assessed in Brauer et al.\cite{Brauer2022}. They recommend that the regulation on the spatial dimension may not be too stringent, however they outline that the benefits of strict temporal matching (e.g. decline in emissions) exceed the moderate economic disadvantages. In addition, the need for such regulation diminishes in highly renewable electricity systems \cite{Brauer2022}.
-The interplay of additionality criteria and time matching requirements is investigated in Giovanniello et al.\cite{Giovanniello2024}, highlighting how additionality drices the emissions impact of temporal hydrogen regulation.
+The interplay of additionality criteria and time matching requirements is investigated in Giovanniello et al.\cite{Giovanniello2024}, highlighting how additionality \DIFdelbegin \DIFdel{drices }\DIFdelend \DIFaddbegin \DIFadd{drives }\DIFaddend the emissions impact of temporal hydrogen regulation.
 While Zeyen et al.\cite{Zeyen2024} contextualizes the role of temporal hydrogen regulation with decarbonization scenarios of Germany and Netherlands, none of the mentioned studies fully integrates domestic \co mitigation and temporal hydrogen regulation scenarios. Furthermore, these studies do not explore exports in depth.
 
 While most of the studies presented above focus exclusively on either hydrogen exports, domestic climate mitigation, or temporal hydrogen regulation, only one study\cite{Muller2024} does combine two of these aspects. However, none of them fully address the complex relationship between all three dimensions. 
@@ -450,7 +450,10 @@ Figure \ref{fig:expense_h2ac}. Stricter temporal hydrogen regulation decreases t
 
 The combined cost borne by domestic electricity consumers and hydrogen exporters decreases with stricter temporal hydrogen regulation, while the overall system cost increases, as shown in Figure \ref{fig:tsc-120-0}. 
 This difference arises because electricity consumers (both domestic and hydrogen electrolysis) pay a contribution margin to the capital costs of existing coal power plants, which are pre-existing brownfield assets. Since these brownfield capacities are not part of the objective function, their capital costs are excluded from the total system cost (s. Fig. \ref{fig:tsc-120-0}) but are included in consumer costs (s. Fig. \ref{fig:expense_h2ac}).
-Under stricter temporal hydrogen regulation, coal power phases out, reducing the capital contributions required from consumers for these coal assets. For domestic electricity consumers, this leads to a direct decrease in their cost. However, for hydrogen exporters, the cost slightly increases, as they bear the cost for the additional renewable capacities (s. Fig. \ref{fig:tsc-120-0}) required to meet temporal hydrogen regulation. As coal capacity declines with stricter hydrogen regulation, the discrepancy between consumer costs and the total system cost decreases. This observation also holds if the coal capacity is decreased under high decarbonization scenarios where fossil fuel dispatch is minimized, leading the system closer to an equilibrium where marginal prices match the optimization’s objective function.
+Under stricter temporal hydrogen regulation, coal power phases out, reducing the capital contributions required from consumers for these coal assets. For domestic electricity consumers, this leads to a direct decrease in their cost. However, for hydrogen exporters, the cost slightly increases, as they bear the cost for the additional renewable capacities (s. Fig. \ref{fig:tsc-120-0}) required to meet temporal hydrogen regulation. As coal capacity declines with stricter hydrogen regulation, the discrepancy between consumer costs and the total system cost decreases. This observation also holds if the coal capacity is decreased under high decarbonization scenarios where fossil fuel dispatch is minimized\DIFdelbegin \DIFdel{, leading the system closer to an equilibrium where marginal prices match the optimization’s objective function.
+}\DIFdelend \DIFaddbegin \DIFadd{.
+%DIF > , leading the system closer to an equilibrium where marginal prices match the optimization’s objective function.
+}\DIFaddend 
 
 %%%%%%%%%%%%%%%%%
 
