@@ -142,6 +142,44 @@ def plot_data(data_reshaped, plottype, levels, show_minimums, el_base_demand):
         )
         plt.legend()
 
+    if snakemake.config["plot"]["contour_plot"]["arrows"]:
+        if plottype == "exp_AC_exclu_H2 El_all":
+            # Vertical arrow and text
+            x_pos_v = 20  # X position of vertical arrow
+            y_start_v = 1  # Y start position of vertical arrow
+            y_length_v = 99  # Length of vertical arrow
+            text_offset_v = 3.2  # Text offset for vertical arrow
+            # z_value_v = 10000
+            # z_value_v = Z[np.argmin(abs(x - x_pos_v)), np.argmin(abs(y - (y_start_v + y_length_v)))]
+
+            h_idx = np.argmin(np.abs(opts_reverse - (100 - x_pos_v) * 0.01))
+            v_idx = np.argmin(np.abs(h2export - (y_start_v + y_length_v)))
+
+            z_value_v = data_reshaped["exp_AC_exclu_H2 El_all"][v_idx, h_idx]
+
+            plt.arrow(
+                x_pos_v,
+                y_start_v,
+                0,
+                y_length_v,
+                head_width=2,
+                head_length=3,
+                fc="black",
+                ec="black",
+                alpha=1,
+            )
+
+            plt.text(
+                x_pos_v + text_offset_v,  # X position
+                y_start_v + y_length_v / 2,  # Y position at midpoint
+                f"Hydrogen export reduces \n domestic electricity cost by {z_value_v:.1f}%",
+                ha="center",
+                va="center",
+                rotation=90,
+                color="black",
+                alpha=1,
+            )
+
     # plt.xlabel("CO$_2$ Reduction in % of base levels")
     plt.xlabel("Domestic $\mathrm{CO_2}$ mitigation in %")
     plt.ylabel("Hydrogen Export Volume in TWh")
