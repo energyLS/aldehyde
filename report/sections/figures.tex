@@ -98,9 +98,25 @@
 
 
 \begin{figure}[h!]
+
     \centering
-    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.7\linewidth]{../results/gh/rel_multiple_120exp_three_scen.pdf}
-    \caption{Relative change of electricity and hydrogen consumer cost depending on the temporal hydrogen regulation. Each line represents a single mitigation-export scenario, grouped into different speeds of transformation. Domestic electricity consumers profit across all export and mitigation scenarios but most in the group of slow export and quick \co mitigation scenarios. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen ({H${}_2${}}) regulation regulates the welfare distribution between both groups. See Figure \ref{fig:expenses-relative-200} for the sensitivity of the export quantities and Figure \ref{fig:scenario-sel} for scenario grouping.}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_elec.pdf}
+        \caption{Cost reduction for electricity consumers}
+        \label{fig:expenses-relative-120-elec}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_hy.pdf}
+        \caption{Cost increase for hydrogen exporters}
+        \label{fig:expenses-relative-120-hy}
+    \end{subfigure}
+    \hfill    
+    \caption{Relative change of electricity (s. Fig. \ref{fig:expenses-relative-120-elec}) and hydrogen consumer cost (s. Fig. \ref{fig:expenses-relative-120-hy}) depending on the temporal hydrogen regulation.     
+    Violin plots indicate median (white dot), interquartile range (thick black bar), and 1.5x interquartile range (thin black bar), using kernel density estimation to show the distribution shape of the mitigation-export scenarios, grouped into different speeds of transformation (1,2,3).
+    Domestic electricity consumers profit across all export and mitigation scenarios but most in the group of slow export and quick \co mitigation scenarios. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen ({H${}_2${}}) regulation regulates the welfare distribution between both groups. See Figure \ref{fig:expenses-relative-200} for the sensitivity of the export quantities and Figure \ref{fig:scenario-sel} for scenario grouping.}
     \label{fig:expenses-relative-120}
 \end{figure}
 
