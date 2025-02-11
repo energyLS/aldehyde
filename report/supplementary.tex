@@ -112,6 +112,14 @@
 % Definition of external document for xr package
 \externaldocument{report}
 
+\makeatletter
+\def\ps@pprintTitle{%
+ \let\@oddhead\@empty
+ \let\@evenhead\@empty
+ \let\@oddfoot\@empty
+ \let\@evenfoot\@empty}
+\makeatother
+
 \begin{document}
 
 \begin{frontmatter}
