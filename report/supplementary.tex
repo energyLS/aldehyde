@@ -75,6 +75,10 @@
 \newcommand{\B}{\mathbb{B} }
 \newcommand{\N}{\mathbb{N} }
 \newcommand{\co}{\ce{CO2}~}
+% \newcommand{\bigheading}[1]{\vspace{10pt}\noindent{\LARGE\bfseries #1}\vspace{6pt}}
+\newcommand{\bigheading}[1]{\vspace{8pt}\noindent{\Large\bfseries #1}\vspace{4pt}}
+
+
 
 \def\el{${}_{\textrm{el}}$}
 \def\th{${}_{\textrm{th}}$}
@@ -157,26 +161,25 @@
 \setcounter{section}{0}
 
 
-\section*{Supplementary Information}
+% \section*{Supplementary Information}
 \label{sec:si}
 
+% Methods
 \input{sections/supplementary-mathematical.tex}
-
 \input{sections/supplementary-overview.tex}
-
 \input{sections/supplementary-demand.tex}
-\input{sections/supplementary-supply.tex}
-
-\input{sections/supplementary-absolutecost.tex}
-\input{sections/supplementary-balances.tex}
-
-\input{sections/supplementary-greenhydrogen.tex}
-\input{sections/supplementary-electrolysis.tex}
-
 \input{sections/supplementary-scenarioselec.tex}
 
+% Discussions
+\input{sections/supplementary-greenhydrogen.tex}
+\input{sections/supplementary-electrolysis.tex}
 \input{sections/supplementary-relchange.tex}
 
+%Figures
+\bigheading{Supplementary Figures}
+\input{sections/supplementary-supply.tex}
+\input{sections/supplementary-absolutecost.tex}
+\input{sections/supplementary-balances.tex}
 \input{sections/supplementary-carbonmgmt.tex}
 \input{sections/supplementary-operation.tex}
 
