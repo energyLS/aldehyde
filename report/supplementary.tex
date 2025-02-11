@@ -147,7 +147,8 @@
 \makeatletter
 \renewcommand \thesection{S\@arabic\c@section}
 \renewcommand\thetable{S\@arabic\c@table}
-\renewcommand \thefigure{S\@arabic\c@figure}
+\renewcommand \thefigure{\@arabic\c@figure}
+\renewcommand{\figurename}{Supplementary Fig.}
 \makeatother
 \renewcommand{\citenumfont}[1]{S#1}
 \setcounter{equation}{0}
