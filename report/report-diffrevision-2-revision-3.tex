@@ -1,7 +1,7 @@
 \documentclass[5p,numafflabel]{elsarticle}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL ./latexdiff-vc-revision-2/report.tex   Wed Feb 19 10:34:17 2025
-%DIF ADD ./latexdiff-vc-revision-3/report.tex   Wed Jun 18 10:26:03 2025
+%DIF ADD ./latexdiff-vc-revision-3/report.tex   Tue Jun 24 10:39:11 2025
 
 \journal{Nature Communications}
 
@@ -225,8 +225,8 @@
 As global demand for green hydrogen rises, potential hydrogen exporters move into the spotlight.
 While exports can bring countries revenue, large-scale on-grid hydrogen electrolysis for export can profoundly impact domestic energy prices and energy-related emissions.
 Our investigation explores the interplay of hydrogen exports, domestic energy transition and temporal hydrogen regulation, employing a sector-coupled energy model in Morocco. 
-We find substantial co-benefits of domestic carbon dioxide mitigation and hydrogen exports, whereby exports can reduce costs for domestic electricity consumers while mitigation reduces costs for hydrogen exporters.
-However, increasing hydrogen exports in a fossil-dominated system can substantially raise costs for domestic electricity consumers, but surprisingly, temporal matching of hydrogen production can lower these costs by up to 31\% with minimal impact on exporters.
+We find substantial co-benefits of domestic carbon dioxide mitigation and hydrogen exports, whereby exports can reduce \DIFaddbegin \DIFadd{market-based }\DIFaddend costs for domestic electricity consumers while mitigation reduces costs for hydrogen exporters.
+However, increasing hydrogen exports in a fossil-dominated system can substantially raise \DIFaddbegin \DIFadd{market-based }\DIFaddend costs for domestic electricity consumers, but surprisingly, temporal matching of hydrogen production can lower these costs by up to 31\% with minimal impact on exporters.
 Here, we show that this policy instrument can steer the welfare (re-)distribution between hydrogen exporting firms, hydrogen importers, and domestic electricity consumers and hereby increases acceptance among actors.
 
 % However, increasing hydrogen exports quickly in a system that is still dominated by fossil fuels can substantially raise domestic electricity prices, if green hydrogen production is not regulated.
@@ -340,17 +340,16 @@ Shortcomings of studies on highly renewable energy systems in Africa such as low
 
 
 % Forth: Task
-Here, we show the substantial co-benefits of domestic carbon dioxide mitigation and hydrogen exports, whereby exports can reduce costs for domestic electricity consumers while mitigation reduces costs for hydrogen exporters.
+Here, we show the substantial co-benefits of domestic carbon dioxide mitigation and hydrogen exports, whereby exports can reduce \DIFaddbegin \DIFadd{market-based }\DIFaddend costs for domestic electricity consumers while mitigation reduces costs for hydrogen exporters.
 Under various hydrogen export volumes, climate targets and temporal matchings, we demonstrate 
-that temporal hydrogen regulation can lower the costs for domestic electricity consumers by up to 31\% with minimal impact on exporters.
+that temporal hydrogen regulation can lower the \DIFaddbegin \DIFadd{market-based }\DIFaddend costs for domestic electricity consumers by up to 31\% with minimal impact on exporters.
 This study presents a fully sector-coupled capacity expansion and dispatch model of Morocco, which includes both gas pipelines and electricity networks. 
 \DIFdelbegin \DIFdel{The model assumes a central planner’s perspective, with the results being equivalent to a decentral market solution under the conditions outlined in the section }%DIFDELCMD < \nameref{sec:discussion}%%%
 \DIFdel{.
 }\DIFdelend %DIF >  The model assumes a central planner’s perspective, with the results being equivalent to a decentral market solution under the conditions outlined in the section \nameref{sec:discussion}.
-We use costs referring to model inputs and system costs, while prices denote endogenous shadow prices (representing idealized market prices) derived from the model. Payments made by consumers (calculated as energy price times energy volume) are described as (consumer) costs or, alternatively, (consumer) payments to highlight their financial impact.
-
-
-
+We use costs referring to model inputs and system costs, while prices denote endogenous shadow prices (representing idealized market prices) derived from the model. Payments made by consumers (calculated as energy price times energy volume) are described as \DIFaddbegin \DIFadd{market-based }\DIFaddend (consumer) costs \DIFaddbegin \DIFadd{based on idealized market prices }\DIFaddend or, alternatively, (consumer) payments to highlight their financial impact. 
+\DIFaddbegin \DIFadd{These payments only translate into one component of consumer electricity bills if whole-sale electricity prices are passed through to the retail tariff. Additional components in retail electricity prices depend on region-specific regulation and are not included here.
+}\DIFaddend 
 
 
 % \section*{Hydrogen export strategy and climate targets}
@@ -397,14 +396,14 @@ In contrast to the exponential increase of electricity demand observable at incr
 \subsection*{Co-benefits of domestic \co mitigation and hydrogen exports}
 \label{subsec:benefits}
 
-In an integrated analysis of domestic \co mitigation (dimension 1) and hydrogen exports (dimension 2) this study outlines that both domestic \co mitigation and hydrogen exports profit from each other and show co-benefits. In this section, we i) show the effects of hydrogen exports on cost for domestic electricity consumers, ii) the role of domestic \co mitigation on hydrogen export cost, and lastly iii) common co-benefits.
+In an integrated analysis of domestic \co mitigation (dimension 1) and hydrogen exports (dimension 2) this study outlines that both domestic \co mitigation and hydrogen exports profit from each other and show co-benefits. In this section, we i) show the effects of hydrogen exports on \DIFdelbegin \DIFdel{cost }\DIFdelend \DIFaddbegin \DIFadd{market-based costs }\DIFaddend for domestic electricity consumers, ii) the role of domestic \co mitigation on hydrogen export cost, and lastly iii) common co-benefits.
 
-First, Figure \ref{fig:expense_ac_120} illustrates how domestic electricity consumers benefit from a stronger hydrogen export industry at different decarbonization targets. The costs are normalized to the cost level at 1 TWh/a hydrogen export for each domestic \co mitigation level, showing the relative impact of hydrogen exports on domestic electricity costs. Negative values indicate that hydrogen exports reduce average electricity costs for domestic consumers.
+First, Figure \ref{fig:expense_ac_120} illustrates how domestic electricity consumers benefit from a stronger hydrogen export industry at different decarbonization targets. The costs are normalized to the cost level at 1 TWh/a hydrogen export for each domestic \co mitigation level, showing the relative impact of hydrogen exports on domestic electricity costs. Negative values indicate that hydrogen exports reduce average \DIFaddbegin \DIFadd{market-based }\DIFaddend electricity costs for domestic consumers.
 Figure \ref{fig:expense_ac_120} shows, that hydrogen exports decrease the relative domestic electricity costs by up to 45\%, especially at mitigation levels below 40\% and exports above 50 TWh. 
 In these ranges, the domestic electricity consumers profit from excess green electricity originating from additional renewable energy capacities required for hydrogen export. These renewable capacities i.) displace fossil generation with high short-run marginal costs (price spillover) and ii.) provide excess electricity to the domestic electricity system (energy spillover), elaborated in detail in the section on the \nameref{subsec:benefits_rule} and in the Supplementary Fig. \ref{fig:supply}, Supplementary Fig. \ref{fig:el-cap} and Supplementary Fig. \ref{fig:el-cf}.
 However, as the domestic electricity system undergoes deeper decarbonization (domestic \co mitigation above 50--60\%), the cost-reducing effect of hydrogen exports weakens. Here, the impact of additional renewable electricity capacities is only marginal, since the electricity system is already highly or fully renewable electricity based and neither price spillover nor energy spillover are effective as outlined in the section \nameref{sec:discussion}.
 The only scenario in which an increase of hydrogen export leads to higher domestic electricity costs is at a low \co mitigation level of 10\% and exports of 20 TWh.
-This effect arises due to the initial increase in electricity demand from hydrogen electrolysis, which raises electricity cost, as seen in Supplementary Fig. \ref{fig:expenses_default_120-noreg} (without temporal regulation). Without regulation, this cost increase continues with higher exports. However, with regulation, the cost-reducing effect of hydrogen exports eventually dominates through the effect of energy and price spillovers, as discussed in the section on \nameref{subsec:benefits_rule}, mitigating further cost increases and significantly decreasing the cost for domestic electricity consumers.
+This effect arises due to the initial increase in electricity demand from hydrogen electrolysis, which raises electricity cost, as seen in Supplementary Fig. \ref{fig:expenses_default_120-noreg} (without temporal regulation). Without regulation, this cost increase continues with higher exports. However, with regulation, the cost-reducing effect of hydrogen exports eventually dominates through the effect of energy and price spillovers, as discussed in the section on \nameref{subsec:benefits_rule}, mitigating further cost increases and significantly decreasing the \DIFdelbegin \DIFdel{cost }\DIFdelend \DIFaddbegin \DIFadd{market-based costs }\DIFaddend for domestic electricity consumers.
 
 Second, Figure \ref{fig:expense_h2_120} shows how hydrogen exporters benefit from domestic \co mitigation.
 The costs are normalized to the cost level at 0\% \co mitigation for each hydrogen export volume, displaying the relative impact of domestic \co mitigation on hydrogen export costs.
@@ -501,18 +500,18 @@ To explore this sequencing, we group }\DIFaddend scenarios into three illustrati
 Figure \ref{fig:expenses-relative-120} shows the relative change of electricity and hydrogen cost of all mitigation-export scenarios (grouped by \DIFdelbegin \DIFdel{speed of transformation}\DIFdelend \DIFaddbegin \DIFadd{transition strategy}\DIFaddend ) in dependence of temporal matching. 
 %%% FIGURE DESCRIPTION
 % Quick export
-The effects of temporal hydrogen regulation costs for domestic electricity consumers are most dominant in the group of Quick exports and slow \co mitigation.
+The effects of temporal hydrogen regulation \DIFaddbegin \DIFadd{on market-based }\DIFaddend costs for domestic electricity consumers are most dominant in the group of Quick exports and slow \co mitigation.
 In this group, the introduction of annual matching has already a striking effect, because the price spillover observed in Figure \ref{fig:pdc-120-0} decreases (domestic) electricity prices. The price spillover unfolds in fossil-dominated (hence low domestic \co mitigation) systems, combined with high hydrogen exports providing a strong energy spillover effect. In the cases of high exports and no domestic \co mitigation, the cost of electricity for domestic consumers reduces up to -55\% in the case of hourly matching.
 This effect is even more pronounced at even higher export quantities, as observable in the sensitivity analysis carried out in Supplementary Fig. \ref{fig:expenses-relative-200}.
 
 % Balanced
 In the group of Balanced exports and \co mitigation the effect of temporal hydrogen regulation is less dominant.
-Hourly matching reduces the cost for domestic electricity consumers by up to -31\% (s. Fig. \ref{fig:expenses-relative-120-elec}). In only two single mitigation-export scenarios the annual or monthly matching decreases the cost for domestic electricity, whereas all other combinations of the Balanced exports and \co mitigation group are only sensitive to the strictest -- hourly matching -- hydrogen regulation. 
+Hourly matching reduces the \DIFdelbegin \DIFdel{cost }\DIFdelend \DIFaddbegin \DIFadd{market-based costs }\DIFaddend for domestic electricity consumers by up to -31\% (s. Fig. \ref{fig:expenses-relative-120-elec}). In only two single mitigation-export scenarios the annual or monthly matching decreases the cost for domestic electricity, whereas all other combinations of the Balanced exports and \co mitigation group are only sensitive to the strictest -- hourly matching -- hydrogen regulation. 
 The cost increase for hydrogen exporters (s. Fig. \ref{fig:expenses-relative-120-hy}) is minimal, the median of the Balanced exports and \co mitigation scenarios indicates a 1\% increase.
 In only two scenarios, hourly matching regulation increases the hydrogen cost above 7\% (above 11\% across all groups) compared to no temporal hydrogen regulation. This is the case for 0\% \co mitigation and 1 and 20 TWh/a export scenarios. 
 
 % Slow exports
-In the Slow exports and quick \co mitigation group, only the hourly matching has observable effects, since the electricity system is already dominated by renewable electricity and only hourly matching phases out the remaining fossil generation. Therefore, the impacts on the cost for domestic electricity consumers (up to -11\%) and hydrogen exporters (up to 8\%) are moderate.
+In the Slow exports and quick \co mitigation group, only the hourly matching has observable effects, since the electricity system is already dominated by renewable electricity and only hourly matching phases out the remaining fossil generation. Therefore, the impacts on the \DIFdelbegin \DIFdel{cost }\DIFdelend \DIFaddbegin \DIFadd{market-based costs }\DIFaddend for domestic electricity consumers (up to -11\%) and hydrogen exporters (up to 8\%) are moderate.
 
 %%% FIGURE/SECTION CONCLUSION
 Figure \ref{fig:expenses-relative-120} shows, that temporal hydrogen regulation hedges domestic electricity consumers against rising costs across all scenario groups.
@@ -763,142 +762,245 @@ We gratefully acknowledge funding from the H2Global meets Africa project (03SF07
 % following https://casrai.org/credit/
 % see https://www.cell.com/pb/assets/raw/shared/guidelines/CRediT-taxonomy.pdf for details
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.7\linewidth]{../results/graphics_general/policy/mar_hydrogen_strategy_semistacked.pdf}
-    \caption{Hydrogen Strategy of Morocco \cite{MarHyStrat2021}. The export volume rises up to 115~TWh/a in 2050, the domestic demand up to 40 TWh/a in 2050. The largest share of domestic demand is in the industry sector. The exports are dominated by hydrogen, followed by synthetic fuels.}
-    \label{fig:mar_hydrogen_strategy}
-\end{figure}
 
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.7\linewidth]{../results/graphics_general/morocco_em.pdf}
-    \caption{Morocco's historical \co and greenhouse gas emissions (GHG). While emissions are rising, emission targets are in the range between 75 Mt\coe\ (conditional) and 115 Mt\coe\ (unconditional)\cite{CAT2021}.}
-    \label{fig:morocco_em}
-\end{figure}
+\DIFdelbegin %DIFDELCMD < \begin{figure}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=0.7\linewidth]{../results/graphics_general/policy/mar_hydrogen_strategy_semistacked.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Hydrogen Strategy of Morocco \mbox{%DIFAUXCMD
+\cite{MarHyStrat2021}}\hspace{0pt}%DIFAUXCMD
+. The export volume rises up to 115~TWh/a in 2050, the domestic demand up to 40 TWh/a in 2050. The largest share of domestic demand is in the industry sector. The exports are dominated by hydrogen, followed by synthetic fuels.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:mar_hydrogen_strategy}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
 
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/0exp-only/120/graphs/balances-AC.pdf}
-        \caption{Fixed (1 TWh) export and 0--100\% domestic \co mitigation}
-        \label{fig:balances-ac-0exp-120}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/co2l20-only/120/graphs/balances-AC.pdf}
-        \caption{Fixed (0\%) domestic \co mitigation and 1--120 TWh/a export}
-        \label{fig:balances-ac-co2l20-120}
-    \end{subfigure}
-    \hfill
-    \caption{Electricity supply and demand at fixed export levels and increasing domestic \co mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}) with hourly temporal hydrogen regulation. Increasing domestic \co mitigation first phases out carbon-intensive coal generation in favor of combined-cycle gas turbines (CCGT), at medium to high domestic \co mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen ({H${}_2${}}) generation for other sectors.
+%DIFDELCMD < \begin{figure}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=0.7\linewidth]{../results/graphics_general/morocco_em.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Morocco's historical }%DIFDELCMD < \co %%%
+\DIFdelFL{and greenhouse gas emissions (GHG). While emissions are rising, emission targets are in the range between 75 Mt}%DIFDELCMD < \coe%%%
+\DIFdelFL{\ (conditional) and 115 Mt}%DIFDELCMD < \coe%%%
+\DIFdelFL{\ (unconditional)\mbox{%DIFAUXCMD
+\cite{CAT2021}}\hspace{0pt}%DIFAUXCMD
+.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:morocco_em}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/0exp-only/120/graphs/balances-AC.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Fixed (1 TWh) export and 0--100\% domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances-ac-0exp-120}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/co2l20-only/120/graphs/balances-AC.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Fixed (0\%) domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation and 1--120 TWh/a export}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances-ac-co2l20-120}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity supply and demand at fixed export levels and increasing domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}) with hourly temporal hydrogen regulation. Increasing domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation first phases out carbon-intensive coal generation in favor of combined-cycle gas turbines (CCGT), at medium to high domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen (}%DIFDELCMD < {%%%
+\DIFdelFL{H${}_2$}%DIFDELCMD < {}}%%%
+\DIFdelFL{) generation for other sectors.
     At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar photovoltaics (PV), as imposed by the temporal hydrogen regulation. 
     See Supplementary Fig. \ref{fig:balances-ac-noreg} for electricity supply and demand if no hydrogen regulation is in place and Supplementary Fig. \ref{fig:balances-ac-200} for hydrogen exports up to 200 TWh/a.
-    }
-    \label{fig:balances-ac}
-\end{figure*}
+    }}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:balances-ac}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120.pdf}
-        \caption{Impact of hydrogen exports on domestic interests:        
-        Relative cost of electricity for domestic consumers (normalized to 1 TWh/a hydrogen export)}
-        \label{fig:expense_ac_120}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120.pdf}
-        \caption{
-        Impact of domestic \co mitigation on hydrogen exporter interests:   
-        Relative cost of hydrogen for exporters (normalized to 0\% domestic \co mitigation)}
-        \label{fig:expense_h2_120}
-    \end{subfigure}
-    \hfill
-    \caption{
-    The effects of hydrogen exports on domestic electricity consumers and domestic \co mitigation on hydrogen exporters.
-    Figure \ref{fig:expense_ac_120} shows the effect of hydrogen ({H${}_2${}}) exports on domestic electricity cost with hourly hydrogen regulation. Therefore, the effect of hydrogen exports is isolated by normalizing the costs to 1 TWh/a hydrogen export in each column. This approach allows for a vertical interpretation in Figure \ref{fig:expense_ac_120} only, displaying the effects of hydrogen exports (vertical) at a certain domestic \co mitigation level.
-    Figure \ref{fig:expense_h2_120} shows the effect of domestic \co mitigation on hydrogen export cost with hourly hydrogen regulation. Therefore, the effect of domestic \co mitigation is isolated by normalizing the costs to 0\% \co mitigation in each row. This approach allows for a horizontal interpretation in Figure \ref{fig:expense_h2_120} only, displaying the effects of domestic \co mitigation (horizontal) at a certain hydrogen export quantity.
-    Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic \co mitigation and high exports. Hydrogen exporters profit from domestic \co mitigation at medium mitigation efforts.
-    See Supplementary Fig. \ref{fig:expenses_abs_120} for absolute cost for domestic electricity consumers and hydrogen exporters, Supplementary Fig. \ref{fig:expenses_default_120-noreg} for the interplay of hydrogen exports and domestic \co mitigation if no hydrogen regulation is in place and Supplementary Fig. \ref{fig:expenses_default_200} for hydrogen exports up to 200 TWh/a.
-    }
-    \label{fig:expenses_default_120}
-\end{figure*}
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Impact of hydrogen exports on domestic interests:        
+        Relative cost of electricity for domestic consumers (normalized to 1 TWh/a hydrogen export)}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expense_ac_120}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Impact of domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation on hydrogen exporter interests:   
+        Relative cost of hydrogen for exporters (normalized to 0\% domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation)}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expense_h2_120}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{The effects of hydrogen exports on domestic electricity consumers and domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation on hydrogen exporters.
+    Figure \ref{fig:expense_ac_120} shows the effect of hydrogen (}%DIFDELCMD < {%%%
+\DIFdelFL{H${}_2$}%DIFDELCMD < {}}%%%
+\DIFdelFL{) exports on domestic electricity cost with hourly hydrogen regulation. Therefore, the effect of hydrogen exports is isolated by normalizing the costs to 1 TWh/a hydrogen export in each column. This approach allows for a vertical interpretation in Figure \ref{fig:expense_ac_120} only, displaying the effects of hydrogen exports (vertical) at a certain domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation level.
+    Figure \ref{fig:expense_h2_120} shows the effect of domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation on hydrogen export cost with hourly hydrogen regulation. Therefore, the effect of domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation is isolated by normalizing the costs to 0\% }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation in each row. This approach allows for a horizontal interpretation in Figure \ref{fig:expense_h2_120} only, displaying the effects of domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation (horizontal) at a certain hydrogen export quantity.
+    Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation and high exports. Hydrogen exporters profit from domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation at medium mitigation efforts.
+    See Supplementary Fig. \ref{fig:expenses_abs_120} for absolute cost for domestic electricity consumers and hydrogen exporters, Supplementary Fig. \ref{fig:expenses_default_120-noreg} for the interplay of hydrogen exports and domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation if no hydrogen regulation is in place and Supplementary Fig. \ref{fig:expenses_default_200} for hydrogen exports up to 200 TWh/a.
+    }}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses_default_120}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
+%DIFDELCMD < \begin{figure}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.7\linewidth]{../results/gh/price_sorted_AC_120_2.0_Hours.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{The effect of temporal hydrogen regulation on electricity prices.
+    Figure \ref{fig:pdc-120-0} shows the price duration curve at 120 TWh/a export and 0\% domestic }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation. Stricter temporal hydrogen regulation pushes the price duration curve towards the left, as additional renewable electricity capacities phase out fossil generation with higher short-term marginal costs than renewables. Negative prices below -50 €/MWh are cut off.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:pdc-120-0}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.7\linewidth]{../results/gh/price_sorted_AC_120_2.0_Hours.pdf}
-    \caption{
-    The effect of temporal hydrogen regulation on electricity prices.
-    Figure \ref{fig:pdc-120-0} shows the price duration curve at 120 TWh/a export and 0\% domestic \co mitigation. Stricter temporal hydrogen regulation pushes the price duration curve towards the left, as additional renewable electricity capacities phase out fossil generation with higher short-term marginal costs than renewables. Negative prices below -50 €/MWh are cut off.}
-    \label{fig:pdc-120-0}
-\end{figure}
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/dispatch_120_Co2L2.0.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Electricity dispatch and demand}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:dispatch_rule}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/abs_sin_expenses_h2ac_120_Co2L2.0.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Cost for domestic electricity consumers and hydrogen exporters}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expense_h2ac}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{The effect of temporal hydrogen regulation on the electricity system and consumer costs.
+    Figure \ref{fig:expenses_rule} shows the electricity dispatch and demand (\ref{fig:dispatch_rule}) and cost for consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 120 TWh/a export and 0\% }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Cost for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation (s. Fig. \ref{fig:expense_h2ac}).}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses_rule}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
+%DIFDELCMD < \begin{figure}[h!]
+%DIFDELCMD < 
 
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_elec.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Cost reduction for electricity consumers}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses-relative-120-elec}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill
+%DIFDELCMD <     \begin{subfigure}[b]{0.49\linewidth}
+%DIFDELCMD <         \centering
+%DIFDELCMD <         \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_hy.pdf}
+%DIFDELCMD <         %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Cost increase for hydrogen exporters}}
+        %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses-relative-120-hy}
+%DIFDELCMD <     \end{subfigure}
+%DIFDELCMD <     \hfill    
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Relative change of electricity (s. Fig. \ref{fig:expenses-relative-120-elec}) and hydrogen consumer cost (s. Fig. \ref{fig:expenses-relative-120-hy}) depending on the temporal hydrogen regulation.     
+    Violin plots indicate median (white dot), interquartile range (thick black bar), and 1.5x interquartile range (thin black bar), using kernel density estimation to show the distribution shape of the mitigation-export scenarios, grouped into different speeds of transformation (1,2,3).
+    Domestic electricity consumers profit across all export and mitigation scenarios but most in the group of slow export and quick }%DIFDELCMD < \co %%%
+\DIFdelFL{mitigation scenarios. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen (}%DIFDELCMD < {%%%
+\DIFdelFL{H${}_2$}%DIFDELCMD < {}}%%%
+\DIFdelFL{) regulation regulates the welfare distribution between both groups. See Supplementary Fig. \ref{fig:expenses-relative-200} for the sensitivity of the export quantities and Supplementary Fig. \ref{fig:scenario-sel} for scenario grouping.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:expenses-relative-120}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
 
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/dispatch_120_Co2L2.0.pdf}
-        \caption{Electricity dispatch and demand}
-        \label{fig:dispatch_rule}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/abs_sin_expenses_h2ac_120_Co2L2.0.pdf}
-        \caption{Cost for domestic electricity consumers and hydrogen exporters}
-        \label{fig:expense_h2ac}
-    \end{subfigure}
-    \hfill
-    \caption{
-    The effect of temporal hydrogen regulation on the electricity system and consumer costs.
-    Figure \ref{fig:expenses_rule} shows the electricity dispatch and demand (\ref{fig:dispatch_rule}) and cost for consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 120 TWh/a export and 0\% \co mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Cost for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation (s. Fig. \ref{fig:expense_h2ac}).}
-    \label{fig:expenses_rule}
-\end{figure*}
+%DIFDELCMD < \begin{figure*}[h!]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=0.7\linewidth]{../results/graphics_general/brownfield_capacities.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Current capacities of electricity generation and distribution in Morocco. Morocco's electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV. The data is obtained from Parzen et al.\mbox{%DIFAUXCMD
+\cite{Parzen2023} }\hspace{0pt}%DIFAUXCMD
+and the visualization is based on H\"orsch et al.\mbox{%DIFAUXCMD
+\cite{Horsch2018}}\hspace{0pt}%DIFAUXCMD
+. Boundaries depicted are based on the Global Administrative Areas\mbox{%DIFAUXCMD
+\cite{gadm2022} }\hspace{0pt}%DIFAUXCMD
+and are intended for illustrative purposes only, not implying territorial claims.
+    }}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:MAR_brownfield}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
 
-
-\begin{figure}[h!]
-
-    \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_elec.pdf}
-        \caption{Cost reduction for electricity consumers}
-        \label{fig:expenses-relative-120-elec}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_hy.pdf}
-        \caption{Cost increase for hydrogen exporters}
-        \label{fig:expenses-relative-120-hy}
-    \end{subfigure}
-    \hfill    
-    \caption{Relative change of electricity (s. Fig. \ref{fig:expenses-relative-120-elec}) and hydrogen consumer cost (s. Fig. \ref{fig:expenses-relative-120-hy}) depending on the temporal hydrogen regulation.     
-    Violin plots indicate median (white dot), interquartile range (thick black bar), and 1.5x interquartile range (thin black bar), using kernel density estimation to show the distribution shape of the mitigation-export scenarios, grouped into \DIFdelbeginFL \DIFdelFL{different speeds of transformation }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{three stylized transition strategies }\DIFaddendFL (1\DIFdelbeginFL \DIFdelFL{,2,}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{–}\DIFaddendFL 3) \DIFaddbeginFL \DIFaddFL{reflecting different sequences of export and mitigation ambition}\DIFaddendFL .
-    Domestic electricity consumers profit across all export and mitigation scenarios but most in the group of slow export and quick \co mitigation scenarios. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen ({H${}_2${}}) regulation regulates the welfare distribution between both groups. See Supplementary Fig. \ref{fig:expenses-relative-200} for the sensitivity of the export quantities and Supplementary Fig. \ref{fig:scenario-sel} for scenario grouping.}
-    \label{fig:expenses-relative-120}
-\end{figure}
-
-
-\begin{figure*}[h!]
-    \centering
-    \includegraphics[width=0.7\linewidth]{../results/graphics_general/brownfield_capacities.pdf}
-    \caption{Current capacities of electricity generation and distribution in Morocco. Morocco's electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV. The data is obtained from Parzen et al.\cite{Parzen2023} and the visualization is based on H\"orsch et al.\cite{Horsch2018}. Boundaries depicted are based on the Global Administrative Areas\cite{gadm2022} and are intended for illustrative purposes only, not implying territorial claims.
-    }
-    \label{fig:MAR_brownfield}
-\end{figure*}
-
-
-\textbf{L.S.}:
+%DIFDELCMD < %%%
+\DIFdelend \textbf{L.S.}:
 Conceptualization,
 Data curation,
 Formal Analysis,
@@ -1009,8 +1111,153 @@ Writing - review \& editing.
 
 The authors declare no competing interests.
 
+\DIFaddbegin \cleardoublepage
 
-\section*{Figures}
+\DIFaddend \section*{Figures}
+\DIFaddbegin \begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../results/graphics_general/policy/mar_hydrogen_strategy_semistacked.pdf}
+    \caption{\DIFaddFL{Hydrogen Strategy of Morocco \mbox{%DIFAUXCMD
+\cite{MarHyStrat2021}}\hspace{0pt}%DIFAUXCMD
+. The export volume rises up to 115~TWh/a in 2050, the domestic demand up to 40 TWh/a in 2050. The largest share of domestic demand is in the industry sector. The exports are dominated by hydrogen, followed by synthetic fuels.}}
+    \label{fig:mar_hydrogen_strategy}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../results/graphics_general/morocco_em.pdf}
+    \caption{\DIFaddFL{Morocco's historical }\co \DIFaddFL{and greenhouse gas emissions (GHG). While emissions are rising, emission targets are in the range between 75 Mt}\coe\DIFaddFL{\ (conditional) and 115 Mt}\coe\DIFaddFL{\ (unconditional)\mbox{%DIFAUXCMD
+\cite{CAT2021}}\hspace{0pt}%DIFAUXCMD
+.}}
+    \label{fig:morocco_em}
+\end{figure}
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/0exp-only/120/graphs/balances-AC.pdf}
+        \caption{\DIFaddFL{Fixed (1 TWh) export and 0--100\% domestic }\co \DIFaddFL{mitigation}}
+        \label{fig:balances-ac-0exp-120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/co2l20-only/120/graphs/balances-AC.pdf}
+        \caption{\DIFaddFL{Fixed (0\%) domestic }\co \DIFaddFL{mitigation and 1--120 TWh/a export}}
+        \label{fig:balances-ac-co2l20-120}
+    \end{subfigure}
+    \hfill
+    \caption{\DIFaddFL{Electricity supply and demand at fixed export levels and increasing domestic }\co \DIFaddFL{mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}) with hourly temporal hydrogen regulation. Increasing domestic }\co \DIFaddFL{mitigation first phases out carbon-intensive coal generation in favor of combined-cycle gas turbines (CCGT), at medium to high domestic }\co \DIFaddFL{mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen (}{\DIFaddFL{H${}_2$}{}}\DIFaddFL{) generation for other sectors.
+    At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar photovoltaics (PV), as imposed by the temporal hydrogen regulation. 
+    See Supplementary Fig. \ref{fig:balances-ac-noreg} for electricity supply and demand if no hydrogen regulation is in place and Supplementary Fig. \ref{fig:balances-ac-200} for hydrogen exports up to 200 TWh/a.
+    }}
+    \label{fig:balances-ac}
+\end{figure*}
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120.pdf}
+        \caption{\DIFaddFL{Impact of hydrogen exports on domestic interests:        
+        Relative cost of electricity for domestic consumers (normalized to 1 TWh/a hydrogen export)}}
+        \label{fig:expense_ac_120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120.pdf}
+        \caption{
+        \DIFaddFL{Impact of domestic }\co \DIFaddFL{mitigation on hydrogen exporter interests:   
+        Relative cost of hydrogen for exporters (normalized to 0\% domestic }\co \DIFaddFL{mitigation)}}
+        \label{fig:expense_h2_120}
+    \end{subfigure}
+    \hfill
+    \caption{
+    \DIFaddFL{The effects of hydrogen exports on domestic electricity consumers and domestic }\co \DIFaddFL{mitigation on hydrogen exporters.
+    Figure \ref{fig:expense_ac_120} shows the effect of hydrogen (}{\DIFaddFL{H${}_2$}{}}\DIFaddFL{) exports on domestic electricity cost with hourly hydrogen regulation. Therefore, the effect of hydrogen exports is isolated by normalizing the costs to 1 TWh/a hydrogen export in each column. This approach allows for a vertical interpretation in Figure \ref{fig:expense_ac_120} only, displaying the effects of hydrogen exports (vertical) at a certain domestic }\co \DIFaddFL{mitigation level.
+    Figure \ref{fig:expense_h2_120} shows the effect of domestic }\co \DIFaddFL{mitigation on hydrogen export cost with hourly hydrogen regulation. Therefore, the effect of domestic }\co \DIFaddFL{mitigation is isolated by normalizing the costs to 0\% }\co \DIFaddFL{mitigation in each row. This approach allows for a horizontal interpretation in Figure \ref{fig:expense_h2_120} only, displaying the effects of domestic }\co \DIFaddFL{mitigation (horizontal) at a certain hydrogen export quantity.
+    Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic }\co \DIFaddFL{mitigation and high exports. Hydrogen exporters profit from domestic }\co \DIFaddFL{mitigation at medium mitigation efforts.
+    See Supplementary Fig. \ref{fig:expenses_abs_120} for absolute market-based costs for domestic electricity consumers and hydrogen exporters, Supplementary Fig. \ref{fig:expenses_default_120-noreg} for the interplay of hydrogen exports and domestic }\co \DIFaddFL{mitigation if no hydrogen regulation is in place and Supplementary Fig. \ref{fig:expenses_default_200} for hydrogen exports up to 200 TWh/a.
+    }}
+    \label{fig:expenses_default_120}
+\end{figure*}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.7\linewidth]{../results/gh/price_sorted_AC_120_2.0_Hours.pdf}
+    \caption{
+    \DIFaddFL{The effect of temporal hydrogen regulation on electricity prices.
+    Figure \ref{fig:pdc-120-0} shows the price duration curve at 120 TWh/a export and 0\% domestic }\co \DIFaddFL{mitigation. Stricter temporal hydrogen regulation pushes the price duration curve towards the left, as additional renewable electricity capacities phase out fossil generation with higher short-term marginal costs than renewables. Negative prices below -50 €/MWh are cut off.}}
+    \label{fig:pdc-120-0}
+\end{figure}
+
+
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/dispatch_120_Co2L2.0.pdf}
+        \caption{\DIFaddFL{Electricity dispatch and demand}}
+        \label{fig:dispatch_rule}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/abs_sin_expenses_h2ac_120_Co2L2.0.pdf}
+        \caption{\DIFaddFL{Market-based costs for domestic electricity consumers and hydrogen exporters}}
+        \label{fig:expense_h2ac}
+    \end{subfigure}
+    \hfill
+    \caption{
+    \DIFaddFL{The effect of temporal hydrogen regulation on the electricity system and consumer costs.
+    Figure \ref{fig:expenses_rule} shows the electricity dispatch and demand (\ref{fig:dispatch_rule}) and cost for consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 120 TWh/a export and 0\% }\co \DIFaddFL{mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Cost for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation (s. Fig. \ref{fig:expense_h2ac}).}}
+    \label{fig:expenses_rule}
+\end{figure*}
+
+
+\begin{figure}[h!]
+
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_elec.pdf}
+        \caption{\DIFaddFL{Cost reduction for electricity consumers}}
+        \label{fig:expenses-relative-120-elec}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_hy.pdf}
+        \caption{\DIFaddFL{Cost increase for hydrogen exporters}}
+        \label{fig:expenses-relative-120-hy}
+    \end{subfigure}
+    \hfill    
+    \caption{\DIFaddFL{Relative change of electricity (s. Fig. \ref{fig:expenses-relative-120-elec}) and hydrogen consumer cost (s. Fig. \ref{fig:expenses-relative-120-hy}) depending on the temporal hydrogen regulation.     
+    Violin plots indicate median (white dot), interquartile range (thick black bar), and 1.5x interquartile range (thin black bar), using kernel density estimation to show the distribution shape of the mitigation-export scenarios, grouped into three stylized transition strategies (1–3) reflecting different sequences of export and mitigation ambition.
+    Domestic electricity consumers profit across all export and mitigation scenarios but most in the group of slow export and quick }\co \DIFaddFL{mitigation scenarios. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen (}{\DIFaddFL{H${}_2$}{}}\DIFaddFL{) regulation regulates the welfare distribution between both groups. See Supplementary Fig. \ref{fig:expenses-relative-200} for the sensitivity of the export quantities and Supplementary Fig. \ref{fig:scenario-sel} for scenario grouping.}}
+    \label{fig:expenses-relative-120}
+\end{figure}
+
+
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../results/graphics_general/brownfield_capacities.pdf}
+    \caption{\DIFaddFL{Current capacities of electricity generation and distribution in Morocco. Morocco's electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV. The data is obtained from Parzen et al.\mbox{%DIFAUXCMD
+\cite{Parzen2023} }\hspace{0pt}%DIFAUXCMD
+and the visualization is based on H\"orsch et al.\mbox{%DIFAUXCMD
+\cite{Horsch2018}}\hspace{0pt}%DIFAUXCMD
+. Boundaries depicted are based on the Global Administrative Areas\mbox{%DIFAUXCMD
+\cite{gadm2022} }\hspace{0pt}%DIFAUXCMD
+and are intended for illustrative purposes only, not implying territorial claims.
+    }}
+    \label{fig:MAR_brownfield}
+\end{figure*}
+\DIFaddend 
 
 
 
