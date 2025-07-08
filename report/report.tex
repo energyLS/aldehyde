@@ -1,6 +1,6 @@
 \documentclass[5p,numafflabel]{elsarticle}
 
-\journal{Nature Communications}
+% \journal{Nature Communications}
 
 \bibliographystyle{naturemag}
 \biboptions{numbers,sort&compress,super}
@@ -67,6 +67,16 @@
 % 	version={4.0},
 % ]{doclicense}
 
+% Remove footnotes on first page
+\makeatletter
+\def\ps@pprintTitle{%
+  \let\@oddhead\@empty
+  \let\@evenhead\@empty
+  \let\@oddfoot\@empty
+  \let\@evenfoot\@oddfoot
+}
+\makeatother
+
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\set}[1]{\left\{#1\right\}}
@@ -116,8 +126,10 @@
 	\title{The impact of temporal hydrogen regulation on hydrogen exporters and their domestic energy transition}
 
     
-	\author[oth,tub,lead]{Leon~Schumm\,\corref{correspondingauthor}}
-	%\ead{leon1.schumm@oth-regensburg.de}
+	% \author[oth,tub]{Leon~Schumm\corref{correspondingauthor}}
+	% \author[oth,tub]{Leon~Schumm${}^{1,2*}$}
+	% \ead{leon1.schumm@oth-regensburg.de}
+	\author[oth,tub]{Leon~Schumm}
 	\author[ieg,alu]{Hazem~Abdel-Khalek}
 	\author[tub]{Tom Brown}
 	\author[pik]{Falko Ueckerdt}
@@ -125,24 +137,27 @@
 	\author[uoe]{Maximilian~Parzen}
 	\author[unipi]{Davide~Fioriti}
 
-	\cortext[correspondingauthor]{Correspondence: leon1.schumm@oth-regensburg.de}
+	% \cortext[correspondingauthor]{Correspondence: leon1.schumm@oth-regensburg.de}
 
-	\address[oth]{Research Center on Energy Transmission and Storage (FENES), Faculty of Electrical and Information Technology, University of Applied Sciences (OTH) Regensburg, Seybothstr. 2, 93053 Regensburg, Germany}
+	% \address[oth]{Research Center on Energy Transmission and Storage (FENES), Faculty of Electrical and Information Technology, University of Applied Sciences (OTH) Regensburg, Seybothstr. 2, 93053 Regensburg, Germany}
+	\address[oth]{${}^1$ Research Center on Energy Transmission and Storage (FENES), Faculty of Electrical and Information Technology, University of Applied Sciences (OTH) Regensburg, Seybothstr. 2, 93053 Regensburg, Germany. \textit{* Corresponding author: leon1.schumm@oth-regensburg.de}}
 	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology, Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
 	\address[ieg]{Fraunhofer Research Institution for Energy Infrastructures and Geothermal Systems IEG, Gulbener Straße 23, 03046 Cottbus, Germany}
 	\address[alu]{Albert-Ludwigs Universität Freiburg, Faculty of Environment and Natural Resources, Tennenbacher Str. 4, 79106 Freiburg im Breisgau, Germany}
 	\address[pik]{Potsdam Institute for Climate Impact Research, Telegrafenberg, 14473 Potsdam, Germany}
 	\address[uoe]{University of Edinburgh, Institute for Energy Systems, EH9 3DW Edinburgh, United Kingdom}
 	\address[unipi]{University of Pisa, Department of Energy Systems, Territory and Construction Engineering, Largo Lucio Lazzarino, 56122 Pisa, Italy}
-	\address[lead]{Lead contact}
+	\address[corrauth]{* Corresponding author. Email: leon1.schumm@oth-regensburg.de}
+
+	\address{${}^{*}$ Corresponding author. Email: leon1.schumm@oth-regensburg.de}
 
 	\begin{abstract}
 		\input{sections/abstract.tex}
 	\end{abstract}
 
-	\begin{keyword}
-		Energy Transition, Hydrogen regulation, Hydrogen export, Climate-neutral, Domestic electricity prices, Hydrogen prices, Power-to-X
-	\end{keyword}
+	% \begin{keyword}
+	% 	Energy Transition, Hydrogen regulation, Hydrogen export, Climate-neutral, Domestic electricity prices, Hydrogen prices, Power-to-X
+	% \end{keyword}
 
 	% \begin{graphicalabstract}
 	% \end{graphicalabstract}
