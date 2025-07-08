@@ -16,7 +16,8 @@ data/
 report/latexdiff-vc-main/
 report/latexdiff-vc-revision-1/
 report/latexdiff-vc-revision-2/
-
+report/latexdiff-vc-revision-3/
+report/latexdiff-vc-revision-4/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
