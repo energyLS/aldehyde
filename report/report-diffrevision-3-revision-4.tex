@@ -1,0 +1,997 @@
+\documentclass[5p,numafflabel]{elsarticle}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL ./latexdiff-vc-revision-3/report.tex   Tue Jun 24 11:07:22 2025
+%DIF ADD ./latexdiff-vc-revision-4/report.tex   Tue Jun 24 11:07:22 2025
+
+\journal{Nature Communications}
+
+\bibliographystyle{naturemag}
+\biboptions{numbers,sort&compress,super}
+
+\abstracttitle{Abstract}
+
+% format hacks
+\usepackage{libertine}
+\usepackage{libertinust1math}
+% \usepackage{geometry}
+% \geometry{
+%     top=30mm,
+%     bottom=35mm,
+% }
+
+\usepackage{xr}
+\usepackage{amsmath}
+\usepackage{bbold}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{xfrac}
+\usepackage{tabularx}
+\usepackage{bm}
+\usepackage{subcaption}
+\usepackage{blindtext}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{pdflscape}
+\usepackage[acronym]{glossaries}
+\usepackage[export]{adjustbox}
+\usepackage[version=4]{mhchem}
+\usepackage[colorlinks]{hyperref}
+\usepackage[parfill]{parskip}
+\usepackage[nameinlink,sort&compress,capitalise,noabbrev]{cleveref}
+\usepackage[leftcaption,raggedright]{sidecap}
+\usepackage[prependcaption,textsize=footnotesize]{todonotes}
+
+\usepackage{lineno}
+
+\usepackage{siunitx}
+\sisetup{
+	range-units = single,
+	per-mode = symbol
+}
+\DeclareSIUnit\year{a}
+\DeclareSIUnit{\tco}{t_{\ce{CO2}}}
+\DeclareSIUnit{\sieuro}{\mbox{\euro}}
+
+\usepackage{lipsum}
+
+\usepackage[resetlabels,labeled]{multibib}
+% \newcites{S}{Supplementary References}
+% \bibliographystyleS{elsarticle-num}
+
+
+% \usepackage[
+% 	type={CC},
+% 	modifier={by},
+% 	version={4.0},
+% ]{doclicense}
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\newcommand{\R}{\mathbb{R} }
+\newcommand{\B}{\mathbb{B} }
+\newcommand{\N}{\mathbb{N} }
+\newcommand{\co}{\ce{CO2}~}
+
+\def\el{${}_{\textrm{el}}$}
+\def\th{${}_{\textrm{th}}$}
+\def\deg{${}^\circ$}
+
+\def\co{CO${}_2${\:}}
+\def\coe{CO${}_2$e}
+
+\def\h{H${}_2${\:}}
+
+% Run of standard model run
+\def\runstandard{decr_13_3H_ws} % hourly
+
+% Run of battery sensitivity
+\def\sensbattery{nresults_full_3H_nobat_ws} % old
+
+% Run of temporal hydrogen regulation sensitivity
+\def\runsensnogreenhy{decr_14_3H_ws}
+
+
+% Scenario of heatmaps
+\def\heatmaplowred{elec_s_4_ec_lc3.0_Co2L0.80_3H_2030_0.13_DF_40export}
+\def\heatmapmedred{elec_s_4_ec_lc3.0_Co2L0.30_3H_2030_0.13_DF_40export}
+\def\heatmaphighred{elec_s_4_ec_lc3.0_Co2L0.10_3H_2030_0.13_DF_40export}
+
+%  Graphicspath not used atm, to support latex-flatten package
+% \graphicspath{
+%     {../results/\runstandard/},
+% }
+
+
+% Definition of external document for xr package
+\externaldocument{supplementary}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF LISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+
+\begin{frontmatter}
+
+	\title{The impact of temporal hydrogen regulation on hydrogen exporters and their domestic energy transition}
+
+    
+	\author[oth,tub,lead]{Leon~Schumm\,\corref{correspondingauthor}}
+	%\ead{leon1.schumm@oth-regensburg.de}
+	\author[ieg,alu]{Hazem~Abdel-Khalek}
+	\author[tub]{Tom Brown}
+	\author[pik]{Falko Ueckerdt}
+	\author[oth]{Michael Sterner}
+	\author[uoe]{Maximilian~Parzen}
+	\author[unipi]{Davide~Fioriti}
+
+	\cortext[correspondingauthor]{Correspondence: leon1.schumm@oth-regensburg.de}
+
+	\address[oth]{Research Center on Energy Transmission and Storage (FENES), Faculty of Electrical and Information Technology, University of Applied Sciences (OTH) Regensburg, Seybothstr. 2, 93053 Regensburg, Germany}
+	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology, Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
+	\address[ieg]{Fraunhofer Research Institution for Energy Infrastructures and Geothermal Systems IEG, Gulbener Straße 23, 03046 Cottbus, Germany}
+	\address[alu]{Albert-Ludwigs Universität Freiburg, Faculty of Environment and Natural Resources, Tennenbacher Str. 4, 79106 Freiburg im Breisgau, Germany}
+	\address[pik]{Potsdam Institute for Climate Impact Research, Telegrafenberg, 14473 Potsdam, Germany}
+	\address[uoe]{University of Edinburgh, Institute for Energy Systems, EH9 3DW Edinburgh, United Kingdom}
+	\address[unipi]{University of Pisa, Department of Energy Systems, Territory and Construction Engineering, Largo Lucio Lazzarino, 56122 Pisa, Italy}
+	\address[lead]{Lead contact}
+
+	\begin{abstract}
+
+As global demand for green hydrogen rises, potential hydrogen exporters move into the spotlight.
+While exports can bring countries revenue, large-scale on-grid hydrogen electrolysis for export can profoundly impact domestic energy prices and energy-related emissions.
+Our investigation explores the interplay of hydrogen exports, domestic energy transition and temporal hydrogen regulation, employing a sector-coupled energy model in Morocco. 
+We find substantial co-benefits of domestic carbon dioxide mitigation and hydrogen exports, whereby exports can reduce market-based costs for domestic electricity consumers while mitigation reduces costs for hydrogen exporters.
+However, increasing hydrogen exports in a fossil-dominated system can substantially raise market-based costs for domestic electricity consumers, but surprisingly, temporal matching of hydrogen production can lower these costs by up to 31\% with minimal impact on exporters.
+Here, we show that this policy instrument can steer the welfare (re-)distribution between hydrogen exporting firms, hydrogen importers, and domestic electricity consumers and hereby increases acceptance among actors.
+
+% However, increasing hydrogen exports quickly in a system that is still dominated by fossil fuels can substantially raise domestic electricity prices, if green hydrogen production is not regulated.
+% Surprisingly, temporal matching of hydrogen production lowers domestic electricity cost by up to 31\% while the effect on exporters is minimal. 
+	\end{abstract}
+
+	\begin{keyword}
+		Energy Transition, Hydrogen regulation, Hydrogen export, Climate-neutral, Domestic electricity prices, Hydrogen prices, Power-to-X
+	\end{keyword}
+
+	% \begin{graphicalabstract}
+	% \end{graphicalabstract}
+
+
+
+\end{frontmatter}
+
+% \listoftodos[TODOs]
+
+% \tableofcontents
+
+% \section*{Highlights}
+
+% \begin{itemize}
+% 	\item Both domestic \co mitigation and hydrogen exports benefit from each other
+% 	\item Hourly matching decreases the cost for domestic electricity consumers up to -31\%, highest decrease for high exports and low \co mitigation 
+% 	\item Effect of hourly matching on cost for hydrogen exporters is minimal, highest for high exports and low \co mitigation 
+% 	\item Green hydrogen regulation hedges domestic customers against rising electricity prices, across all export and mitigation scenarios
+% \end{itemize}
+
+% \par\noindent\rule{\textwidth}{0.4pt}
+
+% \section*{Context \& Scale}
+
+% \input{sections/context.tex}
+
+% \par\noindent\rule{\textwidth}{0.4pt}
+
+\onecolumn
+
+% Use line numbering
+\linenumbers
+
+
+\section*{Introduction}
+\label{sec:intro}
+
+% First: Context
+The global energy environment is experiencing fundamental upheaval, driven by the need to reduce greenhouse gas emissions and transition to a low-carbon future \cite{Davis2018, Victoria2020}. 
+In this context, hydrogen has emerged as a viable clean energy carrier capable of addressing the issues of decarbonizing numerous sectors such as industry, transport, heating and power generation \cite{IEA2021,Ueckerdt2021, Gailani2024, Kovac2021, Azadnia2023}. 
+A growing number of countries are investigating green hydrogen production and use as a crucial component of their strategy to cut greenhouse gas emissions and meet ambitious climate targets \cite{IEA2021, Zeyen2023}.
+Simultaneously, several countries are positioning themselves as potential exporters of hydrogen and Power-to-X products, discovering an opportunity to leverage their renewable energy resources and technological advances \cite{InternationalEnergyAgency2024}.
+These countries are expected to play a substantial role in the global energy market by supplying clean hydrogen and therefore contributing to global decarbonization efforts\cite{InternationalEnergyAgency2024}. However, pursuing both (on-grid) hydrogen exports and national energy transition raises questions on welfare redistribution, prices and co-benefits that require in-depth analysis, additionally shining a light on the role of temporal hydrogen regulation.
+
+% Second: Need
+Morocco serves as a blueprint for investigating these dependencies. It has implemented various strategies and policies to reach its climate targets and promote hydrogen exports. Figure \ref{fig:mar_hydrogen_strategy} shows the hydrogen strategy of Morocco \cite{MarHyStrat2021}, including national and export demands. By 2030, the total hydrogen demand adds up to 13.9 TWh/a and ramps up to 67.9 TWh/a in 2040 and 153.9 TWh/a in 2050, clearly listing higher demands for export than for domestic use. The hydrogen generation is backed by 5.2 GW of RE in 2030, 23 GW in 2040, and 57.4 GW in 2050 in the export sector \cite{MarHyStrat2021}. To cover the national demand of hydrogen, a Renewable Energy deployment of 1.6 GW in 2030, 7.0 GW in 2040 and 10.3 GW in 2050 is planned in Morocco's Hydrogen Strategy \cite{MarHyStrat2021}. In addition to the hydrogen strategy, Morocco has obliged to climate targets. Figure \ref{fig:morocco_em} displays the historical emissions and targets of Morocco.
+According to the self-defined national climate pledges under the Paris Agreement (NDC's), Morocco aims to limit historically rising greenhouse gas emissions to 75 Mt\coe\ (conditional) respectively 115 Mt\coe\ (unconditional) excluding emissions of Land Use, Land Use-Change and Forestry by 2030 \cite{CAT2021}. 
+As stated by the Climate Action Tracker\cite{CAT2021}, Morocco has not yet submitted a net-zero target. 
+
+Both the hydrogen export strategy and climate targets imply a substantial expansion of renewable electricity (RE) capacities. Furthermore, both strategies require an energy infrastructure development of e.g. electricity grid, hydrogen pipelines, $\mathrm{CO_2}$ network, ports and a considerable scale-up of electrolysers.
+Limited resources (e.g. land availability, renewable potentials, workforce, capital) require careful planning to minimize conflicts and maximize possible synergies. Even though Morocco has vast solar and wind resources \cite{Peters2023, Touili2018, Sterl2022}, it is a net importer of energy \cite{IEA2022}, and green hydrogen could help reduce its dependency on energy imports. The proximity to Europe, which is expected to be a major hydrogen importer, makes Morocco an attractive potential exporter, opening the door to substantial economic opportunities and local value chains \cite{Ersoy2022}.
+
+
+These conditions are the motivation of several studies \cite{vanWijk2021, AbouSeada2022, vanderZwaan2021, Schellekens2010, Cavana2021, Touili2022, Timmerberg2019, Sens2022, Franzmann2023} examining the potential of hydrogen in Africa and synergies with European demand. A more detailed study of Morocco has been undertaken by Boulakhbar et al.\cite{Boulakhbar2020} examining challenges in integrating Renewable Energies, Khouya et al.\cite{Khouya2020} determining the Levelized Cost of Hydrogen based on concentrated solar power and wind farms, and Touili et al.\cite{Touili2018} investigating the potential of hydrogen from solar energy. Hampp et al.\cite{Hampp2023} investigates various PtX products and their transportation to Europe, and Eichhammer et al. \cite{Eichhammer2019} highlights diverse opportunities and challenges related to exporting hydrogen and Power-to-X products from Morocco. Ishmam et al. \cite{Ishmam2024} assesses the impact of hydrogen exports on social factors and domestic jobs, going beyond a simplified energy potential analysis.
+While several studies \cite{Hampp2023, AbouSeada2022, vanWijk2021} have examined the potential of hydrogen as a low-carbon energy carrier and others have explored various countries' climate targets and aspirations \cite{Boulakhbar2020}, a substantial research gap remains regarding the integrated investigation of both perspectives. 
+A recent study by Müller et al.\cite{Muller2024} contributes to this research gap by analysing energy transition pathways and green hydrogen exports in Algeria. They identify impacts on total system cost along four scenarios by applying an energy model with limited spatial (one node) and temporal (288 time slices per year) resolution. While this approach is a valuable contribution to this research gap, the study does not specifically outline synergies and conflicts for hydrogen exporters and domestic electricity consumers and differentiate between those interest groups. 
+Due to their limited spatial and temporal resolution, this approach is unsuitable to identify transmission bottlenecks, infrastructure expansion requirements, and detailed system dynamics. However, their study design successfully combines the dimension of domestic energy transition and green hydrogen exports.
+
+Apart from hydrogen exports and domestic carbon dioxide (CO${}_2$) mitigation, temporal hydrogen regulation plays a decisive role in prices for domestic consumers and hydrogen exporters. 
+Temporal hydrogen regulation defines the rules for green hydrogen production when there is no direct connection between the electrolyser and green electricity production.
+Temporal matching in selected European countries is investigated in Zeyen et al.\cite{Zeyen2024}, whereas Ruhnau et al.\cite{Ruhnau2023} points out the effect of relaxing simultaneity requirements of RE supply and hydrogen generation on project design, economics, and power sector emissions.
+The effect of regulatory options on social welfare and carbon emissions is assessed in Brauer et al.\cite{Brauer2022}. They recommend that the regulation on the spatial dimension may not be too stringent, however they outline that the benefits of strict temporal matching (e.g. decline in emissions) exceed the moderate economic disadvantages. In addition, the need for such regulation diminishes in highly renewable electricity systems \cite{Brauer2022}.
+The interplay of additionality criteria and time matching requirements is investigated in Giovanniello et al.\cite{Giovanniello2024}, highlighting how additionality drives the emissions impact of temporal hydrogen regulation.
+While Zeyen et al.\cite{Zeyen2024} contextualizes the role of temporal hydrogen regulation with decarbonization scenarios of Germany and Netherlands, none of the mentioned studies fully integrates domestic \co mitigation and temporal hydrogen regulation scenarios. Furthermore, these studies do not explore exports in depth.
+
+While most of the studies presented above focus exclusively on either hydrogen exports, domestic climate mitigation, or temporal hydrogen regulation, only one study\cite{Muller2024} does combine two of these aspects. However, none of them fully address the complex relationship between all three dimensions. 
+These studies miss interactions between on-grid hydrogen electrolysis and the domestic electricity system, fail to uncover potential synergies and conflicts for both hydrogen exporters as well as domestic electricity consumers with respect to different temporal hydrogen regulation regimes.
+
+
+% Third: Scenarios
+% \subsection{Scenarios}
+This study introduces a sector-coupled energy model (encompassing the residential, services, industry, transport and agriculture demand sectors) for the target region, the inclusion of modelling the temporal hydrogen regulation, and the evaluation of the synergies among hydrogen exports, domestic energy transition and hydrogen regulation.
+Additionally, we present a broad scenario vector, sweeping along the three dimensions of:
+(i) Domestic \co mitigation: The domestic \co mitigation varies between 0--100\% based on Morocco's current emissions of 72 Mt\coe,
+(ii) Hydrogen export: The hydrogen export volume varies from 1--120 TWh, in accordance with Morocco's hydrogen export ambitions of 114.7~TWh/a and
+(iii) Temporal hydrogen regulation: The temporal matching (of additional renewable electricity and the electrolyser electricity demand) varies between: no regulation, annual, monthly and hourly matching. The temporal matching regulation is implemented via a minimum constraint, stating that the renewable electricity generation is required to be equal or higher than the electricity demand for electrolytic hydrogen within every year (annual matching), month (monthly matching) or hour (hourly matching). 
+We use the term hourly matching despite our three-hourly model because the principle of matching electricity demand for electrolysis and renewable electricity supply at each timestep is the same. This term effectively captures the mechanism, regardless of the model’s resolution. In the no regulation case, no such minimum constraint is applied.
+While our model is static, the scenario design allows exploration of different sequences in export and mitigation ambition.
+
+This three-dimensional scenario space results in 264 model runs (excluding sensitivity analysis) to grasp the full extent of the interaction between various parameters.
+A 3-hourly resolution is chosen to capture energy system dynamics (e.g. RE generation profiles, energy storage operation) with its diurnal and seasonal variations in energy supply and demand. Similar studies \cite{Neumann2022, Schlachtberger2018} find a minor underestimation of short-term battery storage and onshore wind and a minor overestimation of solar photovoltaics (PV) and hydrogen storage compared to an hourly resolution, overall justifying the reduction of the model size. 
+A spatial resolution of 14 nodes represents the geographical heterogeneity of RE resources, demand centers and energy networks. Furthermore, the spatial resolution provides insights into land use conflicts and competing RE resources as well as a spatial differentiation of export ports. Since the 14 nodes align with the Global Administrative Areas level 1 regions \cite{gadm2022}, policy advisement can be tailored to specific regions considering domestic needs and constraints.
+
+Shortcomings of studies on highly renewable energy systems in Africa such as low temporal and spatial resolutions as well as the lack of sector-coupled energy models as pointed out in Oyewo et al.\cite{Oyewo2023} are tackled in this study. The analysis of Morocco's energy system contributes to the expanding research that aims to inform policymaking and decision-making regarding sustainable energy transitions. This study provides valuable insights into the pathways unlocking synergies and reducing conflicts between hydrogen exports and national energy transition, enabling Morocco and other potential exporting regions to follow a harmonious and sustainable trajectory while facing similar energy system planning challenges.
+
+
+
+
+%  Fith: Overview of the study
+% Section \nameref{sec:intro} presents Morocco's hydrogen strategy and climate targets and outlines potential conflicts and synergies between these two goals. Introducing the results along these three dimensions step-by-step, \nameref{sec:results} evaluates synergies and conflicts based on endogenous model prices for domestic electricity consumers and hydrogen exporters, with emphazised consideration of temporal hydrogen regulation. These results are contextualized along policy recommendations in the \nameref{sec:discussion}. \nameref{sec:methods} presents the applied sector-coupled energy model and scenario dimensions required to expose the export-mitigation-regulation nexus.
+
+
+
+% Forth: Task
+Here, we show the substantial co-benefits of domestic carbon dioxide mitigation and hydrogen exports, whereby exports can reduce market-based costs for domestic electricity consumers while mitigation reduces costs for hydrogen exporters.
+Under various hydrogen export volumes, climate targets and temporal matchings, we demonstrate 
+that temporal hydrogen regulation can lower the market-based costs for domestic electricity consumers by up to 31\% with minimal impact on exporters.
+This study presents a fully sector-coupled capacity expansion and dispatch model of Morocco, which includes both gas pipelines and electricity networks. 
+% The model assumes a central planner’s perspective, with the results being equivalent to a decentral market solution under the conditions outlined in the section \nameref{sec:discussion}.
+We use costs referring to model inputs and system costs, while prices denote endogenous shadow prices (representing idealized market prices) derived from the model. Payments made by consumers (calculated as energy price times energy volume) are described as market-based (consumer) costs based on idealized market prices or, alternatively, (consumer) payments to highlight their financial impact. 
+These payments only translate into one component of consumer electricity bills if whole-sale electricity prices are passed through to the retail tariff. Additional components in retail electricity prices depend on region-specific regulation and are not included here.
+
+
+% \section*{Hydrogen export strategy and climate targets}
+%\label{sec:policyandtargets}
+
+% \input{sections/strategies.tex}
+
+
+
+\section*{Results}
+\label{sec:results}
+
+
+
+
+
+% \subsection*{Domestic \co mitigation increases the domestic electricity demand}
+\subsection*{Impacts of domestic \co mitigation on the electricity system}
+\label{subsec:increase_limit}
+First of all, we investigate the supply and demand of Morocco's electricity system depending on domestic \co mitigation (dimension 1). Figure \ref{fig:balances-ac-0exp-120} depicts the supply and demand of the electricity system at increasing climate mitigation ambitions from 0\% to 100\%. At low climate ambitions, the electricity demand is mainly covered by coal power, existing (brownfield) capacities of onshore wind, hydro, and combined-cycle gas turbines (CCGT) play only a minor role. 
+At increasing domestic \co mitigation, coal power is phased out in favour of solar PV, furthermore a fuel switch from coal to gas (CCGT) is observable at increasing emission reductions. At medium climate mitigation ambitions, the dipatchable power in the electricity system is provided by CCGT. 
+Further increasing the climate ambitions, wind onshore and especially solar PV penetrate and dominate the electricity system complemented by dispatchable power from Vehicle-to-Grid providing an almost fully renewable electricity sector at 100\% emission reduction. 
+While mitigation targets can (in part) be met with technologies like fossil gas with CCS or Direct Air Capture, the model finds that increasing renewable capacities, particularly solar PV and wind, is the most cost-effective solution (s. Fig. \ref{fig:balances-ac-0exp-120}). As mitigation efforts intensify, renewables become the cost-optimal choice for decarbonizing the energy system due to their cost-competitiveness and large-scale availability.
+
+At 70\% and above, the electricity demand of eletrolysers increases substantially to supply hydrogen allowing a switch from fossil oil products to Fischer-Tropsch fuels in various sectors (see Supplementary Fig. \ref{fig:oil-balance}). 
+The Fischer-Tropsch demand in the transport sector increases, even though the increasing Battery Electric Vehicle (BEV) diffusion is counterbalancing the demand for oil products (see Supplementary Fig. \ref{fig:bev_diffusion}). 
+Both electrolysers (see Supplementary Fig. \ref{fig:ely-ft-p-nom-opt}) and BEVs drive the electricity demand substantially, up to two times of the domestic end-use electricity demand. 
+Additionally, the electricity demand for air heat pumps increases, supporting the defossilisation in the heating sector and supplying heat for Direct Air Capture required for synthetic fuels.
+
+
+% \subsection*{Hydrogen exports require a multiple of the domestic electricity demand}
+\subsection*{Impacts of hydrogen exports on the electricity system}
+\label{subsec:increase_h2}
+
+Here, we analyse the hydrogen export ramp up (dimension 2). The electricity supply at increasing hydrogen exports is displayed in Figure \ref{fig:balances-ac-co2l20-120}. The deployment of hydrogen exports requires a scale up of onshore wind and solar PV accordingly, as defined by the green hydrogen constraint outlined in \nameref{subsec:green_hydrogen_constraint}.
+Without the temporal hydrogen regulation, the additional electricity demand of hydrogen exports is covered by coal power plants and CCGT (by increasing the capacity factor of existing brownfield coal and CCGT capacities) and an expansion of open-cycle gas turbines (OCGT) installation and supply as pointed out in Supplementary Fig. \ref{fig:balances-ac-noreg}.
+The cost-optimal solution of the model shows, that increasing hydrogen exports do not necessarily require additional renewable capacities. Instead, the electricity demand for hydrogen electrolysis is covered by additional electricity supply from fossil generation. However, if the cost-optimal solution is constrained by the green hydrogen policy, an increase of hydrogen exports goes along with additional renewable electricity capacities as defined in the EU's delegated Act.
+In contrast to the exponential increase of electricity demand observable at increasing climate mitigation ambitions displayed in Figure \ref{fig:balances-ac-0exp-120}, the electricity demand increases linearly with the hydrogen export ambitions.
+
+
+
+
+% \subsection*{Domestic \co mitigation and hydrogen export show co-benefits}
+\subsection*{Co-benefits of domestic \co mitigation and hydrogen exports}
+\label{subsec:benefits}
+
+In an integrated analysis of domestic \co mitigation (dimension 1) and hydrogen exports (dimension 2) this study outlines that both domestic \co mitigation and hydrogen exports profit from each other and show co-benefits. In this section, we i) show the effects of hydrogen exports on market-based costs for domestic electricity consumers, ii) the role of domestic \co mitigation on hydrogen export cost, and lastly iii) common co-benefits.
+
+First, Figure \ref{fig:expense_ac_120} illustrates how domestic electricity consumers benefit from a stronger hydrogen export industry at different decarbonization targets. The costs are normalized to the cost level at 1 TWh/a hydrogen export for each domestic \co mitigation level, showing the relative impact of hydrogen exports on domestic electricity costs. Negative values indicate that hydrogen exports reduce average market-based electricity costs for domestic consumers.
+Figure \ref{fig:expense_ac_120} shows, that hydrogen exports decrease the relative domestic electricity costs by up to 45\%, especially at mitigation levels below 40\% and exports above 50 TWh. 
+In these ranges, the domestic electricity consumers profit from excess green electricity originating from additional renewable energy capacities required for hydrogen export. These renewable capacities i.) displace fossil generation with high short-run marginal costs (price spillover) and ii.) provide excess electricity to the domestic electricity system (energy spillover), elaborated in detail in the section on the \nameref{subsec:benefits_rule} and in the Supplementary Fig. \ref{fig:supply}, Supplementary Fig. \ref{fig:el-cap} and Supplementary Fig. \ref{fig:el-cf}.
+However, as the domestic electricity system undergoes deeper decarbonization (domestic \co mitigation above 50--60\%), the cost-reducing effect of hydrogen exports weakens. Here, the impact of additional renewable electricity capacities is only marginal, since the electricity system is already highly or fully renewable electricity based and neither price spillover nor energy spillover are effective as outlined in the section \nameref{sec:discussion}.
+The only scenario in which an increase of hydrogen export leads to higher domestic electricity costs is at a low \co mitigation level of 10\% and exports of 20 TWh.
+This effect arises due to the initial increase in electricity demand from hydrogen electrolysis, which raises electricity cost, as seen in Supplementary Fig. \ref{fig:expenses_default_120-noreg} (without temporal regulation). Without regulation, this cost increase continues with higher exports. However, with regulation, the cost-reducing effect of hydrogen exports eventually dominates through the effect of energy and price spillovers, as discussed in the section on \nameref{subsec:benefits_rule}, mitigating further cost increases and significantly decreasing the market-based costs for domestic electricity consumers.
+
+Second, Figure \ref{fig:expense_h2_120} shows how hydrogen exporters benefit from domestic \co mitigation.
+The costs are normalized to the cost level at 0\% \co mitigation for each hydrogen export volume, displaying the relative impact of domestic \co mitigation on hydrogen export costs.
+At hydrogen export volumes of 25--75 TWh, increasing domestic \co mitigation up to 40–60\% reduces hydrogen export costs by up to -9\%. 
+This cost reduction is driven by improvements in system flexibility -- such as BEV charging, energy storage, and expanded transmission capacities (s. Fig. \ref{fig:balances-ac-0exp-120}) -- which also benefit hydrogen exporters.
+However, at even higher domestic \co mitigation levels (70--100\%), further renewable expansion is required, tapping into sites with less favorable weather conditions in Morocco. This ultimately raises electricity costs, as seen in Supplementary Fig. \ref{fig:electricity-price-hourly}.
+At higher hydrogen export volumes, this effect diminishes. As the hydrogen export system grows significantly larger than the domestic electricity system, shared infrastructure effects become less relevant 
+as shown in Figure \ref{fig:expense_h2_120} and in the sensitivity analysis for higher exports in Supplementary Fig. \ref{fig:expense_h2_200}. 
+The only scenario where domestic \co mitigation leads to a notable increase in hydrogen export costs occurs at low export volumes below 20 TWh. Here, advances in domestic \co mitigation increase hydrogen export costs by up to 19\% compared to a scenario without domestic \co mitigation. 
+This cost increase results from lower electrolysis capacity factors compared to the 0\% \co mitigation scenario, where we observe high electrolysis capacity factors of above 80\% (see Supplementary Fig. \ref{fig:ely-cf-hourly}).
+The top-left region of Figure \ref{fig:expense_h2_120} indicates that at certain export levels, hydrogen export costs become largely independent of domestic \co mitigation. This is driven by temporal hydrogen regulation further investigated in the section on \nameref{subsec:benefits_rule}. Here, hydrogen export infrastructure decouples from the domestic electricity system, the cost is increasingly independent of domestic \co mitigation.
+When hydrogen exports reach twice the size of domestic electricity demand (s. Fig. \ref{fig:expense_h2_120}), the influence of the domestic electricity system on hydrogen export costs becomes negligible.
+
+
+Third, we derive co-benefits for domestic \co mitigation and hydrogen exports. 
+Within the area of 40--60\% \co mitigation and 50-100 TWh/a hydrogen exports, we see i) domestic electricity consumers profit from hydrogen exports compared to very low (1 TWh) exports and ii) hydrogen exporters decrease their cost compared to no (0\%) domestic \co mitigation. 
+Hence, both domestic \co mitigation and hydrogen exports have cost-reducing effects on hydrogen exporters and domestic electricity consumers respectively. They benefit from each other (co-benefit) at medium mitigation (40--60\%) and moderate to high hydrogen exports (50--100 TWh). 
+
+% Apart from the cost of electricity for domestic customers and cost of hydrogen for exporters, Figure \ref{fig:expenses_default_120} presents possible pathways of \co mitigation and export. We have derived three illustrative mitigation-export pathways presenting various speeds of transformation:
+% \begin{enumerate}
+%     \item Quick exports and slow \co mitigation,
+%     \item Balanced exports and \co mitigation and
+%     \item Slow exports and quick \co mitigation.
+% \end{enumerate}
+
+% In the long run, domestic electricity consumers profit in all pathways from hydrogen exports. A slight and short increase of domestic electricity prices in the early transformation phase (2030) is compensated by later (2050) strong (pathway 1) and medium (pathway 2) benefits for domestic electricity customers, profiting from hydrogen exports.
+% In pathway 3, the short-term price increases are only marginal, but the long-term benefit from decreased is not as strong as in the scenarios with quicker export scale-ups. Figure \ref{fig:expense_h2_120} shows that hydrogen exporters have clear benefits in pathway 2, the cost of hydrogen for exports decrease compared to no domestic \co mitigation. By ramping up hydrogen exports in an early stage of domestic \co mitigation, high relative cost of hydrogen can be avoided.
+
+
+
+
+% \subsection*{Hydrogen regulation reduces domestic electricity prices and emissions}
+\subsection*{Impacts of hydrogen regulation on electricity prices}
+\label{subsec:benefits_rule}
+
+Hydrogen regulation has strong effects on electricity system dispatch (and emissions), increasing the prices and consumer cost for hydrogen exporters whilst decreasing for domestic electricity consumers. This section shows the mechanisms of temporal matching in the 120 TWh/a export and 0\% domestic \co mitigation scenario.
+
+As the temporal matching becomes stricter, additional renewable capacities and complementing hydrogen storage are required to meet the electricity demand of electrolysis
+on a time base defined by the temporal matching constraint, as shown in Supplementary Fig. \ref{fig:tsc-120-0}. These renewable capacities i.) push out fossil generation with high short-run marginal costs (price spillover) and ii.) provide excess electricity to the domestic electricity system (energy spillover). Both spillover effects are linked, the energy spillover causes a merit order effect affecting the domestic electricity prices.
+
+The price spillover is observable in Figure \ref{fig:pdc-120-0} depicting the price duration curve at 120 TWh/a export and 0\% domestic \co mitigation. The price duration curve describes the sorted price of electricity (spatial mean) at all modelled hours of the year.
+Stricter hydrogen regulation pushes the price duration curve towards the left, as additional renewable electricity capacities phase out fossil generation, which has higher short-run marginal costs due to fuel costs, compared to renewable electricity.
+As renewables generate power when available, they reduce the dispatch of fossil generators, whose higher marginal costs make them less competitive in the short term. However, fossil fuels still play a complementary role, stepping in to fill gaps during periods of low renewable generation. This mechanism is fully captured in our capacity expansion and operation model, which accounts for both types of generation in response to price changes and regulatory shifts.
+
+
+The energy spillover is shown in Figure \ref{fig:dispatch_rule}. In the no rule scenario, which does not constrain the electricity input of hydrogen electrolysis, the electricity supply of coal and OCGT is substantially higher than in the annual, monthly, or hourly case. If annual matching is applied, the renewable electricity supply to the electricity system equals the annual demand for electrolysis, increasing the supply of solar PV by 20 TWh/a while decreasing the supply of fossil electricity generation. 
+Monthly matching increases this trend, while hourly matching completely phases out OCGT and CCGT. Figure \ref{fig:dispatch_rule} highlights the energy spillover effect: going beyond the electricity demand of hydrogen electrolysis, renewable capacities installations necessary to meet the temporal matching decarbonize the domestic electricity demand and decrease the grid emissions. This effect is steered by the strictness of temporal matching, hence stricter temporal matching rules enable a further decrease in emissions.
+The slight increase in total dispatch for annual and monthly matching is balanced by resistive heaters in the heating sector.
+In addition to the synergies between hydrogen export and domestic \co mitigation, the energy spillover outlines a clear synergy between domestic \co mitigation and temporal hydrogen regulation.
+
+
+
+The price spillover effect results in lower electricity prices for domestic consumers. Taking the electricity demand into account, the decrease of prices results in a decrease of electricity cost shown in 
+Figure \ref{fig:expense_h2ac}. Stricter temporal hydrogen regulation decreases the domestic electricity cost from 2.7 B€ to 1.2 B€. In contrast, the hydrogen cost for exporters increases from 10.1 B€ to 10.6 B€, carrying the cost of the temporal matching constraint and hence financing additional solar PV and hydrogen storage required to meet the electrolysis electricity demand on a certain temporal basis. See Supplementary Fig. \ref{fig:costbreakdown_hourly} and Supplementary Fig. \ref{fig:costbreakdown_norule} for cost breakdown of hydrogen electrolysis with and without hourly temporal matching.
+
+
+The combined cost borne by domestic electricity consumers and hydrogen exporters decreases with stricter temporal hydrogen regulation, while the overall system cost increases, as shown in Supplementary Fig. \ref{fig:tsc-120-0}. 
+This difference arises because electricity consumers (both domestic and hydrogen electrolysis) pay a contribution margin to the capital costs of existing coal power plants, which are pre-existing brownfield assets. Since these brownfield capacities are not part of the objective function, their capital costs are excluded from the total system cost (see Supplementary Fig. \ref{fig:tsc-120-0}) but are included in consumer costs (see Supplementary Fig. \ref{fig:expense_h2ac}).
+Under stricter temporal hydrogen regulation, coal power phases out, reducing the capital contributions required from consumers for these coal assets. For domestic electricity consumers, this leads to a direct decrease in their cost. However, for hydrogen exporters, the cost slightly increases, as they bear the cost for the additional renewable capacities (see Supplementary Fig. \ref{fig:tsc-120-0}) required to meet temporal hydrogen regulation. As coal capacity declines with stricter hydrogen regulation, the discrepancy between consumer costs and the total system cost decreases. This observation also holds if the coal capacity is decreased under high decarbonization scenarios where fossil fuel dispatch is minimized.
+%, leading the system closer to an equilibrium where marginal prices match the optimization’s objective function.
+
+%%%%%%%%%%%%%%%%%
+
+
+To sum up, temporal hydrogen regulation is a policy instrument acting in a twofold way. It steers the redistribution of costs between hydrogen exports and domestic electricity consumers (based on the price spillover effect), decreasing the cost for domestic electricity consumers and increasing the cost for hydrogen exporters. 
+Second, the temporal hydrogen regulation 
+not only decarbonizes hydrogen exports, but additionally decreases grid emissions of the domestic electricity demand via the energy spillover effect. Both effects scale with stricter temporal matching.
+
+
+
+% \subsection*{The effects of temporal hydrogen regulation are strongest in high export and low \co mitigation systems}
+\subsection*{Role of hydrogen regulation in mitigation-export contexts}
+\label{subsec:rule_all}
+
+%%% SELECTION
+% Based on the effects of temporal hydrogen regulation in the scenario of 120 TWh/a export and 0\% \co mitigation presented in the previous section, this section explores the temporal hydrogen regulation across all mitigation (0--100\%) and export (0-120 TWh/a) scenarios. We have grouped these scenarios into three illustrative mitigation-export pathways presenting various speeds of transformation. They consist of 
+% (i) Quick exports and slow \co mitigation,
+% (ii) Balanced exports and \co mitigation and
+% (iii) Slow exports and quick \co mitigation as further elaborated in Supplementary Fig. \ref{fig:scenario-sel-120}.
+
+Based on the effects of temporal hydrogen regulation in the scenario with 120 TWh/a exports and 0\% \co mitigation presented in the previous section, we now broaden the analysis to the full scenario space of mitigation (0–100\%) and export levels (0–120 TWh/a).
+Although the model is static and optimized for 2030, we interpret the scenario variation as reflecting different sequences of policy ambition -- that is, whether hydrogen exports or domestic decarbonization are prioritized earlier on the pathway toward shared long-term goals. For instance, a scenario with high exports and low \co mitigation can reflect a pathway where export infrastructure is deployed early, with decarbonization following later and vice versa.
+To explore this sequencing, we group scenarios into three illustrative transition strategies: 
+(i) Quick exports and slow \co mitigation,
+(ii) Balanced exports and \co mitigation and
+(iii) Slow exports and quick \co mitigation as further elaborated in Supplementary Fig. \ref{fig:scenario-sel-120}.
+These groupings help illustrate the impacts of temporal hydrogen regulation on e.g. domestic electricity cost, even within a static modeling framework.
+
+%%% BRIDGE TO FIGURE
+Figure \ref{fig:expenses-relative-120} shows the relative change of electricity and hydrogen cost of all mitigation-export scenarios (grouped by transition strategy) in dependence of temporal matching. 
+%%% FIGURE DESCRIPTION
+% Quick export
+The effects of temporal hydrogen regulation on market-based costs for domestic electricity consumers are most dominant in the group of Quick exports and slow \co mitigation.
+In this group, the introduction of annual matching has already a striking effect, because the price spillover observed in Figure \ref{fig:pdc-120-0} decreases (domestic) electricity prices. The price spillover unfolds in fossil-dominated (hence low domestic \co mitigation) systems, combined with high hydrogen exports providing a strong energy spillover effect. In the cases of high exports and no domestic \co mitigation, the cost of electricity for domestic consumers reduces up to -55\% in the case of hourly matching.
+This effect is even more pronounced at even higher export quantities, as observable in the sensitivity analysis carried out in Supplementary Fig. \ref{fig:expenses-relative-200}.
+
+% Balanced
+In the group of Balanced exports and \co mitigation the effect of temporal hydrogen regulation is less dominant.
+Hourly matching reduces the market-based costs for domestic electricity consumers by up to -31\% (s. Fig. \ref{fig:expenses-relative-120-elec}). In only two single mitigation-export scenarios the annual or monthly matching decreases the cost for domestic electricity, whereas all other combinations of the Balanced exports and \co mitigation group are only sensitive to the strictest -- hourly matching -- hydrogen regulation. 
+The cost increase for hydrogen exporters (s. Fig. \ref{fig:expenses-relative-120-hy}) is minimal, the median of the Balanced exports and \co mitigation scenarios indicates a 1\% increase.
+In only two scenarios, hourly matching regulation increases the hydrogen cost above 7\% (above 11\% across all groups) compared to no temporal hydrogen regulation. This is the case for 0\% \co mitigation and 1 and 20 TWh/a export scenarios. 
+
+% Slow exports
+In the Slow exports and quick \co mitigation group, only the hourly matching has observable effects, since the electricity system is already dominated by renewable electricity and only hourly matching phases out the remaining fossil generation. Therefore, the impacts on the market-based costs for domestic electricity consumers (up to -11\%) and hydrogen exporters (up to 8\%) are moderate.
+
+%%% FIGURE/SECTION CONCLUSION
+Figure \ref{fig:expenses-relative-120} shows, that temporal hydrogen regulation hedges domestic electricity consumers against rising costs across all scenario groups.
+Setting aside the less likely scenarios of the Quick exports and slow \co mitigation group (based on the assumption that export quantities above 80 TWh without domestic \co mitigation are unlikely), hourly matching decreases the cost of electricity for domestic consumers by up to 31\%. The cost for hydrogen exporters increase only slightly in the vast majority of all mitigation-export scenarios.
+
+
+\section*{Discussion}
+\label{sec:discussion}
+
+
+
+% \subsection*{Temporal hydrogen regulation and the speed of transformation}
+% \label{subsec:timepath}
+The transition towards climate neutrality of Morocco's energy system and the ramping up of exports up to 120 TWh/a are a matter of decade(s) and undergo a certain pathway. 
+% Based on the co-benefits identified in \nameref{subsec:benefits}, steering the transition by minimizing conflicts and amplifying co-benefits potentially reduces both the price of electricity and price of hydrogen. 
+However, the broad scenario design of this study allows conclusions and recommendations beyond the specific Morocco case.
+Various potential hydrogen exporting countries with different prerequisites can be found in the integrated analysis of benefits and burdens for domestic electricity consumers and hydrogen exporters among the dimensions of domestic \co mitigation, hydrogen export and hydrogen regulation.
+
+Based on the main findings of the impact of temporal regulation on hydrogen exporters and their domestic \co mitigation identified in \nameref{sec:results}, we present three possible pathways (aligned with the categorization in Figure \ref{fig:expenses-relative-120}) of reaching the aims of hydrogen exports and domestic \co mitigation complemented with tailored temporal hydrogen regulation recommendations.
+As outlined in \nameref{sec:results}, we use static scenarios to reflect different sequences of policy ambition toward shared long-term goals.
+
+First, at quick exports and slow \co mitigation: Reaching high export levels before adequately mitigating domestic emissions leads to higher total emissions, if no strict temporal hydrogen regulation is in place. Instead, hourly matching reduces domestic electricity cost effectively and redistributes welfare from exporters to domestic consumers. This regulation plays a decisive role in this pathway, even annual or monthly matching triggers the price spillover and energy spillover effects.
+
+Second, at balanced exports and \co mitigation: A balanced transition of both exports and mitigation offers benefits for both domestic electricity consumers and hydrogen exporters. At a medium (40--60\%) \co mitigation, domestic electricity consumers profit from progressing hydrogen exports. Vice versa, hydrogen exporters benefit from domestic \co mitigation, if the hydrogen export volume is at 50--100 TWh and the domestic \co mitigation advances from 0\% to a medium range of (40--60\%) \co mitigation. A strict temporal hydrogen regulation enables these co-benefits in this pathway.
+
+Third, at slow exports and quick \co mitigation: If the transition speed of domestic \co mitigation is quicker than the scale-up of hydrogen exports, there is no effect of annual or monthly temporal hydrogen regulation on costs for hydrogen exporters or domestic electricity consumers (s. Fig. \ref{fig:expenses-relative-120}). The temporal hydrogen regulation plays only a minor role in this pathway, since the electricity system is already highly or fully renewable electricity based and neither price spillover nor energy spillover are effective.
+
+The three illustrative pathways offer certain room for manoeuvre in policy-making for various countries and their export ambitions, speed of domestic \co mitigation and temporal hydrogen regulation. However, these pathways do not reflect additional constraints as limited renewable energy ramp-up rates, the availability of workforce, additional prerequisites such as an effective carbon pricing system for carbon-based Power-to-X products and bureaucratic hurdles among others. 
+A holistic approach and balanced policies are essential to guide the energy transition and support export ambitions effectively.
+
+
+% \subsection*{Balancing interests of exporters and domestic demand}
+% \label{subsec:balancedinterests}
+Furthermore, balancing the interests of hydrogen exporters and domestic electricity consumers involves various dimensions.
+First, the price of electricity for domestic businesses and households need to be considered to enable a fair discussion and balance of burdens and opportunities. 
+This study demonstrates that electricity prices (and hence the consumer costs) are closely influenced by hydrogen export volumes and temporal hydrogen regulation. 
+The export of hydrogen in combination with strict temporal hydrogen regulation provides the opportunity of decreasing domestic electricity prices, providing opportunities for domestic businesses and households. The chance to boost local economies by exporting hydrogen is also highlighted in Ishmam et al.\cite{Ishmam2024}.
+
+Second, the substantial deployment of solar PV and onshore wind comes along with a substantial land use. Several studies \cite{Terrapon-Pfaff2019, Hanger2016} highlight the requirement of local acceptance of renewable energies in Morocco. From a German/European perspective, hydrogen imports are not necessarily the most economic option \cite{Merten2023} but also provide a way out of having to deal with the domestic acceptance of renewable energies.
+Shifting acceptance challenges to Morocco through renewable energy deployment and expanding hydrogen exports raises important ethical considerations that require thoughtful handling
+
+Third, this study shows the benefits of integrating solar PV and onshore wind into the main grid for both domestic electricity consumers and hydrogen exporters. By integrating the best sites of solar PV and onshore wind, domestic electricity consumers can access the cost-cutting potentials and benefit from lower electricity prices as shown in our results. On the other hand, off-grid hydrogen generation potentially reserves the promising electricity potentials for hydrogen export only. Nonetheless, Tries et al.\cite{Tries2023b} show the benefits of hydrogen islanding, offering cost savings for inverters and benefits for power quality. Domestic consumers may profit from these economic opportunities for hydrogen exporters indirectly through corresponding policies.
+
+Hydrogen export ambitions (fostered by e.g. the European Union) do not cause disadvantages for the domestic population per se, a proactive transition taking into account the interplay of domestic electricity prices unleashes economic opportunities for both exporters and domestic population.
+
+
+
+% \subsection*{Limitations}
+% \label{subsec:limitations}
+
+The sector-coupled energy model as well as the results underly certain limitations. In this study, we leave the option open that the hydrogen for export is further synthesized to hydrogen derivatives as ammonia, Fischer-Tropsch products or sponge iron etc. We do not model the system operation of a further synthesis of export products explicitly, unlike we do for the domestic demands for hydrogen derivatives. Further synthesis of export products and linked transportation modes are investigated in Hampp et al.\cite{Hampp2023}, Galimova et al.\cite{Galimova2023} and Verpoort et al.\cite{Verpoort2023} but not in the scope of this study.
+A further synthesis will likely have effects on the system operation, since the synthesis in combination with cheaper storage (e.g. oil storage is cheaper than hydrogen storage \cite{DEA2019TechnologyData}) provides an additional flexibility to a certain extent but is limited by the operation flexibility of Fischer-Tropsch or Haber-Bosch processes (see Supplementary Fig. \ref{fig:cf-ely-ft}).
+
+The constant hydrogen export demand assumed in this study represents pipeline operation or a further hydrogen synthesis.
+If the export hydrogen is not further synthesized but exported as liquified hydrogen via shipping, there are significant impacts on the energy system to expect. The demand pattern of ship export (landing, loading, travel time) triggers spikes in hydrogen demand, which would need to be buffered by large-scale hydrogen storage or by a corresponding operation of hydrogen electrolysis. As findings of Franzmann et al. \cite{Franzmann2023} point out, the cost share of hydrogen storage for export is below 5\% of the final product costs in solar regions, while slightly higher for wind-dominated regions.
+
+Additionally, the transition of certain sectors is not subject to the optimisation but exogenously defined. Such nodal shifts (e.g. in transport: share of electric vehicles) provide system benefits (e.g. Vehicle-to-Grid) for which an integrated optimisation favours e.g. higher shares of electric vehicles.
+Recent approaches as Zeyen et al.\cite{Zeyen2023} improve such caveats by incorporating endogenous learning, but research gaps on the endogenous demand of the transport sector remain.
+Furthermore, this study achieves national decarbonization under what is effectively a cap-and-trade framework. As such, results may not fully generalize to other policy contexts, such as those driven by subsidies or fixed carbon pricing, which may influence decarbonization dynamics differently.
+
+National climate ambitions and especially the scale-up of hydrogen export require substantial amounts of raw materials (e.g. copper, cement) linked with resource limitations as well as upstream greenhouse gas emissions. As pointed out in Wang et al.\cite{Wang2023} in a global analysis, most raw material limitations required for electricity generation do not exceed geological reserves. However, material demands of e.g. electrolysers are not within the scope of Wang et al.\cite{Wang2023}.
+
+The cost of water through desalination and transport has a single cost for the whole country. However, the transportation costs highly depend on the terrain as pointed out by Caldera et al.\cite{Caldera2016}, hence the water costs are higher in more remote areas which is not taken into account in this study. In contrast, the effect of a higher spatial resolution of water costs is assumed to be minor, since the water desalination and transport costs do not contribute substantially to the cost of hydrogen as emphasized in Hampp et al.\cite{Hampp2023}.
+
+Another limitation of this study concerns the market structure in the Moroccan electricity sector, particularly regarding the integration of renewable energy. While Morocco is progressively moving toward market liberalization, with increasing penetration of renewable electricity and independent power producers, the electricity market is still partially regulated \cite{Bentaibi2021}. However, we want to clarify that our study does not model a liberalized market, in which individual market participants maximize their profits in equilibrium.
+Instead, we assume a central planner’s perspective.
+% based on economic theory, where market outcomes are derived under the assumption of complete and competitive markets. 
+In a perfectly competitive market with perfect information, free entry and exit, many participants, and no transaction costs or market failures, the equilibrium reached by price-taking firms and utility-maximizing consumers coincides with the solution a benevolent central planner would choose to minimize total system costs. This is consistent with the First Fundamental Welfare Theorem \cite{Feldman2017, Tan2022}.
+However, in real-world liberalized markets, these assumptions are often not fully valid: some actors may lack full information, some generators may have market power, and various government interventions can move us away from equilibrium.
+Despite the fact that the conditions for equivalence between central planner and market outcomes are not fully satisfied in practice, we argue that our study remains relevant
+for future scenarios, where these conditions may increasingly hold as markets evolve towards liberalization globally \cite{Fatras2022, Faia2024, Xu2020, Fattouh2021}.
+In this context, we emphasize that the effect of temporal hydrogen regulation on domestic electricity consumers observed in the section \nameref{sec:results} is only valid where the market design is such that market prices are passed through to electricity consumers.
+
+Additionally, our model employs a normative scenario approach, which assumes that energy systems are designed to achieve socially optimal outcomes under given constraints (e.g., cost minimization, emissions reduction). While this approach is commonly used in energy system models \cite{Zeyen2023, Zeyen2024,Victoria2020,Franken2025,Neumann2024,Neumann2023,Neumann2022a,Neumann2021,Parzen2023,Horsch2018,Muller2024,Collins2018,Oyewo2023,Oyewo2024,Bauer2025,IEA2021}, it does not fully capture the complexity of real-world market dynamics, where decentralized decision-making by multiple market participants plays a critical role. Nevertheless, by including endogenous prices to coordinate decentralized actors, our model provides a representation of market-based coordination. Thus, the results should be interpreted as idealized scenarios that highlight possible pathways, with actual market outcomes likely to differ due to a variety of economic and behavioral factors as outlined in Tan et al.\cite{Tan2022}.
+
+
+
+% \section*{Conclusion}
+\label{sec:conclusion}
+
+% \subsection*{Conclusion}
+
+
+Concluding, our study shows the importance of integrated scenario analysis combining hydrogen exports, domestic \co mitigation and temporal hydrogen regulation.
+At a medium (40--60\%) \co mitigation, domestic electricity consumers profit from progressing hydrogen exports. Vice versa, hydrogen exporters benefit from domestic \co mitigation, if the hydrogen export volume is at 50--100 TWh and the domestic \co mitigation advances from 0\% to a medium range of (40--60\%) \co mitigation. However, we show that there are also risks with respect to rising domestic electricity prices
+and find that hydrogen regulation via temporal matching is a decisive instrument
+to protect domestic consumers. Hourly matching decreases the cost for domestic electricity consumers (up to -31\%) while the effect on hydrogen exports is minimal. Temporal hydrogen regulation can effectively hedge domestic electricity consumers against rising prices across mitigation and export scenarios.
+
+This study contributes to the investigation of implications and benefits of hydrogen exports for domestic electricity consumers. Even though temporal hydrogen regulation hedges domestic electricity consumers against rising prices, further implications of hydrogen exporters on the domestic population (land use, competing RE resources, environmental concerns of desalination) are not within the scope of this study.
+
+In summary, our study underscores that hydrogen export ambitions, as encouraged by entities like the European Union, is in favor of domestic electricity consumers at certain export quantities, if the appropriate hydrogen regulation is in place. A proactive and comprehensive transition strategy, considering the interplay between hydrogen exports and domestic \co mitigation, is key to unlocking economic opportunities for both hydrogen exporters and the domestic population. 
+
+
+Apart from reducing greenhouse gas emissions, temporal hydrogen regulation is a decisive policy instrument in steering the welfare (re-)distribution between i) hydrogen exporting firms and hydrogen importing countries and ii) hydrogen exporting firms and domestic electricity consumers. 
+A fair balance can increase acceptance across actors, is crucial for a sustainable energy transition in Morocco and offers valuable insights for further countries facing similar energy challenges globally.
+
+
+\section*{Methods}
+\label{sec:methods}
+
+\subsection*{Sector-coupled energy model}
+\label{subsec:moroccan_model}
+The sector-coupled energy model of Morocco is based on the global electricity model  PyPSA-Earth \cite{Parzen2023} and the sector-coupling extension \cite{Abdel-Khalek2025} using linear optimisation and overnight scenarios. This capacity extension model optimises the generation, transmission and storage capacities of Morocco's energy system by minimising the the total annualised system costs constrained by e.g. climate targets or green hydrogen policies.
+A more detailed mathematical problem formulation is provided in the Supplementary Method 1: Mathematical model formulation,
+and a system overview is provided in Supplementary Fig. \ref{fig:system-overview}.
+The model is based on the economic year of 2030, optimizing the time span of a full year. We have chosen the year 2030 to account for the relevance of hydrogen exports and domestic \co mitigation in the near-term. However, we do not expect or imply that both substantial hydrogen export volumes and the domestic \co mitigation fully materialize by the year 2030 given the time span required for the ramp up of the required technologies (Renewable electricity, hydrogen electrolyis, etc.). By fixing the modelling year to 2030 instead of modelling transformation pathways, we can isolate the effects of 0-100\% mitigation (to today) and 0-120 TWh hydrogen export and contextualize our results in a comparable setting.
+However, this fixed-year approach has limitations. Modeling actual transition pathways (instead of a fixed year) accounts for evolving factors over time, such as technology costs and regulatory shifts. 
+In comparison, M\"uller et al.\cite{Muller2024} employs such an  approach by exogenously defining the final energy demand, hydrogen exports and emission constraint across a transition path up to 2050. Based on these input parameters, the cost-optimal power sector is modelled endogenously. This allows for a more detailed exploration of transition pathways, and enables insights of reaching (annual) climate goals under a (cumulative) \co budget.
+
+
+
+\subsubsection*{Energy demand}
+To obtain the annual energy demand, we use the workflow presented by Abdel-Khalek et al.\cite{Abdel-Khalek2025}. In a first step, the annual energy demand is obtained from the United Nations Statistics Database\cite{unstats2023}. The latest available data is from 2020, since these energy balances are likely to show irregularities due to COVID-19 implications, the base year in this study is 2019. Based on the annual energy demand from 2019, the energy demand of 2030 is projected according to efficiency gains and activity growth rates similar to M{\"u}ller et al.\cite{Muller2023}.
+In a second step, the annual and national energy demand is distributed according to the production sites of Morocco.
+In case of subsectors where no spatially resolved production sites are available (e.g. paper industry), the demand is distributed according to GDP.
+Third, the annual but locationally resolved energy demand is converted to hourly demands. In this study, a constant hourly demand of the industry and agriculture sector is assumed whereas residential, services and transport are temporally resolved based on time series \cite{Brown2018a,Neumann2023,Abdel-Khalek2025}. 
+The resulting temporal and spatial energy demands of the sectors
+(i) residential,
+(ii) services,
+(iii) industry,
+(iv) transport (road, rail, aviation and navigation) and
+(v) agriculture
+are integrated in the sector coupled energy model, including the energy carriers electricity, hydrogen, natural gas, biomass, oil, and heat, as well as carbon dioxide in the form of emissions and feed-stock for the synthesis of other carriers (see Supplementary Fig. \ref{fig:carbon-mgmt}). 
+The domestic energy services per sector remain constant throughout the scenarios presented in the \nameref{sec:intro}, regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, while energy services (e.g., demand for transportation or heating) are fixed, the primary and final energy consumption are subject to \co mitigation targets. To reflect the impact of increasing shares of BEVs in the Moroccan energy system, the share of BEVs is linked to emission reduction ambitions (see Supplementary Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% domestic \co mitigation in accordance with Rim et al.\cite{Rim2021}.
+In the case of low domestic \co mitigation, a low BEV share results in a high fuel demand for e.g. Internal Combustion Engine Cars, as observable in Supplementary Fig. \ref{fig:tsc-120-0}. This reflects a constant energy service demand (transportation) while the primary energy is subject to \co mitigation.
+
+
+
+\subsubsection*{Renewable Energy Sources}
+The sector-coupled energy model follows the data pipeline of Parzen et al.\cite{Parzen2023} by incorporating solar PV, onshore wind and hydro power using the open source package Atlite \cite{Hofmann2021}.
+Atlite obtains technology-specific time series of the weather year 2013 based on the ERA5 reanalysis data \cite{Hersbach2020}, displayed in Supplementary Fig. \ref{fig:ren-cfs}. In addition to the time series, Atlite calculates land availabilities and linked potentials using the Copernicus Global Land Service \cite{Buchhorn2020}.
+
+
+
+
+
+
+\subsubsection*{Conventional electricity generation}
+The conventional electricity generators are obtained from the powerplantmatching tool \cite{Powerplantmatching2019}. Powerplantmatching uses various input sources as OpenStreetMap2022, Global Energy Monitor, IRENA \cite{IRENA2022, OpenStreetMap2022, GlobalEnergyMonitor} to download, filter and merge the datasets. 
+In this study, powerplantmatching is applied to Morocco delivering the conventional power plants.
+
+\subsubsection*{Electricity networks and gas pipelines}
+The electricity network is based on the PyPSA-Earth workflow using OpenStreetMap data \cite{OpenStreetMap2022} as presented in Parzen et al.\cite{Parzen2023}. First, the data is downloaded, filtered and cleaned. Second, a meshed network dataset including transformers, substations, converters as well as HVAC and HVDC components is build\cite{Parzen2023}. 
+The brownfield gas pipeline infrastructure of Morocco is not considered in this study. The Maghreb-Europe pipeline passing through Morocco is the only pipeline in operation but currently subject to political disputes \cite{Rachidi2022}. Further proposed projects are excluded due to  miniscule capacity compared to Morocco's energy system (Tendrara LNG Terminal, 100 million cubic meters per year or uncertain commissioning dates (Nigeria-Morocco Pipeline, start year 2046 \cite{GEM2023b}).
+
+
+\subsection*{Brownfield model and capacity expansion}
+\label{brownfield_model}
+Following the workflow of Parzen et al. \cite{Parzen2023}, Figure \ref{fig:MAR_brownfield} shows the current capacities of electricity generation and distribution of Morocco. Based on this brownfield electricity system, the sector-coupled energy model allows the capacity expansion of storage, (electricity networks), hydrogen pipelines, renewable and conventional generators.
+
+\subsection*{Technology and cost assumptions}
+\label{subsec:tech_assump}
+All technology and cost assumptions are based on the year 2030, taken from the \href{https://github.com/pypsa/technology-data}{technology-data repository}. This study applies version 0.4.0 of the repository, which is available at \href{https://github.com/PyPSA/technology-data/blob/v0.4.0/outputs/costs_2030.csv}{technology-data v0.4.0.}
+Based on a comprehensive survey of industry and academia in 2024 by Fernandez et al.\cite{Fernandez2024}, which reports a combined Market Risk Premium and Risk-Free Rate of 12.9\% for Morocco, we follow their findings and apply a discount rate of 13\% in this study. While IRENA\cite{IRENA2023} reports a technology-specific interest rate of 9.1\% for utility-scale PV in Morocco, we apply a more conservative approach following Fernandez et al.\cite{Fernandez2024} taking into account possible higher risks of less-established technologies as water electrolysis and hydrogen infrastructure compared to utility-scale solar PV.
+
+
+
+\subsection*{Water supply}
+\label{subsec:water_supply}
+Hydrogen production through electrolysis requires fresh water, alternatives as the direct use of high saline water sources are still in the experimental stages \cite{Tong2020}. The depletion of freshwater resources and it's competition with other water uses is a concern, especially in regions such as Morocco which is ranked 27th among the world's most water-stressed countries \cite{Maddocks2015}. 
+Sea Water Reverse Osmosis (SWRO) emerges as a feasible solution to address this issue. In this model, the additional water cost of 0.80 €/\si{\cubic\metre} through desalination and transport is considered in line with the base scenario for Morocco in 2030 in Caldera et al.\cite{Caldera2020}. These findings are comparable to Kettani et al.\cite{Kettani2020} and Caldera et al.\cite{Caldera2016} stating the water costs of 1\$/$m^3$ resp. 0.60 - 1.50 €/\si{\cubic\metre} for Morocco in 2030. Given a water demand of 9~$l/kg_{hydrogen}$
+\cite{Hampp2023}, the additional costs for electrolysers result in 0.216~$MWh/kg_{hydrogen}$ (LHV).
+
+However, the challenge of brine disposal presents environmental concerns due to treatment chemicals and high salinity as discussed by Thomann et al. \cite{Thomann2022}, Dresp et al. \cite{Dresp2019} and Tonelli et al. \cite{Tonelli2023}, highlighting the importance of a careful site selection of desalination plants. A minimum distance of four kilometers from marine protected areas is recommended in Thomann et al. \cite{Thomann2022}.
+
+
+
+\subsection*{Green hydrogen policy}
+\label{subsec:green_hydrogen_constraint}
+
+
+A key constraint on the model is that the hydrogen exported from Morocco requires to meet sustainability criteria ("green" hydrogen). A variety of studies looks into various dimensions (temporal, geographical, electricity origin) of green hydrogen and their trade-offs \cite{Brauer2022, Ruhnau2023, Zeyen2024}.
+Envisioning hydrogen offtakers from the European Union, the green hydrogen constraint applied in this study aligns with the \emph{Delegated regulation on Union methodology for RFNBOs} of the European Commission \cite{Commission2023} defining green hydrogen based on the following criteria:
+(i) additionality: The electricity demand of electrolysers must be provided by additional RE power generation (less than 3 years before the installation of electrolysers, from 1.1.2028 onwards), and
+(ii) temporal correlation: Monthly matching until 31.12.2029, and hourly matching from 1.1.2030 onwards, and
+(iii) geographical correlation.
+
+Those criteria are required for Power Purchase Agreements (PPA) with RE-installation. Apart from the PPAs, the delegated act also considers the possibility of:
+(i) direct connection of RE and electrolysers, or
+(ii) high share of RE in power mix ($>$ 90\%) or the
+(iii) avoidance of RE curtailment
+to qualify as "green" hydrogen. These further options are not considered here, since a system-integrated electrolysis in a power system of a (current) share of RE below 90\% is the scope of this study. The sole focus on RE curtailment and hence low total hydrogen volumes is not applicable due to expected hydrogen exports of up to multiple times of Morocco's domestic electricity demand. The green hydrogen definition of the European Commission prior to 1.1.2028 is not applied in this study, since relevant volumes of hydrogen export are expected to materialize from 2028 onwards and is excluded by the scope of this study presented in the \nameref{sec:intro}).
+
+
+\subsection*{Hydrogen export}
+\label{subsec:hydrogen_export}
+The amount of hydrogen to be exported or further synthesized for export is  implemented as an exogenous parameter in the range of 0-120~TWh/a, with sensitivity analysis up to 200 TWh/a presented in the Supplementary Discussion 3: High export sensitivity.
+The system boundary is the country border of Morocco, hence transport options (as shipping or pipeline) are not considered in detail. The profile for hydrogen (or derivatives) export assumed in this study is constant. This represents the operation of pipeline exports as well as the operation of a further hydrogen synthesis with limited flexibility. The export of hydrogen is allowed via a range of ports in Morocco.
+
+
+The energy system model allows an endogenous spatial export decision, meaning that the total demand (and export profiles) are exogenous, but the model chooses the  cost-optimal export location(s). At each port, the model has the option to build a hydrogen underground or steel tank depending on domestic geological conditions.
+
+For the electrolysis, we use alkaline electrolysers due to their maturity, durability, and lower costs compared to proton exchange membrane electrolysers \cite{Staffell2019,DEA2019TechnologyData}.
+Alkaline electrolysers are well-suited for large-scale use, though they have slower start-up times and a more limited operating range   
+than proton exchange membrane electrolysers \cite{Staffell2019, Gotz2016}, which, in contrast, have  shorter cell lifetimes as pointed out in Staffell et al. \cite{Staffell2019}.
+
+% \section*{License}
+
+% \href{http://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0
+% International License (CC-BY-4.0)}
+
+
+% \doclicenseLongText
+% \doclicenseIcon
+
+
+% \section*{Supplemental Information}
+
+% Supplemental information can be found online at %\nameref{sec:si}.
+
+
+
+
+\section*{Data Availability}
+A dataset of the model results is available on Zenodo \href{https://doi.org/10.5281/zenodo.10951650}{https://doi.org/10.5281/zenodo.10951650} under a CC-BY-4.0 license. 
+Technology data was taken from the technology-data repository \href{https://github.com/pypsa/technology-data}{https://github.com/pypsa/technology-data}. 
+This study applies version 0.4.0 of the repository, which is available at \href{https://github.com/PyPSA/technology-data/blob/v0.4.0/outputs/costs_2030.csv}{https://github.com/PyPSA/technology-data/blob/v0.4.0/outputs/costs\_2030.csv}.
+
+\section*{Code Availability}
+The code to reproduce the experiments is available on GitHub \href{https://github.com/energyLS/aldehyde}{https://github.com/energyLS/aldehyde}.
+We also refer to the documentations of PyPSA \href{https://pypsa.readthedocs.io}{https://pypsa.readthedocs.io} and PyPSA-Earth \href{https://pypsa-earth.readthedocs.io}{https://pypsa-earth.readthedocs.io}, and the code of PyPSA-Earth-Sec
+\href{https://github.com/pypsa-meets-earth/pypsa-earth-sec}{https://github.com/pypsa-meets-earth/pypsa-earth-sec}.
+
+
+
+% tidy with https://flamingtempura.github.io/bibtex-tidy/
+\addcontentsline{toc}{section}{References}
+\renewcommand{\ttdefault}{\sfdefault}
+\bibliography{references_mylibrary}
+
+
+\section*{Acknowledgements}
+
+We are grateful for helpful comments by Alexander Meisinger and Anton Achhammer.
+
+We gratefully acknowledge funding from the H2Global meets Africa project (03SF0703A) and the HYPAT project (03SF0620A) by the German Federal Ministry of Education and Research.
+
+
+
+\section*{Author Contributions}
+
+% following https://casrai.org/credit/
+% see https://www.cell.com/pb/assets/raw/shared/guidelines/CRediT-taxonomy.pdf for details
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../results/graphics_general/policy/mar_hydrogen_strategy_semistacked.pdf}
+    \caption{Hydrogen Strategy of Morocco \cite{MarHyStrat2021}. The export volume rises up to 115~TWh/a in 2050, the domestic demand up to 40 TWh/a in 2050. The largest share of domestic demand is in the industry sector. The exports are dominated by hydrogen, followed by synthetic fuels.}
+    \label{fig:mar_hydrogen_strategy}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../results/graphics_general/morocco_em.pdf}
+    \caption{Morocco's historical \co and greenhouse gas emissions (GHG). While emissions are rising, emission targets are in the range between 75 Mt\coe\ (conditional) and 115 Mt\coe\ (unconditional)\cite{CAT2021}.}
+    \label{fig:morocco_em}
+\end{figure}
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/0exp-only/120/graphs/balances-AC.pdf}
+        \caption{Fixed (1 TWh) export and 0--100\% domestic \co mitigation}
+        \label{fig:balances-ac-0exp-120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 1cm}, clip, width=\linewidth]{../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/co2l20-only/120/graphs/balances-AC.pdf}
+        \caption{Fixed (0\%) domestic \co mitigation and 1--120 TWh/a export}
+        \label{fig:balances-ac-co2l20-120}
+    \end{subfigure}
+    \hfill
+    \caption{Electricity supply and demand at fixed export levels and increasing domestic \co mitigation (\ref{fig:balances-ac-0exp-120}) and vice versa (\ref{fig:balances-ac-co2l20-120}) with hourly temporal hydrogen regulation. Increasing domestic \co mitigation first phases out carbon-intensive coal generation in favor of combined-cycle gas turbines (CCGT), at medium to high domestic \co mitigation the electricity system is fully renewable supported by flexibility through Vehicle-to-Grid (V2G) and sector coupling. Increasing electricity demands include Battery Electric Vehicles (BEV) and hydrogen ({H${}_2${}}) generation for other sectors.
+    At increasing hydrogen exports the additional electricity required for hydrogen electrolysis is covered by onshore wind and solar photovoltaics (PV), as imposed by the temporal hydrogen regulation. 
+    See Supplementary Fig. \ref{fig:balances-ac-noreg} for electricity supply and demand if no hydrogen regulation is in place and Supplementary Fig. \ref{fig:balances-ac-200} for hydrogen exports up to 200 TWh/a.
+    }
+    \label{fig:balances-ac}
+\end{figure*}
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120.pdf}
+        \caption{Impact of hydrogen exports on domestic interests:        
+        Relative cost of electricity for domestic consumers (normalized to 1 TWh/a hydrogen export)}
+        \label{fig:expense_ac_120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120.pdf}
+        \caption{
+        Impact of domestic \co mitigation on hydrogen exporter interests:   
+        Relative cost of hydrogen for exporters (normalized to 0\% domestic \co mitigation)}
+        \label{fig:expense_h2_120}
+    \end{subfigure}
+    \hfill
+    \caption{
+    The effects of hydrogen exports on domestic electricity consumers and domestic \co mitigation on hydrogen exporters.
+    Figure \ref{fig:expense_ac_120} shows the effect of hydrogen ({H${}_2${}}) exports on domestic electricity cost with hourly hydrogen regulation. Therefore, the effect of hydrogen exports is isolated by normalizing the costs to 1 TWh/a hydrogen export in each column. This approach allows for a vertical interpretation in Figure \ref{fig:expense_ac_120} only, displaying the effects of hydrogen exports (vertical) at a certain domestic \co mitigation level.
+    Figure \ref{fig:expense_h2_120} shows the effect of domestic \co mitigation on hydrogen export cost with hourly hydrogen regulation. Therefore, the effect of domestic \co mitigation is isolated by normalizing the costs to 0\% \co mitigation in each row. This approach allows for a horizontal interpretation in Figure \ref{fig:expense_h2_120} only, displaying the effects of domestic \co mitigation (horizontal) at a certain hydrogen export quantity.
+    Domestic electricity consumers profit from increasing hydrogen exports, especially at low domestic \co mitigation and high exports. Hydrogen exporters profit from domestic \co mitigation at medium mitigation efforts.
+    See Supplementary Fig. \ref{fig:expenses_abs_120} for absolute market-based costs for domestic electricity consumers and hydrogen exporters, Supplementary Fig. \ref{fig:expenses_default_120-noreg} for the interplay of hydrogen exports and domestic \co mitigation if no hydrogen regulation is in place and Supplementary Fig. \ref{fig:expenses_default_200} for hydrogen exports up to 200 TWh/a.
+    }
+    \label{fig:expenses_default_120}
+\end{figure*}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=0.7\linewidth]{../results/gh/price_sorted_AC_120_2.0_Hours.pdf}
+    \caption{
+    The effect of temporal hydrogen regulation on electricity prices.
+    Figure \ref{fig:pdc-120-0} shows the price duration curve at 120 TWh/a export and 0\% domestic \co mitigation. Stricter temporal hydrogen regulation pushes the price duration curve towards the left, as additional renewable electricity capacities phase out fossil generation with higher short-term marginal costs than renewables. Negative prices below -50 €/MWh are cut off.}
+    \label{fig:pdc-120-0}
+\end{figure}
+
+
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/dispatch_120_Co2L2.0.pdf}
+        \caption{Electricity dispatch and demand}
+        \label{fig:dispatch_rule}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../results/gh/abs_sin_expenses_h2ac_120_Co2L2.0.pdf}
+        \caption{Market-based costs for domestic electricity consumers and hydrogen exporters}
+        \label{fig:expense_h2ac}
+    \end{subfigure}
+    \hfill
+    \caption{
+    The effect of temporal hydrogen regulation on the electricity system and consumer costs.
+    Figure \ref{fig:expenses_rule} shows the electricity dispatch and demand (\ref{fig:dispatch_rule}) and cost for consumers (\ref{fig:expense_h2ac}) for various (hydrogen) temporal matching regimes in the 120 TWh/a export and 0\% \co mitigation scenario. Stricter temporal matching decreases carbon-intensive electricity generation (coal \& gas) for hydrogen generation and even domestic electricity consumers (s. Fig. \ref{fig:dispatch_rule}). Cost for export hydrogen generation increase to fulfill the temporal matching constraint, whereas domestic electricity consumers profit from stricter hydrogen regulation (s. Fig. \ref{fig:expense_h2ac}).}
+    \label{fig:expenses_rule}
+\end{figure*}
+
+
+\begin{figure}[h!]
+
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_elec.pdf}
+        \caption{Cost reduction for electricity consumers}
+        \label{fig:expenses-relative-120-elec}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../results/gh/rel_multiple_120exp_violin_hy.pdf}
+        \caption{Cost increase for hydrogen exporters}
+        \label{fig:expenses-relative-120-hy}
+    \end{subfigure}
+    \hfill    
+    \caption{Relative change of electricity (s. Fig. \ref{fig:expenses-relative-120-elec}) and hydrogen consumer cost (s. Fig. \ref{fig:expenses-relative-120-hy}) depending on the temporal hydrogen regulation.     
+    Violin plots indicate median (white dot), interquartile range (thick black bar), and 1.5x interquartile range (thin black bar), using kernel density estimation to show the distribution shape of the mitigation-export scenarios, grouped into three stylized transition strategies (1–3) reflecting different sequences of export and mitigation ambition.
+    Domestic electricity consumers profit across all export and mitigation scenarios but most in the group of slow export and quick \co mitigation scenarios. Hydrogen exporters experience higher cost with stricter temporal hydrogen regulation. The temporal hydrogen ({H${}_2${}}) regulation regulates the welfare distribution between both groups. See Supplementary Fig. \ref{fig:expenses-relative-200} for the sensitivity of the export quantities and Supplementary Fig. \ref{fig:scenario-sel} for scenario grouping.}
+    \label{fig:expenses-relative-120}
+\end{figure}
+
+
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../results/graphics_general/brownfield_capacities.pdf}
+    \caption{Current capacities of electricity generation and distribution in Morocco. Morocco's electricity generation portfolio is currently dominated by fossil generation (coal and gas), includes some hydropower plants and increasing but still minor capacities of onshore wind and solar PV. The data is obtained from Parzen et al.\cite{Parzen2023} and the visualization is based on H\"orsch et al.\cite{Horsch2018}. Boundaries depicted are based on the Global Administrative Areas\cite{gadm2022} and are intended for illustrative purposes only, not implying territorial claims.
+    }
+    \label{fig:MAR_brownfield}
+\end{figure*}
+
+
+\textbf{L.S.}:
+Conceptualization,
+Data curation,
+Formal Analysis,
+Funding acquisition,
+Investigation,
+Methodology,
+Project administration,
+% Resources,
+Software,
+% Supervision,
+Validation,
+Visualization,
+Writing - original draft,
+Writing - review \& editing;
+\textbf{H.A-K.}:
+% Conceptualization,
+Data curation,
+% Formal Analysis,
+% Funding acquisition,
+% Investigation,
+Methodology,
+Project administration,
+% Resources,
+Software,
+% Supervision,
+Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{T.B.}:
+Conceptualization,
+% Data curation,
+Formal Analysis,
+% Funding acquisition,
+% Investigation,
+Methodology,
+% Project administration,
+% Resources,
+% Software,
+Supervision,
+% Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{F.U.}:
+Conceptualization,
+% Data curation,
+Formal Analysis,
+% Funding acquisition,
+% Investigation,
+% Methodology,
+% Project administration,
+% Resources,
+% Software,
+Supervision,
+% Validation,
+Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{M.S.}:
+% Conceptualization,
+% Data curation,
+% Formal Analysis,
+Funding acquisition,
+% Investigation,
+% Methodology,
+Project administration,
+Resources,
+% Software,
+Supervision,
+% Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{M.P.}:
+% Conceptualization,
+% Data curation,
+% Formal Analysis,
+% Funding acquisition,
+% Investigation,
+Methodology,
+% Project administration,
+% Resources,
+Software,
+% Supervision,
+% Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing;
+\textbf{D.F.}:
+Conceptualization,
+% Data curation,
+Formal Analysis,
+% Funding acquisition,
+% Investigation,
+Methodology,
+% Project administration,
+% Resources,
+Software,
+% Supervision,
+% Validation,
+% Visualization,
+% Writing - original draft,
+Writing - review \& editing.
+
+
+\section*{Competing interests}
+
+The authors declare no competing interests.
+
+
+\section*{Figures}
+
+
+
+
+\end{document}
+% supplementary information
+
