@@ -78,6 +78,11 @@
 % \newcommand{\bigheading}[1]{\vspace{10pt}\noindent{\LARGE\bfseries #1}\vspace{6pt}}
 \newcommand{\bigheading}[1]{\vspace{8pt}\noindent{\Large\bfseries #1}\vspace{4pt}}
 
+\newcommand{\tocbigheading}[1]{%
+  \bigheading{#1}%
+  \addcontentsline{toc}{section}{#1}%
+}
+
 
 
 \def\el{${}_{\textrm{el}}$}
@@ -169,6 +174,12 @@
 \setcounter{section}{0}
 
 
+\renewcommand{\contentsname}{Supplementary Items List}
+\setcounter{tocdepth}{2}
+\tableofcontents
+\newpage
+
+
 % \section*{Supplementary Information}
 \label{sec:si}
 
@@ -184,7 +195,7 @@
 \input{sections/supplementary-relchange.tex}
 
 %Figures
-\bigheading{Supplementary Figures}
+\tocbigheading{Supplementary Figures}
 \input{sections/supplementary-supply.tex}
 \input{sections/supplementary-absolutecost.tex}
 \input{sections/supplementary-balances.tex}
@@ -195,7 +206,7 @@
 % \addcontentsline{toc}{section}{Supplementary References}
 % \renewcommand{\ttdefault}{\sfdefault}
 
-\bigheading{Supplementary References}
+\tocbigheading{Supplementary References}
 \renewcommand{\refname}{} 
 
 \bibliography{references_mylibrary}
