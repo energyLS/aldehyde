@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{nopageno}
+\usepackage{subcaption}
+\usepackage{fontspec}
+\setmainfont{Roboto}
+\usepackage[margin=0.05in,papersize={200mm,220mm}]{geometry}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{figure}
+    \centering
+        \begin{subfigure}[h]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../results/decr_13_3H_ws/graphics/heatmaps/cf-raw-ts-onshore wind.pdf}
+        \begin{picture}(0,0)
+            \put(-110,160){\makebox(0,0)[lt]{\textbf{a}}}
+        \end{picture}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../results/decr_13_3H_ws/graphics/heatmaps/cf-raw-ts-solar thermal.pdf}
+        \begin{picture}(0,0)
+            \put(-110,160){\makebox(0,0)[lt]{\textbf{b}}}
+        \end{picture}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../results/decr_13_3H_ws/graphics/heatmaps/cf-raw-ts-solar PV.pdf}
+        \begin{picture}(0,0)
+            \put(-110,160){\makebox(0,0)[lt]{\textbf{c}}}
+        \end{picture}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../results/decr_13_3H_ws/graphics/heatmaps/cf-raw-ts-run of river.pdf}
+        \begin{picture}(0,0)
+            \put(-110,160){\makebox(0,0)[lt]{\textbf{d}}}
+        \end{picture}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../results/decr_13_3H_ws/graphics/heatmaps/cop-ts-air-sourced heat pump.pdf}
+        \begin{picture}(0,0)
+            \put(-110,160){\makebox(0,0)[lt]{\textbf{e}}}
+        \end{picture}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../results/decr_13_3H_ws/graphics/heatmaps/cop-ts-ground-sourced heat pump.pdf}
+        \begin{picture}(0,0)
+            \put(-110,160){\makebox(0,0)[lt]{\textbf{f}}}
+        \end{picture}
+    \end{subfigure}
+\end{figure}
+
+\end{document}
