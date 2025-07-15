@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{nopageno}
+\usepackage{subcaption}
+\usepackage{fontspec}
+\setmainfont{Roboto}
+\usepackage[margin=0.05in,papersize={200mm,220mm}]{geometry}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{figure}
+    \begin{subfigure}[t]{0.49\linewidth}
+        \begin{picture}(0,0)
+            \put(10,140){\makebox(0,0)[lt]{\textbf{a}}}
+        \end{picture}
+        \includegraphics[width=\linewidth,trim={0cm 0cm 0cm 1cm}, clip]
+        {../../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/0exp-only/120/graphs/balances-AC.pdf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\linewidth}
+        \begin{picture}(0,0)
+            \put(10,140){\makebox(0,0)[lt]{\textbf{b}}}
+        \end{picture}
+        \includegraphics[width=\linewidth,trim={0cm 0cm 0cm 1cm}, clip]{../../workflow/subworkflows/pypsa-earth-sec/results/decr_13_3H_ws/co2l20-only/120/graphs/balances-AC.pdf}
+    \end{subfigure}
+\end{figure}
+
+\end{document}

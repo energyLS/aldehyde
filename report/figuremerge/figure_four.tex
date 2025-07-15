@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{nopageno}
+\usepackage{subcaption}
+\usepackage{fontspec}
+\setmainfont{Roboto}
+\usepackage[margin=0.05in,papersize={200mm,220mm}]{geometry}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{figure}
+    \begin{subfigure}[t]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{../../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_AC_exclu_H2 El_all_20_filterTrue_nTrue_exp120.pdf}
+        \begin{picture}(0,0)
+            \put(0,200){\makebox(0,0)[lt]{\textbf{a}}}
+        \end{picture}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{../../results/decr_13_3H_ws/graphics/integrated_comp/contour_exp_H2_False_False_exportonly_20_filterTrue_nTrue_exp120.pdf}
+        \begin{picture}(0,0)
+            \put(0,200){\makebox(0,0)[lt]{\textbf{b}}}
+        \end{picture}
+    \end{subfigure}
+\end{figure}
+
+\end{document}

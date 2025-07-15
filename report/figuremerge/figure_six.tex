@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{nopageno}
+\usepackage{subcaption}
+\usepackage{fontspec}
+\setmainfont{Roboto}
+\usepackage[margin=0.05in,papersize={200mm,220mm}]{geometry}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{figure}
+    \begin{subfigure}[t]{0.51\linewidth}
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/dispatch_120_Co2L2.0.pdf}
+        \begin{picture}(0,0)
+            \put(0,140){\makebox(0,0)[lt]{\textbf{a}}}
+        \end{picture}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.47\linewidth}
+        \includegraphics[trim={0cm 0cm 0cm 0.65cm}, clip, width=\linewidth]{../../results/gh/abs_sin_expenses_h2ac_120_Co2L2.0.pdf}
+        \begin{picture}(0,0)
+            \put(0,140){\makebox(0,0)[lt]{\textbf{b}}}
+        \end{picture}
+    \end{subfigure}
+\end{figure}
+
+\end{document}

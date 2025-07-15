@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{nopageno}
+\usepackage{subcaption}
+\usepackage{fontspec}
+\setmainfont{Roboto}
+\usepackage[margin=0.05in,papersize={200mm,220mm}]{geometry}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{figure}
+    \begin{subfigure}[t]{0.49\linewidth}
+        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_120exp_violin_elec.pdf}
+        \begin{picture}(0,0)
+            \put(10,200){\makebox(0,0)[lt]{\textbf{a}}}
+        \end{picture}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\linewidth}
+        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\linewidth]{../../results/gh/rel_multiple_120exp_violin_hy.pdf}
+        \begin{picture}(0,0)
+            \put(10,200){\makebox(0,0)[lt]{\textbf{b}}}
+        \end{picture}
+    \end{subfigure}
+\end{figure}
+
+\end{document}
