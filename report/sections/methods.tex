@@ -2,7 +2,7 @@
 \label{subsec:moroccan_model}
 The sector-coupled energy model of Morocco is based on the global electricity model  PyPSA-Earth \cite{Parzen2023} and the sector-coupling extension \cite{Abdel-Khalek2025} using linear optimisation and overnight scenarios. This capacity extension model optimises the generation, transmission and storage capacities of Morocco's energy system by minimising the the total annualised system costs constrained by e.g. climate targets or green hydrogen policies.
 A more detailed mathematical problem formulation is provided in the Supplementary Method 1: Mathematical model formulation,
-and a system overview is provided in Supplementary Fig. \ref{fig:system-overview}.
+and a system overview is provided in Supplementary Fig. 1. %\ref{fig:system-overview}
 The model is based on the economic year of 2030, optimizing the time span of a full year. We have chosen the year 2030 to account for the relevance of hydrogen exports and domestic \co mitigation in the near-term. However, we do not expect or imply that both substantial hydrogen export volumes and the domestic \co mitigation fully materialize by the year 2030 given the time span required for the ramp up of the required technologies (Renewable electricity, hydrogen electrolyis, etc.). By fixing the modelling year to 2030 instead of modelling transformation pathways, we can isolate the effects of 0-100\% mitigation (to today) and 0-120 TWh hydrogen export and contextualize our results in a comparable setting.
 However, this fixed-year approach has limitations. Modeling actual transition pathways (instead of a fixed year) accounts for evolving factors over time, such as technology costs and regulatory shifts. 
 In comparison, M\"uller et al.\cite{Muller2024} employs such an  approach by exogenously defining the final energy demand, hydrogen exports and emission constraint across a transition path up to 2050. Based on these input parameters, the cost-optimal power sector is modelled endogenously. This allows for a more detailed exploration of transition pathways, and enables insights of reaching (annual) climate goals under a (cumulative) \co budget.
@@ -20,15 +20,17 @@ The resulting temporal and spatial energy demands of the sectors
 (iii) industry,
 (iv) transport (road, rail, aviation and navigation) and
 (v) agriculture
-are integrated in the sector coupled energy model, including the energy carriers electricity, hydrogen, natural gas, biomass, oil, and heat, as well as carbon dioxide in the form of emissions and feed-stock for the synthesis of other carriers (see Supplementary Fig. \ref{fig:carbon-mgmt}). 
-The domestic energy services per sector remain constant throughout the scenarios presented in the \nameref{sec:intro}, regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, while energy services (e.g., demand for transportation or heating) are fixed, the primary and final energy consumption are subject to \co mitigation targets. To reflect the impact of increasing shares of BEVs in the Moroccan energy system, the share of BEVs is linked to emission reduction ambitions (see Supplementary Fig. \ref{fig:bev_diffusion}) from 2\% (today's levels) up to a share of 88\% at 100\% domestic \co mitigation in accordance with Rim et al.\cite{Rim2021}.
-In the case of low domestic \co mitigation, a low BEV share results in a high fuel demand for e.g. Internal Combustion Engine Cars, as observable in Supplementary Fig. \ref{fig:tsc-120-0}. This reflects a constant energy service demand (transportation) while the primary energy is subject to \co mitigation.
+are integrated in the sector coupled energy model, including the energy carriers electricity, hydrogen, natural gas, biomass, oil, and heat, as well as carbon dioxide in the form of emissions and feed-stock for the synthesis of other carriers (see Supplementary Fig. 19). %\ref{fig:carbon-mgmt} 
+The domestic energy services per sector remain constant throughout the scenarios presented in the \nameref{sec:intro}, regardless of endogenous hydrogen export volumes or national carbon emission reductions. However, while energy services (e.g., demand for transportation or heating) are fixed, the primary and final energy consumption are subject to \co mitigation targets. To reflect the impact of increasing shares of BEVs in the Moroccan energy system, the share of BEVs is linked to emission reduction ambitions (see Supplementary Fig. 2) from 2\% (today's levels) up to a share of 88\% at 100\% domestic \co mitigation in accordance with Rim et al.\cite{Rim2021}. %\ref{fig:bev_diffusion}
+In the case of low domestic \co mitigation, a low BEV share results in a high fuel demand for e.g. Internal Combustion Engine Cars, as observable in Supplementary Fig. 5. %\ref{fig:tsc-120-0}
+This reflects a constant energy service demand (transportation) while the primary energy is subject to \co mitigation.
 
 
 
 \subsubsection*{Renewable Energy Sources}
 The sector-coupled energy model follows the data pipeline of Parzen et al.\cite{Parzen2023} by incorporating solar PV, onshore wind and hydro power using the open source package Atlite \cite{Hofmann2021}.
-Atlite obtains technology-specific time series of the weather year 2013 based on the ERA5 reanalysis data \cite{Hersbach2020}, displayed in Supplementary Fig. \ref{fig:ren-cfs}. In addition to the time series, Atlite calculates land availabilities and linked potentials using the Copernicus Global Land Service \cite{Buchhorn2020}.
+Atlite obtains technology-specific time series of the weather year 2013 based on the ERA5 reanalysis data \cite{Hersbach2020}, displayed in Supplementary Fig. 15. %\ref{fig:ren-cfs}
+In addition to the time series, Atlite calculates land availabilities and linked potentials using the Copernicus Global Land Service \cite{Buchhorn2020}.
 
 
 
@@ -83,7 +85,7 @@ to qualify as green hydrogen. These further options are not considered here, sin
 
 \subsection*{Hydrogen export}
 \label{subsec:hydrogen_export}
-The amount of hydrogen to be exported or further synthesized for export is  implemented as an exogenous parameter in the range of 0-120~TWh, with sensitivity analysis up to 200 TWh presented in the Supplementary Discussion 3: High export sensitivity.
+The amount of hydrogen to be exported or further synthesized for export is  implemented as an exogenous parameter in the range of 0-120~TWh, with sensitivity analysis up to 200 TWh presented in the Supplementary Discussion 3.
 The system boundary is the country border of Morocco, hence transport options (as shipping or pipeline) are not considered in detail. The profile for hydrogen (or derivatives) export assumed in this study is constant. This represents the operation of pipeline exports as well as the operation of a further hydrogen synthesis with limited flexibility. The export of hydrogen is allowed via a range of ports in Morocco.
 
 
